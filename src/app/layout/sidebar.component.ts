@@ -11,7 +11,7 @@ import { LayoutStoreService } from '@shared/layout/layout-store.service';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'sidebar',
-  templateUrl: './sidebar.component.html',
+  templateUrl: './sidebar.component.html', 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core' ;
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -21,7 +21,9 @@ class PagedTenantsRequestDto extends PagedRequestDto {
 
 @Component({
   templateUrl: './tenants.component.html',
-  animations: [appModuleAnimation()]
+  styleUrls:['./tenants.component.css'],
+  animations: [appModuleAnimation()],
+  
 })
 export class TenantsComponent extends PagedListingComponentBase<TenantDto> {
   tenants: TenantDto[] = [];

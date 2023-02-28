@@ -180,19 +180,19 @@
                                 <td>
                                     <button
                                             type="button"
-                                            class="btn btn-sm bgPink"
-                                            (click)="editUser(user)"
-                                    >
-                                        <i class="fas fa-pencil-alt"></i>
-                                        {{ "Edit" | localize }}
-                                    </button>
-                                    <button
-                                            type="button"
-                                            class="btn btn-sm mx-2 bgYellow"
+                                            class="btn btn-sm mx-2 bgPink"
                                             (click)="delete(user)"
                                     >
                                         <i class="fas fa-trash"></i>
                                         {{ "Delete" | localize }}
+                                    </button>
+                                    <button
+                                            type="button"
+                                            class="btn btn-sm mx-2 bgYellow"
+                                            (click)="editUser(user)"
+                                    >
+                                        <i class="fas fa-pencil-alt"></i>
+                                        {{ "Edit" | localize }}
                                     </button>
                                     <button
                                             type="button"

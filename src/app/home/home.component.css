@@ -1,0 +1,96 @@
+.alert{
+    background-color: #5eb2a8;
+    color: #fff;
+}
+
+.bgGrey{
+    background-color: #f8f8f8;
+    padding: 1rem;
+    margin: 10px;
+}
+
+.bgGreen{
+    background-color: #5eb2a8; 
+    color: #fff;
+}
+
+.bgPink{
+    background-color: #f28d8a;
+    color: #fff;
+}
+
+.bgYellow{
+    background-color: #f8b25a; 
+    color: #fff;
+}
+
+.bgLightGreen{
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.bgDarkGreen{
+    background-color: #5ba39a; 
+    color: #fff;
+}
+
+.idLink{
+    color: #686666;
+    font-weight: bold;
+}
+
+.bgDarkYellow{
+    background-color: #e3a454; 
+    color: #fff;
+}
+
+
+.bgDarkPink{
+    background-color: #db8b89;
+    color: #fff;
+}
+
+
+.bgDarkGreen,
+.bgDarkYellow,
+.bgDarkPink{
+     padding: 10px;
+     width: 40px;
+}
+
+.bgDarkGreen i,
+.bgDarkYellow i,
+.bgDarkPink i{
+     font-size: 17px;
+}
+
+
+.info-box{
+    box-shadow: none;   
+     display: flex;
+    align-items: center;
+}
+
+.info-box .info-box-text{
+    font-weight: bold;
+    line-height: 1;
+}
+
+.info-box .info-box-number{
+    color: #e0dede;
+    font-weight: 600;
+    margin-top: 0px;
+}
+
+.fa-star,
+.fa-code{
+    color: #5eb2a8;
+}
+
+.fa-users{
+    color: #f28d8a;
+}
+
+.fa-tools{
+    color: #f8b25a;
+}

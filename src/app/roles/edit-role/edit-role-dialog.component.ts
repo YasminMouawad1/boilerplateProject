@@ -18,7 +18,8 @@ import {
 } from '@shared/service-proxies/service-proxies';
 
 @Component({
-  templateUrl: 'edit-role-dialog.component.html'
+  templateUrl: 'edit-role-dialog.component.html',
+  styleUrls:['./edit-role-dialog.component.css']
 })
 export class EditRoleDialogComponent extends AppComponentBase
   implements OnInit {

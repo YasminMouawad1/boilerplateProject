@@ -10,7 +10,7 @@
   ></abp-modal-header>
   <div class="modal-body">
     <tabset>
-      <tab [heading]="'Details' | localize" class="pt-3 px-2">
+      <tab [heading]="'Details' | localize" class="pt-3 px-2 ">
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="name">
             {{ "Name" | localize }}
@@ -98,6 +98,6 @@
   <abp-modal-footer
     [cancelDisabled]="saving"
     [saveDisabled]="!createRoleForm.form.valid || saving"
-    (onCancelClick)="bsModalRef.hide()"
+    (onCancelClick)="bsModalRef.hide()" 
   ></abp-modal-footer>
 </form>

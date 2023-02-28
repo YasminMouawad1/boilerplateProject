@@ -16,7 +16,8 @@ import {
 import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 
 @Component({
-  templateUrl: './create-user-dialog.component.html'
+  templateUrl: './create-user-dialog.component.html',
+  styleUrls:['../users.component.css']
 })
 export class CreateUserDialogComponent extends AppComponentBase
   implements OnInit {

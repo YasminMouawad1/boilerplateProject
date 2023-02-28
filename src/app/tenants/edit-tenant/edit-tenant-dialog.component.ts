@@ -13,7 +13,8 @@ import {
 } from '@shared/service-proxies/service-proxies';
 
 @Component({
-  templateUrl: 'edit-tenant-dialog.component.html'
+  templateUrl: 'edit-tenant-dialog.component.html',
+  styleUrls:['../tenants.component.css']
 })
 export class EditTenantDialogComponent extends AppComponentBase
   implements OnInit {

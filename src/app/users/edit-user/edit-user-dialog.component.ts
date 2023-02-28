@@ -15,7 +15,8 @@ import {
 } from '@shared/service-proxies/service-proxies';
 
 @Component({
-  templateUrl: './edit-user-dialog.component.html'
+  templateUrl: './edit-user-dialog.component.html',
+  styleUrls:['../users.component.css']
 })
 export class EditUserDialogComponent extends AppComponentBase
   implements OnInit {

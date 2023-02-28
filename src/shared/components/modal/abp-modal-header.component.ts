@@ -11,6 +11,7 @@ import { AppComponentBase } from '@shared/app-component-base';
 @Component({
   selector: 'abp-modal-header',
   templateUrl: './abp-modal-header.component.html',
+  styleUrls:['./model.commponent.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AbpModalHeaderComponent extends AppComponentBase {

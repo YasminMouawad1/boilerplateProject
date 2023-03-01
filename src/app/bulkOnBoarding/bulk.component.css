@@ -1,0 +1,59 @@
+.bgGrey{
+    background-color: #f8f8f8;
+    padding: 1rem;
+}
+
+.bgGreen{
+    background-color: #5eb2a8; 
+    color: #fff;
+}
+
+.bgYellow{
+    background-color: #f8b25a; 
+    color: #fff;
+}
+
+.btnCreate{
+    background-color: #5eb2a8;
+    padding: 5px 21px;
+    border-radius: 14px;
+    color: #fff;
+}
+
+.bgPink{
+    background-color: #f28d8a;
+    color: #fff;
+}
+
+.card{
+    box-shadow: none;
+}
+
+.card-footer{
+    background-color: #ebebeb;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border: none;
+    background-color: #f28d8a;
+  }
+
+
+  .boldText{
+    font-weight: bold;
+  }
+
+  .mat-mdc-slide-toggle{
+    line-height: 2.5;
+  }
+ 
+
+  .select2-container--default .select2-results__option--highlighted[aria-selected]:hover{
+    background-color: #f28d8a;
+  }
+
+
+  .select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 18px;
+  }

@@ -63,7 +63,9 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 '/app/users',
                 'fas fa-users',
                 'Pages.Users'
-            ),
+            ), 
+            
+            new MenuItem(this.l('BulkOnBoarding'), '/app/bulk-on-boarding', 'fas fa-users-gear'),
             new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
                 new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [
                     new MenuItem(

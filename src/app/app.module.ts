@@ -8,12 +8,16 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UiSwitchModule } from 'ngx-ui-switch';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component';
+
+import { BulkComponent } from '@app/bulkOnBoarding/bulk.component';
+
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
 import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
@@ -42,11 +46,19 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from  '@ngx-translate/http-loader';
 import { TranslateLoader } from '@ngx-translate/core/public_api';
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { NgSelect2Module } from 'ng-select2';
+ 
+ 
+ 
+ 
+
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         AboutComponent,
+        BulkComponent,
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,
@@ -73,7 +85,7 @@ import { TranslateLoader } from '@ngx-translate/core/public_api';
         SidebarMenuComponent
     ],
     imports: [
-        CommonModule,
+    CommonModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
@@ -86,6 +98,8 @@ import { TranslateLoader } from '@ngx-translate/core/public_api';
         ServiceProxyModule,
         SharedModule,
         NgxPaginationModule,
+        MatSlideToggleModule,
+        NgSelect2Module,
         TranslateModule.forRoot({
             // loader:{
             //     provide:TranslateLoader,

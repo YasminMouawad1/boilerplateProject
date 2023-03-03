@@ -1,0 +1,14 @@
+.bgGrey{
+  background-color: #f8f8f8;
+  padding: 1rem;
+}
+
+.my-pagination ::ng-deep .ngx-pagination{
+  margin-top: 1.5rem;
+} 
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: #556ee6;
+  border-radius: 50%;
+  cursor: pointer;
+}

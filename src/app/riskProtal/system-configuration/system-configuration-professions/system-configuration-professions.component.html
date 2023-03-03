@@ -1,0 +1,272 @@
+<div [@routerTransition]>
+  <div class="bgGrey m-2">
+
+    <section class="content-header">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-6">
+                  <h1> System Configuration professions</h1>
+              </div> 
+          </div>
+      </div>
+  </section>
+
+  <section class="content px-2">
+    <div class="container-fluid">
+<!-- <div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <p *ngIf="!showTable" class="alert alert-warning text-center">{{ "CONFIGPROFESSIONS.dataIsEmpty" | translate }}</p>
+         
+          <button type="button" data-bs-toggle="modal" data-bs-target="#add"
+          class="btn btn-primary btn-rounded mb-3 float-end">
+            <i class="fas fa-plus"></i>{{ "CONFIGPROFESSIONS.add" | translate }}
+          </button>
+
+          <table class="table align-middle table-nowrap table-hover">
+            <thead class="table-light">
+              <tr>
+                <th scope="col" style="width: 70px">#</th>
+                <th scope="col">
+                  {{ "USERlISTTABLE.COL1" | translate }}
+                </th>
+                <th scope="col"> 
+                  {{ "CONFIGPROFESSIONS.code" | translate }}
+                </th>
+                <th scope="col"> 
+                  {{ "CONFIGPROFESSIONS.isActive" | translate }}
+                </th>
+                <th scope="col"> 
+                  {{ "CONFIGPROFESSIONS.isDeleted" | translate }}
+                </th>
+                <th scope="col"> 
+                  {{ "CONFIGPROFESSIONS.Actions" | translate }}
+                </th>
+
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let profession of professionsList | paginate: { itemsPerPage: numberRows, currentPage: currentPage }">
+                <td></td>
+                <td>{{  profession.name }}</td>
+                <td>{{ profession.code }} </td>
+                <td>
+                  <h5> <span
+                  class="{{profession.isActive ? 'badge bg-success' : 'badge bg-danger'}}"
+
+
+                  >{{ profession.isActive? 'Active':'Dactive' }}</span>
+
+
+                </h5>
+                </td>
+                <td>
+
+                  <h5> <span
+                    class="{{profession.isDeleted ? 'badge bg-danger' : ''}}"
+
+
+                    >{{ profession.isDeleted? 'Deleted':'' }}</span>
+
+
+                  </h5>
+                </td>
+                <td>
+                  <button (click)="GetSystemConfigurationProfessionsById(profession.id)" data-bs-toggle="modal" data-bs-target="#edit"
+                  class='btn btn-secondary btn-rounded'>
+                    <i class="fas fa-edit"></i>
+                    {{ "CONFIGPROFESSIONS.Edit" | translate }}</button>
+                  &nbsp;
+                  <button (click)="activeSystemConfiguration(profession)" class=" {{profession.isActive ? 'btn btn-danger btn-rounded' : 'btn btn-success btn-rounded'}}">
+                    <i class="{{profession.isActive ? 'fas fa-minus-square' : 'far fa-check-square'}}"></i>
+                    {{profession.isActive ? 'Dactive' : 'Active'}}</button>
+
+                    &nbsp;
+                    <button (click)="deleteSystemConfiguration(profession) " class="{{profession.isDeleted ? 'btn btn-success btn-rounded' : 'btn btn-danger btn-rounded'}}">
+                      <i class="{{profession.isDeleted ? 'fas fa-undo-alt' : 'fas fa-trash-alt'}}"></i>
+                      {{profession.isDeleted ? 'Restore' : 'Delete'}}</button>
+
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="showTable" class="row justify-content-space-between align-items-center">
+          <div class="col-md-1">
+            <select [(ngModel)]="numberRows" class="form-select">
+              <option [ngValue]="5">5</option>
+              <option [ngValue]="10">10</option>
+              <option [ngValue]="50">50</option>
+              <option [ngValue]="100">100</option>
+              <option [ngValue]="200">200</option>
+            </select>
+          </div>
+            <div class="col-md-11">
+               <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
+            </div>
+            
+         </div>
+      </div>
+    </div>
+
+    
+  add Modal 
+<div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> {{ "CONFIGPROFESSIONS.addNew" | translate }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="configurationProfession" (ngSubmit)="createSystemConfiguration()">
+        <div class="mb-3 row">
+          <label for="Name" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.name" | translate }}</label>
+          <div class="col-sm-10">
+            <input [class.is-valid]="configurationProfession.get('name')?.status=='VALID'"
+              type="text" formControlName="name" class="form-control" id="Name">
+              <div *ngIf="configurationProfession.get('name')?.errors && configurationProfession.get('name')?.touched" class="invalid-feedback">
+                <span *ngIf="configurationProfession.get('name')?.getError('required')">
+                {{ "USERITEMINFO.Required" | translate }}</span>  
+           </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="Code" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.code" | translate }}</label>
+          <div class="col-sm-10">
+            <input [class.is-valid]="configurationProfession.get('code')?.status=='VALID'"
+            type="text" formControlName="code" class="form-control" id="code">
+            <div *ngIf="configurationProfession.get('code')?.errors && configurationProfession.get('code')?.touched" class="invalid-feedback">
+              <span  *ngIf="configurationProfession.get('code')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+           </div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="isActive" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.isActive" | translate }}</label>
+          <div class="col-sm-10">
+            <select [class.is-valid]="configurationProfession.get('isActive')?.status=='VALID'"
+            id="isActive" class="form-select" placeholder="Select Active or Deavtive" formControlName="isActive">    
+                 <option value="" selected>{{ "CONFIGPROFESSIONS.chooseAD" | translate }}</option>
+                 <option [ngValue]="true">{{ "CONFIGPROFESSIONS.active" | translate }}</option>
+                 <option [ngValue]="false">{{ "CONFIGPROFESSIONS.dactive" | translate }}</option>
+            </select>
+            <div *ngIf="configurationProfession.get('isActive')?.errors && configurationProfession.get('isActive')?.touched"  class="invalid-feedback">
+              <span  *ngIf="configurationProfession.get('isActive')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+           </div>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="isDeleted" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.isDeleted" | translate }}</label>
+          <div class="col-sm-10">
+            <select [class.is-valid]="configurationProfession.get('isDeleted')?.status=='VALID'"
+            id="isDeleted" class="form-select" placeholder="Select Delete or not" formControlName="isDeleted">    
+                 <option value="" selected>choose Deleted or not</option>
+                 <option [ngValue]="true">true</option>
+                 <option [ngValue]="false">false</option>
+            </select>
+            <div *ngIf="configurationProfession.get('isDeleted')?.errors && configurationProfession.get('isDeleted')?.touched"  class="invalid-feedback">
+              <span  *ngIf="configurationProfession.get('isDeleted')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+           </div>
+          </div>
+        </div>
+        
+        <div class="text-end">
+          <button [disabled]="configurationProfession.invalid" class="btn btn-success mx-2">{{ "CONFIGPROFESSIONS.add" | translate }}</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">{{ "CONFIGPROFESSIONS.cancel" | translate }}</button>
+        </div>
+       </form> 
+      </div>
+    </div>
+  </div>
+</div>
+
+edit Modal 
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> {{ "CONFIGPROFESSIONS.Edit" | translate }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editConfigurationProfession" (ngSubmit)="updateSystemConfiguration()">
+          
+          <div class="mb-3 row">
+            <label for="Name" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.name" | translate }}</label>
+            <div class="col-sm-10">
+              <input [class.is-invalid]="editConfigurationProfession.get('name')?.status=='INVALID'"
+                type="text" formControlName="name" class="form-control" id="Name">
+                <div *ngIf="editConfigurationProfession.get('name')?.errors && editConfigurationProfession.get('name')?.touched" class="invalid-feedback">
+                  <span *ngIf="editConfigurationProfession.get('name')?.getError('required')">
+                  {{ "USERITEMINFO.Required" | translate }}</span>  
+             </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="Code" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.code" | translate }}</label>
+            <div class="col-sm-10">
+              <input [class.is-invalid]="editConfigurationProfession.get('code')?.status=='INVALID'"
+              type="text" formControlName="code" class="form-control" id="code">
+              <div *ngIf="editConfigurationProfession.get('code')?.errors && editConfigurationProfession.get('code')?.touched" class="invalid-feedback">
+                <span  *ngIf="editConfigurationProfession.get('code')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+             </div>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="isActive" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.isActive" | translate }}</label>
+            <div class="col-sm-10">
+              <select [class.is-invalid]="editConfigurationProfession.get('isActive')?.status=='INVALID'"
+              id="isActive" class="form-select" placeholder="Select Active or Deavtive" formControlName="isActive">    
+                   <option value="" selected>{{ "CONFIGPROFESSIONS.chooseAD" | translate }}</option>
+                   <option [ngValue]="true">{{ "CONFIGPROFESSIONS.active" | translate }}</option>
+                   <option [ngValue]="false">{{ "CONFIGPROFESSIONS.dactive" | translate }}</option>
+              </select>
+              <div *ngIf="editConfigurationProfession.get('isActive')?.errors && editConfigurationProfession.get('isActive')?.touched"  class="invalid-feedback">
+                <span  *ngIf="editConfigurationProfession.get('isActive')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+             </div>
+            </div>
+          </div>
+  
+          <div class="mb-3 row">
+            <label for="isDeleted" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.isDeleted" | translate }}</label>
+            <div class="col-sm-10">
+              <select [class.is-invalid]="editConfigurationProfession.get('isDeleted')?.status=='INVALID'"
+              id="isDeleted" class="form-select" placeholder="Select Delete or not" formControlName="isDeleted">    
+                   <option value="" selected>choose Deleted or not</option>
+                   <option [ngValue]="true">true</option>
+                   <option [ngValue]="false">false</option>
+              </select>
+              <div *ngIf="editConfigurationProfession.get('isDeleted')?.errors && editConfigurationProfession.get('isDeleted')?.touched"  class="invalid-feedback">
+                <span  *ngIf="editConfigurationProfession.get('isDeleted')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+             </div>
+            </div>
+          </div>
+          
+          <div class="text-end">
+            <button type="submit" [disabled]="editConfigurationProfession.invalid && !editConfigurationProfession.pristine" class="btn btn-success mx-2">{{ "CONFIGPROFESSIONS.Edit" | translate }}</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "CONFIGPROFESSIONS.cancel" | translate }}</button>
+          </div>
+         </form> 
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div> -->
+    </div>
+  </section>
+  </div>
+</div>
+ 
+  
+
+

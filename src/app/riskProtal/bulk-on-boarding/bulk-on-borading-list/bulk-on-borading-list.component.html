@@ -1,0 +1,129 @@
+<div [@routerTransition]>
+  <div class="bgGrey m-2">
+
+    <section class="content-header">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-6">
+                  <h1> bulk on boarding list </h1>
+              </div> 
+          </div>
+      </div>
+  </section>
+
+  <section class="content px-2">
+    <div class="container-fluid">
+
+   <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+       
+        <!-- <div class="card-body">
+          <button *ngIf="showTable" class="btn btn-success mb-3" (click)="exportexcel()">{{ "USERITEMINFO.ExportExcel" | translate }} <i class="fas fa-file-excel"></i></button>
+
+          <div *ngIf="showTable" class="p-3">
+            <input type="text" class="form-control" [(ngModel)]="term"  placeholder="Search by name .." name="">
+         </div>
+
+         <div class="input-group mb-3">
+          
+          <select [(ngModel)]="CorpCode" class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option *ngFor="let corp of corpList" ngValue={{corp.corpCode}}>
+              {{corp.arName }}</option> 
+          </select>
+   
+          <button class="btn btn-primary" for="inputGroupSelect01" (click)="viewDetails(CorpCode)">{{ "CONFIGPROFESSIONS.ViewDetails" | translate }}</button>      
+        </div>
+
+          <div class="table-responsive">
+            <p *ngIf="!showTable" class="alert alert-warning text-center">{{ "CONFIGPROFESSIONS.dataIsEmpty" | translate }}</p>
+            <table *ngIf="showTable" id="excel-table" class="table align-middle table-nowrap table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col" style="width: 70px">#</th>
+                  <th scope="col">
+                    {{ "onBorading.arNAme" | translate }}
+                  </th>
+                  <th scope="col">
+                    {{ "USERITEMINFO.PHONENUMBER" | translate }}
+                  </th>
+                  <th scope="col">
+                    {{ "USERITEMINFO.NATIONALID" | translate }}
+                  </th>
+                  <th scope="col">
+                    {{ "USERITEMINFO.Status" | translate }}
+                  </th>
+                  <th scope="col">
+                    {{ "onBorading.personalImg" | translate }}
+                  </th>   
+                  <th scope="col">
+                    {{ "USERlISTTABLE.COL7" | translate }}
+                  </th> 
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of usersList| search: term  | paginate: { itemsPerPage: numberRows, currentPage: currentPage, totalItems:allDataCount }">
+                  <td>
+                    <div class="avatar-xs">
+                      <span class="avatar-title rounded-circle">
+                        <img [src]="" alt="" />
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <h5 class="font-size-14 mb-1">
+                      <a href="javascript: void(0);" class="text-dark">{{
+                        user.name
+                      }}</a>
+                    </h5>
+                   
+                  </td>
+                  <td>{{ user.mobileNumber }}</td>
+                  <td>
+                    {{ user.nationalId }}
+                  </td>
+                  <td>{{ user.status }}</td>
+                  <td>{{ user.personalImage}}</td>
+                   
+                  <td>
+                    <ul class="list-inline font-size-20 contact-links mb-0">
+                      <li class="list-inline-item px-2">
+                        <a
+                          class="action-icon text-secondary"
+                          routerLink="bulk-onborading-item/{{ user.mobileNumber }}"
+                          ngbTooltip="Profile"
+                          ><i class="mdi mdi-eye font-size-18" [ngStyle]="{ 'color':user.isReviwed ? 'grey':'#556ee6'}"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+          <div *ngIf="showTable" class="row justify-content-space-between align-items-center">
+            <div class="col-md-1">
+              <select (change)="onpagesizeChange()" [(ngModel)]="numberRows" class="form-select">
+                <option [ngValue]="5">5</option>
+                <option [ngValue]="10">10</option>
+                <option [ngValue]="50">50</option>
+                <option [ngValue]="100">100</option>
+                <option [ngValue]="200">200</option>
+              </select>
+            </div>
+              <div class="col-md-11">
+                 <pagination-controls class="my-pagination text-end"  (pageChange)="handelCurrentPage($event)" previousLabel="" nextLabel=""></pagination-controls>
+              </div>
+              
+           </div>
+        </div> -->
+      </div>
+    </div>
+   </div>
+    </div>
+  </section>
+  </div>
+</div> 
+  

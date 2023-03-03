@@ -1,0 +1,246 @@
+<div [@routerTransition]>
+  <div class="bgGrey m-2">
+
+    <section class="content-header">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-6">
+                  <h1> System Rejection Reasons</h1>
+              </div> 
+          </div>
+      </div>
+  </section>
+
+  <section class="content px-2">
+    <div class="container-fluid">
+<!-- <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+  
+        <div class="card-body">
+          <div class="table-responsive">
+            <p *ngIf="!showTable" class="alert alert-warning text-center">{{ "CONFIGPROFESSIONS.dataIsEmpty" | translate }}</p>
+           
+            <button type="button" data-bs-toggle="modal" data-bs-target="#add"
+            class="btn btn-primary btn-rounded mb-3 float-end">
+              <i class="fas fa-plus"></i>{{ "CONFIGPROFESSIONS.add" | translate }}
+            </button>
+  
+            <table class="table align-middle table-nowrap table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col" style="width: 70px">#</th>
+                  <th scope="col">
+                    {{ "USERlISTTABLE.COL1" | translate }}
+                  </th> 
+                  <th scope="col">
+                    {{ "CONFIGPROFESSIONS.isActive" | translate }}
+                  </th>
+                  <th scope="col">
+                    {{ "CONFIGPROFESSIONS.isDeleted" | translate }}
+                  </th>
+                  <th scope="col">
+                    {{ "CONFIGPROFESSIONS.Actions" | translate }}
+                  </th>
+  
+  
+  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let reason of reasonsList | paginate: { itemsPerPage: numberRows, currentPage: currentPage }">
+                  <td></td>
+                  <td>{{  reason.name }}</td> 
+                  <td>
+                    <h5> <span
+                    class="{{reason.isActive ? 'badge bg-success' : 'badge bg-danger'}}"
+  
+  
+                    >{{ reason.isActive? 'Active':'Dactive' }}</span>
+  
+  
+                  </h5>
+                  </td>
+                  <td>
+  
+                    <h5> <span
+                      class="{{reason.isDeleted ? 'badge bg-danger' : ''}}"
+  
+  
+                      >{{ reason.isDeleted? 'Deleted':'' }}</span>
+  
+  
+                    </h5>
+                  </td>
+                  <td>
+                    <button (click)="GetSystemRiskRejectionReasonsById(reason.id)" data-bs-toggle="modal" data-bs-target="#edit"
+                    class='btn btn-secondary btn-rounded'>
+                      <i class="fas fa-edit"></i>
+                      {{ "CONFIGPROFESSIONS.Edit" | translate }}</button>
+                    &nbsp;
+                    <button (click)="activeRejectionReason(reason)" class=" {{reason.isActive ? 'btn btn-danger btn-rounded' : 'btn btn-success btn-rounded'}}">
+                      <i class="{{reason.isActive ? 'fas fa-minus-square' : 'far fa-check-square'}}"></i>
+                      {{reason.isActive ? 'Dactive' : 'Active'}}</button>
+  
+                      &nbsp;
+                      <button (click)="deleteRejectionReason(reason)" class=" {{reason.isDeleted ? 'btn btn-success btn-rounded' : 'btn btn-danger btn-rounded'}}">
+                        <i class="{{reason.isDeleted ? 'fas fa-undo-alt' : 'fas fa-trash-alt'}}"></i>
+                        {{reason.isDeleted ? 'Restore' : 'Delete'}}</button>
+  
+  
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="showTable" class="row justify-content-space-between align-items-center">
+            <div class="col-md-1">
+              <select [(ngModel)]="numberRows" class="form-select">
+                <option [ngValue]="5">5</option>
+                <option [ngValue]="10">10</option>
+                <option [ngValue]="50">50</option>
+                <option [ngValue]="100">100</option>
+                <option [ngValue]="200">200</option>
+              </select>
+            </div>
+              <div class="col-md-11">
+                 <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
+              </div>
+              
+           </div>
+        </div>
+      </div>
+  
+      
+  add Modal 
+    <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> {{ "CONFIGPROFESSIONS.addNew" | translate }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="rejectionReasons" (ngSubmit)="createRejectionReason()">
+            <div class="mb-3 row">
+              <label for="Name" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.name" | translate }}</label>
+              <div class="col-sm-10">
+                <input [class.is-valid]="rejectionReasons.get('name')?.status=='VALID'"
+                  type="text" formControlName="name" class="form-control" id="Name">
+                  <div *ngIf="rejectionReasons.get('name')?.errors && rejectionReasons.get('name')?.touched" class="invalid-feedback">
+                    <span *ngIf="rejectionReasons.get('name')?.getError('required')">
+                    {{ "USERITEMINFO.Required" | translate }}</span>  
+               </div>
+              </div>
+            </div>
+           
+            <div class="mb-3 row">
+              <label for="isActive" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.isActive" | translate }}</label>
+              <div class="col-sm-10">
+                <select [class.is-valid]="rejectionReasons.get('isActive')?.status=='VALID'"
+                id="isActive" class="form-select" placeholder="Select Active or Deavtive" formControlName="isActive">    
+                     <option value="" selected>{{ "CONFIGPROFESSIONS.chooseAD" | translate }}</option>
+                     <option [ngValue]="true">{{ "CONFIGPROFESSIONS.active" | translate }}</option>
+                     <option [ngValue]="false">{{ "CONFIGPROFESSIONS.dactive" | translate }}</option>
+                </select>
+                <div *ngIf="rejectionReasons.get('isActive')?.errors && rejectionReasons.get('isActive')?.touched"  class="invalid-feedback">
+                  <span  *ngIf="rejectionReasons.get('isActive')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+               </div>
+              </div>
+            </div>
+    
+            <div class="mb-3 row">
+              <label for="isDeleted" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.isDeleted" | translate }}</label>
+              <div class="col-sm-10">
+                <select [class.is-valid]="rejectionReasons.get('isDeleted')?.status=='VALID'"
+                id="isDeleted" class="form-select" placeholder="Select Delete or not" formControlName="isDeleted">    
+                     <option value="" selected>choose Deleted or not</option>
+                     <option [ngValue]="true">true</option>
+                     <option [ngValue]="false">false</option>
+                </select>
+                <div *ngIf="rejectionReasons.get('isDeleted')?.errors && rejectionReasons.get('isDeleted')?.touched"  class="invalid-feedback">
+                  <span  *ngIf="rejectionReasons.get('isDeleted')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+               </div>
+              </div>
+            </div>
+            
+            <div class="text-end">
+              <button [disabled]="rejectionReasons.invalid" class="btn btn-success mx-2">{{ "CONFIGPROFESSIONS.add" | translate }}</button>
+              <button class="btn btn-secondary" data-bs-dismiss="modal">{{ "CONFIGPROFESSIONS.cancel" | translate }}</button>
+            </div>
+          </form> 
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  edit Modal 
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> {{ "CONFIGPROFESSIONS.Edit" | translate }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editrejectionReasons" (ngSubmit)="updateSystemRiskRejectionReason()">
+            
+
+            <div class="mb-3 row">
+              <label for="Name" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.name" | translate }}</label>
+              <div class="col-sm-10">
+                <input [class.is-invalid]="editrejectionReasons.get('name')?.status=='INVALID'"
+                  type="text" formControlName="name" class="form-control" id="Name">
+                  <div *ngIf="editrejectionReasons.get('name')?.errors && editrejectionReasons.get('name')?.touched" class="invalid-feedback">
+                    <span *ngIf="editrejectionReasons.get('name')?.getError('required')">
+                    {{ "USERITEMINFO.Required" | translate }}</span>  
+               </div>
+              </div>
+            </div>
+           
+            <div class="mb-3 row">
+              <label for="isActive" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.isActive" | translate }}</label>
+              <div class="col-sm-10">
+                <select [class.is-invalid]="editrejectionReasons.get('isActive')?.status=='INVALID'"
+                id="isActive" class="form-select" placeholder="Select Active or Deavtive" formControlName="isActive">    
+                     <option value="" selected>{{ "CONFIGPROFESSIONS.chooseAD" | translate }}</option>
+                     <option [ngValue]="true">{{ "CONFIGPROFESSIONS.active" | translate }}</option>
+                     <option [ngValue]="false">{{ "CONFIGPROFESSIONS.dactive" | translate }}</option>
+                </select>
+                <div *ngIf="editrejectionReasons.get('isActive')?.errors && editrejectionReasons.get('isActive')?.touched"  class="invalid-feedback">
+                  <span  *ngIf="editrejectionReasons.get('isActive')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+               </div>
+              </div>
+            </div>
+    
+            <div class="mb-3 row">
+              <label for="isDeleted" class="col-sm-2 col-form-label">{{ "CONFIGPROFESSIONS.isDeleted" | translate }}</label>
+              <div class="col-sm-10">
+                <select [class.is-invalid]="editrejectionReasons.get('isDeleted')?.status=='INVALID'"
+                id="isDeleted" class="form-select" placeholder="Select Delete or not" formControlName="isDeleted">    
+                     <option value="" selected>choose Deleted or not</option>
+                     <option [ngValue]="true">true</option>
+                     <option [ngValue]="false">false</option>
+                </select>
+                <div *ngIf="editrejectionReasons.get('isDeleted')?.errors && editrejectionReasons.get('isDeleted')?.touched"  class="invalid-feedback">
+                  <span  *ngIf="editrejectionReasons.get('isDeleted')?.getError('required')">{{ "USERITEMINFO.Required" | translate }}</span>  
+               </div>
+              </div>
+            </div>
+            
+            <div class="text-end">
+              <button type="submit" [disabled]="editrejectionReasons.invalid&&!editrejectionReasons.pristine" class="btn btn-success mx-2">{{ "CONFIGPROFESSIONS.Edit" | translate }}</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "CONFIGPROFESSIONS.cancel" | translate }}</button>
+            </div>
+          </form> 
+        </div>
+      </div>
+    </div>
+  </div>  -->
+    </div>
+  </section>
+  </div>
+</div>
+
+  
+  

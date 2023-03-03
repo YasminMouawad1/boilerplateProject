@@ -43,7 +43,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
     }
 
     getMenuItems(): MenuItem[] {
-        return [
+        return [ 
             new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
             new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'),
             new MenuItem(
@@ -116,7 +116,25 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                         'far fa-circle'
                     )
                 ])
-            ])
+            ]),
+            new MenuItem(this.l('User Approval'), '/app/user-approval', 'fas fa-info-circle'),
+
+            new MenuItem(this.l('Rejected Requests'), '', 'fas fa-circle', '', [
+                new MenuItem('Soft reject', '/app/user-rejected', 'fas fa-users-gear'),
+                new MenuItem('system Reject', '/app/system-rejected', 'fas fa-dot-circle'),
+                new MenuItem('hard Reject', '/app/permanent-rejected', 'fas fa-dot-circle')
+            ]),  
+            new MenuItem(this.l('Limit Review'), '/app/limit-review', 'fas fa-info-circle'),
+            new MenuItem(this.l('System Configuration'), '', 'fas fa-circle', '', [
+                new MenuItem('System core configuration', '/app/system-configuration', 'fas fa-users-gear'),
+                new MenuItem('System Rejection Reasons', '/app/system-rejection-reasons', 'fas fa-dot-circle'),
+                new MenuItem('System  configuration professions', '/app/system-configuration-professions', 'fas fa-dot-circle')
+            ]),
+            new MenuItem(this.l('bulk-on-boaring'), '', 'fas fa-circle', '', [
+                new MenuItem('Boarding List', '/app/bulkOnBaording', 'fas fa-users-gear'),
+                new MenuItem('Coporates', '/app/coporates', 'fas fa-dot-circle')
+            ]),
+            new MenuItem(this.l('Customers'), '/app/customers', 'fas fa-info-circle'),
         ];
     }
 

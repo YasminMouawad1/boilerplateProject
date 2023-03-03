@@ -1,0 +1,109 @@
+<div [@routerTransition]>
+  <div class="bgGrey m-2">
+
+    <section class="content-header">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-6">
+                  <h1> Coporates</h1>
+              </div> 
+          </div>
+      </div>
+  </section>
+
+  <section class="content px-2">
+    <div class="container-fluid">
+
+      <!-- <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            coporates works
+             <div class="card-body">
+              <button *ngIf="showTable" class="btn btn-success mb-3" (click)="exportexcel()">{{ "USERITEMINFO.ExportExcel" | translate }} <i class="fas fa-file-excel"></i></button>
+
+              
+
+            
+
+              <div class="table-responsive">
+                <p *ngIf="!showTable" class="alert alert-warning text-center">{{ "CONFIGPROFESSIONS.dataIsEmpty" | translate }}</p>
+                <table id="excel-table" class="table align-middle table-nowrap table-hover">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col" style="width: 70px">#</th>
+                      <th scope="col">
+                        {{ "onBorading.cityCode" | translate }}
+                      </th>
+                      <th scope="col">
+                        {{ "onBorading.arNAme" | translate }}
+                      </th>
+                      <th scope="col">
+                        {{ "onBorading.contactName" | translate }}
+                      </th>
+                      <th scope="col">
+                        {{ "onBorading.contactPhone" | translate }}
+                      </th>
+                      <th scope="col">
+                        {{ "onBorading.corpAddress" | translate }}
+                      </th>   
+                      <th scope="col">
+                        {{ "onBorading.corpCode" | translate }}
+                      </th>   
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let corp of corpList | paginate: { itemsPerPage: numberRows, currentPage: currentPage }">
+                      <td>
+                        <div class="avatar-xs">
+                          <span class="avatar-title rounded-circle">
+                            <img [src]="" alt="" />
+                          </span>
+                        </div>
+                      </td>
+                      <td>
+                        <h5 class="font-size-14 mb-1">
+                          <a href="javascript: void(0);" class="text-dark">{{
+                            corp.cityCode
+                          }}</a>
+                        </h5>
+                      
+                      </td>
+                      <td>{{ corp.arName }}</td>
+                      <td>
+                        {{ corp.contactPersonName }}
+                      </td>
+                      <td>{{ corp.contactPersonPhone }}</td>
+                      <td>{{ corp.corpAddress}}</td>
+                      <td>{{corp.corpCode}}</td>
+                      
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+      
+              <div *ngIf="showTable" class="row justify-content-space-between align-items-center">
+                <div class="col-md-1">
+                  <select [(ngModel)]="numberRows" class="form-select">
+                    <option [ngValue]="5">5</option>
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                    <option [ngValue]="200">200</option>
+                  </select>
+                </div>
+                  <div class="col-md-11">
+                    <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
+                  </div>
+                  
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div> -->
+    </div>
+    </section>
+  </div>
+</div>
+
+  
+  

@@ -1,0 +1,1017 @@
+<div class="row" *ngIf="!userItem">
+  <div class="col-lg-12">
+    <div class="card shadow-none border mb-0" aria-hidden="true">
+
+      <div class="card-body">
+        <h5 class="card-title placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </h5>
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #acceptContent role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">{{ "USERITEMINFO.acceptRisk" | translate }} </h5>
+
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>{{ "USERITEMINFO.AreSureAccept" | translate }} {{ userItem.name }}?</p>
+    <p><b>  {{ "USERITEMINFO.riskLimit" | translate }} {{ riskApprovedLimit }} </b></p>
+    <div class="mb-3">
+      <label class="form-label">{{ "USERITEMINFO.approveComment" | translate }}</label>
+
+      <textarea [(ngModel)]="approveRiskComment" [value]="approveRiskComment" name="approveRiskComment" class="form-control" rows="5"></textarea>
+
+
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">{{ "USERITEMINFO.salesRepMessage" | translate }} </label>
+      <div>
+        <textarea [(ngModel)]="salesRepMessage" [value]="salesRepMessage"
+                  name="salesRepMessage" class="form-control" rows="5" placeholder="Sales Rep Message..."
+                  formControlName="salesRepMessage"
+
+                 ></textarea>
+        <div class="invalid-feedback">
+          <span>{{ "USERITEMINFO.Required" | translate }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">{{ "USERITEMINFO.close" | translate }}</button>
+    <button type="button" (click)="accceptRiskApplication()" class="btn btn-success">{{ "USERITEMINFO.accept" | translate }}</button>
+  </div>
+</ng-template>
+
+<ng-template #rejectContent role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">{{ "USERITEMINFO.riskRejection" | translate }}</h5>
+
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <p>{{ "USERITEMINFO.areSureReject" | translate }} {{ userItem.name }}?</p>
+
+
+    <form (ngSubmit)="rejectRiskApplication()" [formGroup]="rejectionValidationForm">
+      <div class="mb-3">
+        <label class="form-label">{{ "USERITEMINFO.rejectionReason" | translate }} </label>
+
+        <select class="form-select"
+                placeholder="Select Reject Response"
+                formControlName="rejectionReason"
+                [(ngModel)]="rejectionReason"
+                [ngClass]="{
+            'is-invalid':rejectionValidationForm.get('rejectionReason')?.invalid && submitrejectform
+          }">
+          <option value="" selected>{{ "USERITEMINFO.chooseResponse" | translate }}</option>
+          <option *ngFor="let reject of rejectResponse"
+                  value="{{reject.id}}">
+            {{ reject.name }}
+          </option>
+        </select>
+        <div>
+          <span *ngIf="rejectionValidationForm.get('rejectionReason')?.invalid && submitrejectform" class="text-danger">{{ "USERITEMINFO.Required" | translate }}</span>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">{{ "USERITEMINFO.rejectComment" | translate }} </label>
+        <div>
+          <textarea [(ngModel)]="rejectRiskComment" [value]="rejectRiskComment"
+                    name="rejectRiskComment" class="form-control" rows="5" placeholder="write a comment..."
+                    formControlName="rejectRiskComment"
+                    [(ngModel)]="rejectRiskComment"
+                    [ngClass]="{
+                  'is-invalid':rejectionValidationForm.get('rejectRiskComment')?.invalid && submitrejectform
+
+                }"></textarea>
+          <div class="invalid-feedback">
+            <span>{{ "USERITEMINFO.Required" | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">{{ "USERITEMINFO.salesRepMessage" | translate }} </label>
+        <div>
+          <textarea [(ngModel)]="salesRepMessage" [value]="salesRepMessage"
+          name="salesRepMessage" class="form-control" rows="5" placeholder="Sales Rep Message"
+          formControlName="salesRepMessage"
+          [(ngModel)]="salesRepMessage"
+          [ngClass]="{
+        'is-invalid':rejectionValidationForm.get('salesRepMessage')?.invalid && submitrejectform
+
+      }"></textarea>
+
+          <div class="invalid-feedback">
+            <span>{{ "USERITEMINFO.Required" | translate }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">{{ "USERITEMINFO.close" | translate }}</button>
+        <button type="submit" class="btn btn-danger">{{ "USERITEMINFO.reject" | translate }}</button>
+
+      </div>
+    </form>
+
+  </div>
+
+
+</ng-template>
+
+<ng-template #editContent role="document" let-modal>
+  <div class="modal-header">
+    <h3 class="modal-title mt-0">تعديل البيانات الشخصية </h3>
+
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editPersonalData" (ngSubmit)="updatePersonalData()">
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label"> الاسم </label>
+      <div class="col-sm-9">
+        <input [class.is-invalid]="editPersonalData.get('name')?.status=='INVALID'"
+          type="text" formControlName="name" class="form-control" id="name">
+          <div *ngIf="editPersonalData.get('name')?.errors && editPersonalData.get('name')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('name')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label"> الاسم بالانجليزية </label>
+      <div class="col-sm-9">
+        <input [class.is-invalid]="editPersonalData.get('nameEn')?.status=='INVALID'"
+          type="text" formControlName="nameEn" class="form-control" id="nameEn">
+          <div *ngIf="editPersonalData.get('nameEn')?.errors && editPersonalData.get('nameEn')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('nameEn')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label"> المؤهل </label>
+      <div class="col-sm-9">
+        <input [class.is-invalid]="editPersonalData.get('jobTitle')?.status=='INVALID'"
+          type="text" formControlName="jobTitle" class="form-control" id="jobTitle" >
+          <div *ngIf="editPersonalData.get('jobTitle')?.errors && editPersonalData.get('jobTitle')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('jobTitle')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label"> الحالة الاجتماعية </label>
+      <div class="col-sm-9">
+        <select
+          class="form-select"
+          placeholder="Select marital Status"
+          formControlName="maritalStatus"
+          [(ngModel)]="maritalStatus"
+          [class.is-invalid]="editPersonalData.get('maritalStatus')?.status=='INVALID'"
+          >
+          <option [ngValue]="maritalStatus" selected>{{maritalStatus}}</option>
+          <option
+            *ngFor="let maritalStatus of maritalStatuses"
+            value="{{maritalStatus.name}}">
+            {{ maritalStatus.name }}
+          </option>
+        </select>
+
+
+          <div *ngIf="editPersonalData.get('maritalStatus')?.errors && editPersonalData.get('maritalStatus')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('maritalStatus')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label"> رقم الهاتف </label>
+      <div class="col-sm-9">
+        <input [class.is-invalid]="editPersonalData.get('phoneNumber')?.status=='INVALID'"
+          type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber" readonly>
+          <div *ngIf="editPersonalData.get('phoneNumber')?.errors && editPersonalData.get('phoneNumber')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('phoneNumber')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label">  النوع </label>
+      <div class="col-sm-9">
+          <select
+          class="form-select"
+          placeholder="Select gender"
+          formControlName="gender"
+          [(ngModel)]="gender"
+          [class.is-invalid]="editPersonalData.get('gender')?.status=='INVALID'"
+          >
+          <option [ngValue]="gender" selected>{{gender}}</option>
+          <option value="ذكر"> ذكر </option>
+          <option value="انثي"> انثي </option>
+        </select>
+
+          <div *ngIf="editPersonalData.get('gender')?.errors && editPersonalData.get('gender')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('gender')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label">  تاريخ الميلاد </label>
+      <div class="col-sm-9">
+        <input [class.is-invalid]="editPersonalData.get('dateOfBirth')?.status=='INVALID'"
+          type="date" formControlName="dateOfBirth" class="form-control" id="dateOfBirth"
+          [ngModel]="dateOfBirth | date:'yyyy-MM-dd'" >
+          <div *ngIf="editPersonalData.get('dateOfBirth')?.errors && editPersonalData.get('dateOfBirth')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('dateOfBirth')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label">  العنوان </label>
+      <div class="col-sm-9">
+        <input [class.is-invalid]="editPersonalData.get('homeAddress')?.status=='INVALID'"
+          type="text" formControlName="homeAddress" class="form-control" id="homeAddress" >
+          <div *ngIf="editPersonalData.get('homeAddress')?.errors && editPersonalData.get('homeAddress')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('homeAddress')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-md-3 form-label">  تاريخ الانتهاء </label>
+      <div class="col-sm-9">
+        <input [class.is-invalid]="editPersonalData.get('expiryDate')?.status=='INVALID'"
+          type="date" formControlName="expiryDate" class="form-control" id="expiryDate"
+          [ngModel]="expireDate | date:'yyyy-MM-dd'" >
+          <div *ngIf="editPersonalData.get('expiryDate')?.errors && editPersonalData.get('expiryDate')?.touched" class="invalid-feedback">
+            <span *ngIf="editPersonalData.get('expiryDate')?.getError('required')">
+            {{ "USERITEMINFO.Required" | translate }}</span>
+       </div>
+      </div>
+    </div>
+
+    <div class="text-end">
+      <button type="button" class="btn btn-light mx-2" (click)="modal.close('Close click')">{{ "USERITEMINFO.close" | translate }}</button>
+      <button type="submit" [disabled]="editPersonalData.invalid" class="btn btn-danger mx-1">{{ "CONFIGPROFESSIONS.Edit" | translate }}</button>
+    </div>
+  </form>
+  </div>
+
+</ng-template>
+
+
+
+<div id="contentToConvert">
+<div class="row" *ngIf="userItem">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row  align-items-center">
+          <div class="col-lg-3">
+            <div class="media">
+              <div *ngIf="PersonalIMG"  class="me-3">
+                <img [src]="pesonalImages" alt=""
+                     class="avatar-md rounded-circle img-thumbnail">
+              </div>
+              <div class="media-body align-self-center">
+                <div class="text-muted">
+                  <p class="mb-2">Risk approval application  </p>
+                  <h5 class="mb-1">{{ userItem.name }}</h5>
+                  <p class="mb-0">{{ userItem.jobTitle }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 align-self-center">
+            <div class="text-lg-center mt-4 mt-lg-0">
+              <div class="row">
+                <div class="col-6">
+                  <div>
+                    <p class="text-muted text-truncate mb-2">  {{ "USERITEMINFO.NATIONALID" | translate }}</p>
+                    <h5 class="mb-0">{{ userItem.nationalId }}</h5>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div>
+                    <p class="text-muted text-truncate mb-2">{{ "USERITEMINFO.PHONENUMBER" | translate }}</p>
+                    <h5 class="mb-0">{{ userItem.mobileNumber }}</h5>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="row d-flex input-group fiedInput">
+              <form  class="d-flex align-items-center" (ngSubmit)="editRiskClientNote()">
+                <div class="col-md-10">
+                  <textarea class="form-control" placeholder="" name="NoteMsg" [(ngModel)]= "NoteMsg"></textarea>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary mx-1" for="inputGroupSelect01" type="submit">{{ "CONFIGPROFESSIONS.Save" | translate }}</button>
+                </div>
+
+                </form>
+              </div>
+          </div>
+
+          <div  class="col-lg-3 align-self-center">
+            <div class="text-lg-center mt-4 mt-lg-0">
+              <div class="row">
+                <div class="col-4">
+                  <button type="button" [disabled]="isEditRiskLimit" (click)="openModal(acceptContent)" class="btn btn-success btn-label waves-light">
+                    <i class="bx bx-check label-icon"></i> {{ "USERITEMINFO.accept" | translate }}
+                  </button>
+
+                </div>
+
+                <div class="col-4">
+                  <button type="button" [disabled]="isEditRiskLimit" (click)="openModal(rejectContent)" class="btn btn-danger btn-label waves-light">
+                    <i class="bx bx bx-x label-icon "></i> {{ "USERITEMINFO.reject" | translate }}
+                  </button>
+                </div>
+
+                <!-- <div class="col-4">
+                  <button type="button"   class="btn btn-dark btn-label waves-light" (click)="convetToPDF()">
+                    <i class="bx bx bxs-file-pdf label-icon "></i> Pdf
+                  </button>
+                </div> -->
+
+                <div class="col-4">
+                  <button type="button" [disabled]="isEditRiskLimit" (click)="openModal(editContent)" class="btn btn-primary btn-label waves-light">
+                    <i class="bx bx-edit label-icon"></i> {{ "CONFIGPROFESSIONS.Edit" | translate }}
+                  </button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end row -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6" *ngIf="!userItem">
+    <div class="card shadow-none border mb-0" aria-hidden="true">
+
+      <div class="card-body">
+        <h5 class="card-title placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </h5>
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+
+        </p>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="userItem">
+    <div class="card" *ngIf="false">
+      <div class="bg-soft bg-primary">
+        <div class="row">
+          <div class="col-7"></div>
+          <div class="col-5 align-self-end">
+            <img src="assets/images/profile-img.png"
+                 alt=""
+                 class="img-fluid" />
+          </div>
+        </div>
+      </div>
+      <div class="card-body pt-0">
+        <div class="row">
+          <div class="col-sm-4">
+            <div *ngIf="PersonalIMG"  class="avatar-md profile-user-wid mb-4">
+              <img [src]="pesonalImages"
+                   alt=""
+                   class="img-thumbnail rounded-circle" />
+            </div>
+            <h5 class="font-size-15">{{ userItem.name }}</h5>
+            <p class="text-muted mb-0">
+              {{ userItem.jobTitle }}
+            </p>
+          </div>
+
+          <div class="col-sm-8">
+            <div class="pt-4">
+              <div class="row">
+                <div class="col-6">
+                  <p class="text-muted mb-0">
+                    {{ "USERITEMINFO.NATIONALID" | translate }}
+                  </p>
+                  <h5 class="font-size-15">{{ userItem.nationalId }}</h5>
+                </div>
+                <div class="col-6">
+                  <p class="text-muted mb-0">
+                    {{ "USERITEMINFO.PHONENUMBER" | translate }}
+                  </p>
+                  <h5 class="font-size-15">{{ userItem.mobileNumber }}</h5>
+                </div>
+              </div>
+              <div class="mt-4">
+                <div>
+                  <a (click)="open(content1)"
+                     class="btn btn-success btn-sm mx-1">
+                    Accept <i class="mdi mdi-thumb-up-outline ms-1"></i>
+                  </a>
+
+                  <ng-template #content1 let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">
+                        Add Your Comment
+                      </h4>
+                      <button type="button"
+                              class="btn-close"
+                              aria-label="Close"
+                              (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are You Sure to Accept Risk ?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-dark">
+                        cancel
+                      </button>
+
+                      <button type="button"
+                              class="btn btn-danger"
+                              (click)="showSpinner()">
+                        Accept
+                      </button>
+                    </div>
+                  </ng-template>
+
+                  <a (click)="open(content)" class="btn btn-danger btn-sm">
+                    Reject <i class="bx bx-exit mx-1"></i>
+                  </a>
+                </div>
+                <div class="mt-3">
+                  <ng-template #content let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">
+                        Add Your Comment
+                      </h4>
+                      <button type="button"
+                              class="btn-close"
+                              aria-label="Close"
+                              (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <textarea class="form-control"
+                                    placeholder="Leave a comment hear"
+                                    name="message"
+                                    id=""></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="formrow-firstname-input">
+                            Rejct Response
+                          </label>
+
+                          <select class="form-select"
+                                  formControlName="brandId"
+                                  placeholder="Select Reject Response">
+                            <option *ngFor="let reject of rejectResponse"
+                                    value="{{ reject.id }}">
+                              {{ reject.name }}
+                            </option>
+                          </select>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-dark">
+                        cancel
+                      </button>
+
+                      <button type="button"
+                              class="btn btn-danger"
+                              (click)="showSpinner()">
+                        Submit
+                      </button>
+                    </div>
+                  </ng-template>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">
+          {{ "USERITEMINFO.HEDING.FINANCIAL" | translate }}
+        </h4>
+        <div class="table-responsive">
+          <table class="table table-nowrap mb-0">
+            <tbody>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.INCOME" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.income }}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.ACTIVECREDITFACILITY" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.activeCreditFacility }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.ISCOREFILE" | translate }}
+                  :
+                </th>
+
+                <td>
+
+                  {{userItem.iscoreFile}}
+
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.OTHERDOCUMENTS" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.otherDocuments }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.CREDITLIMIT" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.creditLimit }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.riskLimit" | translate }}
+                  :
+                </th>
+                <td>
+                  <!-- <span *ngIf="!isEditRiskLimit"> {{ riskApprovedLimit }}</span>   -->
+                  <input  [readonly]="isEditRiskLimit?'':true" (keypress)="numberOnly($event)" maxlength="6"  [(ngModel)]="riskApprovedLimit" value="{{ riskApprovedLimit }}" type="text" class="mb-3 form-control" id="formrow-inputCity">   &nbsp;
+                  <button (click)="editRiskLimit()" [disabled]="isEditRiskLimit && (riskApprovedLimit<5000 || riskApprovedLimit > 100000) " type="button" [ngClass]="isEditRiskLimit ? 'btn btn-success' : 'btn btn-primary'"><i [ngClass]="isEditRiskLimit ? 'bx bx-save font-size-16 align-middle me-2' : 'bx bx-edit font-size-16 align-middle me-2'"></i> {{isEditRiskLimit?'Save Risk Limt':'Edit Risk Limet'}} </button>
+                  &nbsp; <button *ngIf="isEditRiskLimit" (click)="editRiskLimit(true)" type="button" class='btn btn-danger'><i class='bx bx-x font-size-16 align-middle me-2'></i>  {{ "USERITEMINFO.cancel" | translate }} </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.ASSUMEDINCOME" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.assumedIncome }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.systemLimit" | translate }}
+                </th>
+                <td>{{ userItem.instantLimit }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">
+          {{ "USERITEMINFO.HEDING.LOCATION" | translate }}
+        </h4>
+        <div class="table-responsive">
+          <table class="table table-nowrap mb-0">
+            <tbody>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.GOVERNORATE" | translate }} :
+                </th>
+                <td>{{ userItem.governorate }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.AREA" | translate }}
+
+                  :
+                </th>
+                <td>{{ userItem.area }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.CITY" | translate }}
+
+                  :
+                </th>
+                <td>{{ userItem.city }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.HOMEADDRESS" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.homeAddress }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.UPDATEADDRESS" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.niHomeAddress }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">
+          {{ "USERITEMINFO.HEDING.ScoreCard" | translate }}
+        </h4>
+        <div class="table-responsive">
+          <table class="table table-nowrap mb-0">
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">
+          {{ "USERITEMINFO.HEDING.PERSONAL" | translate }}
+        </h4>
+        <div class="table-responsive">
+          <table class="table table-nowrap mb-0">
+            <tbody>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.PHONE" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.mobileNumber }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.FULLNAME" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.name }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.NATIONALID" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.nationalId }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.EXPIRYDATE" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.expiryDate }}</td>
+              </tr>
+
+
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.GENDER" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.gender }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.AGE" | translate }}
+
+                  :
+                </th>
+                <td>{{ userItem.age }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.MARTIALSTATUS" | translate }}
+
+                  :
+                </th>
+                <td>{{ userItem.maritalStatus }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.EMAIL" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.email }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.COMPANYNAME" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.companyName }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.EDUCATION" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.education }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.OCCUPATION" | translate }} :
+                </th>
+                <td>{{ userItem.occupation}}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.JOBTITLE" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.jobTitle }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.EMERGENCYCONTACTPERSON" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.emergencyContactPerson }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.EMERGENCYCONTACTNUMBER" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.emergencyContactPhoneNumber }}</td>
+              </tr>
+
+
+
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.CAR" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.car }}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.CARMODELYEAR" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.carModelYear }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.CLUBID" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.clubId }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.CLUDCATEGORY" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.clubCategory }}</td>
+              </tr>
+
+
+              <!-- <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.HASCAR" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.hasCar }}</td>
+              </tr> -->
+              <!-- <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.HASCLUBID" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.hasClubId }}</td>
+              </tr> -->
+
+
+
+
+              <tr>
+                <th scope="row">
+                  {{ "USERITEMINFO.STATUS" | translate }}
+                  :
+                </th>
+                <td>{{ userItem.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6" *ngIf="!userItem">
+    <div class="card shadow-none border mb-0" aria-hidden="true">
+
+      <div class="card-body">
+        <h5 class="card-title placeholder-glow">
+          <span class="placeholder col-6"></span>
+        </h5>
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+          <span class="placeholder col-7"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-4"></span>
+          <span class="placeholder col-6"></span>
+          <span class="placeholder col-8"></span>
+
+
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="col-xl-6" *ngIf="userItem">
+    <div class="card">
+
+      <div class="card-body">
+        <h4 class="card-title">SalesRepMessage</h4>
+
+        <div class="row d-flex input-group fiedInput">
+          <form  class="d-flex align-items-end" (ngSubmit)="saveMessage(SalMessage)">
+            <div class="col-md-11">
+              <textarea [(ngModel)]="salesRepMessage" class="form-control" placeholder="Enter message" name="SalesRepMessage" #SalMessage></textarea>
+            </div>
+            <div class="col-md-1">
+            </div>
+
+            </form>
+          </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ "USERITEMINFO.HEDING.DOCUMENTINFORMATION" | translate }}</h4>
+        <!-- <p class="card-title-desc">In this example lazy-loading of images is enabled for the next image
+            based on move direction. </p> -->
+        <div class="popup-gallery d-flex flex-wrap">
+          <div class="card1" *ngFor="let image of allContractImages; let i=index">
+            <div class="img-fluid contain-images">
+              <img [src]="image.content" (click)="showImg(i)" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div  class="card" *ngIf="allContractImages.length > 0">
+      <div class="card-body">
+          <h4 class="card-title"> {{ "USERITEMINFO.Details" | translate }} </h4>
+          <div class="imgBox">
+            <img [src]="imgSrc" alt="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          </div>
+          <div class="table-responsive">
+            <table class="table table-nowrap mb-0">
+                 <tbody>
+                    <tr>
+                        <th scope="row">{{ "USERITEMINFO.HEDING.LOCATION" | translate }} : </th>
+                        <td [innerText]="locationName">{{locationName}}</td>
+                   </tr>
+                    <tr>
+                        <th scope="row">{{ "USERITEMINFO.PHONENUMBER" | translate }} : </th>
+                         <td>{{mobileNum}}</td>
+                    </tr>
+                    <tr>
+                         <th scope="row">{{ "CONFIGPROFESSIONS.name" | translate }} : </th>
+                         <td>{{name}}</td>
+                    </tr>
+                 </tbody>
+              </table>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+</div>
+
+</div>
+
+<!-- Modal for images -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img [src]="imgSrc" alt="" class="w-100" id="imageRot">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{"USERITEMINFO.close"| translate}}</button>
+        <button type="button" class="btn btn-primary" (click)="rotateImg()">{{"USERITEMINFO.rotate"| translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ------------------- start spinner ---------------------- -->
+<!-- <div *ngIf="loading" class="spinner">
+  <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div> -->
+<!-- ------------------- end spinner ------------------------ -->

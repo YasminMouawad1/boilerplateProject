@@ -29,7 +29,7 @@ export class AccountServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     isTenantAvailable(body: IsTenantAvailableInput | undefined): Observable<IsTenantAvailableOutput> {
@@ -85,7 +85,7 @@ export class AccountServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     register(body: RegisterInput | undefined): Observable<RegisterOutput> {
@@ -153,7 +153,7 @@ export class ApplicationOnBoardingServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     createBulkOnBoardingConfig(body: CreateBulkOnBoardingConfigDto | undefined): Observable<number> {
@@ -198,7 +198,7 @@ export class ApplicationOnBoardingServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
+
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -210,7 +210,7 @@ export class ApplicationOnBoardingServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     postApplicationsOnBoarding(id: number | undefined): Observable<void> {
@@ -302,7 +302,7 @@ export class ApplicationOnBoardingServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
+
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -314,7 +314,7 @@ export class ApplicationOnBoardingServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     changeApplicationsStatus(body: ApplicationsStatusDto | undefined): Observable<void> {
@@ -378,9 +378,9 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param keyword (optional) 
-     * @param skipCount (optional) 
-     * @param maxResultCount (optional) 
+     * @param keyword (optional)
+     * @param skipCount (optional)
+     * @param maxResultCount (optional)
      * @return Success
      */
     getAll(keyword: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<ApplicationsOnBoardingDtoPagedResultDto> {
@@ -444,7 +444,7 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     get(id: string | undefined): Observable<ApplicationsOnBoardingDto> {
@@ -500,7 +500,7 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     create(body: ApplicationsOnBoardingDto | undefined): Observable<ApplicationsOnBoardingDto> {
@@ -556,7 +556,7 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     update(body: ApplicationsOnBoardingDto | undefined): Observable<ApplicationsOnBoardingDto> {
@@ -612,7 +612,7 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     delete(id: string | undefined): Observable<void> {
@@ -676,7 +676,7 @@ export class ConfigurationServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     changeUiTheme(body: ChangeUiThemeInput | undefined): Observable<void> {
@@ -856,7 +856,7 @@ export class LookUpServiceProxy {
     }
 
     /**
-     * @param govID (optional) 
+     * @param govID (optional)
      * @return Success
      */
     getScoreCitiesByGovID(govID: string | undefined): Observable<LookupDto[]> {
@@ -919,7 +919,7 @@ export class LookUpServiceProxy {
     }
 
     /**
-     * @param cityID (optional) 
+     * @param cityID (optional)
      * @return Success
      */
     getScoreAreasByCityID(cityID: string | undefined): Observable<LookupDto[]> {
@@ -1156,7 +1156,7 @@ export class LookUpServiceProxy {
     }
 
     /**
-     * @param brandID (optional) 
+     * @param brandID (optional)
      * @return Success
      */
     getScoreCarModelsByBrandID(brandID: string | undefined): Observable<LookupDto[]> {
@@ -1347,7 +1347,7 @@ export class PortalRegistrationUsersServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     registrationPortalUsers(body: PortalUsersRegistrationDto | undefined): Observable<boolean> {
@@ -1392,7 +1392,7 @@ export class PortalRegistrationUsersServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
+
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1404,7 +1404,7 @@ export class PortalRegistrationUsersServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     setMerchantSettlementPlan(body: SetMerchantSettlementPlanDto | undefined): Observable<boolean> {
@@ -1449,7 +1449,7 @@ export class PortalRegistrationUsersServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
+
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1501,7 +1501,7 @@ export class PortalRegistrationUsersServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
+
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1525,7 +1525,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     create(body: CreateRoleDto | undefined): Observable<RoleDto> {
@@ -1581,7 +1581,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param permission (optional) 
+     * @param permission (optional)
      * @return Success
      */
     getRoles(permission: string | undefined): Observable<RoleListDtoListResultDto> {
@@ -1637,7 +1637,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     update(body: RoleDto | undefined): Observable<RoleDto> {
@@ -1693,7 +1693,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     delete(id: number | undefined): Observable<void> {
@@ -1796,7 +1796,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     getRoleForEdit(id: number | undefined): Observable<GetRoleForEditOutput> {
@@ -1852,7 +1852,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     get(id: number | undefined): Observable<RoleDto> {
@@ -1908,9 +1908,9 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param keyword (optional) 
-     * @param skipCount (optional) 
-     * @param maxResultCount (optional) 
+     * @param keyword (optional)
+     * @param skipCount (optional)
+     * @param maxResultCount (optional)
      * @return Success
      */
     getAll(keyword: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<RoleDtoPagedResultDto> {
@@ -2049,7 +2049,7 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     create(body: CreateTenantDto | undefined): Observable<TenantDto> {
@@ -2105,7 +2105,7 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     delete(id: number | undefined): Observable<void> {
@@ -2157,7 +2157,7 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     get(id: number | undefined): Observable<TenantDto> {
@@ -2213,10 +2213,10 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param keyword (optional) 
-     * @param isActive (optional) 
-     * @param skipCount (optional) 
-     * @param maxResultCount (optional) 
+     * @param keyword (optional)
+     * @param isActive (optional)
+     * @param skipCount (optional)
+     * @param maxResultCount (optional)
      * @return Success
      */
     getAll(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<TenantDtoPagedResultDto> {
@@ -2284,7 +2284,7 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     update(body: TenantDto | undefined): Observable<TenantDto> {
@@ -2352,7 +2352,7 @@ export class TokenAuthServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     authenticate(body: AuthenticateModel | undefined): Observable<AuthenticateResultModel> {
@@ -2466,7 +2466,7 @@ export class TokenAuthServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     externalAuthenticate(body: ExternalAuthenticateModel | undefined): Observable<ExternalAuthenticateResultModel> {
@@ -2534,7 +2534,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     create(body: CreateUserDto | undefined): Observable<UserDto> {
@@ -2590,7 +2590,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     update(body: UserDto | undefined): Observable<UserDto> {
@@ -2646,7 +2646,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     delete(id: number | undefined): Observable<void> {
@@ -2698,7 +2698,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     activate(body: Int64EntityDto | undefined): Observable<void> {
@@ -2750,7 +2750,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     deActivate(body: Int64EntityDto | undefined): Observable<void> {
@@ -2853,7 +2853,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     changeLanguage(body: ChangeUserLanguageDto | undefined): Observable<void> {
@@ -2905,7 +2905,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     changePassword(body: ChangePasswordDto | undefined): Observable<boolean> {
@@ -2950,7 +2950,7 @@ export class UserServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
+
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -2962,7 +2962,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param body (optional)
      * @return Success
      */
     resetPassword(body: ResetPasswordDto | undefined): Observable<boolean> {
@@ -3007,7 +3007,7 @@ export class UserServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
+
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -3019,7 +3019,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param id (optional) 
+     * @param id (optional)
      * @return Success
      */
     get(id: number | undefined): Observable<UserDto> {
@@ -3075,10 +3075,10 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param keyword (optional) 
-     * @param isActive (optional) 
-     * @param skipCount (optional) 
-     * @param maxResultCount (optional) 
+     * @param keyword (optional)
+     * @param isActive (optional)
+     * @param skipCount (optional)
+     * @param maxResultCount (optional)
      * @return Success
      */
     getAll(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<UserDtoPagedResultDto> {
@@ -3782,6 +3782,7 @@ export class CreateBulkOnBoardingConfigDto implements ICreateBulkOnBoardingConfi
     }
 
     init(_data?: any) {
+        debugger
         if (_data) {
             this.reqNID = _data["reqNID"];
             this.reqSelie = _data["reqSelie"];

@@ -18,10 +18,11 @@ import {
   LookUpServiceProxy,
   LookupCorporateDto,
   CreateBulkOnBoardingConfigDto,
-  ApplicationOnBoardingServiceProxy
+  ApplicationOnBoardingServiceProxy,
+  ApplicationsOnBoardingDto
 } from '@shared/service-proxies/service-proxies';
 
-class PagedRolesRequestDto extends PagedRequestDto {
+class PagedApplicationsOnBoardingDto extends PagedRequestDto {
   keyword: string;
 }
 
@@ -31,12 +32,12 @@ class PagedRolesRequestDto extends PagedRequestDto {
   animations: [appModuleAnimation()],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BulkComponent extends PagedListingComponentBase<RoleDto> implements OnInit{
-  protected delete(entity: RoleDto): void {
-    throw new Error('Method not implemented.');
+export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoardingDto> implements OnInit{
+  protected delete(entity: ApplicationsOnBoardingDto): void {
+
   }
-  roles: RoleDto[] = []; 
-  keyword = ''; 
+  applicationsOnBoardingDto: ApplicationsOnBoardingDto[] = [];
+  keyword = '';
   reqNID:boolean = false;
   reqSelie:boolean = false;
   reqLiveness:boolean = false;
@@ -61,10 +62,6 @@ export class BulkComponent extends PagedListingComponentBase<RoleDto> implements
     private _LookUpServiceProxy:LookUpServiceProxy,
     private _ApplicationOnBoardingServiceProxy:ApplicationOnBoardingServiceProxy) {
     super(injector);
-  }
-
-
-  ngOnInit(): void {
     this.exampleData = [
       {id: '4', text: 'egabi stuff'},
       {id: '5', text: 'midbank stuff'},
@@ -88,47 +85,34 @@ export class BulkComponent extends PagedListingComponentBase<RoleDto> implements
     this.getAllCorporates();
   }
 
+
+
   list(
-    request: PagedRolesRequestDto,
+    request: PagedApplicationsOnBoardingDto,
     pageNumber: number,
     finishedCallback: Function
   ): void {
     request.keyword = this.keyword;
 
-    this._rolesService
+    this._BulkOnBoardingServiceProxy
       .getAll(request.keyword, request.skipCount, request.maxResultCount)
       .pipe(
         finalize(() => {
           finishedCallback();
         })
       )
-      .subscribe((result: RoleDtoPagedResultDto) => {
-        this.roles = result.items;
+      .subscribe((result: ApplicationsOnBoardingDtoPagedResultDto) => {
+        debugger
+     this.applicationsOnBoardingDto = result.items;
+
         this.showPaging(result, pageNumber);
       });
   }
 
-  list2(): void {
-  
-  debugger
-      this._BulkOnBoardingServiceProxy
-        .getAll(
-          this.keyword,1,5)
-        .pipe(
-          finalize(() => {
-          //  finishedCallback();
-          })
-        )
-        .subscribe((result: ApplicationsOnBoardingDtoPagedResultDto) => {
-         console.log(result.items) ;
-          this.showPaging(result, 1);
-        });
-    }
+
 
     getAllCorporates(){
       this._LookUpServiceProxy.getAllCorporate().subscribe((result: LookupCorporateDto[] ) =>{
-    
-   
 
         this.exampleData = result.map(item=>{
 
@@ -137,14 +121,14 @@ export class BulkComponent extends PagedListingComponentBase<RoleDto> implements
                 id : item.corpCode,
                 text: item.enName
            };
-      
-        }); 
+
+        });
 
         console.log(this.exampleData)
       });
 
-      
- 
+
+
     }
 
   handleUpload(event) {
@@ -173,11 +157,15 @@ createBulkOnBoarding(){
     "fileBase64": this.fileBase64,
     "corpCode": this.corpCode
   }
-  
-this._ApplicationOnBoardingServiceProxy.createBulkOnBoardingConfig(body).subscribe( (res : number) => {
+var object = new CreateBulkOnBoardingConfigDto ()
+object.init(body)
+ console.log(object)
+this._ApplicationOnBoardingServiceProxy.createBulkOnBoardingConfig(object).subscribe( (res : number) => {
      console.log(res)
+
+     abp.message.success("Create Bulk Onboarding successfully")
 })
- 
- 
+
+
 }
 }

@@ -31,6 +31,7 @@ export abstract class PagedListingComponentBase<TEntityDto> extends AppComponent
     }
 
     ngOnInit(): void {
+
         this.refresh();
     }
 
@@ -49,7 +50,7 @@ export abstract class PagedListingComponentBase<TEntityDto> extends AppComponent
         const req = new PagedRequestDto();
         req.maxResultCount = this.pageSize;
         req.skipCount = (page - 1) * this.pageSize;
-
+        debugger
         this.isTableLoading = true;
         this.list(req, page, () => {
             this.isTableLoading = false;

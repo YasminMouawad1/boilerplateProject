@@ -8,7 +8,7 @@ import { Options } from 'select2';
 import {
   PagedListingComponentBase,
   PagedRequestDto
-} from '@shared/paged-listing-component-base'; 
+} from '@shared/paged-listing-component-base';
 import {
   RoleServiceProxy,
   RoleDto,
@@ -20,7 +20,7 @@ class PagedRolesRequestDto extends PagedRequestDto {
 }
 
 @Component({
-  templateUrl: './bulk.component.html', 
+  templateUrl: './bulk.component.html',
   styleUrls:['./bulk.component.css'],
   animations: [appModuleAnimation()],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -63,8 +63,11 @@ export class BulkComponent extends PagedListingComponentBase<RoleDto> implements
 
     this.options = {
       multiple: false,
-      closeOnSelect: false,
-      width: '300',  
+      closeOnSelect: true,
+      width: '300',
+      placeholder: "Select a Corporate",
+      dropdownCssClass: "bigdrop",
+      allowClear: true
     };
   }
   list(

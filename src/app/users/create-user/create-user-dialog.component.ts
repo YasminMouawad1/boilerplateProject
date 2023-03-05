@@ -11,7 +11,8 @@ import { AppComponentBase } from '@shared/app-component-base';
 import {
   UserServiceProxy,
   CreateUserDto,
-  RoleDto
+  RoleDto,
+  LookUpServiceProxy
 } from '@shared/service-proxies/service-proxies';
 import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 
@@ -45,6 +46,7 @@ export class CreateUserDialogComponent extends AppComponentBase
   constructor(
     injector: Injector,
     public _userService: UserServiceProxy,
+    public _lookupService: LookUpServiceProxy,
     public bsModalRef: BsModalRef
   ) {
     super(injector);
@@ -52,6 +54,10 @@ export class CreateUserDialogComponent extends AppComponentBase
 
   ngOnInit(): void {
     this.user.isActive = true;
+    debugger
+this._lookupService.getAllCorporate().subscribe((result) => {
+   console.log(result)
+});
 
     this._userService.getRoles().subscribe((result) => {
       this.roles = result.items;

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientJsonpModule } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -14,8 +14,7 @@ import { AppComponent } from './app.component';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
-import { AboutComponent } from '@app/about/about.component';
-
+import { AboutComponent } from '@app/about/about.component'; 
 import { BulkComponent } from '@app/bulkOnBoarding/bulk.component';
 
 // tenants
@@ -85,7 +84,8 @@ import { NgSelect2Module } from 'ng-select2';
         SidebarMenuComponent
     ],
     imports: [
-    CommonModule,
+   
+CommonModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
@@ -100,6 +100,7 @@ import { NgSelect2Module } from 'ng-select2';
         NgxPaginationModule,
         MatSlideToggleModule,
         NgSelect2Module,
+         FormsModule,
         TranslateModule.forRoot({
             // loader:{
             //     provide:TranslateLoader,

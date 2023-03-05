@@ -174,9 +174,9 @@ createBulkOnBoarding(){
     "corpCode": this.corpCode
   }
   
-// this._ApplicationOnBoardingServiceProxy.createBulkOnBoardingConfig(body).subscribe( (res : number) => {
-//      console.log(res)
-// })
+this._ApplicationOnBoardingServiceProxy.createBulkOnBoardingConfig(body).subscribe( (res : number) => {
+     console.log(res)
+})
  
  
 }

@@ -32,7 +32,7 @@ class PagedApplicationsOnBoardingDto extends PagedRequestDto {
   animations: [appModuleAnimation()],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoardingDto> implements OnInit{
+export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoardingDto>{
   protected delete(entity: ApplicationsOnBoardingDto): void {
 
   }

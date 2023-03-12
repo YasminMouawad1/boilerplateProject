@@ -69,7 +69,8 @@
                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                       (change)="handleUpload($event)">
                     </div>
-                    <button  class="btn bgGreen mt-3 w-100" (click)="createBulkOnBoarding()">Request</button>
+                    <button  class="btn bgGreen mt-3 w-100" (click)="createBulkOnBoarding()">
+                      <i class="fa-solid fa-upload"></i> Bulk Boarding</button>
                </div>
             </div>
 
@@ -87,7 +88,7 @@
                             <th>[is sended]</th>
                             <th>[creation Time]</th>
                             <th>[display name]</th>
-                            <th style="width: 200px;">{{ "Actions" | localize }}</th>
+                            <th style="width: 200px;">[Is Sended]</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -108,7 +109,7 @@
                             <td>{{applicationsOnBoarding.isSend}}</td>
                             <td>{{applicationsOnBoarding.creationTime}}</td>
                             <td>-- </td>
-                            <td> -- </td>
+                            <td> <button class="bgPink border-0"><i class="fa-solid fa-rotate"></i> Send Again</button></td>
 
                           </tr>
                         </tbody>

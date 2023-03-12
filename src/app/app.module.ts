@@ -16,7 +16,11 @@ import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component'; 
 import { BulkComponent } from '@app/bulkOnBoarding/bulk.component';
-
+import {MerchantComponent } from '@app/merchantSettlement/merchantSettlement.component';
+import {CreateMerchantDialogComponent} from '@app/merchantSettlement/create-merchant/create-merchant-dialog.component'
+import {RegistrationUserComponent} from '@app/RegistrationUsers/RegistrationUsers.component';
+import {CreateRegisterUserDialogComponent} from '@app/RegistrationUsers/create-new-user/create-new-dialog.component'
+ 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
 import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
@@ -58,6 +62,10 @@ import { NgSelect2Module } from 'ng-select2';
         HomeComponent,
         AboutComponent,
         BulkComponent,
+        MerchantComponent,
+        CreateMerchantDialogComponent,
+        RegistrationUserComponent,
+        CreateRegisterUserDialogComponent,
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,
@@ -84,7 +92,7 @@ import { NgSelect2Module } from 'ng-select2';
         SidebarMenuComponent
     ],
     imports: [
-   
+
 CommonModule,
         FormsModule,
         ReactiveFormsModule,

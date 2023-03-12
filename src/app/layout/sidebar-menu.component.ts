@@ -44,97 +44,51 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
     getMenuItems(): MenuItem[] {
         return [ 
-            new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle'),
-            new MenuItem(this.l('HomePage'), '/app/home', 'fas fa-home'),
-            new MenuItem(
-                this.l('Roles'),
-                '/app/roles',
-                'fas fa-theater-masks',
-                'Pages.Roles'
-            ),
-            new MenuItem(
-                this.l('Tenants'),
-                '/app/tenants',
-                'fas fa-building',
-                'Pages.Tenants'
-            ),
-            new MenuItem(
-                this.l('Users'),
-                '/app/users',
-                'fas fa-users',
-                'Pages.Users'
-            ), 
-            
-            new MenuItem(this.l('BulkOnBoarding'), '/app/bulk-on-boarding', 'fas fa-users-gear'),
-            new MenuItem(this.l('MultiLevelMenu'), '', 'fas fa-circle', '', [
-                new MenuItem('ASP.NET Boilerplate', '', 'fas fa-dot-circle', '', [
-                    new MenuItem(
-                        'Home',
-                        'https://aspnetboilerplate.com?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Templates',
-                        'https://aspnetboilerplate.com/Templates?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Samples',
-                        'https://aspnetboilerplate.com/Samples?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Documents',
-                        'https://aspnetboilerplate.com/Pages/Documents?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                ]),
-                new MenuItem('ASP.NET Zero', '', 'fas fa-dot-circle', '', [
-                    new MenuItem(
-                        'Home',
-                        'https://aspnetzero.com?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Features',
-                        'https://aspnetzero.com/Features?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Pricing',
-                        'https://aspnetzero.com/Pricing?ref=abptmpl#pricing',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Faq',
-                        'https://aspnetzero.com/Faq?ref=abptmpl',
-                        'far fa-circle'
-                    ),
-                    new MenuItem(
-                        'Documents',
-                        'https://aspnetzero.com/Documents?ref=abptmpl',
-                        'far fa-circle'
-                    )
-                ])
-            ]),
-            new MenuItem(this.l('User Approval'), '/app/user-approval', 'fas fa-info-circle'),
 
-            new MenuItem(this.l('Rejected Requests'), '', 'fas fa-circle', '', [
-                new MenuItem('Soft reject', '/app/user-rejected', 'fas fa-users-gear'),
-                new MenuItem('system Reject', '/app/system-rejected', 'fas fa-dot-circle'),
-                new MenuItem('hard Reject', '/app/permanent-rejected', 'fas fa-dot-circle')
+            // new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle')
+            // new MenuItem(
+            //             'Home',
+            //             'https://aspnetboilerplate.com?ref=abptmpl',
+            //             'far fa-circle'
+            //         ),
+
+            new MenuItem(this.l('[Admin]'), '', 'fas fa-screwdriver-wrench', '', [
+                new MenuItem('About', '/app/about', 'fas fa-info-circle'),
+                new MenuItem('HomePage', '/app/home', 'fas fa-home'), 
+                new MenuItem('Roles', '/app/roles', 'fas fa-theater-masks','Pages.Roles'), 
+                new MenuItem('Tenants', '/app/tenants', 'fas fa-building', 'Pages.Tenants'), 
+                new MenuItem('Users', '/app/users', 'fas fa-users', 'Pages.Users'), 
             ]),  
-            new MenuItem(this.l('Limit Review'), '/app/limit-review', 'fas fa-info-circle'),
-            new MenuItem(this.l('System Configuration'), '', 'fas fa-circle', '', [
-                new MenuItem('System core configuration', '/app/system-configuration', 'fas fa-users-gear'),
-                new MenuItem('System Rejection Reasons', '/app/system-rejection-reasons', 'fas fa-dot-circle'),
-                new MenuItem('System  configuration professions', '/app/system-configuration-professions', 'fas fa-dot-circle')
-            ]),
-            new MenuItem(this.l('bulk-on-boaring'), '', 'fas fa-circle', '', [
-                new MenuItem('Boarding List', '/app/bulkOnBaording', 'fas fa-users-gear'),
-                new MenuItem('Coporates', '/app/coporates', 'fas fa-dot-circle')
-            ]),
-            new MenuItem(this.l('Customers'), '/app/customers', 'fas fa-info-circle'),
+
+              
+            new MenuItem(this.l('[Operational Portal]'), '', 'fas fa-layer-group', '', [
+                    new MenuItem('Merchant settlement', '/app/merchant-settlement', 'fas fa-users-gear'),
+                    new MenuItem('BulkOnBoarding', '/app/bulk-on-boarding', 'fas fa-id-card'), 
+            ]), 
+
+            new MenuItem(this.l('[Risk Portal]'), '', 'fas fa-toolbox', '', [
+                new MenuItem('User Approval', '/app/user-approval', 'fas fa-user-check'),
+                new MenuItem(this.l('Rejected Requests'), '', 'fas fa-user-minus', '', [
+                    new MenuItem('Soft reject', '/app/user-rejected', 'fas fa-user-slash'),
+                    new MenuItem('system Reject', '/app/system-rejected', 'fas fa-user-slash'),
+                    new MenuItem('hard Reject', '/app/permanent-rejected', 'fas fa-user-slash')
+                ]),
+                new MenuItem('Limit Review', '/app/limit-review', 'fa-solid fa-id-card'),
+
+                new MenuItem(this.l('System Configuration'), '', 'fas fa-users-gear', '', [
+                    new MenuItem('core configuration', '/app/system-configuration', 'fas fa-users-gear'),
+                    new MenuItem('Rejection Reasons', '/app/system-rejection-reasons', 'fas fa-dot-circle'),
+                    new MenuItem('configuration professions', '/app/system-configuration-professions', 'fas fa-dot-circle')
+                ]),
+                new MenuItem(this.l('bulk-on-boaring'), '', 'fas fa-id-card', '', [
+                    new MenuItem('Boarding List', '/app/bulkOnBaording', 'fas fa-id-card'),
+                    new MenuItem('Coporates', '/app/coporates', 'fas fa-store')
+                ]),
+                new MenuItem('Customers', '/app/customers', 'fas fa-users'),
+            ]), 
+
+        
+           
         ];
     }
 

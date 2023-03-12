@@ -23,6 +23,7 @@ import { UsersRejectedListComponent } from './riskProtal/user-rejected/users-lis
 import { UserListSystemRejectedComponent } from './riskProtal/user-rejected/user-list-system-rejected/user-list-system-rejected.component';
 import { UsersListPermanentRejectedComponent } from './riskProtal/user-rejected/users-list-permanent-rejected/users-list-permanent-rejected.component';
 import { UsersListComponent } from './riskProtal/users-approval/users-list/users-list.component';
+import { MerchantComponent } from './merchantSettlement/merchantSettlement.component';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import { UsersListComponent } from './riskProtal/users-approval/users-list/users
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
                     { path: 'bulk-on-boarding', component: BulkComponent, canActivate: [AppRouteGuard] },
+                    { path: 'merchant-settlement', component: MerchantComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
 
                     // risk poratl

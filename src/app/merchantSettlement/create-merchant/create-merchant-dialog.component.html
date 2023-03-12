@@ -1,0 +1,119 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createUserModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'[Set merchant settlement plan]'"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    
+       <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            [Merchant code]
+          </label>
+           
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="name"
+              required
+              maxlength="32"
+              [(ngModel)]="user.name"
+              #nameModel="ngModel"
+              #nameEl
+            />
+            <abp-validation-summary
+              [control]="nameModel"
+              [controlEl]="nameEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="surname">
+            [Settlement plan id]
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="surname"
+              id="surname"
+              required
+              maxlength="32"
+              [(ngModel)]="user.surname"
+              #surnameModel="ngModel"
+              #surnameEl
+            />
+            <abp-validation-summary
+              [control]="surnameModel"
+              [controlEl]="surnameEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="userName">
+            [Settlement Plan]
+          </label>
+          <div class="col-md-9">
+            <select
+              type="text"
+              class="form-control"
+              name="userName"
+              id="userName"
+              required
+              minlength="2"
+              maxlength="32"
+              [(ngModel)]="user.userName"
+              #userNameModel="ngModel"
+              #userNameEl
+            >
+            <option></option>
+            <option>Selected Dates</option>
+            <option>After transactions by X days</option>
+          </select>
+            <abp-validation-summary
+              [control]="userNameModel"
+              [controlEl]="userNameEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="password">
+            [Day]
+          </label>
+          <div class="col-md-9">
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="password"
+              required
+              maxlength="32"
+              validateEqual="confirmPassword"
+              reverse="true"
+              pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
+              [(ngModel)]="user.password"
+              #passwordModel="ngModel"
+              #passwordEl
+            />
+            <abp-validation-summary
+              [control]="passwordModel"
+              [controlEl]="passwordEl"
+              [customValidationErrors]="passwordValidationErrors"
+            ></abp-validation-summary>
+          </div>
+        </div>
+         
+     
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createUserModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

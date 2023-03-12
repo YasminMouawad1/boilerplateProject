@@ -24,6 +24,9 @@ import { UserListSystemRejectedComponent } from './riskProtal/user-rejected/user
 import { UsersListPermanentRejectedComponent } from './riskProtal/user-rejected/users-list-permanent-rejected/users-list-permanent-rejected.component';
 import { UsersListComponent } from './riskProtal/users-approval/users-list/users-list.component';
 import { MerchantComponent } from './merchantSettlement/merchantSettlement.component';
+import { RegistrationUserComponent } from './RegistrationUsers/RegistrationUsers.component';
+
+
 
 @NgModule({
     imports: [
@@ -40,6 +43,7 @@ import { MerchantComponent } from './merchantSettlement/merchantSettlement.compo
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
                     { path: 'bulk-on-boarding', component: BulkComponent, canActivate: [AppRouteGuard] },
                     { path: 'merchant-settlement', component: MerchantComponent, canActivate: [AppRouteGuard] },
+                    { path: 'registration-users', component: RegistrationUserComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
 
                     // risk poratl

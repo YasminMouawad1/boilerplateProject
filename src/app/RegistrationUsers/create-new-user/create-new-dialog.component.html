@@ -5,14 +5,14 @@
   (ngSubmit)="save()"
 >
   <abp-modal-header
-    [title]="'[Set merchant settlement plan]'"
+    [title]="'[Create New User]'"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
     
        <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="name">
-            [Merchant code]
+            [English name]
           </label>
            
           <div class="col-md-9">
@@ -35,14 +35,14 @@
         </div>
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="surname">
-            [Settlement plan id]
+            [Arabic name]
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="surname"
-              id="surname"
+              name="arname"
+              id="arname"
               required
               maxlength="32"
               [(ngModel)]="user.surname"
@@ -54,37 +54,111 @@
               [controlEl]="surnameEl"
             ></abp-validation-summary>
           </div>
-        </div>
+        </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="userName">
-            [Settlement Plan]
+          <label class="col-md-3 col-form-label" for="surname">
+            [Mobile number]
           </label>
           <div class="col-md-9">
-            <select
+            <input
               type="text"
               class="form-control"
-              name="userName"
-              id="userName"
+              name="arname"
+              id="arname"
               required
-              minlength="2"
               maxlength="32"
-              [(ngModel)]="user.userName"
-              #userNameModel="ngModel"
-              #userNameEl
-            >
-            <option></option>
-            <option>Selected Dates</option>
-            <option>After transactions by X days</option>
-          </select>
+                
+              #surnameEl
+            />
             <abp-validation-summary
-              [control]="userNameModel"
-              [controlEl]="userNameEl"
+              [control]="surnameModel"
+              [controlEl]="surnameEl"
             ></abp-validation-summary>
           </div>
-        </div>
+        </div> 
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="surname">
+            [Branch phone number]
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="arname"
+              id="arname"
+              required
+              maxlength="32" 
+              #surnameEl
+            />
+            <abp-validation-summary
+              [control]="surnameModel"
+              [controlEl]="surnameEl"
+            ></abp-validation-summary>
+          </div>
+        </div> 
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="surname">
+            [activation point id]
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="arname"
+              id="arname"
+              required
+              maxlength="32" 
+              #surnameEl
+            />
+            <abp-validation-summary
+              [control]="surnameModel"
+              [controlEl]="surnameEl"
+            ></abp-validation-summary>
+          </div>
+        </div> 
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="surname">
+            [Merchant code]
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="arname"
+              id="arname"
+              required
+              maxlength="32" 
+              #surnameEl
+            />
+            <abp-validation-summary
+              [control]="surnameModel"
+              [controlEl]="surnameEl"
+            ></abp-validation-summary>
+          </div>
+        </div> 
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="surname">
+            [Merchant logo]
+          </label>
+          <div class="col-md-9">
+            <input
+              type="file"
+              class="form-control"
+              name="arname"
+              id="arname"
+              required
+              maxlength="32" 
+              #surnameEl
+            />
+            <abp-validation-summary
+              [control]="surnameModel"
+              [controlEl]="surnameEl"
+            ></abp-validation-summary>
+          </div>
+        </div> 
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="password">
-            [Day]
+           password
           </label>
           <div class="col-md-9">
             <input
@@ -108,8 +182,108 @@
             ></abp-validation-summary>
           </div>
         </div>
-         
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="password">
+           confirm password
+          </label>
+          <div class="col-md-9">
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="password"
+              required
+              maxlength="32"
+              validateEqual="confirmPassword"
+              reverse="true"
+              pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
+              [(ngModel)]="user.password"
+              #passwordModel="ngModel"
+              #passwordEl
+            />
+            <abp-validation-summary
+              [control]="passwordModel"
+              [controlEl]="passwordEl"
+              [customValidationErrors]="passwordValidationErrors"
+            ></abp-validation-summary>
+          </div>
+        </div>
      
+
+       <div class="form-group row flex-nowrap">
+          <div class="col-md-6">
+            <div class="custom-control custom-checkbox d-inline mx-3">
+              <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="isActives"
+                      name="isActive" 
+                      [value]="true"
+              />
+              <label
+                      class="custom-control-label"
+                      for="isActives"
+              >
+              [Sales sign up]
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="custom-control custom-checkbox d-inline mx-3">
+              <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="isActivem"
+                      name="isActivem" 
+                      [value]="true"
+              />
+              <label
+                      class="custom-control-label"
+                      for="isActivem"
+              >
+              [Merchant sign up]
+              </label>
+            </div>
+          </div>
+       </div>
+
+       <div class="form-group row flex-nowrap">
+        <div class="col-md-6">
+          <div class="custom-control custom-checkbox d-inline mx-3">
+            <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="isActivep"
+                    name="isActivep" 
+                    [value]="true"
+            />
+            <label
+                    class="custom-control-label"
+                    for="isActivep"
+            >
+            [Merchant portal sign up]
+            </label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="custom-control custom-checkbox d-inline mx-3">
+            <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="isActivesm"
+                    name="isActivesm" 
+                    [value]="true"
+            />
+            <label
+                    class="custom-control-label"
+                    for="isActivesm"
+            >
+            [Send sms]
+            </label>
+          </div>
+        </div>
+     </div>
+    
   </div>
   <abp-modal-footer
     [cancelDisabled]="saving"

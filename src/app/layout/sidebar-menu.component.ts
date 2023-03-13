@@ -75,7 +75,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                     new MenuItem('system Reject', '/app/system-rejected', 'fas fa-user-slash'),
                     new MenuItem('hard Reject', '/app/permanent-rejected', 'fas fa-user-slash')
                 ]),
-                
+
                 new MenuItem('Limit Review', '/app/limit-review', 'fa-solid fa-id-card'),
 
                 new MenuItem(this.l('System Configuration'), '', 'fas fa-users-gear', '', [
@@ -87,10 +87,13 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                     new MenuItem('Boarding List', '/app/bulkOnBaording', 'fas fa-id-card'),
                     new MenuItem('Coporates', '/app/coporates', 'fas fa-store')
                 ]),
-                new MenuItem('Customers', '/app/customers', 'fas fa-users'),
+
+                new MenuItem('Customers', '/app/customers', 'fas fa-users'), 
+
             ]), 
 
-        
+            new MenuItem('Due Transactions','/app/due-transactions','fas fa-money-bill-wave')
+
            
         ];
     }

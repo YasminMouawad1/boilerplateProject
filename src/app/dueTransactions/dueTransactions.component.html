@@ -1,0 +1,69 @@
+<div [@routerTransition]>
+    <div class="bgGrey m-2">
+  
+      <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <h1> Due Transactions</h1>
+                </div> 
+            </div>
+        </div>
+    </section>
+  
+    <section class="content px-2">
+      <div class="container-fluid">
+        <div class="row mt-4 data">
+            <div class="col-lg-12">
+                <div  class="item">
+                    <table *ngFor="let merchant of  merchantDueTransactions" [ngStyle]="{ 'background-color':merchant.isSelected ? '#e5f4ef':'#eceff1'}">
+                      
+                     <tr>
+                            <th rowspan="2">
+                             <input  [(ngModel)]="merchant.isSelected"  type="checkbox" class="form-check-input">
+                           </th>
+                           <th>رقم المعاملة</th>
+                            <th>اسم الفرع</th>
+                            <th>اسم العميل</th>
+                            <th>قيمة المعاملة</th>
+                            <th>الرقم القومي</th>
+                            <th> نسبة عمولة التاجر</th>
+                            <th>عمولة التاجر</th>
+                            <th>مصاريف ادارية</th>
+                            <th>نسبة الخصم</th>
+                            <th>قيمة الخصم </th>
+                            <th>تاريج المعاملة </th>
+                            <th>الصافي</th>
+                        </tr>
+                        <tr>
+                         <td>{{merchant.debtRecordCode}}</td>
+                            <td>{{merchant.branchAname}}</td>
+                            <td
+                               class="text-truncate"
+                               style="max-width: 130px;direction: rtl;"
+                               data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               title="{{ merchant.clientAname }}"
+                            >{{merchant.clientAname}}</td>
+                            <td>{{merchant.loanAmount}}</td>
+                            <td>{{merchant.nationalId}}</td>
+                            <td>{{merchant.merchantCommissionRate}}</td>
+                            <td>{{merchant.merchantCommission}}</td>
+                            <td>{{merchant.adminFee}}</td>
+                            <td>{{merchant.merchantDiscountRate}}</td>
+                            <td>{{merchant.merchantDiscount}}</td>
+                            <td>{{merchant.bookingDate}}</td>
+                            <td>{{merchant.merchantDue}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btnClaim" data-bs-toggle="modal" data-bs-target="#claimModal">Claim</button>
+                </div>
+            </div>
+         </div>
+    </div>
+    </section>
+    </div>
+  </div>
+  

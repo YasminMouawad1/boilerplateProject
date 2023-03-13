@@ -25,6 +25,7 @@ import { UsersListPermanentRejectedComponent } from './riskProtal/user-rejected/
 import { UsersListComponent } from './riskProtal/users-approval/users-list/users-list.component';
 import { MerchantComponent } from './merchantSettlement/merchantSettlement.component';
 import { RegistrationUserComponent } from './RegistrationUsers/RegistrationUsers.component';
+import { DueTransactionComponent } from './dueTransactions/dueTransactions.component';
 
 
 
@@ -44,6 +45,7 @@ import { RegistrationUserComponent } from './RegistrationUsers/RegistrationUsers
                     { path: 'bulk-on-boarding', component: BulkComponent, canActivate: [AppRouteGuard] },
                     { path: 'merchant-settlement', component: MerchantComponent, canActivate: [AppRouteGuard] },
                     { path: 'registration-users', component: RegistrationUserComponent, canActivate: [AppRouteGuard] },
+                    { path: 'due-transactions', component: DueTransactionComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
 
                     // risk poratl

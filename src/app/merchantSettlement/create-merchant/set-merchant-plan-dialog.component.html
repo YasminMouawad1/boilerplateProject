@@ -12,21 +12,19 @@
     
        <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="MerchantCode">
-            [Merchant code]
+            Merchant 
           </label>
            
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="MerchantCode"
-              id="MerchantCode"
-              required
-              maxlength="32"
-              [(ngModel)]="merchantPlan.MerchantCode"
-              #MerchantCodeModel="ngModel"
-              #MerchantCode
-            />
+            <ng-select2 [data]="merchantData" 
+                            [options]="merchantOptions"
+                            [(ngModel)]="merchantPlan.MerchantCode"
+                            name="merchantCode"
+                            #MerchantCodeModel="ngModel"
+                            #MerchantCode
+                            class="select2-container w-100"
+                        >
+            </ng-select2> 
             <abp-validation-summary
               [control]="MerchantCodeModel"
               [controlEl]="MerchantCode"
@@ -34,70 +32,41 @@
           </div>
         </div>
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="planID">
-            [Settlement plan id]
-          </label>
-          <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="planID"
-              id="planID"
-              required
-              maxlength="32"
-              [(ngModel)]="merchantPlan.planID"
-              #planIDModel="ngModel"
-              #planID
-            />
-            <abp-validation-summary
-              [control]="planIDModel"
-              [controlEl]="planID"
-            ></abp-validation-summary>
-          </div>
-        </div>
-        <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="settlementPlan">
-            [Settlement Plan]
+            [Settlement plan]
           </label>
           <div class="col-md-9">
-            <select
-              type="text"
-              class="form-control"
-              name="settlementPlan"
-              id="settlementPlan"
-              required
-              minlength="2"
-              maxlength="32"
-              [(ngModel)]="merchantPlan.settlementPlan"
-              #settlementPlanModel="ngModel"
-              #settlementPlan
-            >
-            <option></option>
-            <option value="Selected Dates">Selected Dates</option>
-            <option value="After transactions by X days">After transactions by X days</option>
-          </select>
+            <ng-select2 [data]="merchantPlans" 
+                            [options]="merchantPlansOptions"
+                            [(ngModel)]="merchantPlan.settlementPlan"
+                            name="merchantPlan"
+                            #settlementPlanModel="ngModel"
+                            #settlementPlan
+                            class="select2-container w-100"
+                            (change)="changePlan($event)" 
+                        >
+            </ng-select2>  
             <abp-validation-summary
               [control]="settlementPlanModel"
               [controlEl]="settlementPlan"
             ></abp-validation-summary>
           </div>
         </div>
+       
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="day">
             [Day]
           </label>
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="day"
-              id="day"
-              required
-              maxlength="32" 
-              [(ngModel)]="merchantPlan.day"
-              #dayModel="ngModel"
-              #day
-            />
+            <ng-select2 [data]="dayData" 
+                            [options]="dayOptions"
+                            name="day"
+                            [(ngModel)]="merchantPlan.day"
+                            #dayModel="ngModel"
+                            #day
+                            class="select2-container w-100"
+                        >
+            </ng-select2>   
             <abp-validation-summary
               [control]="dayModel"
               [controlEl]="day"
@@ -106,6 +75,27 @@
           </div>
         </div>
          
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="days">
+            [Days]
+          </label>
+          <div class="col-md-9">
+            <ng-select2 [data]="daysData" 
+                            [options]="daysOptions"
+                            name="days"
+                            [(ngModel)]="merchantPlan.days"
+                            #daysModel="ngModel"
+                            #days
+                            class="select2-container w-100"
+                        >
+            </ng-select2>   
+            <abp-validation-summary
+              [control]="daysModel"
+              [controlEl]="days"
+              [customValidationErrors]="passwordValidationErrors"
+            ></abp-validation-summary>
+          </div>
+        </div>
      
   </div>
   <abp-modal-footer

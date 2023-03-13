@@ -4055,6 +4055,7 @@ export class SetMerchantPlanDto implements ISetMerchantPlanDto {
     planID: string;
     settlementPlan: string;
     day: string; 
+    days:any;
 
     constructor(data?: ISetMerchantPlanDto) {
         if (data) {
@@ -4071,6 +4072,7 @@ export class SetMerchantPlanDto implements ISetMerchantPlanDto {
             this.planID = _data["planID"];
             this.settlementPlan = _data["settlementPlan"];
             this.day = _data["day"]; 
+            this.days = _data["days"]; 
         }
     }
 
@@ -4087,6 +4089,7 @@ export class SetMerchantPlanDto implements ISetMerchantPlanDto {
         data["planID"] = this.planID;
         data["settlementPlan"] = this.settlementPlan;
         data["day"] = this.day; 
+        data["days"] = this.days; 
         return data;
     }
 
@@ -4103,6 +4106,7 @@ export interface ISetMerchantPlanDto {
     planID: string;
     settlementPlan: string;
     day: string; 
+    days: any; 
 }
 
 export class RegisterNewUserDto implements IRegisterNewUserDto {

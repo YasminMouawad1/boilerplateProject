@@ -40,3 +40,10 @@
   }
 
  
+  .select2-container::ng-deep{
+    width:100% !important;
+  }
+
+  .select2-container::ng-deep .select2-selection--single{
+    height: 34px !important;
+}

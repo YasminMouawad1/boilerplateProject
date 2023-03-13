@@ -4050,6 +4050,148 @@ export interface ICreateUserDto {
     password: string;
 }
 
+export class SetMerchantPlanDto implements ISetMerchantPlanDto {
+    MerchantCode: string;
+    planID: string;
+    settlementPlan: string;
+    day: string; 
+
+    constructor(data?: ISetMerchantPlanDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.MerchantCode = _data["MerchantCode"];
+            this.planID = _data["planID"];
+            this.settlementPlan = _data["settlementPlan"];
+            this.day = _data["day"]; 
+        }
+    }
+
+    static fromJS(data: any): SetMerchantPlanDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new SetMerchantPlanDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["MerchantCode"] = this.MerchantCode;
+        data["planID"] = this.planID;
+        data["settlementPlan"] = this.settlementPlan;
+        data["day"] = this.day; 
+        return data;
+    }
+
+    clone(): SetMerchantPlanDto {
+        const json = this.toJSON();
+        let result = new SetMerchantPlanDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ISetMerchantPlanDto {
+    MerchantCode: string;
+    planID: string;
+    settlementPlan: string;
+    day: string; 
+}
+
+export class RegisterNewUserDto implements IRegisterNewUserDto {
+    enName: string;
+    arName: string;
+    mobileNumber: string;
+    branchNumber: string; 
+    activationPointID:string;
+    merchantCode:string;
+    merchantLogo:string;
+    passoword:string;
+    confirmPassword:string;
+    signUpTypes: string[] | undefined;
+
+    constructor(data?: IRegisterNewUserDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.enName = _data["enName"];
+            this.arName = _data["arName"];
+            this.mobileNumber = _data["mobileNumber"];
+            this.branchNumber = _data["branchNumber"];
+            this.activationPointID = _data["activationPointID"];
+            this.merchantCode = _data["merchantCode"];
+            this.merchantLogo = _data["merchantLogo"];
+            this.passoword = _data["passoword"];
+            this.confirmPassword = _data["confirmPassword"];
+            if (Array.isArray(_data["signUpTypes"])) {
+                this.signUpTypes = [] as any;
+                for (let item of _data["signUpTypes"])
+                    this.signUpTypes.push(item);
+            } 
+        }
+    }
+
+    static fromJS(data: any): RegisterNewUserDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new RegisterNewUserDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["enName"] = this.enName;
+        data["arName"] = this.arName;
+        data["mobileNumber"] = this.mobileNumber;
+        data["branchNumber"] = this.branchNumber;
+        data["activationPointID"] = this.activationPointID;
+        data["merchantCode"] = this.merchantCode;
+        data["merchantLogo"] = this.merchantLogo;
+        data["passoword"] = this.passoword;
+        data["confirmPassword"] = this.confirmPassword;
+        if (Array.isArray(this.signUpTypes)) {
+            data["signUpTypes"] = [];
+            for (let item of this.signUpTypes)
+                data["signUpTypes"].push(item);
+        } 
+        return data;
+    }
+
+    clone(): RegisterNewUserDto {
+        const json = this.toJSON();
+        let result = new RegisterNewUserDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IRegisterNewUserDto {
+    enName: string;
+    arName: string;
+    mobileNumber: string;
+    branchNumber: string; 
+    activationPointID:string;
+    merchantCode:string;
+    merchantLogo:string;
+    passoword:string;
+    confirmPassword:string;
+    signUpTypes: string[] | undefined;
+}
+
 export class ExternalAuthenticateModel implements IExternalAuthenticateModel {
     authProvider: string;
     providerKey: string;

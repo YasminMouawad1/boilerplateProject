@@ -11,7 +11,7 @@
   <div class="modal-body">
     
        <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="name">
+          <label class="col-md-3 col-form-label" for="enName">
             [English name]
           </label>
            
@@ -19,191 +19,200 @@
             <input
               type="text"
               class="form-control"
-              name="name"
-              id="name"
+              name="enName"
+              id="enName"
               required
               maxlength="32"
-              [(ngModel)]="user.name"
-              #nameModel="ngModel"
-              #nameEl
+              [(ngModel)]="user.enName"
+              #enNameModel="ngModel"
+              #enName
             />
             <abp-validation-summary
-              [control]="nameModel"
-              [controlEl]="nameEl"
+              [control]="enNameModel"
+              [controlEl]="enName"
             ></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="surname">
+          <label class="col-md-3 col-form-label" for="arName">
             [Arabic name]
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="arname"
-              id="arname"
+              name="arName"
+              id="arName"
               required
               maxlength="32"
-              [(ngModel)]="user.surname"
-              #surnameModel="ngModel"
-              #surnameEl
+              [(ngModel)]="user.arName"
+              #arNameModel="ngModel"
+              #arName
             />
             <abp-validation-summary
-              [control]="surnameModel"
-              [controlEl]="surnameEl"
+              [control]="arNameModel"
+              [controlEl]="arName"
             ></abp-validation-summary>
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="surname">
+          <label class="col-md-3 col-form-label" for="mobileNumber">
             [Mobile number]
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="arname"
-              id="arname"
+              name="mobileNumber"
+              id="mobileNumber"
               required
               maxlength="32"
-                
-              #surnameEl
+              [(ngModel)]="user.mobileNumber"
+              #mobileNumberModel="ngModel"
+              #mobileNumber
             />
             <abp-validation-summary
-              [control]="surnameModel"
-              [controlEl]="surnameEl"
+              [control]="mobileNumberModel"
+              [controlEl]="mobileNumber"
             ></abp-validation-summary>
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="surname">
+          <label class="col-md-3 col-form-label" for="branchNumber">
             [Branch phone number]
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="arname"
-              id="arname"
+              name="branchNumber"
+              id="branchNumber"
               required
               maxlength="32" 
-              #surnameEl
+              [(ngModel)]="user.branchNumber"
+              #branchNumberModel="ngModel"
+              #branchNumber
             />
             <abp-validation-summary
-              [control]="surnameModel"
-              [controlEl]="surnameEl"
+              [control]="branchNumberModel"
+              [controlEl]="branchNumber"
             ></abp-validation-summary>
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="surname">
+          <label class="col-md-3 col-form-label" for="activationPointID">
             [activation point id]
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="arname"
-              id="arname"
+              name="activationPointID"
+              id="activationPointID"
               required
               maxlength="32" 
-              #surnameEl
+              [(ngModel)]="user.activationPointID"
+              #activationPointIDModel="ngModel"
+              #activationPointID
             />
             <abp-validation-summary
-              [control]="surnameModel"
-              [controlEl]="surnameEl"
+              [control]="activationPointIDModel"
+              [controlEl]="activationPointID"
             ></abp-validation-summary>
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="surname">
+          <label class="col-md-3 col-form-label" for="merchantCode">
             [Merchant code]
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="arname"
-              id="arname"
+              name="merchantCode"
+              id="merchantCode"
               required
               maxlength="32" 
-              #surnameEl
+              [(ngModel)]="user.merchantCode"
+              #merchantCodeModel="ngModel"
+              #merchantCode
             />
             <abp-validation-summary
-              [control]="surnameModel"
-              [controlEl]="surnameEl"
+              [control]="merchantCodeModel"
+              [controlEl]="merchantCode"
             ></abp-validation-summary>
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="surname">
+          <label class="col-md-3 col-form-label" for="merchantLogo">
             [Merchant logo]
           </label>
           <div class="col-md-9">
             <input
               type="file"
               class="form-control"
-              name="arname"
-              id="arname"
+              name="merchantLogo"
+              id="merchantLogo"
               required
               maxlength="32" 
-              #surnameEl
+              [(ngModel)]="user.merchantLogo"
+              #merchantLogoModel="ngModel"
+              #merchantLogo
             />
             <abp-validation-summary
-              [control]="surnameModel"
-              [controlEl]="surnameEl"
+              [control]="merchantLogoModel"
+              [controlEl]="merchantLogo"
             ></abp-validation-summary>
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="password">
+          <label class="col-md-3 col-form-label" for="passoword">
            password
           </label>
           <div class="col-md-9">
             <input
               type="password"
               class="form-control"
-              name="password"
-              id="password"
+              name="passoword"
+              id="passoword"
               required
               maxlength="32"
               validateEqual="confirmPassword"
               reverse="true"
               pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
-              [(ngModel)]="user.password"
-              #passwordModel="ngModel"
-              #passwordEl
+              [(ngModel)]="user.passoword"
+              #passowordModel="ngModel"
+              #passoword
             />
             <abp-validation-summary
-              [control]="passwordModel"
-              [controlEl]="passwordEl"
+              [control]="passowordModel"
+              [controlEl]="passoword"
               [customValidationErrors]="passwordValidationErrors"
             ></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="password">
+          <label class="col-md-3 col-form-label" for="confirmPassword">
            confirm password
           </label>
           <div class="col-md-9">
             <input
               type="password"
               class="form-control"
-              name="password"
-              id="password"
+              name="confirmPassword"
+              id="confirmPassword"
               required
               maxlength="32"
               validateEqual="confirmPassword"
               reverse="true"
               pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
-              [(ngModel)]="user.password"
-              #passwordModel="ngModel"
-              #passwordEl
+              [(ngModel)]="user.confirmPassword"
+              #confirmPasswordModel="ngModel"
+              #confirmPassword
             />
             <abp-validation-summary
-              [control]="passwordModel"
-              [controlEl]="passwordEl"
+              [control]="confirmPasswordModel"
+              [controlEl]="confirmPassword"
               [customValidationErrors]="passwordValidationErrors"
             ></abp-validation-summary>
           </div>

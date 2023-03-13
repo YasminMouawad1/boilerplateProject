@@ -14,7 +14,7 @@ import {
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
 } from '@shared/service-proxies/service-proxies'; 
-import { CreateMerchantDialogComponent } from './create-merchant/create-merchant-dialog.component';
+import { SetMerchantPlanDialogComponent } from './create-merchant/set-merchant-plan-dialog.component';
 
  
 class PagedUsersRequestDto extends PagedRequestDto {
@@ -110,7 +110,7 @@ export class MerchantComponent extends PagedListingComponentBase<UserDto> {
     let createOrEditUserDialog: BsModalRef;
     if (!id) {
       createOrEditUserDialog = this._modalService.show(
-        CreateMerchantDialogComponent,
+        SetMerchantPlanDialogComponent,
         {
           class: 'modal-lg',
         }

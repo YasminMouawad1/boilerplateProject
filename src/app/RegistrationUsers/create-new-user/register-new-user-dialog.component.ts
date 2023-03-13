@@ -10,20 +10,20 @@ import {
   import { AppComponentBase } from '@shared/app-component-base';
   import {
     UserServiceProxy,
-    CreateUserDto,
+    RegisterNewUserDto,
     RoleDto,
     LookUpServiceProxy
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
   
   @Component({
-    templateUrl: './create-merchant-dialog.component.html',
-    styleUrls:['../merchantSettlement.component.css']
+    templateUrl: './register-new-user-dialog.component.html',
+    styleUrls:['../RegistrationUsers.component.css']
   })
-  export class CreateMerchantDialogComponent extends AppComponentBase
+  export class RegisterNewUserDialogComponent extends AppComponentBase
     implements OnInit {
     saving = false;
-    user = new CreateUserDto();
+    user = new RegisterNewUserDto();
     roles: RoleDto[] = [];
     checkedRolesMap: { [key: string]: boolean } = {};
     defaultRoleCheckedStatus = false;
@@ -52,8 +52,7 @@ import {
       super(injector);
     }
   
-    ngOnInit(): void {
-      this.user.isActive = true;
+    ngOnInit(): void { 
       debugger
   this._lookupService.getAllCorporate().subscribe((result) => {
      console.log(result)
@@ -96,18 +95,18 @@ import {
     save(): void {
       this.saving = true;
   
-      this.user.roleNames = this.getCheckedRoles();
+      // this.user.roleNames = this.getCheckedRoles();
   
-      this._userService.create(this.user).subscribe(
-        () => {
-          this.notify.info(this.l('SavedSuccessfully'));
-          this.bsModalRef.hide();
-          this.onSave.emit();
-        },
-        () => {
-          this.saving = false;
-        }
-      );
+      // this._userService.create(this.user).subscribe(
+      //   () => {
+      //     this.notify.info(this.l('SavedSuccessfully'));
+      //     this.bsModalRef.hide();
+      //     this.onSave.emit();
+      //   },
+      //   () => {
+      //     this.saving = false;
+      //   }
+      // );
     }
   }
   

@@ -17,9 +17,9 @@ import { HomeComponent } from '@app/home/home.component';
 import { AboutComponent } from '@app/about/about.component'; 
 import { BulkComponent } from '@app/bulkOnBoarding/bulk.component';
 import {MerchantComponent } from '@app/merchantSettlement/merchantSettlement.component';
-import {CreateMerchantDialogComponent} from '@app/merchantSettlement/create-merchant/create-merchant-dialog.component'
+import {SetMerchantPlanDialogComponent} from '@app/merchantSettlement/create-merchant/set-merchant-plan-dialog.component'
 import {RegistrationUserComponent} from '@app/RegistrationUsers/RegistrationUsers.component';
-import {CreateRegisterUserDialogComponent} from '@app/RegistrationUsers/create-new-user/create-new-dialog.component'
+import {RegisterNewUserDialogComponent} from '@app/RegistrationUsers/create-new-user/register-new-user-dialog.component'
 import {DueTransactionComponent} from '@app/dueTransactions/dueTransactions.component'
 
 // tenants
@@ -64,9 +64,9 @@ import { NgSelect2Module } from 'ng-select2';
         AboutComponent,
         BulkComponent,
         MerchantComponent,
-        CreateMerchantDialogComponent,
+        SetMerchantPlanDialogComponent,
         RegistrationUserComponent,
-        CreateRegisterUserDialogComponent,
+        RegisterNewUserDialogComponent,
         DueTransactionComponent,
         // tenants
         TenantsComponent,

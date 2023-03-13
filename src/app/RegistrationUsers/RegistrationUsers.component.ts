@@ -14,7 +14,7 @@ import {
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
 } from '@shared/service-proxies/service-proxies'; 
-import { CreateRegisterUserDialogComponent } from './create-new-user/create-new-dialog.component';
+import { RegisterNewUserDialogComponent } from './create-new-user/register-new-user-dialog.component';
 
  
 class PagedUsersRequestDto extends PagedRequestDto {
@@ -110,7 +110,7 @@ export class RegistrationUserComponent extends PagedListingComponentBase<UserDto
     let createOrEditUserDialog: BsModalRef;
     if (!id) {
       createOrEditUserDialog = this._modalService.show(
-        CreateRegisterUserDialogComponent,
+        RegisterNewUserDialogComponent,
         {
           class: 'modal-lg',
         }

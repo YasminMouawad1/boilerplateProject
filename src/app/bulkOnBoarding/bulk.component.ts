@@ -29,8 +29,7 @@ class PagedApplicationsOnBoardingDto extends PagedRequestDto {
 @Component({
   templateUrl: './bulk.component.html',
   styleUrls:['./bulk.component.css'],
-  animations: [appModuleAnimation()],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  animations: [appModuleAnimation()], 
 })
 export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoardingDto>{
   protected delete(entity: ApplicationsOnBoardingDto): void {

@@ -1,0 +1,47 @@
+ 
+  <abp-modal-header
+    [title]="'Create Claim' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+
+  <div class="modal-body">
+    
+    <div *ngIf="viewList.length == 0" class="mt-4">
+      <p  class="alert alert-danger">Please choose at least one transaction to claim it!</p>
+  </div>
+
+  <div  *ngIf="viewList.length > 0">
+     <h5>Are you sure you want to claim these transactions ?</h5>
+     <div class="col-lg-12 mt-4">
+         <div  class="item showData">
+             <table  *ngFor="let item of viewList">
+                 <tr>
+                     <th>Branch name</th>
+                     <th>Client's name</th>
+                     <th>Transaction number</th>
+                     <th>Down payment</th>
+                     <th>Transaction amount</th>
+                     <th>National ID</th>
+                 </tr>
+                 <tr>
+                   <td>{{item.branchAname}}</td>
+                   <td>{{item.clientAname}}</td>
+                   <td>{{item.debtRecordCode}}</td>
+                   <td>{{item.downPaymentAmt}}</td>
+                   <td>{{item.loanAmount}}</td>
+                   <td>{{item.nationalId}}</td>
+                 </tr>
+             </table>
+         </div>
+     </div>
+     <span *ngIf="spWarning" class="alert alert-warning spWarning">You canceled the confirming</span>
+   </div>
+
+  </div>
+
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]=""
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+

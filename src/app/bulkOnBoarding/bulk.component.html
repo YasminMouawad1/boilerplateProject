@@ -54,12 +54,15 @@
                         <div class="col-md-3">
                           <p class="boldText">Corporate</p>
 
-                          <ng-select2 [data]="exampleData"
+                          <div class="w-100">
+                            <ng-select2 [data]="exampleData"
                             [placeholder]="'Select the Corporate'"
                             [options]="options"
                             [(ngModel)]="corpCode"
+                            class="select2-container"
                             >
                           </ng-select2>
+                          </div>
                         </div>
                     </div>
 

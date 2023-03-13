@@ -4,66 +4,235 @@
       <section class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-8">
                     <h1> Due Transactions</h1>
                 </div> 
+                <div class="col-md-4 row">
+                    <div class="col-md-3">
+                        <p class="boldText">Merchant</p>
+                    </div>
+                    <div class="col-md-9">
+                        <ng-select2 [data]="merchantList"
+                          [placeholder]="'Select Merchant'"
+                          [options]="options"
+                          [(ngModel)]="merchantCode"
+                          class="select2-container"
+                          >
+                        </ng-select2>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
   
     <section class="content px-2">
       <div class="container-fluid">
-        <div class="row mt-4 data">
-            <div class="col-lg-12">
-                <div  class="item">
-                    <table *ngFor="let merchant of  merchantDueTransactions" [ngStyle]="{ 'background-color':merchant.isSelected ? '#e5f4ef':'#eceff1'}">
-                      
-                     <tr>
-                            <th rowspan="2">
-                             <input  [(ngModel)]="merchant.isSelected"  type="checkbox" class="form-check-input">
-                           </th>
-                           <th>رقم المعاملة</th>
-                            <th>اسم الفرع</th>
-                            <th>اسم العميل</th>
-                            <th>قيمة المعاملة</th>
-                            <th>الرقم القومي</th>
-                            <th> نسبة عمولة التاجر</th>
-                            <th>عمولة التاجر</th>
-                            <th>مصاريف ادارية</th>
-                            <th>نسبة الخصم</th>
-                            <th>قيمة الخصم </th>
-                            <th>تاريج المعاملة </th>
-                            <th>الصافي</th>
-                        </tr>
-                        <tr>
-                         <td>{{merchant.debtRecordCode}}</td>
-                            <td>{{merchant.branchAname}}</td>
-                            <td
-                               class="text-truncate"
-                               style="max-width: 130px;direction: rtl;"
-                               data-bs-toggle="tooltip"
-                               data-bs-placement="top"
-                               title="{{ merchant.clientAname }}"
-                            >{{merchant.clientAname}}</td>
-                            <td>{{merchant.loanAmount}}</td>
-                            <td>{{merchant.nationalId}}</td>
-                            <td>{{merchant.merchantCommissionRate}}</td>
-                            <td>{{merchant.merchantCommission}}</td>
-                            <td>{{merchant.adminFee}}</td>
-                            <td>{{merchant.merchantDiscountRate}}</td>
-                            <td>{{merchant.merchantDiscount}}</td>
-                            <td>{{merchant.bookingDate}}</td>
-                            <td>{{merchant.merchantDue}}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="text-center">
-                    <button class="btn btnClaim" data-bs-toggle="modal" data-bs-target="#claimModal">Claim</button>
-                </div>
+        <div class="row"> 
+            <div class="col-md-6 m-auto">
+                       <div class="input-group">
+                           <div class="input-group-prepend">
+                               <button
+                                       type="button"
+                                       class="btn bgPink"
+                                       (click)="getDataPage(1)"
+                               >
+                                   <i class="fas fa-search"></i>
+                               </button>
+                           </div>
+                           <input
+                                   type="text"
+                                   class="form-control"
+                                   name="keyword"
+                                   [placeholder]="'SearchWithThreeDot' | localize"
+                                   [(ngModel)]="keyword"
+                                   (keyup.enter)="getDataPage(1)"
+                           />
+                           <div class="input-group-append">
+                               <button
+                                       type="button"
+                                       class="btn btn-default"
+                                       (click)="advancedFiltersVisible = !advancedFiltersVisible"
+                               >
+                                   <i
+                                           class="fas"
+                                           [class.fa-angle-up]="advancedFiltersVisible"
+                                           [class.fa-angle-down]="!advancedFiltersVisible"
+                                   ></i>
+                               </button>
+                           </div>
+                       </div>
             </div>
-         </div>
-    </div>
+      </div>
+       <div *ngIf="advancedFiltersVisible" class="card mb-0 mt-1">
+                   <div class="card-body">
+                       <form class="form-horizontal">
+                           <div class="row">
+                               <div class="col-md-6">
+                                   <div class="form-group row mb-0">
+                                       <label class="col-md-3 col-form-label">
+                                           {{ "IsActive" | localize }}
+                                       </label>
+                                       <div class="col-md-9 pt-2 d-flex justify-content-between">
+                                           <div class="custom-control custom-radio d-inline">
+                                               <input
+                                                       type="radio"
+                                                       class="custom-control-input"
+                                                       id="isActiveAll"
+                                                       name="isActive"
+                                                       [(ngModel)]="isActive"
+                                                       [value]="undefined"
+                                                       checked
+                                               />
+                                               <label class="custom-control-label" for="isActiveAll">
+                                                   {{ "All" | localize }}
+                                               </label>
+                                           </div>
+                                           <div class="custom-control custom-radio d-inline mx-3">
+                                               <input
+                                                       type="radio"
+                                                       class="custom-control-input"
+                                                       id="isActiveActive"
+                                                       name="isActive"
+                                                       [(ngModel)]="isActive"
+                                                       [value]="true"
+                                               />
+                                               <label
+                                                       class="custom-control-label"
+                                                       for="isActiveActive"
+                                               >
+                                                   {{ "Yes" | localize }}
+                                               </label>
+                                           </div>
+                                           <div class="custom-control custom-radio d-inline">
+                                               <input
+                                                       type="radio"
+                                                       class="custom-control-input"
+                                                       id="isActivePassive"
+                                                       name="isActive"
+                                                       [(ngModel)]="isActive"
+                                                       [value]="false"
+                                               />
+                                               <label
+                                                       class="custom-control-label"
+                                                       for="isActivePassive"
+                                               >
+                                                   {{ "No" | localize }}
+                                               </label>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </form>
+                   </div>
+                   <div class="card-footer text-right">
+                       <button
+                               type="button"
+                               class="btn mr-2 bgGreen"
+                               (click)="getDataPage(1)" 
+                       >
+                           {{ "Search" | localize }}
+                       </button>
+                       <button
+                               type="button"
+                               class="btn btn-default float-right"
+                               (click)="clearFilters()"
+                       >
+                           {{ "Clear" | localize }}
+                       </button>
+                   </div>
+       </div>
+            
+    <br>
+
+       <div class="card">
+           <div class="card-body">
+               <div class="table-responsive">
+                   <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                       <thead class="bg-light">
+                       <tr>
+                          <th></th>
+                           <th>Code</th>
+                           <th>branch name</th>
+                           <th>client name</th>
+                           <th>loan Amount</th>
+                           <th>national Id</th>
+                           <th>Commission Rate</th>
+                           <th>Commission</th>
+                           <th>adminFee</th>
+                           <th>Discount Rate</th>
+                           <th>Discount</th>
+                           <th>booking Date</th>
+                           <th>merchant Due</th> 
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr
+                            *ngFor="let transaction of merchantDueTransactions | paginate: {
+                                    id: 'server',
+                                    itemsPerPage: pageSize,
+                                    currentPage: pageNumber,
+                                    totalItems: totalItems
+                                }"
+                       >
+                           <td class="transTdCheck"> 
+                              <input  [(ngModel)]="transaction.isSelected" (change)="getCheckedItemList()"   
+                                      type="checkbox" class="form-check-input">
+                            </td>
+                           <td>{{ transaction.debtRecordCode }}</td>
+                           <td>{{ transaction.branchAname }}</td>
+                           <td>{{ transaction.clientAname }}</td>
+                           <td>{{ transaction.loanAmount }}</td>
+                           <td>{{ transaction.nationalId }}</td>
+                           <td>{{ transaction.merchantCommissionRate }}</td>
+                           <td>{{ transaction.merchantCommission }}</td>
+                           <td>{{ transaction.adminFee }}</td>
+                           <td>{{ transaction.merchantDiscountRate }}</td>
+                           <td>{{ transaction.merchantDiscount }}</td>
+                           <td>{{ transaction.bookingDate }}</td>
+                           <td>{{ transaction.merchantDue }}</td>
+                          
+                       </tr>
+                       </tbody>
+                   </table>
+               </div>
+
+               <div class="text-center">
+                <button class="btn btnClaim"  (click)="createClaims()">Claim</button>
+            </div>
+           </div>
+           <div class="card-footer table-card-footer bg-light border-top">
+               <div class="row">
+                   <div class="col-sm-4 col-12 text-sm-left text-center">
+                       <button class="btn btn-secondary" (click)="refresh()">
+                           <i class="fas fa-redo-alt"></i>
+                       </button>
+                   </div>
+                   <div class="col-sm-4 col-12 text-center">
+                       <p class="mb-0 my-2">
+                           {{ "TotalRecordsCount" | localize: totalItems }}
+                       </p>
+                   </div>
+                   <div class="col-sm-4 col-12">
+                       <div class="float-sm-right m-auto">
+                           <abp-pagination-controls
+                                   id="server"
+                                   (pageChange)="getDataPage($event)"
+                           >
+                           </abp-pagination-controls>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+ 
+      </div>
+ 
+  
     </section>
+
+
+
     </div>
   </div>
   

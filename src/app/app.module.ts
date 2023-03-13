@@ -20,7 +20,8 @@ import {MerchantComponent } from '@app/merchantSettlement/merchantSettlement.com
 import {SetMerchantPlanDialogComponent} from '@app/merchantSettlement/create-merchant/set-merchant-plan-dialog.component'
 import {RegistrationUserComponent} from '@app/RegistrationUsers/RegistrationUsers.component';
 import {RegisterNewUserDialogComponent} from '@app/RegistrationUsers/create-new-user/register-new-user-dialog.component'
-import {DueTransactionComponent} from '@app/dueTransactions/dueTransactions.component'
+import {DueTransactionComponent} from '@app/dueTransactions/dueTransactions.component';
+import {ClaimsDialogComponent} from '@app/dueTransactions/add-claims/claims-dialog.component';
 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
@@ -68,6 +69,7 @@ import { NgSelect2Module } from 'ng-select2';
         RegistrationUserComponent,
         RegisterNewUserDialogComponent,
         DueTransactionComponent,
+        ClaimsDialogComponent,
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,

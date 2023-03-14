@@ -27,7 +27,7 @@ import {
      
   
     @Output() onSave = new EventEmitter<any>();
-    @Input() viewList:any;
+     viewList:any;
   
     spWarning:boolean = false;
 
@@ -45,10 +45,8 @@ import {
 
      this.viewList = this._modalOption.initialState;
 
-     if(this.viewList.length = 0 )
-        this.spWarning = true;
-
-        console.log(this._modalOption.initialState)
+    
+      
       
     }
   

@@ -212,13 +212,13 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
   private showCreateClaimsDialog(list: any[]): void {
     let createClaimsDialog: BsModalRef;
       
-
-      createClaimsDialog = this._modalService.show(
-        ClaimsDialogComponent, Object.assign({}, {class: 'modal-lg', list })
-      );
-    
+    const initialState = {
+      viewList: list
       
-      console.log(list)
+    }; 
+
+      createClaimsDialog = this._modalService.show(ClaimsDialogComponent,{class: 'modal-lg', initialState });
+    
 
     createClaimsDialog.content.onSave.subscribe(() => {
       this.refresh();

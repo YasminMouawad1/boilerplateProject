@@ -6,9 +6,9 @@
 
   <div class="modal-body">
     
-    <!-- <div *ngIf="'viewList.viewList.length = 0 '" class="mt-4">
+    <div *ngIf="viewList.viewList.length < 1" class="mt-4">
       <p  class="alert alert-danger">Please choose at least one transaction to claim it!</p>
-  </div> -->
+  </div>
 
   <div  *ngIf="viewList.viewList.length > 0">
      <h5>Are you sure you want to claim these transactions ?</h5>

@@ -44,8 +44,6 @@ import {
     ngOnInit(): void { 
 
      this.viewList = this._modalOption.initialState;
-
-    
       
       
     }

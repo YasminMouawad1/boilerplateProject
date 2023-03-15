@@ -4,7 +4,7 @@ import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
 import { LookUpServiceProxy,
    LookupDto, UserServiceProxy ,
-   UserDto,UserDtoPagedResultDto,} from '@shared/service-proxies/service-proxies';
+   UserDto,UserDtoPagedResultDto, LookupCorporateDto,} from '@shared/service-proxies/service-proxies';
 import {
   PagedListingComponentBase,
   PagedRequestDto
@@ -21,7 +21,7 @@ class PagedUsersRequestDto extends PagedRequestDto {
 @Component({
   templateUrl: './dueTransactions.component.html',
   styleUrls:['./dueTransactions.component.css'],
-  animations: [appModuleAnimation()], 
+  animations: [appModuleAnimation()],
 })
 export class DueTransactionComponent extends PagedListingComponentBase<UserDto> {
 
@@ -66,14 +66,14 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
             merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
             bookingDate:'20/1/2023',merchantDue:4555
            },
-          
+
     ];
 
     public merchantList: Array<Select2OptionData>;
     public options: Options;
     merchantCode:string = '';
 
-    users: UserDto[] = []; 
+    users: UserDto[] = [];
 
   keyword = '';
   isActive: boolean | null;
@@ -94,20 +94,7 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
   constructor(injector: Injector,  private _LookUpServiceProxy:LookUpServiceProxy,private _userService: UserServiceProxy,
     private _modalService: BsModalService) {
     super(injector);
-    this.merchantList = [
-      {id: '4', text: 'egabi stuff'},
-      {id: '3', text: 'trade Line'},
-      {id: '4', text: 'ikia'},
-      {id: '5', text: 'Hyper One'},
-      {id: '7', text: 'zad baldna'},
-      {id: '8', text: 'Sharp'},
-      {id: '11',text: 'Al morshady'},
-      {id: '15',text: 'Dubai phone'},
-      {id: '16',text: 'abdel Aziz store '},
-      {id: '17',text: 'Orascom contraction'},
-      {id: '18',text: 'el naggar tourism'}
-    ];
-
+     this. getAllMerchant();
     this.options = {
       multiple: false,
       closeOnSelect: true,
@@ -116,7 +103,7 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
       allowClear: true
     };
 
-   
+
   }
 
   clearFilters(): void {
@@ -158,17 +145,16 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
   // })();
 
  getAllMerchant(){
-    this._LookUpServiceProxy.getMerchantsList().subscribe((result: LookupDto[] ) =>{
+  this._LookUpServiceProxy.getAllCorporate().subscribe((result: LookupCorporateDto[] ) =>{
+    this.merchantList = result.map(item=>{
 
-      this.merchantList = result.map(item=>{
+      return <Select2OptionData>
+      {
+            id : item.corpCode,
+            text: item.enName
+       };
 
-        return <Select2OptionData>
-        {
-              id : item.id,
-              text: item.name
-         };
-
-      });
+    });
 
       console.log(this.merchantList)
     });
@@ -192,14 +178,14 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
   getCheckedItemList() {
     this.checkedList = [];
     this.listID = [];
- 
+
 
     for (var i = 0; i < this.merchantDueTransactions.length; i++) {
       if (this.merchantDueTransactions[i].isSelected) {
         debugger;
         this.checkedList.push(this.merchantDueTransactions[i]);
         this.listID.push(this.merchantDueTransactions[i].debtRecordCode);
- 
+
 
       }
     }
@@ -211,20 +197,23 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
 
   private showCreateClaimsDialog(list: any[]): void {
     let createClaimsDialog: BsModalRef;
-      
+
     const initialState = {
       viewList: list
-      
-    }; 
+
+    };
 
       createClaimsDialog = this._modalService.show(ClaimsDialogComponent,{class: 'modal-lg', initialState });
-    
+
 
     createClaimsDialog.content.onSave.subscribe(() => {
       this.refresh();
     });
   }
 
+public onMrchantChanged(event: string) {
+  console.log('model changed: ' + event);
+}
   confirm() {
     debugger;
     this.disableconfirmBtn = true;

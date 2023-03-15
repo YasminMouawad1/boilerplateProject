@@ -29,7 +29,7 @@ class PagedApplicationsOnBoardingDto extends PagedRequestDto {
 @Component({
   templateUrl: './bulk.component.html',
   styleUrls:['./bulk.component.css'],
-  animations: [appModuleAnimation()], 
+  animations: [appModuleAnimation()],
 })
 export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoardingDto>{
   protected delete(entity: ApplicationsOnBoardingDto): void {
@@ -52,7 +52,7 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
   corpCode:string = '';
 
 
-  public exampleData: Array<Select2OptionData>;
+  public corporatesList: Array<Select2OptionData>;
   public options: Options;
 
   constructor(injector: Injector,
@@ -61,17 +61,17 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
     private _LookUpServiceProxy:LookUpServiceProxy,
     private _ApplicationOnBoardingServiceProxy:ApplicationOnBoardingServiceProxy) {
     super(injector);
-    this.exampleData = [
-      {id: '4', text: 'egabi stuff'},
-      {id: '5', text: 'midbank stuff'},
-      {id: '6', text: 'midtakseet'},
-      {id: '7', text: 'Infofort'} ,
-      {id: '9', text: 'Test salab'},
-      {id: '8', text: 'Test MidTakseet A'},
-      {id: '1', text: 'ts'},
-      {id: '2', text: 'vodafone'},
-      {id: '3', text: 'we'}
-    ];
+    // this.exampleData = [
+    //   {id: '4', text: 'egabi stuff'},
+    //   {id: '5', text: 'midbank stuff'},
+    //   {id: '6', text: 'midtakseet'},
+    //   {id: '7', text: 'Infofort'} ,
+    //   {id: '9', text: 'Test salab'},
+    //   {id: '8', text: 'Test MidTakseet A'},
+    //   {id: '1', text: 'ts'},
+    //   {id: '2', text: 'vodafone'},
+    //   {id: '3', text: 'we'}
+    // ];
 
     this.options = {
       multiple: false,
@@ -81,7 +81,7 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
       allowClear: true
     };
 
-    //this.getAllCorporates();
+     this.getAllCorporates();
   }
 
 
@@ -111,9 +111,10 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
 
 
     getAllCorporates(){
+      debugger
       this._LookUpServiceProxy.getAllCorporate().subscribe((result: LookupCorporateDto[] ) =>{
 
-        this.exampleData = result.map(item=>{
+        this.corporatesList = result.map(item=>{
 
           return <Select2OptionData>
           {
@@ -122,8 +123,8 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
            };
 
         });
-
-        console.log(this.exampleData)
+        debugger
+        console.log(result)
       });
 
 

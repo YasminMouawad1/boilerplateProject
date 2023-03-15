@@ -1,12 +1,12 @@
 <div [@routerTransition]>
     <div class="bgGrey m-2">
-  
+
       <section class="content-header">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8">
                     <h1> Due Transactions</h1>
-                </div> 
+                </div>
                 <div class="col-md-4 row">
                     <div class="col-md-3">
                         <p class="boldText">Merchant</p>
@@ -15,6 +15,7 @@
                         <ng-select2 [data]="merchantList"
                           [placeholder]="'Select Merchant'"
                           [options]="options"
+                             (ngModelChange)="onMrchantChanged($event)"
                           [(ngModel)]="merchantCode"
                           class="select2-container"
                           >
@@ -24,125 +25,10 @@
             </div>
         </div>
     </section>
-  
+
     <section class="content px-2">
       <div class="container-fluid">
-        <div class="row"> 
-            <div class="col-md-6 m-auto">
-                       <div class="input-group">
-                           <div class="input-group-prepend">
-                               <button
-                                       type="button"
-                                       class="btn bgPink"
-                                       (click)="getDataPage(1)"
-                               >
-                                   <i class="fas fa-search"></i>
-                               </button>
-                           </div>
-                           <input
-                                   type="text"
-                                   class="form-control"
-                                   name="keyword"
-                                   [placeholder]="'SearchWithThreeDot' | localize"
-                                   [(ngModel)]="keyword"
-                                   (keyup.enter)="getDataPage(1)"
-                           />
-                           <div class="input-group-append">
-                               <button
-                                       type="button"
-                                       class="btn btn-default"
-                                       (click)="advancedFiltersVisible = !advancedFiltersVisible"
-                               >
-                                   <i
-                                           class="fas"
-                                           [class.fa-angle-up]="advancedFiltersVisible"
-                                           [class.fa-angle-down]="!advancedFiltersVisible"
-                                   ></i>
-                               </button>
-                           </div>
-                       </div>
-            </div>
-      </div>
-       <div *ngIf="advancedFiltersVisible" class="card mb-0 mt-1">
-                   <div class="card-body">
-                       <form class="form-horizontal">
-                           <div class="row">
-                               <div class="col-md-6">
-                                   <div class="form-group row mb-0">
-                                       <label class="col-md-3 col-form-label">
-                                           {{ "IsActive" | localize }}
-                                       </label>
-                                       <div class="col-md-9 pt-2 d-flex justify-content-between">
-                                           <div class="custom-control custom-radio d-inline">
-                                               <input
-                                                       type="radio"
-                                                       class="custom-control-input"
-                                                       id="isActiveAll"
-                                                       name="isActive"
-                                                       [(ngModel)]="isActive"
-                                                       [value]="undefined"
-                                                       checked
-                                               />
-                                               <label class="custom-control-label" for="isActiveAll">
-                                                   {{ "All" | localize }}
-                                               </label>
-                                           </div>
-                                           <div class="custom-control custom-radio d-inline mx-3">
-                                               <input
-                                                       type="radio"
-                                                       class="custom-control-input"
-                                                       id="isActiveActive"
-                                                       name="isActive"
-                                                       [(ngModel)]="isActive"
-                                                       [value]="true"
-                                               />
-                                               <label
-                                                       class="custom-control-label"
-                                                       for="isActiveActive"
-                                               >
-                                                   {{ "Yes" | localize }}
-                                               </label>
-                                           </div>
-                                           <div class="custom-control custom-radio d-inline">
-                                               <input
-                                                       type="radio"
-                                                       class="custom-control-input"
-                                                       id="isActivePassive"
-                                                       name="isActive"
-                                                       [(ngModel)]="isActive"
-                                                       [value]="false"
-                                               />
-                                               <label
-                                                       class="custom-control-label"
-                                                       for="isActivePassive"
-                                               >
-                                                   {{ "No" | localize }}
-                                               </label>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </form>
-                   </div>
-                   <div class="card-footer text-right">
-                       <button
-                               type="button"
-                               class="btn mr-2 bgGreen"
-                               (click)="getDataPage(1)" 
-                       >
-                           {{ "Search" | localize }}
-                       </button>
-                       <button
-                               type="button"
-                               class="btn btn-default float-right"
-                               (click)="clearFilters()"
-                       >
-                           {{ "Clear" | localize }}
-                       </button>
-                   </div>
-       </div>
-            
+
     <br>
 
        <div class="card">
@@ -163,7 +49,7 @@
                            <th>Discount Rate</th>
                            <th>Discount</th>
                            <th>booking Date</th>
-                           <th>merchant Due</th> 
+                           <th>merchant Due</th>
                        </tr>
                        </thead>
                        <tbody>
@@ -175,8 +61,8 @@
                                     totalItems: totalItems
                                 }"
                        >
-                           <td class="transTdCheck"> 
-                              <input  [(ngModel)]="transaction.isSelected" (change)="getCheckedItemList()"   
+                           <td class="transTdCheck">
+                              <input  [(ngModel)]="transaction.isSelected" (change)="getCheckedItemList()"
                                       type="checkbox" class="form-check-input">
                             </td>
                            <td>{{ transaction.debtRecordCode }}</td>
@@ -191,7 +77,7 @@
                            <td>{{ transaction.merchantDiscount }}</td>
                            <td>{{ transaction.bookingDate }}</td>
                            <td>{{ transaction.merchantDue }}</td>
-                          
+
                        </tr>
                        </tbody>
                    </table>
@@ -225,14 +111,13 @@
                </div>
            </div>
        </div>
- 
+
       </div>
- 
-  
+
+
     </section>
 
 
 
     </div>
   </div>
-  

@@ -11,7 +11,6 @@ import { TenantsComponent } from './tenants/tenants.component';
 import { RolesComponent } from 'app/roles/roles.component';
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
 
-// risk portal
 import { CoporatesComponent } from './riskProtal/bulk-on-boarding/coporates/coporates.component';
 import { BulkOnBoradingListComponent } from './riskProtal/bulk-on-boarding/bulk-on-borading-list/bulk-on-borading-list.component';
 import { CustomersListComponent } from './riskProtal/get-customers/customers-list/customers-list.component';
@@ -19,14 +18,16 @@ import { LimitReviewListComponent } from './riskProtal/limit-review/limit-review
 import { SystemCoreConfigurationComponent } from './riskProtal/system-configuration/system-core-configuration/system-core-configuration.component';
 import { SystemConfigurationProfessionsComponent } from './riskProtal/system-configuration/system-configuration-professions/system-configuration-professions.component';
 import { SystemRejectionReasonsComponent } from './riskProtal/system-configuration/system-rejection-reasons/system-rejection-reasons.component';
-import { UsersRejectedListComponent } from './riskProtal/user-rejected/users-list-rejected/users-list-rejected.component';
-import { UserListSystemRejectedComponent } from './riskProtal/user-rejected/user-list-system-rejected/user-list-system-rejected.component';
-import { UsersListPermanentRejectedComponent } from './riskProtal/user-rejected/users-list-permanent-rejected/users-list-permanent-rejected.component';
-import { UsersListApprovalComponent } from './riskProtal/users-approval/users-list-approval';
+
+// risk portal
+import { UsersListApprovalComponent } from './riskProtal/users-approval/users-list-approval.component';
+import { UsersListHardRejectedComponent } from './riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
+import { UsersListSystemRejectedComponent } from './riskProtal/users-rejected/users-system-reject/users-list-systemRejected.component';
+import { UsersListRejectedComponent } from './riskProtal/users-rejected/users-soft-reject/users-list-rejected.component';
+
 import { MerchantComponent } from './merchantSettlement/merchantSettlement.component';
 import { RegistrationUserComponent } from './RegistrationUsers/RegistrationUsers.component';
 import { DueTransactionComponent } from './dueTransactions/dueTransactions.component';
-
 
 
 @NgModule({
@@ -56,10 +57,11 @@ import { DueTransactionComponent } from './dueTransactions/dueTransactions.compo
                     { path: 'system-configuration', component: SystemCoreConfigurationComponent, canActivate: [AppRouteGuard] },
                     { path: 'system-configuration-professions', component: SystemConfigurationProfessionsComponent, canActivate: [AppRouteGuard] },
                     { path: 'system-rejection-reasons', component: SystemRejectionReasonsComponent, canActivate: [AppRouteGuard] },
-                    { path: 'user-rejected', component: UsersRejectedListComponent, canActivate: [AppRouteGuard] },
-                    { path: 'system-rejected', component: UserListSystemRejectedComponent, canActivate: [AppRouteGuard] },
-                    { path: 'permanent-rejected', component: UsersListPermanentRejectedComponent, canActivate: [AppRouteGuard] },
+                    
                     { path: 'users-approval', component: UsersListApprovalComponent, canActivate: [AppRouteGuard] },
+                    { path: 'users-softRejected', component: UsersListRejectedComponent, canActivate: [AppRouteGuard] },
+                    { path: 'users-hardRejected', component: UsersListHardRejectedComponent, canActivate: [AppRouteGuard] },
+                    { path: 'users-systemRejected', component: UsersListSystemRejectedComponent, canActivate: [AppRouteGuard] },
            ]
             }
         ])

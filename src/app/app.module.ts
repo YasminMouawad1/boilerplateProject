@@ -24,8 +24,10 @@ import {DueTransactionComponent} from '@app/dueTransactions/dueTransactions.comp
 import {ClaimsDialogComponent} from '@app/dueTransactions/add-claims/claims-dialog.component';
 
 //-------------risk ----------
-import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval';
-    
+import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval.component';
+import {UsersListHardRejectedComponent} from '@app/riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
+import {UsersListRejectedComponent} from '@app/riskProtal/users-rejected/users-soft-reject/users-list-rejected.component';
+import {UsersListSystemRejectedComponent} from '@app/riskProtal/users-rejected/users-system-reject/users-list-systemRejected.component';
 
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
@@ -76,6 +78,9 @@ import { NgSelect2Module } from 'ng-select2';
         ClaimsDialogComponent,
         //risk
         UsersListApprovalComponent,
+        UsersListRejectedComponent,
+        UsersListSystemRejectedComponent,
+        UsersListHardRejectedComponent, 
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,

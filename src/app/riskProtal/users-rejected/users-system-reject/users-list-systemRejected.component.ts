@@ -20,11 +20,11 @@ class PagedUsersRequestDto extends PagedRequestDto {
 }
 
 @Component({
-  templateUrl: './users-list-approval.html',
-  styleUrls:['./users-list-approval.css'],
+  templateUrl: './users-list-systemRejected.component.html',
+  styleUrls:['./users-list-systemRejected.component.css'],
   animations: [appModuleAnimation()]
 })
-export class UsersListApprovalComponent extends PagedListingComponentBase<UserApprovalDto> {
+export class UsersListSystemRejectedComponent extends PagedListingComponentBase<UserApprovalDto> {
   users: UserApprovalDto[] = [];
   keyword = '';
   isActive: boolean | null;

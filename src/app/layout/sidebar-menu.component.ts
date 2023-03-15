@@ -71,9 +71,9 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem(this.l('[Risk Portal]'), '', 'fas fa-toolbox', '', [
                 new MenuItem('Users Approval', '/app/users-approval', 'fas fa-user-check'),
                 new MenuItem(this.l('Rejected Requests'), '', 'fas fa-user-minus', '', [
-                    new MenuItem('Soft reject', '/app/user-rejected', 'fas fa-user-slash'),
-                    new MenuItem('system Reject', '/app/system-rejected', 'fas fa-user-slash'),
-                    new MenuItem('hard Reject', '/app/permanent-rejected', 'fas fa-user-slash')
+                    new MenuItem('Soft reject', '/app/users-softRejected', 'fas fa-user-slash'),
+                    new MenuItem('system Reject', '/app/users-systemRejected', 'fas fa-user-slash'),
+                    new MenuItem('hard Rejected', '/app/users-hardRejected', 'fas fa-user-slash')
                 ]),
 
                 new MenuItem('Limit Review', '/app/limit-review', 'fa-solid fa-id-card'),

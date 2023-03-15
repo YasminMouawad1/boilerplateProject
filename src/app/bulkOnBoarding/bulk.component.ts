@@ -124,7 +124,7 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
 
         });
 
-        console.log(this.exampleData)
+
       });
 
 

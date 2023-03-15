@@ -5766,6 +5766,75 @@ export interface IUserDto {
     roleNames: string[] | undefined;
 }
 
+
+export class UserApprovalDto implements IUserApprovalDto {
+    name: string; 
+    email: string;  
+    phoneNumber: string;
+    nationalID: string;
+    age:number;
+    addresss: string;
+    submitedDate: string;
+
+    constructor(data?: IUserApprovalDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) { 
+            this.name = _data["name"];
+            this.email = _data["email"];
+            this.phoneNumber = _data["phoneNumber"];
+            this.addresss = _data["addresss"];
+            this.nationalID = _data["nationalID"];
+            this.submitedDate = _data["submitedDate"];
+            this.age = _data["age"];
+            
+        }
+    }
+
+    static fromJS(data: any): UserApprovalDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserApprovalDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["email"] = this.email;
+        data["phoneNumber"] = this.phoneNumber;
+        data["addresss"] = this.addresss;
+        data["nationalID"] = this.nationalID;
+        data["age"] = this.age;
+        data["submitedDate"] = this.submitedDate; 
+        return data;
+    }
+
+    clone(): UserApprovalDto {
+        const json = this.toJSON();
+        let result = new UserApprovalDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IUserApprovalDto {
+    name: string; 
+    email: string;  
+    phoneNumber: string;
+    nationalID: string;
+    age:number;
+    addresss: string;
+    submitedDate: string;
+}
+
 export class UserDtoPagedResultDto implements IUserDtoPagedResultDto {
     items: UserDto[] | undefined;
     totalCount: number;

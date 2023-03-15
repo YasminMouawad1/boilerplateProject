@@ -22,7 +22,7 @@ import { SystemRejectionReasonsComponent } from './riskProtal/system-configurati
 import { UsersRejectedListComponent } from './riskProtal/user-rejected/users-list-rejected/users-list-rejected.component';
 import { UserListSystemRejectedComponent } from './riskProtal/user-rejected/user-list-system-rejected/user-list-system-rejected.component';
 import { UsersListPermanentRejectedComponent } from './riskProtal/user-rejected/users-list-permanent-rejected/users-list-permanent-rejected.component';
-import { UsersListComponent } from './riskProtal/users-approval/users-list/users-list.component';
+import { UsersListApprovalComponent } from './riskProtal/users-approval/users-list-approval';
 import { MerchantComponent } from './merchantSettlement/merchantSettlement.component';
 import { RegistrationUserComponent } from './RegistrationUsers/RegistrationUsers.component';
 import { DueTransactionComponent } from './dueTransactions/dueTransactions.component';
@@ -59,7 +59,7 @@ import { DueTransactionComponent } from './dueTransactions/dueTransactions.compo
                     { path: 'user-rejected', component: UsersRejectedListComponent, canActivate: [AppRouteGuard] },
                     { path: 'system-rejected', component: UserListSystemRejectedComponent, canActivate: [AppRouteGuard] },
                     { path: 'permanent-rejected', component: UsersListPermanentRejectedComponent, canActivate: [AppRouteGuard] },
-                    { path: 'user-approval', component: UsersListComponent, canActivate: [AppRouteGuard] },
+                    { path: 'users-approval', component: UsersListApprovalComponent, canActivate: [AppRouteGuard] },
            ]
             }
         ])

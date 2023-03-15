@@ -23,6 +23,10 @@ import {RegisterNewUserDialogComponent} from '@app/RegistrationUsers/create-new-
 import {DueTransactionComponent} from '@app/dueTransactions/dueTransactions.component';
 import {ClaimsDialogComponent} from '@app/dueTransactions/add-claims/claims-dialog.component';
 
+//-------------risk ----------
+import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval';
+    
+
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
 import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
@@ -70,6 +74,8 @@ import { NgSelect2Module } from 'ng-select2';
         RegisterNewUserDialogComponent,
         DueTransactionComponent,
         ClaimsDialogComponent,
+        //risk
+        UsersListApprovalComponent,
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,
@@ -95,7 +101,7 @@ import { NgSelect2Module } from 'ng-select2';
         SidebarUserPanelComponent,
         SidebarMenuComponent
     ],
-    imports: [
+    imports: [ 
 
 CommonModule,
         FormsModule,

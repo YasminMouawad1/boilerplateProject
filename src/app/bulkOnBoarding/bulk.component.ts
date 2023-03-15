@@ -81,7 +81,7 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
       allowClear: true
     };
 
-     this.getAllCorporates();
+    //this.getAllCorporates();
   }
 
 
@@ -123,8 +123,8 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
            };
 
         });
-        debugger
-        console.log(result)
+
+        console.log(this.exampleData)
       });
 
 

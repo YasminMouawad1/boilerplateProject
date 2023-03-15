@@ -28,7 +28,11 @@ import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-l
 import {UsersListHardRejectedComponent} from '@app/riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
 import {UsersListRejectedComponent} from '@app/riskProtal/users-rejected/users-soft-reject/users-list-rejected.component';
 import {UsersListSystemRejectedComponent} from '@app/riskProtal/users-rejected/users-system-reject/users-list-systemRejected.component';
-import {LimitReviewComponent} from '@app/riskProtal/limit-review/limit-review.component'
+import {LimitReviewComponent} from '@app/riskProtal/limit-review/limit-review.component';
+import {UserItemComponent} from '@app/riskProtal/users-approval/user-item/user-item.component';
+import {UserItemHardRejectComponent} from '@app/riskProtal/users-rejected/users-hard-reject/user-item/user-item-hard.component';
+import {UserItemSoftRejectComponent} from '@app/riskProtal/users-rejected/users-soft-reject/user-item/user-item.component';
+import {UserItemSystemRejectComponent} from '@app/riskProtal/users-rejected/users-system-reject/user-item/user-itemsystemReject.component';
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
 import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
@@ -82,6 +86,10 @@ import { NgSelect2Module } from 'ng-select2';
         UsersListSystemRejectedComponent,
         UsersListHardRejectedComponent, 
         LimitReviewComponent,
+        UserItemComponent,
+        UserItemHardRejectComponent,
+        UserItemSoftRejectComponent,
+        UserItemSystemRejectComponent,
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,

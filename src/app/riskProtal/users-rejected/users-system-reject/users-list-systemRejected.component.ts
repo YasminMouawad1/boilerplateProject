@@ -13,6 +13,7 @@ import {
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
 } from '@shared/service-proxies/service-proxies'; 
+import { Router } from '@angular/router';
 
 class PagedUsersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -34,7 +35,7 @@ export class UsersListSystemRejectedComponent extends PagedListingComponentBase<
     injector: Injector,
     private _userService: UserServiceProxy,
     private _BulkOnBoardingServiceProxy: BulkOnBoardingServiceProxy,
-
+    private _Router:Router,
     private _modalService: BsModalService
   ) {
     super(injector);
@@ -97,5 +98,8 @@ export class UsersListSystemRejectedComponent extends PagedListingComponentBase<
     // );
   }
 
+  viewDetails(phoneNum:string): void {
+    this._Router.navigate(['/app/user-itemsystemReject/'+ phoneNum])
+  }
   
 }

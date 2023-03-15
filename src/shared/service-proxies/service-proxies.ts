@@ -5790,10 +5790,10 @@ export class UserApprovalDto implements IUserApprovalDto {
             this.name = _data["name"];
             this.email = _data["email"];
             this.phoneNumber = _data["phoneNumber"];
-            this.addresss = _data["addresss"];
             this.nationalID = _data["nationalID"];
-            this.submitedDate = _data["submitedDate"];
             this.age = _data["age"];
+            this.addresss = _data["addresss"];
+            this.submitedDate = _data["submitedDate"];
             
         }
     }
@@ -5810,9 +5810,9 @@ export class UserApprovalDto implements IUserApprovalDto {
         data["name"] = this.name;
         data["email"] = this.email;
         data["phoneNumber"] = this.phoneNumber;
-        data["addresss"] = this.addresss;
         data["nationalID"] = this.nationalID;
         data["age"] = this.age;
+        data["addresss"] = this.addresss;
         data["submitedDate"] = this.submitedDate; 
         return data;
     }

@@ -13,6 +13,7 @@ import {
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
 } from '@shared/service-proxies/service-proxies'; 
+import { Router } from '@angular/router';
 
 class PagedUsersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -30,15 +31,21 @@ export class UsersListHardRejectedComponent extends PagedListingComponentBase<Us
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  userlist:any;
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
     private _BulkOnBoardingServiceProxy: BulkOnBoardingServiceProxy,
-
+    private _Router:Router,
     private _modalService: BsModalService
   ) {
     super(injector);
 
+    this.userlist=[
+      {name:'yasmin1',email:'yasmin@gmail',phoneNumber:'0111111',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
+      {name:'yasmin2',email:'yasmin@gmail',phoneNumber:'0122222',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
+ ]
   }
 
 
@@ -97,5 +104,8 @@ export class UsersListHardRejectedComponent extends PagedListingComponentBase<Us
     // );
   }
 
+  viewDetails(phoneNum:string): void {
+    this._Router.navigate(['/app/user-itemHardreject/'+ phoneNum])
+  }
   
 }

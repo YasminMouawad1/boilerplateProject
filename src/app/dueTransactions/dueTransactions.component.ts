@@ -66,8 +66,20 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
             merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
             bookingDate:'20/1/2023',merchantDue:4555
            },
+           {
+            debtRecordCode:'202',branchAname:'branch9',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
+            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
+            bookingDate:'20/1/2023',merchantDue:4555
+           },
+           {
+            debtRecordCode:'202',branchAname:'branch10',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
+            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
+            bookingDate:'20/1/2023',merchantDue:4555
+           },
           
     ];
+
+    masterSelected:boolean = false;
 
     public merchantList: Array<Select2OptionData>;
     public options: Options;
@@ -91,6 +103,7 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
   spWarning:boolean = false;
   disableconfirmBtn:boolean = false;
 
+  countRows:number = 0;
   constructor(injector: Injector,  private _LookUpServiceProxy:LookUpServiceProxy,private _userService: UserServiceProxy,
     private _modalService: BsModalService) {
     super(injector);
@@ -108,6 +121,7 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
       {id: '18',text: 'el naggar tourism'}
     ];
 
+    this.countRows = this.merchantDueTransactions.length;
     this.options = {
       multiple: false,
       closeOnSelect: true,
@@ -152,10 +166,7 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
 
   }
 
-  // (()=> {
-  //     // Whatever is here will be executed as soon as the script is loaded.
-  //     console.log('executed')
-  // })();
+ 
 
  getAllMerchant(){
     this._LookUpServiceProxy.getMerchantsList().subscribe((result: LookupDto[] ) =>{
@@ -189,22 +200,7 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
     );
   }
 
-  getCheckedItemList() {
-    this.checkedList = [];
-    this.listID = [];
  
-
-    for (var i = 0; i < this.merchantDueTransactions.length; i++) {
-      if (this.merchantDueTransactions[i].isSelected) {
-        debugger;
-        this.checkedList.push(this.merchantDueTransactions[i]);
-        this.listID.push(this.merchantDueTransactions[i].debtRecordCode);
- 
-
-      }
-    }
-  }
-
   createClaims(): void {
     this.showCreateClaimsDialog(this.checkedList);
   }
@@ -224,6 +220,38 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
       this.refresh();
     });
   }
+
+  getCheckedItemList() {
+    this.checkedList = [];
+    this.listID = [];
+ 
+
+    for (var i = 0; i < this.merchantDueTransactions.length; i++) {
+      if (this.merchantDueTransactions[i].isSelected) {
+        debugger;
+        this.checkedList.push(this.merchantDueTransactions[i]);
+        this.listID.push(this.merchantDueTransactions[i].debtRecordCode);
+ 
+
+      }
+    }
+  }
+
+
+
+  checkUncheckAll(){
+    for (var i = 0; i < this.merchantDueTransactions.length; i++) {
+      this.merchantDueTransactions[i].isSelected = this.masterSelected;
+    } 
+    this.getCheckedItemList()
+    }
+
+    isAllSelected() {
+      this.masterSelected = this.merchantDueTransactions.every(function(item:any) {
+          return item.isSelected == true;
+        })
+      this.getCheckedItemList();
+    }
 
   confirm() {
     debugger;

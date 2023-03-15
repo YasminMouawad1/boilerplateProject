@@ -24,10 +24,15 @@ import { UsersListApprovalComponent } from './riskProtal/users-approval/users-li
 import { UsersListHardRejectedComponent } from './riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
 import { UsersListSystemRejectedComponent } from './riskProtal/users-rejected/users-system-reject/users-list-systemRejected.component';
 import { UsersListRejectedComponent } from './riskProtal/users-rejected/users-soft-reject/users-list-rejected.component';
+import { UserItemComponent } from './riskProtal/users-approval/user-item/user-item.component';
+
 
 import { MerchantComponent } from './merchantSettlement/merchantSettlement.component';
 import { RegistrationUserComponent } from './RegistrationUsers/RegistrationUsers.component';
 import { DueTransactionComponent } from './dueTransactions/dueTransactions.component';
+import { UserItemHardRejectComponent } from './riskProtal/users-rejected/users-hard-reject/user-item/user-item-hard.component';
+import { UserItemSoftRejectComponent } from './riskProtal/users-rejected/users-soft-reject/user-item/user-item.component';
+import { UserItemSystemRejectComponent } from './riskProtal/users-rejected/users-system-reject/user-item/user-itemsystemReject.component';
 
 
 @NgModule({
@@ -59,9 +64,14 @@ import { DueTransactionComponent } from './dueTransactions/dueTransactions.compo
                     { path: 'system-rejection-reasons', component: SystemRejectionReasonsComponent, canActivate: [AppRouteGuard] },
                     
                     { path: 'users-approval', component: UsersListApprovalComponent, canActivate: [AppRouteGuard] },
+                    { path: 'user-item/:id', component: UserItemComponent, canActivate: [AppRouteGuard] },
                     { path: 'users-softRejected', component: UsersListRejectedComponent, canActivate: [AppRouteGuard] },
+                    { path: 'user-itemHSoftreject/:id', component: UserItemSoftRejectComponent, canActivate: [AppRouteGuard] },
                     { path: 'users-hardRejected', component: UsersListHardRejectedComponent, canActivate: [AppRouteGuard] },
+                    { path: 'user-itemHardreject/:id', component: UserItemHardRejectComponent, canActivate: [AppRouteGuard] },
                     { path: 'users-systemRejected', component: UsersListSystemRejectedComponent, canActivate: [AppRouteGuard] },
+                    { path: 'user-itemsystemReject/:id', component: UserItemSystemRejectComponent, canActivate: [AppRouteGuard] },
+
            ]
             }
         ])

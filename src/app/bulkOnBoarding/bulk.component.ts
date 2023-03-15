@@ -61,17 +61,17 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
     private _LookUpServiceProxy:LookUpServiceProxy,
     private _ApplicationOnBoardingServiceProxy:ApplicationOnBoardingServiceProxy) {
     super(injector);
-    this.exampleData = [
-      {id: '4', text: 'egabi stuff'},
-      {id: '5', text: 'midbank stuff'},
-      {id: '6', text: 'midtakseet'},
-      {id: '7', text: 'Infofort'} ,
-      {id: '9', text: 'Test salab'},
-      {id: '8', text: 'Test MidTakseet A'},
-      {id: '1', text: 'ts'},
-      {id: '2', text: 'vodafone'},
-      {id: '3', text: 'we'}
-    ];
+    // this.exampleData = [
+    //   {id: '4', text: 'egabi stuff'},
+    //   {id: '5', text: 'midbank stuff'},
+    //   {id: '6', text: 'midtakseet'},
+    //   {id: '7', text: 'Infofort'} ,
+    //   {id: '9', text: 'Test salab'},
+    //   {id: '8', text: 'Test MidTakseet A'},
+    //   {id: '1', text: 'ts'},
+    //   {id: '2', text: 'vodafone'},
+    //   {id: '3', text: 'we'}
+    // ];
 
     this.options = {
       multiple: false,
@@ -81,7 +81,7 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
       allowClear: true
     };
 
-    //this.getAllCorporates();
+    this.getAllCorporates();
   }
 
 
@@ -121,12 +121,12 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
                 text: item.enName
            };
 
-        });
+        }); 
 
-        console.log(this.exampleData)
+        console.log(result)
       });
 
-
+ 
 
     }
 

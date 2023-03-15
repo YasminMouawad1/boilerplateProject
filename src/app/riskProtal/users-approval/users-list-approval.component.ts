@@ -13,6 +13,8 @@ import {
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
 } from '@shared/service-proxies/service-proxies'; 
+import { UserItemComponent } from './user-item/user-item.component';
+import{ Router} from '@angular/router';
 
 class PagedUsersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -25,7 +27,8 @@ class PagedUsersRequestDto extends PagedRequestDto {
   animations: [appModuleAnimation()]
 })
 export class UsersListApprovalComponent extends PagedListingComponentBase<UserApprovalDto> {
-  users: UserApprovalDto[] = [];
+  //users: UserApprovalDto[] = [];
+  users:any;
   keyword = '';
   isActive: boolean | null;
   advancedFiltersVisible = false;
@@ -34,10 +37,15 @@ export class UsersListApprovalComponent extends PagedListingComponentBase<UserAp
     injector: Injector,
     private _userService: UserServiceProxy,
     private _BulkOnBoardingServiceProxy: BulkOnBoardingServiceProxy,
-
+    private _Router:Router,
     private _modalService: BsModalService
   ) {
     super(injector);
+
+    this.users = [
+      {name:'yasmin1',email:'yasmin@gmail',phoneNumber:'0111111',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
+      {name:'yasmin2',email:'yasmin@gmail',phoneNumber:'0122222',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
+ ]
 
   }
 
@@ -75,7 +83,7 @@ export class UsersListApprovalComponent extends PagedListingComponentBase<UserAp
     //     this.showPaging(result, pageNumber);
     //   });
 
-    this.users = []
+   
 
   }
 
@@ -97,5 +105,10 @@ export class UsersListApprovalComponent extends PagedListingComponentBase<UserAp
     // );
   }
 
+  viewDetails(phoneNum:string): void {
+    this._Router.navigate(['/app/user-item/'+ phoneNum])
+  }
+
+ 
   
 }

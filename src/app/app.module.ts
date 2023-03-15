@@ -28,7 +28,7 @@ import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-l
 import {UsersListHardRejectedComponent} from '@app/riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
 import {UsersListRejectedComponent} from '@app/riskProtal/users-rejected/users-soft-reject/users-list-rejected.component';
 import {UsersListSystemRejectedComponent} from '@app/riskProtal/users-rejected/users-system-reject/users-list-systemRejected.component';
-
+import {LimitReviewComponent} from '@app/riskProtal/limit-review/limit-review.component'
 // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
 import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
@@ -81,6 +81,7 @@ import { NgSelect2Module } from 'ng-select2';
         UsersListRejectedComponent,
         UsersListSystemRejectedComponent,
         UsersListHardRejectedComponent, 
+        LimitReviewComponent,
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,

@@ -7,11 +7,11 @@ import {
   PagedRequestDto
 } from 'shared/paged-listing-component-base';
 import {
-  UserServiceProxy,
-  UserApprovalDto,
+  UserServiceProxy, 
   UserDtoPagedResultDto,
   BulkOnBoardingServiceProxy,
-  ApplicationsOnBoardingDtoPagedResultDto
+  ApplicationsOnBoardingDtoPagedResultDto,
+  UserDto
 } from '@shared/service-proxies/service-proxies'; 
 import { UserItemComponent } from './user-item/user-item.component';
 import{ Router} from '@angular/router';
@@ -26,7 +26,7 @@ class PagedUsersRequestDto extends PagedRequestDto {
   styleUrls:['./users-list-approval.component.css'],
   animations: [appModuleAnimation()]
 })
-export class UsersListApprovalComponent extends PagedListingComponentBase<UserApprovalDto> {
+export class UsersListApprovalComponent extends PagedListingComponentBase<UserDto> {
   //users: UserApprovalDto[] = [];
   users:any;
   keyword = '';
@@ -90,7 +90,7 @@ export class UsersListApprovalComponent extends PagedListingComponentBase<UserAp
 
 
 
-  protected delete(user: UserApprovalDto): void {
+  protected delete(user: UserDto): void {
     // abp.message.confirm(
     //   this.l('UserDeleteWarningMessage', user.fullName),
     //   undefined,

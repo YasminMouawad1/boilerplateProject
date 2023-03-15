@@ -8,7 +8,7 @@ import {
 } from 'shared/paged-listing-component-base';
 import {
   UserServiceProxy,
-  UserApprovalDto,
+  UserDto,
   UserDtoPagedResultDto,
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
@@ -25,8 +25,8 @@ class PagedUsersRequestDto extends PagedRequestDto {
   styleUrls:['./users-list-hardRejected.component.css'],
   animations: [appModuleAnimation()]
 })
-export class UsersListHardRejectedComponent extends PagedListingComponentBase<UserApprovalDto> {
-  users: UserApprovalDto[] = [];
+export class UsersListHardRejectedComponent extends PagedListingComponentBase<UserDto> {
+  //users: UserDto[] = [];
   keyword = '';
   isActive: boolean | null;
   advancedFiltersVisible = false;
@@ -82,14 +82,15 @@ export class UsersListHardRejectedComponent extends PagedListingComponentBase<Us
     //     this.showPaging(result, pageNumber);
     //   });
 
-    this.users = []
+    
+    
 
   }
 
 
 
 
-  protected delete(user: UserApprovalDto): void {
+  protected delete(user: UserDto): void {
     // abp.message.confirm(
     //   this.l('UserDeleteWarningMessage', user.fullName),
     //   undefined,

@@ -10,7 +10,7 @@ import {
   import { AppComponentBase } from '@shared/app-component-base';
   import {
     UserServiceProxy,
-    SetMerchantPlanDto,
+    //SetMerchantPlanDto,
     RoleDto,
     LookUpServiceProxy
   } from '@shared/service-proxies/service-proxies';
@@ -26,8 +26,9 @@ import { Options } from 'select2';
   export class SetMerchantPlanDialogComponent extends AppComponentBase
     implements OnInit {
     saving = false;
-    merchantPlan = new SetMerchantPlanDto();
+    //merchantPlan = new SetMerchantPlanDto();
 
+    merchantPlan:any;
     public merchantData: Array<Select2OptionData>;
     public merchantOptions: Options;
 

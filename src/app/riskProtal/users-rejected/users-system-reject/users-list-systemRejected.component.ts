@@ -8,7 +8,7 @@ import {
 } from 'shared/paged-listing-component-base';
 import {
   UserServiceProxy,
-  UserApprovalDto,
+  UserDto,
   UserDtoPagedResultDto,
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
@@ -25,12 +25,13 @@ class PagedUsersRequestDto extends PagedRequestDto {
   styleUrls:['./users-list-systemRejected.component.css'],
   animations: [appModuleAnimation()]
 })
-export class UsersListSystemRejectedComponent extends PagedListingComponentBase<UserApprovalDto> {
-  users: UserApprovalDto[] = [];
+export class UsersListSystemRejectedComponent extends PagedListingComponentBase<UserDto> {
+  //users: UserDto[] = [];
   keyword = '';
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  users:any;
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
@@ -40,6 +41,10 @@ export class UsersListSystemRejectedComponent extends PagedListingComponentBase<
   ) {
     super(injector);
 
+    this.users = [
+      {name:'yasmin1',email:'yasmin@gmail',phoneNumber:'0111111',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
+      {name:'yasmin2',email:'yasmin@gmail',phoneNumber:'0122222',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
+ ]
   }
 
 
@@ -76,14 +81,14 @@ export class UsersListSystemRejectedComponent extends PagedListingComponentBase<
     //     this.showPaging(result, pageNumber);
     //   });
 
-    this.users = []
+     
 
   }
 
 
 
 
-  protected delete(user: UserApprovalDto): void {
+  protected delete(user: UserDto): void {
     // abp.message.confirm(
     //   this.l('UserDeleteWarningMessage', user.fullName),
     //   undefined,

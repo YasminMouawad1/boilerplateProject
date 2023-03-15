@@ -8,7 +8,7 @@ import {
 } from 'shared/paged-listing-component-base';
 import {
   UserServiceProxy,
-  UserApprovalDto,
+  UserDto,
   UserDtoPagedResultDto,
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
@@ -24,8 +24,8 @@ class PagedUsersRequestDto extends PagedRequestDto {
   styleUrls:['./limit-review.component.css'],
   animations: [appModuleAnimation()]
 })
-export class LimitReviewComponent extends PagedListingComponentBase<UserApprovalDto> {
-  users: UserApprovalDto[] = [];
+export class LimitReviewComponent extends PagedListingComponentBase<UserDto> {
+  users: UserDto[] = [];
   keyword = '';
   isActive: boolean | null;
   advancedFiltersVisible = false;
@@ -82,7 +82,7 @@ export class LimitReviewComponent extends PagedListingComponentBase<UserApproval
 
 
 
-  protected delete(user: UserApprovalDto): void {
+  protected delete(user: UserDto): void {
     // abp.message.confirm(
     //   this.l('UserDeleteWarningMessage', user.fullName),
     //   undefined,

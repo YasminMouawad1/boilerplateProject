@@ -9,8 +9,7 @@ import {
   import { forEach as _forEach, map as _map } from 'lodash-es';
   import { AppComponentBase } from '@shared/app-component-base';
   import {
-    UserServiceProxy,
-    RegisterNewUserDto,
+    UserServiceProxy, 
     RoleDto,
     LookUpServiceProxy
   } from '@shared/service-proxies/service-proxies';
@@ -22,8 +21,8 @@ import {
   })
   export class RegisterNewUserDialogComponent extends AppComponentBase
     implements OnInit {
-    saving = false;
-    user = new RegisterNewUserDto();
+    saving = false; 
+    user :any;
     roles: RoleDto[] = [];
     checkedRolesMap: { [key: string]: boolean } = {};
     defaultRoleCheckedStatus = false;

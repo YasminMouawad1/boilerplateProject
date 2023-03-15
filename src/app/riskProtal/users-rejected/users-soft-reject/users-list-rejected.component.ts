@@ -8,7 +8,7 @@ import {
 } from 'shared/paged-listing-component-base';
 import {
   UserServiceProxy,
-  UserApprovalDto,
+  UserDto,
   UserDtoPagedResultDto,
   BulkOnBoardingServiceProxy,
   ApplicationsOnBoardingDtoPagedResultDto
@@ -25,8 +25,10 @@ class PagedUsersRequestDto extends PagedRequestDto {
   styleUrls:['./users-list-rejeced.component.css'],
   animations: [appModuleAnimation()]
 })
-export class UsersListRejectedComponent extends PagedListingComponentBase<UserApprovalDto> {
-  users: UserApprovalDto[] = [];
+export class UsersListRejectedComponent extends PagedListingComponentBase<UserDto> {
+  //users: UserDto[] = [];
+
+  users :any;
   keyword = '';
   isActive: boolean | null;
   advancedFiltersVisible = false;
@@ -39,6 +41,12 @@ export class UsersListRejectedComponent extends PagedListingComponentBase<UserAp
     private _modalService: BsModalService
   ) {
     super(injector);
+
+    this.users = [
+      {name:'yasmin1',email:'yasmin@gmail',phoneNumber:'0111111',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
+      {name:'yasmin2',email:'yasmin@gmail',phoneNumber:'0122222',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
+ ]
+
 
   }
 
@@ -83,7 +91,7 @@ export class UsersListRejectedComponent extends PagedListingComponentBase<UserAp
 
 
 
-  protected delete(user: UserApprovalDto): void {
+  protected delete(user: UserDto): void {
     // abp.message.confirm(
     //   this.l('UserDeleteWarningMessage', user.fullName),
     //   undefined,

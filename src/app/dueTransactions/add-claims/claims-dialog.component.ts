@@ -16,7 +16,7 @@ import {
     LookUpServiceProxy
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
-  
+
   @Component({
     templateUrl: './claims-dialog.component.html',
     styleUrls:['../dueTransactions.component.css']
@@ -24,11 +24,11 @@ import {
   export class ClaimsDialogComponent extends AppComponentBase
     implements OnInit {
     saving = false;
-     
-  
+
+
     @Output() onSave = new EventEmitter<any>();
      viewList:any;
-  
+
     spWarning:boolean = false;
 
     constructor(
@@ -40,19 +40,18 @@ import {
     ) {
       super(injector);
     }
-  
-    ngOnInit(): void { 
+
+    ngOnInit(): void {
 
      this.viewList = this._modalOption.initialState;
-      
-      
+
+
     }
-  
-      
-  
+
+
+
     save(): void {
-      this.saving = true;
-   
+
+
     }
   }
-  

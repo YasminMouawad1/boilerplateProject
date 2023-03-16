@@ -13,7 +13,8 @@ import {
     UserServiceProxy,
     CreateUserDto,
     RoleDto,
-    LookUpServiceProxy
+    LookUpServiceProxy,
+    DueTransactionsServiceProxy
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 
@@ -24,10 +25,11 @@ import {
   export class ClaimsDialogComponent extends AppComponentBase
     implements OnInit {
     saving = false;
-
+    disableconfirmBtn:boolean = false;
 
     @Output() onSave = new EventEmitter<any>();
      viewList:any;
+     listID:any;
 
     spWarning:boolean = false;
 
@@ -36,7 +38,8 @@ import {
       public _userService: UserServiceProxy,
       public _lookupService: LookUpServiceProxy,
       public bsModalRef: BsModalRef,
-      public _modalOption:ModalOptions
+      public _modalOption:ModalOptions,
+      private _DueTransactionsServiceProxy :DueTransactionsServiceProxy
     ) {
       super(injector);
     }
@@ -44,14 +47,27 @@ import {
     ngOnInit(): void {
 
      this.viewList = this._modalOption.initialState;
-
-
-    }
-
-
-
-    save(): void {
-
+     this.listID = this._modalOption.initialState.listID;
 
     }
+
+    confirm(){
+       debugger;
+    abp.ui.setBusy()
+    this.disableconfirmBtn = true;
+    const data = { merchants: this.listID };
+    this._DueTransactionsServiceProxy.createRequestClaim(this.listID).subscribe((result: boolean) =>{
+       if(result){
+        abp.notify.success(this.l('CreateRequestClaimSuccessfully'));
+        abp.ui.clearBusy()
+       }
+
+      });
+    }
+
+    hide(){
+      this.bsModalRef.hide()
+    }
+
+ 
   }

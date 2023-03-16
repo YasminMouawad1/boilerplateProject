@@ -38,7 +38,12 @@
    </div>
 
   </div>
-<button class="btn btn-default" (click)="save()" >save</button>
+
+
+<div class="mt-4 text-center mb-4">
+  <button type="submit" class="btn btnClaim"  (click)="confirm()"  [disabled]="viewList.viewList.length == 0 ">Confirm</button>
+  <button type="button" class="btn btnCancel" (click)="hide()">Cancel</button>
+</div>
   <!-- <abp-modal-footer
     [cancelDisabled]="saving"
     [saveDisabled]=""

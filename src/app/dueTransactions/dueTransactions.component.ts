@@ -171,25 +171,16 @@ this.getAllMerchant();
   }
 
   createClaims(): void {
-    debugger;
-    abp.ui.setBusy()
-    this.disableconfirmBtn = true;
-    const data = { merchants: this.listID };
-    this._DueTransactionsServiceProxy.createRequestClaim(this.listID).subscribe((result: boolean) =>{
-       if(result){
-        abp.notify.success(this.l('CreateRequestClaimSuccessfully'));
-        abp.ui.clearBusy()
-       }
-
-      });
+   
+    this.showCreateClaimsDialog(this.checkedList, this.listID);
   }
 
-  private showCreateClaimsDialog(list: any[]): void {
+  private showCreateClaimsDialog(checklist: any[], listID:any[]): void {
     let createClaimsDialog: BsModalRef;
 
     const initialState = {
-      viewList: list
-
+      viewList: checklist,
+      listID:listID
     };
 
       createClaimsDialog = this._modalService.show(ClaimsDialogComponent,{class: 'modal-lg', initialState });

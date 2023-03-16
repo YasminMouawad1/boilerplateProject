@@ -92,6 +92,15 @@ table tfoot{
     border-radius: 17px;
     font-weight: bold;
 }
+
+.btnCancel{
+    border:1px solid #ddd;
+    margin-left: 5px;
+    border-radius: 17px;
+    margin-top: 15px;
+    padding: 9px 25px; 
+    font-weight: bold;
+}
  
 .modal-dialog{
     margin: 0px;

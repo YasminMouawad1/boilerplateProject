@@ -4,7 +4,7 @@ import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
 import { LookUpServiceProxy,
    LookupDto, UserServiceProxy ,
-   UserDto,UserDtoPagedResultDto, LookupCorporateDto,} from '@shared/service-proxies/service-proxies';
+   UserDto,UserDtoPagedResultDto, LookupCorporateDto, LookupMerchantsDto, DueTransactionsServiceProxy, MerchantLoansDto,} from '@shared/service-proxies/service-proxies';
 import {
   PagedListingComponentBase,
   PagedRequestDto
@@ -25,49 +25,7 @@ class PagedUsersRequestDto extends PagedRequestDto {
 })
 export class DueTransactionComponent extends PagedListingComponentBase<UserDto> {
 
-    merchantDueTransactions:any[]=[
-        {
-         debtRecordCode:'202',branchAname:'branch1',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
-         merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
-         bookingDate:'20/1/2023',merchantDue:4555
-        },
-        {
-            debtRecordCode:'202',branchAname:'branch2',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
-            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
-            bookingDate:'20/1/2023',merchantDue:4555
-           },
-           {
-            debtRecordCode:'202',branchAname:'branch3',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
-            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
-            bookingDate:'20/1/2023',merchantDue:4555
-           },
-           {
-            debtRecordCode:'202',branchAname:'branch4',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
-            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
-            bookingDate:'20/1/2023',merchantDue:4555
-           },
-           {
-            debtRecordCode:'202',branchAname:'branch5',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
-            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
-            bookingDate:'20/1/2023',merchantDue:4555
-           },
-           {
-            debtRecordCode:'202',branchAname:'branch6',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
-            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
-            bookingDate:'20/1/2023',merchantDue:4555
-           },
-           {
-            debtRecordCode:'202',branchAname:'branch7',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
-            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
-            bookingDate:'20/1/2023',merchantDue:4555
-           },
-           {
-            debtRecordCode:'202',branchAname:'branch8',clientAname:'client1',loanAmount:5222,nationalId:'12569874563',
-            merchantCommissionRate:1.5,merchantCommission:1500,adminFee:200,merchantDiscountRate:200,merchantDiscount:2.5,
-            bookingDate:'20/1/2023',merchantDue:4555
-           },
-
-    ];
+    merchantDueTransactions:any[]=[];
 
     masterSelected:boolean = false;
 
@@ -94,7 +52,7 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
   disableconfirmBtn:boolean = false;
 
   countRows:number = 0;
-  constructor(injector: Injector,  private _LookUpServiceProxy:LookUpServiceProxy,private _userService: UserServiceProxy,
+  constructor(injector: Injector,  private _LookUpServiceProxy:LookUpServiceProxy, private _DueTransactionsServiceProxy :DueTransactionsServiceProxy,private _userService: UserServiceProxy,
     private _modalService: BsModalService) {
     super(injector);
 
@@ -145,19 +103,39 @@ this.getAllMerchant();
 
 
 
+
+  checkUncheckAll(){
+      for (var i = 0; i < this.merchantDueTransactions.length; i++) {
+        this.merchantDueTransactions[i].isSelected = this.masterSelected;
+      } 
+      this.getCheckedItemList()
+      }
+
+
+  isAllSelected() {
+        this.masterSelected = this.merchantDueTransactions.every(function(item:any) {
+            return item.isSelected == true;
+          })
+        this.getCheckedItemList();
+      }
+
+
+
  getAllMerchant(){
-  this._LookUpServiceProxy.getAllCorporate().subscribe((result: LookupCorporateDto[] ) =>{
+  debugger
+  this._LookUpServiceProxy.getAllMerchants().subscribe((result: LookupMerchantsDto[] ) =>{
+    debugger
     this.merchantList = result.map(item=>{
 
       return <Select2OptionData>
       {
-            id : item.corpCode,
-            text: item.enName
+            id : item.merchantCode.toString(),
+            text: item.englishName
        };
 
     });
 
-      console.log(this.merchantList)
+
     });
 
   }
@@ -193,7 +171,17 @@ this.getAllMerchant();
   }
 
   createClaims(): void {
-    this.showCreateClaimsDialog(this.checkedList);
+    debugger;
+    abp.ui.setBusy()
+    this.disableconfirmBtn = true;
+    const data = { merchants: this.listID };
+    this._DueTransactionsServiceProxy.createRequestClaim(this.listID).subscribe((result: boolean) =>{
+       if(result){
+        abp.notify.success(this.l('CreateRequestClaimSuccessfully'));
+        abp.ui.clearBusy()
+       }
+
+      });
   }
 
   private showCreateClaimsDialog(list: any[]): void {
@@ -212,32 +200,30 @@ this.getAllMerchant();
     });
   }
   onMrchantChanged (event){
-console.log(event)
-  }
+    if(event >0)
+    {
+      abp.ui.setBusy()
+this._DueTransactionsServiceProxy.getMerchantLoans(event)
+.subscribe((result: MerchantLoansDto[] ) =>{
+  debugger
+  this.merchantDueTransactions = result;
+  abp.ui.clearBusy()
+  });
+}
+}
+
   confirm() {
     debugger;
+    abp.ui.setBusy()
     this.disableconfirmBtn = true;
     const data = { merchants: this.listID };
+    this._DueTransactionsServiceProxy.createRequestClaim(this.listID).subscribe((result: boolean) =>{
+       if(result){
+        abp.notify.success(this.l('CreateRequestClaimSuccessfully'));
+        abp.ui.clearBusy()
+       }
 
-    // this._userService.confirm(data).subscribe((res) => {
-    //   if (res) {
-    //     debugger
-    //   // this.convetToPDF();
-    //     this.toastr.success("",  'Saved successfully');
-
-
-    //     setTimeout(()=>{
-    //         window.location.reload()
-    //          }, 3000);
-    //   } else {
-    //     this.spWarning = true;
-    //     setTimeout(()=>{
-    //          this.spWarning = false;
-    //          }, 3000);
-    //   }
-    // });
-
-
+      });
 
   }
 

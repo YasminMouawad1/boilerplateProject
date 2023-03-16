@@ -1,11 +1,11 @@
- 
+
   <abp-modal-header
-    [title]="'Create Claim' | localize"
+
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
 
   <div class="modal-body">
-    
+
     <div *ngIf="viewList.viewList.length < 1" class="mt-4">
       <p  class="alert alert-danger">Please choose at least one transaction to claim it!</p>
   </div>
@@ -38,10 +38,11 @@
    </div>
 
   </div>
-
-  <abp-modal-footer
+<button class="btn btn-default" (click)="save()" >save</button>
+  <!-- <abp-modal-footer
     [cancelDisabled]="saving"
     [saveDisabled]=""
+
     (onCancelClick)="bsModalRef.hide()"
-  ></abp-modal-footer>
+  ></abp-modal-footer> -->
 

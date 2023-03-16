@@ -29,7 +29,7 @@ export class AccountServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     isTenantAvailable(body: IsTenantAvailableInput | undefined): Observable<IsTenantAvailableOutput> {
@@ -85,7 +85,7 @@ export class AccountServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     register(body: RegisterInput | undefined): Observable<RegisterOutput> {
@@ -153,7 +153,7 @@ export class ApplicationOnBoardingServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     createBulkOnBoardingConfig(body: CreateBulkOnBoardingConfigDto | undefined): Observable<number> {
@@ -198,7 +198,7 @@ export class ApplicationOnBoardingServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -210,7 +210,7 @@ export class ApplicationOnBoardingServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     postApplicationsOnBoarding(id: number | undefined): Observable<void> {
@@ -302,7 +302,7 @@ export class ApplicationOnBoardingServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -314,7 +314,7 @@ export class ApplicationOnBoardingServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     changeApplicationsStatus(body: ApplicationsStatusDto | undefined): Observable<void> {
@@ -378,9 +378,9 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param keyword (optional)
-     * @param skipCount (optional)
-     * @param maxResultCount (optional)
+     * @param keyword (optional) 
+     * @param skipCount (optional) 
+     * @param maxResultCount (optional) 
      * @return Success
      */
     getAll(keyword: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<ApplicationsOnBoardingDtoPagedResultDto> {
@@ -444,7 +444,7 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     get(id: string | undefined): Observable<ApplicationsOnBoardingDto> {
@@ -500,7 +500,7 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     create(body: ApplicationsOnBoardingDto | undefined): Observable<ApplicationsOnBoardingDto> {
@@ -556,7 +556,7 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     update(body: ApplicationsOnBoardingDto | undefined): Observable<ApplicationsOnBoardingDto> {
@@ -612,7 +612,7 @@ export class BulkOnBoardingServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     delete(id: string | undefined): Observable<void> {
@@ -676,7 +676,7 @@ export class ConfigurationServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     changeUiTheme(body: ChangeUiThemeInput | undefined): Observable<void> {
@@ -718,6 +718,138 @@ export class ConfigurationServiceProxy {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable()
+export class DueTransactionsServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    /**
+     * @param merchantId (optional) 
+     * @return Success
+     */
+    getMerchantLoans(merchantId: number | undefined): Observable<MerchantLoansDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/DueTransactions/GetMerchantLoans?";
+        if (merchantId === null)
+            throw new Error("The parameter 'merchantId' cannot be null.");
+        else if (merchantId !== undefined)
+            url_ += "merchantId=" + encodeURIComponent("" + merchantId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetMerchantLoans(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetMerchantLoans(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<MerchantLoansDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<MerchantLoansDto[]>;
+        }));
+    }
+
+    protected processGetMerchantLoans(response: HttpResponseBase): Observable<MerchantLoansDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(MerchantLoansDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    createRequestClaim(body: number[] | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/DueTransactions/CreateRequestClaim";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreateRequestClaim(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreateRequestClaim(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processCreateRequestClaim(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -856,7 +988,7 @@ export class LookUpServiceProxy {
     }
 
     /**
-     * @param govID (optional)
+     * @param govID (optional) 
      * @return Success
      */
     getScoreCitiesByGovID(govID: string | undefined): Observable<LookupDto[]> {
@@ -919,7 +1051,7 @@ export class LookUpServiceProxy {
     }
 
     /**
-     * @param cityID (optional)
+     * @param cityID (optional) 
      * @return Success
      */
     getScoreAreasByCityID(cityID: string | undefined): Observable<LookupDto[]> {
@@ -1156,7 +1288,7 @@ export class LookUpServiceProxy {
     }
 
     /**
-     * @param brandID (optional)
+     * @param brandID (optional) 
      * @return Success
      */
     getScoreCarModelsByBrandID(brandID: string | undefined): Observable<LookupDto[]> {
@@ -1333,6 +1465,64 @@ export class LookUpServiceProxy {
         }
         return _observableOf(null as any);
     }
+
+    /**
+     * @return Success
+     */
+    getAllMerchants(): Observable<LookupMerchantsDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/LookUp/GetAllMerchants";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllMerchants(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllMerchants(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<LookupMerchantsDto[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<LookupMerchantsDto[]>;
+        }));
+    }
+
+    protected processGetAllMerchants(response: HttpResponseBase): Observable<LookupMerchantsDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200.push(LookupMerchantsDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
 }
 
 @Injectable()
@@ -1347,7 +1537,7 @@ export class PortalRegistrationUsersServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     registrationPortalUsers(body: PortalUsersRegistrationDto | undefined): Observable<boolean> {
@@ -1392,7 +1582,7 @@ export class PortalRegistrationUsersServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1404,7 +1594,7 @@ export class PortalRegistrationUsersServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     setMerchantSettlementPlan(body: SetMerchantSettlementPlanDto | undefined): Observable<boolean> {
@@ -1449,7 +1639,7 @@ export class PortalRegistrationUsersServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1501,7 +1691,7 @@ export class PortalRegistrationUsersServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1525,7 +1715,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     create(body: CreateRoleDto | undefined): Observable<RoleDto> {
@@ -1581,7 +1771,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param permission (optional)
+     * @param permission (optional) 
      * @return Success
      */
     getRoles(permission: string | undefined): Observable<RoleListDtoListResultDto> {
@@ -1637,7 +1827,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     update(body: RoleDto | undefined): Observable<RoleDto> {
@@ -1693,7 +1883,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     delete(id: number | undefined): Observable<void> {
@@ -1796,7 +1986,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     getRoleForEdit(id: number | undefined): Observable<GetRoleForEditOutput> {
@@ -1852,7 +2042,7 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     get(id: number | undefined): Observable<RoleDto> {
@@ -1908,9 +2098,9 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @param keyword (optional)
-     * @param skipCount (optional)
-     * @param maxResultCount (optional)
+     * @param keyword (optional) 
+     * @param skipCount (optional) 
+     * @param maxResultCount (optional) 
      * @return Success
      */
     getAll(keyword: string | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<RoleDtoPagedResultDto> {
@@ -2049,7 +2239,7 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     create(body: CreateTenantDto | undefined): Observable<TenantDto> {
@@ -2105,7 +2295,7 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     delete(id: number | undefined): Observable<void> {
@@ -2157,7 +2347,7 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     get(id: number | undefined): Observable<TenantDto> {
@@ -2213,10 +2403,10 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param keyword (optional)
-     * @param isActive (optional)
-     * @param skipCount (optional)
-     * @param maxResultCount (optional)
+     * @param keyword (optional) 
+     * @param isActive (optional) 
+     * @param skipCount (optional) 
+     * @param maxResultCount (optional) 
      * @return Success
      */
     getAll(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<TenantDtoPagedResultDto> {
@@ -2284,7 +2474,7 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     update(body: TenantDto | undefined): Observable<TenantDto> {
@@ -2352,7 +2542,7 @@ export class TokenAuthServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     authenticate(body: AuthenticateModel | undefined): Observable<AuthenticateResultModel> {
@@ -2466,7 +2656,7 @@ export class TokenAuthServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     externalAuthenticate(body: ExternalAuthenticateModel | undefined): Observable<ExternalAuthenticateResultModel> {
@@ -2534,7 +2724,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     create(body: CreateUserDto | undefined): Observable<UserDto> {
@@ -2590,7 +2780,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     update(body: UserDto | undefined): Observable<UserDto> {
@@ -2646,7 +2836,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     delete(id: number | undefined): Observable<void> {
@@ -2698,7 +2888,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     activate(body: Int64EntityDto | undefined): Observable<void> {
@@ -2750,7 +2940,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     deActivate(body: Int64EntityDto | undefined): Observable<void> {
@@ -2853,7 +3043,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     changeLanguage(body: ChangeUserLanguageDto | undefined): Observable<void> {
@@ -2905,7 +3095,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     changePassword(body: ChangePasswordDto | undefined): Observable<boolean> {
@@ -2950,7 +3140,7 @@ export class UserServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -2962,7 +3152,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param body (optional)
+     * @param body (optional) 
      * @return Success
      */
     resetPassword(body: ResetPasswordDto | undefined): Observable<boolean> {
@@ -3007,7 +3197,7 @@ export class UserServiceProxy {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
                 result200 = resultData200 !== undefined ? resultData200 : <any>null;
-
+    
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -3019,7 +3209,7 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param id (optional)
+     * @param id (optional) 
      * @return Success
      */
     get(id: number | undefined): Observable<UserDto> {
@@ -3075,10 +3265,10 @@ export class UserServiceProxy {
     }
 
     /**
-     * @param keyword (optional)
-     * @param isActive (optional)
-     * @param skipCount (optional)
-     * @param maxResultCount (optional)
+     * @param keyword (optional) 
+     * @param isActive (optional) 
+     * @param skipCount (optional) 
+     * @param maxResultCount (optional) 
      * @return Success
      */
     getAll(keyword: string | undefined, isActive: boolean | undefined, skipCount: number | undefined, maxResultCount: number | undefined): Observable<UserDtoPagedResultDto> {
@@ -3782,7 +3972,6 @@ export class CreateBulkOnBoardingConfigDto implements ICreateBulkOnBoardingConfi
     }
 
     init(_data?: any) {
-        debugger
         if (_data) {
             this.reqNID = _data["reqNID"];
             this.reqSelie = _data["reqSelie"];
@@ -4049,7 +4238,6 @@ export interface ICreateUserDto {
     roleNames: string[] | undefined;
     password: string;
 }
-
 
 export class ExternalAuthenticateModel implements IExternalAuthenticateModel {
     authProvider: string;
@@ -4602,6 +4790,176 @@ export class LookupDto implements ILookupDto {
 export interface ILookupDto {
     id: string | undefined;
     name: string | undefined;
+}
+
+export class LookupMerchantsDto implements ILookupMerchantsDto {
+    merchantCode: number;
+    arabicName: string | undefined;
+    englishName: string | undefined;
+
+    constructor(data?: ILookupMerchantsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.merchantCode = _data["merchantCode"];
+            this.arabicName = _data["arabicName"];
+            this.englishName = _data["englishName"];
+        }
+    }
+
+    static fromJS(data: any): LookupMerchantsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new LookupMerchantsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["merchantCode"] = this.merchantCode;
+        data["arabicName"] = this.arabicName;
+        data["englishName"] = this.englishName;
+        return data;
+    }
+
+    clone(): LookupMerchantsDto {
+        const json = this.toJSON();
+        let result = new LookupMerchantsDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ILookupMerchantsDto {
+    merchantCode: number;
+    arabicName: string | undefined;
+    englishName: string | undefined;
+}
+
+export class MerchantLoansDto implements IMerchantLoansDto {
+    debtRecordCode: number | undefined;
+    statusCode: number | undefined;
+    statusAname: string | undefined;
+    statusEname: string | undefined;
+    downPaymentAmt: number | undefined;
+    branchAname: string | undefined;
+    branchEname: string | undefined;
+    bookingDate: string | undefined;
+    clientAname: string | undefined;
+    clientEname: string | undefined;
+    totalAmount: number | undefined;
+    loanAmount: number | undefined;
+    nationalId: string | undefined;
+    merchantCode: number | undefined;
+    adminFee: number | undefined;
+    merchantDue: number | undefined;
+    merchantDiscount: number | undefined;
+    merchantDiscountRate: number | undefined;
+    merchantCommissionRate: number | undefined;
+    merchantCommission: number | undefined;
+
+    constructor(data?: IMerchantLoansDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.debtRecordCode = _data["debtRecordCode"];
+            this.statusCode = _data["statusCode"];
+            this.statusAname = _data["statusAname"];
+            this.statusEname = _data["statusEname"];
+            this.downPaymentAmt = _data["downPaymentAmt"];
+            this.branchAname = _data["branchAname"];
+            this.branchEname = _data["branchEname"];
+            this.bookingDate = _data["bookingDate"];
+            this.clientAname = _data["clientAname"];
+            this.clientEname = _data["clientEname"];
+            this.totalAmount = _data["totalAmount"];
+            this.loanAmount = _data["loanAmount"];
+            this.nationalId = _data["nationalId"];
+            this.merchantCode = _data["merchantCode"];
+            this.adminFee = _data["adminFee"];
+            this.merchantDue = _data["merchantDue"];
+            this.merchantDiscount = _data["merchantDiscount"];
+            this.merchantDiscountRate = _data["merchantDiscountRate"];
+            this.merchantCommissionRate = _data["merchantCommissionRate"];
+            this.merchantCommission = _data["merchantCommission"];
+        }
+    }
+
+    static fromJS(data: any): MerchantLoansDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new MerchantLoansDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["debtRecordCode"] = this.debtRecordCode;
+        data["statusCode"] = this.statusCode;
+        data["statusAname"] = this.statusAname;
+        data["statusEname"] = this.statusEname;
+        data["downPaymentAmt"] = this.downPaymentAmt;
+        data["branchAname"] = this.branchAname;
+        data["branchEname"] = this.branchEname;
+        data["bookingDate"] = this.bookingDate;
+        data["clientAname"] = this.clientAname;
+        data["clientEname"] = this.clientEname;
+        data["totalAmount"] = this.totalAmount;
+        data["loanAmount"] = this.loanAmount;
+        data["nationalId"] = this.nationalId;
+        data["merchantCode"] = this.merchantCode;
+        data["adminFee"] = this.adminFee;
+        data["merchantDue"] = this.merchantDue;
+        data["merchantDiscount"] = this.merchantDiscount;
+        data["merchantDiscountRate"] = this.merchantDiscountRate;
+        data["merchantCommissionRate"] = this.merchantCommissionRate;
+        data["merchantCommission"] = this.merchantCommission;
+        return data;
+    }
+
+    clone(): MerchantLoansDto {
+        const json = this.toJSON();
+        let result = new MerchantLoansDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IMerchantLoansDto {
+    debtRecordCode: number | undefined;
+    statusCode: number | undefined;
+    statusAname: string | undefined;
+    statusEname: string | undefined;
+    downPaymentAmt: number | undefined;
+    branchAname: string | undefined;
+    branchEname: string | undefined;
+    bookingDate: string | undefined;
+    clientAname: string | undefined;
+    clientEname: string | undefined;
+    totalAmount: number | undefined;
+    loanAmount: number | undefined;
+    nationalId: string | undefined;
+    merchantCode: number | undefined;
+    adminFee: number | undefined;
+    merchantDue: number | undefined;
+    merchantDiscount: number | undefined;
+    merchantDiscountRate: number | undefined;
+    merchantCommissionRate: number | undefined;
+    merchantCommission: number | undefined;
 }
 
 export class PermissionDto implements IPermissionDto {
@@ -5620,8 +5978,6 @@ export interface IUserDto {
     creationTime: moment.Moment;
     roleNames: string[] | undefined;
 }
-
-
 
 export class UserDtoPagedResultDto implements IUserDtoPagedResultDto {
     items: UserDto[] | undefined;

@@ -203,3 +203,9 @@ table tfoot{
 }
 
  
+
+.alert-warning {
+    color: #1a242f;
+    background-color: #e8d18a;
+    border-color: #e8d18a;
+}

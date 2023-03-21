@@ -60,6 +60,7 @@ import {
        if(result){
         abp.notify.success(this.l('CreateRequestClaimSuccessfully'));
         abp.ui.clearBusy()
+        this.bsModalRef.hide()
        }
 
       });

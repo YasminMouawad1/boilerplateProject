@@ -64,6 +64,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem(this.l('[Operational Portal]'), '', 'fas fa-layer-group', '', [
                     new MenuItem('Merchant settlement', '/app/merchant-settlement', 'fas fa-users-gear'),
                     new MenuItem('BulkOnBoarding', '/app/bulk-on-boarding', 'fas fa-id-card'), 
+                    new MenuItem('Merchants Due Transactions','/app/due-transactions','fas fa-money-bill-wave')
             ]), 
     
             new MenuItem('registration-users', '/app/registration-users','fas fa-users'),
@@ -92,7 +93,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
             ]), 
 
-            new MenuItem('Due Transactions','/app/due-transactions','fas fa-money-bill-wave')
+            
 
            
         ];

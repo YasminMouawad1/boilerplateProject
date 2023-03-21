@@ -28,14 +28,13 @@
 
     <section class="content px-2">
       <div class="container-fluid">
-
-
-
     <br>
 
        <div class="card">
            <div class="card-body">
-               <div class="table-responsive">
+               <p *ngIf="showMSG" class="alert alert-warning text-center">{{noTransactionsMSG}}</p>
+
+               <div *ngIf="!showMSG" class="table-responsive">
                    <table class="table table-striped table-bordered" [busy]="isTableLoading">
                        <thead class="bg-light">
                        <tr>
@@ -85,11 +84,13 @@
                        </tr>
                        </tbody>
                    </table>
+
+                   <div class="text-center">
+                    <button class="btn btnClaim"  (click)="createClaims()">Claim</button>
+                  </div>
                </div>
 
-               <div class="text-center">
-                <button class="btn btnClaim"  (click)="createClaims()">Claim</button>
-            </div>
+               
            </div>
            <div class="card-footer table-card-footer bg-light border-top">
                <div class="row">

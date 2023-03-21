@@ -51,6 +51,9 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
   spWarning:boolean = false;
   disableconfirmBtn:boolean = false;
 
+  noTransactionsMSG = 'do not have any transaction ';
+  showMSG:boolean = true;
+  
   countRows:number = 0;
   constructor(injector: Injector,  private _LookUpServiceProxy:LookUpServiceProxy, private _DueTransactionsServiceProxy :DueTransactionsServiceProxy,private _userService: UserServiceProxy,
     private _modalService: BsModalService) {
@@ -74,7 +77,7 @@ this.getAllMerchant();
     this.getDataPage(1);
   }
 
-  protected list(
+   list(
     request: PagedUsersRequestDto,
     pageNumber: number,
     finishedCallback: Function
@@ -119,6 +122,24 @@ this.getAllMerchant();
         this.getCheckedItemList();
       }
 
+  getCheckedItemList() {
+    this.checkedList = [];
+    this.listID = [];
+
+
+    for (var i = 0; i < this.merchantDueTransactions.length; i++) {
+      if (this.merchantDueTransactions[i].isSelected) {
+        debugger;
+        this.checkedList.push(this.merchantDueTransactions[i]);
+        this.listID.push(this.merchantDueTransactions[i].debtRecordCode);
+
+
+      }
+    }
+    this.countRows = this.listID.length;
+  }
+
+
 
 
  getAllMerchant(){
@@ -154,22 +175,7 @@ this.getAllMerchant();
     );
   }
 
-  getCheckedItemList() {
-    this.checkedList = [];
-    this.listID = [];
-
-
-    for (var i = 0; i < this.merchantDueTransactions.length; i++) {
-      if (this.merchantDueTransactions[i].isSelected) {
-        debugger;
-        this.checkedList.push(this.merchantDueTransactions[i]);
-        this.listID.push(this.merchantDueTransactions[i].debtRecordCode);
-
-
-      }
-    }
-  }
-
+  
   createClaims(): void {
    
     this.showCreateClaimsDialog(this.checkedList, this.listID);
@@ -191,17 +197,29 @@ this.getAllMerchant();
     });
   }
   onMrchantChanged (event){
+    debugger
+    this.merchantDueTransactions=[];
+    
     if(event >0)
     {
       abp.ui.setBusy()
-this._DueTransactionsServiceProxy.getMerchantLoans(event)
-.subscribe((result: MerchantLoansDto[] ) =>{
-  debugger
-  this.merchantDueTransactions = result;
-  abp.ui.clearBusy()
-  });
-}
-}
+    this._DueTransactionsServiceProxy.getMerchantLoans(event)
+    .subscribe((result: MerchantLoansDto[] ) =>{
+      this.merchantDueTransactions = result;
+      if(result != null)
+        {
+          abp.ui.clearBusy();
+          this.showMSG = false;
+        }
+      else{
+          abp.ui.clearBusy();
+          this.showMSG = true;
+        }
+     
+      });
+   }
+  
+  }
 
   confirm() {
     debugger;

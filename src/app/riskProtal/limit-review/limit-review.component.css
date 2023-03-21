@@ -25,6 +25,13 @@
     color: #fff;
 }
 
+
+.title{
+    margin-top: 2rem;
+    font-weight: bold;
+    font-size: 36px;
+  }
+
 .card{
     box-shadow: none;
 }

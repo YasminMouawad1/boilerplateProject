@@ -22,6 +22,10 @@ import {RegistrationUserComponent} from '@app/RegistrationUsers/RegistrationUser
 import {RegisterNewUserDialogComponent} from '@app/RegistrationUsers/create-new-user/register-new-user-dialog.component'
 import {DueTransactionComponent} from '@app/dueTransactions/dueTransactions.component';
 import {ClaimsDialogComponent} from '@app/dueTransactions/add-claims/claims-dialog.component';
+import {MessageTypeComponent} from '@app/messageType/messageType.component';
+import {CreateMessageTypeDialogComponent} from '@app/messageType/create-message-type/create-message-type-dialog.component';
+import {MessageTemplateComponent} from '@app/messageTemplate/messageTemplate.component';
+import {CreateMessageTemplateDialogComponent} from '@app/messageTemplate/create-message-template/create-message-template-dialog.component';
 
 //-------------risk ----------
 import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval.component';
@@ -80,6 +84,10 @@ import { NgSelect2Module } from 'ng-select2';
         RegisterNewUserDialogComponent,
         DueTransactionComponent,
         ClaimsDialogComponent,
+        MessageTypeComponent, 
+        CreateMessageTypeDialogComponent,
+        MessageTemplateComponent,
+        CreateMessageTemplateDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

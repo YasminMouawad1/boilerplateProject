@@ -1,0 +1,81 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createUserModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'[Message Types]'"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+      
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="messageAr">
+            Message Ar
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="messageAr"
+              id="messageAr"
+              required
+              maxlength="32"
+              [(ngModel)]="messageAr"
+              #messageArModel="ngModel"
+              #messageArEl
+            />
+            <abp-validation-summary
+              [control]="messageArModel"
+              [controlEl]="messageArEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+       
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="messageEn">
+            Message En
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="messageEn"
+              id="messageEn"
+              required
+              maxlength="32"
+              [(ngModel)]="messageEn"
+              #messageEnModel="ngModel"
+              #messageEnEl
+            />
+            <abp-validation-summary
+              [control]="messageEnModel"
+              [controlEl]="messageEnEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="msgType">
+            Message Template
+          </label>
+          <div class="col-md-9 w-100">
+            <ng-select2 [data]="typeList"
+                            [placeholder]="'Select the type'"
+                            [options]="options"
+                            [(ngModel)]="msgType" 
+                            class="select2-container"
+                            style="width: 100%;"
+                            >
+                          </ng-select2> 
+          </div>
+        </div>
+    
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createUserModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

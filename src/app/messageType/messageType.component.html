@@ -1,0 +1,101 @@
+<div [@routerTransition]>
+    <div class="bgGrey m-2">
+     <section class="content-header">
+         <div class="container-fluid">
+             <div class="row">
+                 <div class="col-6">
+                     <h1>Message Type</h1>
+                 </div>
+                 <div class="col-6 text-right">
+                     <a href="javascript:;" class="btn btnCreate" (click)="createType()">
+                         <i class="fa-solid fa-plus"></i>
+                         {{ "Create" | localize }}
+                     </a>
+                 </div>
+             </div>
+         </div>
+     </section>
+     <section class="content px-2">
+         <div class="container-fluid">
+  
+                   
+         
+          <br>
+ 
+             <div class="card">
+                 <div class="card-body">
+                     <div class="table-responsive">
+                         <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                             <thead class="bg-light">
+                             <tr>
+                                 <th>Message Type</th> 
+                                 <th style="width: 310px;">{{ "Actions" | localize }}</th>
+                             </tr>
+                             </thead>
+                             <tbody>
+                             <tr
+                                     *ngFor="
+                   let type of types
+                     | paginate
+                       : {
+                           id: 'server',
+                           itemsPerPage: pageSize,
+                           currentPage: pageNumber,
+                           totalItems: totalItems
+                         }
+                 "
+                             >
+                                 <td>{{ type.typeName }}</td>
+                              
+                                 <td>
+                                     <button
+                                             type="button"
+                                             class="btn btn-sm mx-2 bgPink"
+                                             (click)="delete(type)"
+                                     >
+                                         <i class="fas fa-trash"></i>
+                                         {{ "Delete" | localize }}
+                                     </button>
+                                     <button
+                                             type="button"
+                                             class="btn btn-sm mx-2 bgYellow"
+                                             (click)="editType(type)"
+                                     >
+                                         <i class="fas fa-pencil-alt"></i>
+                                         {{ "Edit" | localize }}
+                                     </button> 
+                                 </td>
+                             </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+                 <div class="card-footer table-card-footer bg-light border-top">
+                     <div class="row">
+                         <div class="col-sm-4 col-12 text-sm-left text-center">
+                             <button class="btn btn-secondary" (click)="refresh()">
+                                 <i class="fas fa-redo-alt"></i>
+                             </button>
+                         </div>
+                         <div class="col-sm-4 col-12 text-center">
+                             <p class="mb-0 my-2">
+                                 {{ "TotalRecordsCount" | localize: totalItems }}
+                             </p>
+                         </div>
+                         <div class="col-sm-4 col-12">
+                             <div class="float-sm-right m-auto">
+                                 <abp-pagination-controls
+                                         id="server"
+                                         (pageChange)="getDataPage($event)"
+                                 >
+                                 </abp-pagination-controls>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div> 
+     </section>
+    </div>
+ </div>
+ 

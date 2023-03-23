@@ -33,6 +33,8 @@ import { DueTransactionComponent } from './dueTransactions/dueTransactions.compo
 import { UserItemHardRejectComponent } from './riskProtal/users-rejected/users-hard-reject/user-item/user-item-hard.component';
 import { UserItemSoftRejectComponent } from './riskProtal/users-rejected/users-soft-reject/user-item/user-item.component';
 import { UserItemSystemRejectComponent } from './riskProtal/users-rejected/users-system-reject/user-item/user-itemsystemReject.component';
+import { MessageTypeComponent } from './messageType/messageType.component';
+import { MessageTemplateComponent } from './messageTemplate/messageTemplate.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { UserItemSystemRejectComponent } from './riskProtal/users-rejected/users
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
                     { path: 'bulk-on-boarding', component: BulkComponent, canActivate: [AppRouteGuard] },
                     { path: 'merchant-settlement', component: MerchantComponent, canActivate: [AppRouteGuard] },
+                    { path: 'message-type', component: MessageTypeComponent, canActivate: [AppRouteGuard] },
+                    { path: 'message-template', component: MessageTemplateComponent, canActivate: [AppRouteGuard] },
                     { path: 'registration-users', component: RegistrationUserComponent, canActivate: [AppRouteGuard] },
                     { path: 'due-transactions', component: DueTransactionComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },

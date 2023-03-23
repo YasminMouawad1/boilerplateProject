@@ -73,9 +73,9 @@ export class CreateMessageTemplateDialogComponent extends AppComponentBase
 
     this.options = {
       multiple: false,
-      closeOnSelect: true,
-      width: '300',
-      placeholder: "Select a Corporate",
+      closeOnSelect: true, 
+      width:'100%',
+      placeholder: "Select a type",
       allowClear: true
     };
   }

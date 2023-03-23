@@ -5,7 +5,7 @@
   (ngSubmit)="save()"
 >
   <abp-modal-header
-    [title]="'[Message Types]'"
+    [title]="'[Message Template'"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
@@ -58,7 +58,7 @@
 
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="msgType">
-            Message Template
+            Message type
           </label>
           <div class="col-md-9 w-100">
             <ng-select2 [data]="typeList"

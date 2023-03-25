@@ -18,17 +18,10 @@
           <div class="col-md-9">
             <ng-select2 [data]="merchantData" 
                             [options]="merchantOptions"
-                            [(ngModel)]="merchantPlan.MerchantCode"
-                            name="merchantCode"
-                            #MerchantCodeModel="ngModel"
-                            #MerchantCode
+                            [(ngModel)]="MerchantCode"  
                             class="select2-container w-100"
                         >
-            </ng-select2> 
-            <abp-validation-summary
-              [control]="MerchantCodeModel"
-              [controlEl]="MerchantCode"
-            ></abp-validation-summary>
+            </ng-select2>  
           </div>
         </div>
         <div class="form-group row required">
@@ -38,18 +31,11 @@
           <div class="col-md-9">
             <ng-select2 [data]="merchantPlans" 
                             [options]="merchantPlansOptions"
-                            [(ngModel)]="merchantPlan.settlementPlan"
-                            name="merchantPlan"
-                            #settlementPlanModel="ngModel"
-                            #settlementPlan
+                            [(ngModel)]="settlementPlan"
                             class="select2-container w-100"
                             (change)="changePlan($event)" 
                         >
-            </ng-select2>  
-            <abp-validation-summary
-              [control]="settlementPlanModel"
-              [controlEl]="settlementPlan"
-            ></abp-validation-summary>
+            </ng-select2>   
           </div>
         </div>
        
@@ -61,17 +47,10 @@
             <ng-select2 [data]="dayData" 
                             [options]="dayOptions"
                             name="day"
-                            [(ngModel)]="merchantPlan.day"
-                            #dayModel="ngModel"
-                            #day
+                            [(ngModel)]="day" 
                             class="select2-container w-100"
                         >
-            </ng-select2>   
-            <abp-validation-summary
-              [control]="dayModel"
-              [controlEl]="day"
-              [customValidationErrors]="passwordValidationErrors"
-            ></abp-validation-summary>
+            </ng-select2>    
           </div>
         </div>
          
@@ -83,17 +62,10 @@
             <ng-select2 [data]="daysData" 
                             [options]="daysOptions"
                             name="days"
-                            [(ngModel)]="merchantPlan.days"
-                            #daysModel="ngModel"
-                            #days
+                            [(ngModel)]="days" 
                             class="select2-container w-100"
                         >
-            </ng-select2>   
-            <abp-validation-summary
-              [control]="daysModel"
-              [controlEl]="days"
-              [customValidationErrors]="passwordValidationErrors"
-            ></abp-validation-summary>
+            </ng-select2>    
           </div>
         </div>
      

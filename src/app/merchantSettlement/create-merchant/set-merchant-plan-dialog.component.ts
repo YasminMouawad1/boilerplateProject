@@ -29,6 +29,10 @@ import { Options } from 'select2';
     //merchantPlan = new SetMerchantPlanDto();
 
     merchantPlan:any;
+    MerchantCode:any;
+    settlementPlan:any;
+    day:any;
+    days:any;
     public merchantData: Array<Select2OptionData>;
     public merchantOptions: Options;
 

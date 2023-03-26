@@ -1,0 +1,74 @@
+<div [@routerTransition]>
+    <div class="bgGrey m-2">
+     <section class="content-header">
+         <div class="container-fluid">
+             <div class="row">
+                <h2>Create Email</h2>
+             </div>
+         </div>
+     </section>
+     <section class="content px-2">
+         <div class="container-fluid">
+
+          <br>
+         <div class="card">
+               <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6"> 
+                          <div class="form-group row required">
+                              <label class="col-md-3 col-form-label" for="emailType">
+                                Email type
+                              </label>
+                              <div class="col-md-9 w-100">
+                                <ng-select2 [data]="typeList"
+                                                [placeholder]="'Select the type'"
+                                                [options]="options"
+                                                [(ngModel)]="emailType" 
+                                                class="select2-container"
+                                                style="width: 100%;"
+                                                >
+                                              </ng-select2> 
+                              </div> 
+                        </div>
+      
+                        
+                      <div class="form-group row required">
+                          <label class="col-md-3 col-form-label" for="emailContent">
+                          Email Content
+                          </label>
+                          <div class="col-md-9 d-flex">
+                          <textarea 
+                              rows="5" class="form-control" name="emailContent" id="emailContent"
+                              required [(ngModel)]="emailContent" #emailContentModel="ngModel" #emailContentEl
+                          ></textarea> 
+                          <br>
+                          <abp-validation-summary
+                              class="postionabs"
+                              [control]="emailContentModel"
+                              [controlEl]="emailContentEl"
+                          ></abp-validation-summary>
+                          </div>
+                      </div>
+      
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row conentDiv">
+                             
+                      {{emailContent}}
+                      </div>
+                    </div>
+                </div>
+        
+               </div>
+
+               <div class="card-footer text-right">
+                   <button class="btn btnCancel" type="button">Cancel</button>
+                   <button class="btn btnSave" type="submit">Save</button>
+               </div>
+         </div>
+
+         </div> 
+     </section>
+    </div>
+ </div>
+ 

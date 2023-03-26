@@ -37,7 +37,30 @@
     border: 1px solid #ddd;
     margin-left: 5px;
     padding: 8px;
+    height: 90%;
 }
+
+.postionabs{
+    position: absolute;
+    top: 100%;
+}
+
+.btnSave,
+.btnCancel {
+    background-color: #5eb2a8;
+    color: #fff;
+    margin-top: 15px;
+    padding: 7px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btnCancel{
+    background-color: #ccc;
+    margin-right: 7px;
+}
+
+ 
 
 .custom-control-input:checked~.custom-control-label::before {
     color: #fff;

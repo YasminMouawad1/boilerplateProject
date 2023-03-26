@@ -30,7 +30,7 @@ import {EmailTypeComponent} from '@app/emailType/emailType.component';
 import {CreateEmailTypeDialogComponent} from '@app/emailType/create-email-type/create-email-type-dailog.component';
 import {EmailContentComponent} from '@app/emailContent/email-content.component';
 import {CreateEmailContentDialogComponent} from '@app/emailContent/create-email-conent/create-email-content-dailog.component';
-
+import {CreateEmailContentComponent} from '@app/emailContent/email-content/create-email-content.component';
 //-------------risk ----------
 import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval.component';
 import {UsersListHardRejectedComponent} from '@app/riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
@@ -96,6 +96,7 @@ import { NgSelect2Module } from 'ng-select2';
         CreateEmailTypeDialogComponent,
         EmailContentComponent,
         CreateEmailContentDialogComponent,
+        CreateEmailContentComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

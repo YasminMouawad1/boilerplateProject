@@ -68,7 +68,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                     new MenuItem('Message Type','/app/message-type','fas fa-envelope'),
                     new MenuItem('Message Template','/app/message-template','fas fa-envelope-open-text'),
                     new MenuItem('Email Type','/app/email-type','fas fa-envelope'),
-                    new MenuItem('Email content','/app/email-content','fas fa-envelope-open-text'),
+                    new MenuItem('Email content','/app/create-email','fas fa-envelope-open-text'),
 
             ]), 
     

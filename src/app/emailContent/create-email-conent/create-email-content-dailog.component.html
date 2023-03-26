@@ -33,10 +33,7 @@
             <textarea 
               rows="5" class="form-contro w-50" name="emailContent" id="emailContent"
               required [(ngModel)]="emailContent" #emailContentModel="ngModel" #emailContentEl
-            ></textarea>
-            <div class="conentDiv w-50">
-               {{emailContent}}
-            </div>
+            ></textarea> 
             <abp-validation-summary
               [control]="emailContentModel"
               [controlEl]="emailContentEl"

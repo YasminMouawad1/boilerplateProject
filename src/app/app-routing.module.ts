@@ -35,6 +35,8 @@ import { UserItemSoftRejectComponent } from './riskProtal/users-rejected/users-s
 import { UserItemSystemRejectComponent } from './riskProtal/users-rejected/users-system-reject/user-item/user-itemsystemReject.component';
 import { MessageTypeComponent } from './messageType/messageType.component';
 import { MessageTemplateComponent } from './messageTemplate/messageTemplate.component';
+import {EmailTypeComponent} from './emailType/emailType.component';
+import { EmailContentComponent } from './emailContent/email-content.component';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { MessageTemplateComponent } from './messageTemplate/messageTemplate.comp
                     { path: 'merchant-settlement', component: MerchantComponent, canActivate: [AppRouteGuard] },
                     { path: 'message-type', component: MessageTypeComponent, canActivate: [AppRouteGuard] },
                     { path: 'message-template', component: MessageTemplateComponent, canActivate: [AppRouteGuard] },
+                    { path: 'email-type', component: EmailTypeComponent, canActivate: [AppRouteGuard] },
+                    { path: 'email-content', component: EmailContentComponent, canActivate: [AppRouteGuard] },
                     { path: 'registration-users', component: RegistrationUserComponent, canActivate: [AppRouteGuard] },
                     { path: 'due-transactions', component: DueTransactionComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },

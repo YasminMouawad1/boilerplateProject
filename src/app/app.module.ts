@@ -26,6 +26,10 @@ import {MessageTypeComponent} from '@app/messageType/messageType.component';
 import {CreateMessageTypeDialogComponent} from '@app/messageType/create-message-type/create-message-type-dialog.component';
 import {MessageTemplateComponent} from '@app/messageTemplate/messageTemplate.component';
 import {CreateMessageTemplateDialogComponent} from '@app/messageTemplate/create-message-template/create-message-template-dialog.component';
+import {EmailTypeComponent} from '@app/emailType/emailType.component';
+import {CreateEmailTypeDialogComponent} from '@app/emailType/create-email-type/create-email-type-dailog.component';
+import {EmailContentComponent} from '@app/emailContent/email-content.component';
+import {CreateEmailContentDialogComponent} from '@app/emailContent/create-email-conent/create-email-content-dailog.component';
 
 //-------------risk ----------
 import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval.component';
@@ -88,6 +92,10 @@ import { NgSelect2Module } from 'ng-select2';
         CreateMessageTypeDialogComponent,
         MessageTemplateComponent,
         CreateMessageTemplateDialogComponent,
+        EmailTypeComponent,
+        CreateEmailTypeDialogComponent,
+        EmailContentComponent,
+        CreateEmailContentDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

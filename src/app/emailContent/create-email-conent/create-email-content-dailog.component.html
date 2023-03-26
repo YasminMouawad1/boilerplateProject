@@ -1,0 +1,55 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createUserModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'[Email Content]'"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-2 col-form-label" for="emailType">
+        Email type
+      </label>
+      <div class="col-md-10 w-100">
+        <ng-select2 [data]="typeList"
+                        [placeholder]="'Select the type'"
+                        [options]="options"
+                        [(ngModel)]="emailType" 
+                        class="select2-container"
+                        style="width: 100%;"
+                        >
+                      </ng-select2> 
+      </div>
+    </div>
+
+        <div class="form-group row required">
+          <label class="col-md-2 col-form-label" for="emailContent">
+            Email Content
+          </label>
+          <div class="col-md-10 d-flex">
+            <textarea 
+              rows="5" class="form-contro w-50" name="emailContent" id="emailContent"
+              required [(ngModel)]="emailContent" #emailContentModel="ngModel" #emailContentEl
+            ></textarea>
+            <div class="conentDiv w-50">
+               {{emailContent}}
+            </div>
+            <abp-validation-summary
+              [control]="emailContentModel"
+              [controlEl]="emailContentEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+
+      
+    
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createUserModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

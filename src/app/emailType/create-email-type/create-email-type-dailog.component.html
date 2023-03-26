@@ -1,0 +1,43 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createUserModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'[Email Type]'"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+      
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="emailType">
+            Eamil Type
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="emailType"
+              id="emailType"
+              required
+              maxlength="32"
+              [(ngModel)]="emailType"
+              #emailTypeModel="ngModel"
+              #emailTypeEl
+            />
+            <abp-validation-summary
+              [control]="emailTypeModel"
+              [controlEl]="emailTypeEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+       
+    
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createUserModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>

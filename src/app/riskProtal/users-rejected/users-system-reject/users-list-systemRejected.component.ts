@@ -33,6 +33,11 @@ export class UsersListSystemRejectedComponent implements OnInit {
   advancedFiltersVisible = false;
 
   users:any;
+  numberRows:number = 10;
+  currentPage: number = 1;
+  isTableLoading:boolean = false;
+  showTable:boolean = true;
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
@@ -53,13 +58,19 @@ export class UsersListSystemRejectedComponent implements OnInit {
 
  getUserSystemRejectedList(page :number = 1 ,pageSize :number = 10  ){
   
-
+  this.isTableLoading = true;
   this._usersService.getRejectedProfilePlusSystemErrors(page, pageSize).subscribe(res => {
    
     if(res.result.data != null)
+     { 
       this.users = res.result.data ; 
+      this.showTable = true;
+    }else
+    this.showTable = false;
 
-  })
+  });
+
+  this.isTableLoading = false;
 }
   
 

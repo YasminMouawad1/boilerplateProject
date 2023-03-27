@@ -31,6 +31,11 @@ export class LimitReviewComponent implements OnInit {
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  numberRows:number = 10;
+  currentPage: number = 1;
+  showTable:boolean = true;
+  isTableLoading:boolean = false;
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
@@ -50,13 +55,22 @@ export class LimitReviewComponent implements OnInit {
 
  getReviewProfilePlus(page :number = 1 ,pageSize :number = 10  ){
   
-
+     this.isTableLoading = true;
    this._usersService.getLimitReviw(page, pageSize).subscribe(res => {
     
      if(res.result.data != null)
-       this.users = res.result.data ; 
+       {
+        this.users = res.result.data ;
+        this.showTable = true;
+      }else{
+        this.showTable = false;
+      }
 
-   })
+        
+   });
+
+   this.isTableLoading = false;
+   
  }
  
 

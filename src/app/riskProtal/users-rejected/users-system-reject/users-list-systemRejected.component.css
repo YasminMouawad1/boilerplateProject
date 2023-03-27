@@ -25,6 +25,10 @@
     color: #fff;
 }
 
+.colorPink{
+    color: #f28d8a;
+}
+
 .card{
     box-shadow: none;
 }
@@ -45,3 +49,14 @@
     font-weight: bold;
     font-size: 36px;
   }
+
+
+  .my-pagination ::ng-deep .ngx-pagination{
+    margin-top: 1.5rem;
+} 
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: #556ee6;
+    border-radius: 50%;
+    cursor: pointer;
+}

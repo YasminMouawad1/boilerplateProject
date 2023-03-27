@@ -23,6 +23,7 @@ import {
 
 import{ Router} from '@angular/router';
 import {UsersService} from '@shared/services/endpoints/users.service'
+import { SpinnerService } from '@shared/services/endpoints/spinner.service';
 
 class PagedApplicationsOnBoardingDto extends PagedRequestDto {
   keyword: string;
@@ -41,12 +42,17 @@ export class UsersListApprovalComponent implements OnInit{
   keyword = '';
  
  users:any;
-
+ numberRows:number = 10;
+ currentPage: number = 1;
+ isTableLoading:boolean = false;
+ showTable:boolean = true;
+ 
   constructor(injector: Injector, 
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,
     private _RiskServiceProxy:RiskServiceProxy,
     private _Router:Router,
     private _userService:UsersService,
+    private _SpinnerService:SpinnerService,
     ) {
     
     
@@ -63,13 +69,22 @@ export class UsersListApprovalComponent implements OnInit{
 
  getUserApprovalList(page :number = 1 ,pageSize :number = 10  ){
   
-
+this._SpinnerService.requestStarted();
+this.isTableLoading = true;
    this._userService.getWaitingRiskApprovalList(false,page, pageSize).subscribe(res => {
     
      if(res.result.data != null)
-       this.users = res.result.data ; 
+       {
+        this.users = res.result.data ; 
+        this.showTable = true;
+      }else
+         this.showTable = false;
 
+       this._SpinnerService.requestEnded();
    })
+
+   this._SpinnerService.requestEnded();
+   this.isTableLoading = false;
  }
  
 

@@ -34,6 +34,11 @@ export class UsersListHardRejectedComponent implements OnInit {
 
   userlist:any;
 
+  numberRows:number = 10;
+  currentPage: number = 1;
+  showTable: boolean = true;
+  isTableLoading:boolean= false;
+  
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
@@ -54,16 +59,20 @@ ngOnInit() {
 
 
 getUserHardRejectedList(page :number = 1 ,pageSize :number = 10  ){
-
+this.isTableLoading = true;
 
   this._usersService.getRiskPermanentRejectedProfileList(page, pageSize).subscribe(res => {
    
     if(res.result.data != null)
-      this.userlist = res.result.data ; 
+      {
+        this.userlist = res.result.data ;
+       this.showTable = true;
+      }else 
+         this.showTable = false;
 
-      console.log(this.userlist)
+  });
 
-  })
+  this.isTableLoading = false;
 }
 
   viewDetails(phoneNum:string): void {

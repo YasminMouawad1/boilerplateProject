@@ -36,6 +36,11 @@ export class UsersListRejectedComponent implements OnInit {
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  numberRows:number = 10;
+  currentPage: number = 1;
+  isTableLoading:boolean = false;
+  showTable:boolean = true;
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
@@ -57,13 +62,18 @@ export class UsersListRejectedComponent implements OnInit {
 
   getUserSoftRejectedList(page :number = 1 ,pageSize :number = 10  ){
   
-
+this.isTableLoading = true;
     this._usersService.getRiskRejectedProfileList(page, pageSize).subscribe(res => {
      
       if(res.result.data != null)
-        this.users = res.result.data ; 
+        {
+          this.users = res.result.data ; 
+          this.showTable = true;
+        }else
+          this.showTable = false;
  
-    })
+    });
+    this.isTableLoading = false;
   }
   
   viewDetails(phoneNum:string): void {

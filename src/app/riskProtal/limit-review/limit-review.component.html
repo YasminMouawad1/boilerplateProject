@@ -1,17 +1,6 @@
 <div [@routerTransition]>
-
-    <div class="bgGrey text-center">
-        <img src="assets/img/cooming.jfif" class="w-75 mt-5" style="height: 350px;">
-        <br>
-        <h2 class="title">We're Launching Soon!</h2>
-        <p style="color: #777676;">
-          We're Current working hard on this page. Subscribe our Newsletter <br>
-          to get update when it'll be live.  
-        </p>
-    </div>
-
     
-    <!-- <div class="bgGrey m-2">
+  <div class="bgGrey m-2">
      <section class="content-header">
          <div class="container-fluid">
              <div class="row">
@@ -30,7 +19,7 @@
              <div class="card">
                  <div class="card-body">
                      <div class="table-responsive">
-                         <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                         <table class="table table-striped table-bordered">
                              <thead class="bg-light">
                              <tr>
                                  <th>Name</th>
@@ -44,20 +33,15 @@
                              </tr>
                              </thead>
                              <tbody>
-                             <tr *ngFor="let user of users  | paginate : {
-                                                id: 'server',
-                                                itemsPerPage: pageSize,
-                                                currentPage: pageNumber,
-                                                totalItems: totalItems
-                                                }
+                             <tr *ngFor="let user of users 
                                         ">
-                                 <td>{{ user.name }}</td>
-                                 <td>{{ user.email }}</td>
-                                 <td>{{ user.phoneNumber }}</td>
-                                 <td>{{user.nationalID}}</td>
-                                 <td>{{user.age}}</td>
-                                 <td>{{user.address}}</td>
-                                 <td>{{user.submitedDate}}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.mobileNumber }}</td>
+                                        <td>{{user.nationalId}}</td>
+                                        <td>{{user.age}}</td>
+                                        <td>{{user.homeAddress}}</td>
+                                        <td>{{user.submitDate }}</td>
                                  <td>
                                      <button
                                              type="button"
@@ -72,32 +56,10 @@
                          </table>
                      </div>
                  </div>
-                 <div class="card-footer table-card-footer bg-light border-top">
-                     <div class="row">
-                         <div class="col-sm-4 col-12 text-sm-left text-center">
-                             <button class="btn btn-secondary" (click)="refresh()">
-                                 <i class="fas fa-redo-alt"></i>
-                             </button>
-                         </div>
-                         <div class="col-sm-4 col-12 text-center">
-                             <p class="mb-0 my-2">
-                                 {{ "TotalRecordsCount" | localize: totalItems }}
-                             </p>
-                         </div>
-                         <div class="col-sm-4 col-12">
-                             <div class="float-sm-right m-auto">
-                                 <abp-pagination-controls
-                                         id="server"
-                                         (pageChange)="getDataPage($event)"
-                                 >
-                                 </abp-pagination-controls>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
+               
              </div>
          </div> 
      </section>
-    </div> -->
+    </div> 
  </div>
  

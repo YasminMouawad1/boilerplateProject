@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -15,6 +15,9 @@ import {
 } from '@shared/service-proxies/service-proxies'; 
 import { Router } from '@angular/router';
 
+import {UsersService} from '@shared/services/endpoints/users.service'
+
+
 class PagedUsersRequestDto extends PagedRequestDto {
   keyword: string;
   isActive: boolean | null;
@@ -25,7 +28,7 @@ class PagedUsersRequestDto extends PagedRequestDto {
   styleUrls:['./users-list-rejeced.component.css'],
   animations: [appModuleAnimation()]
 })
-export class UsersListRejectedComponent extends PagedListingComponentBase<UserDto> {
+export class UsersListRejectedComponent implements OnInit {
   //users: UserDto[] = [];
 
   users :any;
@@ -38,74 +41,31 @@ export class UsersListRejectedComponent extends PagedListingComponentBase<UserDt
     private _userService: UserServiceProxy,
     private _BulkOnBoardingServiceProxy: BulkOnBoardingServiceProxy,
     private _Router:Router,
-    private _modalService: BsModalService
+    private _modalService: BsModalService, 
+    private _usersService:UsersService
   ) {
-    super(injector);
+    //super(injector);
 
-    this.users = [
-      {name:'yasmin1',email:'yasmin@gmail',phoneNumber:'0111111',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
-      {name:'yasmin2',email:'yasmin@gmail',phoneNumber:'0122222',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
- ]
-
+   
 
   }
 
+  ngOnInit() {
+    this.getUserSoftRejectedList();
+ }
 
+
+  getUserSoftRejectedList(page :number = 1 ,pageSize :number = 10  ){
   
 
-  clearFilters(): void {
-    this.keyword = '';
-    this.isActive = undefined;
-    this.getDataPage(1);
+    this._usersService.getRiskRejectedProfileList(page, pageSize).subscribe(res => {
+     
+      if(res.result.data != null)
+        this.users = res.result.data ; 
+ 
+    })
   }
-
-  protected list(
-    request: PagedUsersRequestDto,
-    pageNumber: number,
-    finishedCallback: Function
-  ): void {
-    request.keyword = this.keyword;
-    request.isActive = this.isActive;
-
-    // this._userService
-    //   .getAll(
-    //     request.keyword,
-    //     request.isActive,
-    //     request.skipCount,
-    //     request.maxResultCount
-    //   )
-    //   .pipe(
-    //     finalize(() => {
-    //       finishedCallback();
-    //     })
-    //   )
-    //   .subscribe((result: UserDtoPagedResultDto) => {
-    //     this.users = result.items;
-    //     this.showPaging(result, pageNumber);
-    //   });
-
-    this.users = []
-
-  }
-
-
-
-
-  protected delete(user: UserDto): void {
-    // abp.message.confirm(
-    //   this.l('UserDeleteWarningMessage', user.fullName),
-    //   undefined,
-    //   (result: boolean) => {
-    //     if (result) {
-    //       this._userService.delete(user.id).subscribe(() => {
-    //         abp.notify.success(this.l('SuccessfullyDeleted'));
-    //         this.refresh();
-    //       });
-    //     }
-    //   }
-    // );
-  }
-
+  
   viewDetails(phoneNum:string): void {
     this._Router.navigate(['/app/user-itemHSoftreject/'+ phoneNum])
   }

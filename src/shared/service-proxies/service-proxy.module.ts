@@ -18,6 +18,7 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.DueTransactionsServiceProxy ,
         ApiServiceProxies.ApplicationOnBoardingServiceProxy,
         ApiServiceProxies.PortalRegistrationUsersServiceProxy,
+        ApiServiceProxies.RiskServiceProxy,
         { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
     ]
 })

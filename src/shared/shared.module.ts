@@ -18,11 +18,13 @@ import { LayoutStoreService } from './layout/layout-store.service';
 import { BusyDirective } from './directives/busy.directive';
 import { EqualValidator } from './directives/equal-validator.directive';
 
+import {UsersService} from '@shared/services/endpoints/users.service';
+ 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
-        NgxPaginationModule
+        NgxPaginationModule, 
     ],
     declarations: [
         AbpPaginationControlsComponent,
@@ -31,7 +33,7 @@ import { EqualValidator } from './directives/equal-validator.directive';
         AbpModalFooterComponent,
         LocalizePipe,
         BusyDirective,
-        EqualValidator
+        EqualValidator, 
     ],
     exports: [
         AbpPaginationControlsComponent,
@@ -40,7 +42,7 @@ import { EqualValidator } from './directives/equal-validator.directive';
         AbpModalFooterComponent,
         LocalizePipe,
         BusyDirective,
-        EqualValidator
+        EqualValidator, 
     ]
 })
 export class SharedModule {
@@ -52,7 +54,8 @@ export class SharedModule {
                 AppUrlService,
                 AppAuthService,
                 AppRouteGuard,
-                LayoutStoreService
+                LayoutStoreService,
+                UsersService
             ]
         };
     }

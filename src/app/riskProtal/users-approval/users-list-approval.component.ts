@@ -1,114 +1,90 @@
-import { Component, Injector } from '@angular/core';
-import { finalize } from 'rxjs/operators';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, Injector, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { AppComponentBase } from '@shared/app-component-base';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
+import { finalize } from 'rxjs/operators';
+import { Select2OptionData } from 'ng-select2';
+import { Options } from 'select2';
+
 import {
   PagedListingComponentBase,
   PagedRequestDto
-} from 'shared/paged-listing-component-base';
+} from '@shared/paged-listing-component-base';
 import {
-  UserServiceProxy, 
-  UserDtoPagedResultDto,
-  BulkOnBoardingServiceProxy,
+  RoleServiceProxy, 
   ApplicationsOnBoardingDtoPagedResultDto,
-  UserDto
-} from '@shared/service-proxies/service-proxies'; 
-import { UserItemComponent } from './user-item/user-item.component';
-import{ Router} from '@angular/router';
+  BulkOnBoardingServiceProxy,
+  LookUpServiceProxy,
+  LookupCorporateDto,
+  CreateBulkOnBoardingConfigDto,
+  ApplicationOnBoardingServiceProxy,
+  ApplicationsOnBoardingDto,
+  RiskServiceProxy
+} from '@shared/service-proxies/service-proxies';
 
-class PagedUsersRequestDto extends PagedRequestDto {
+import{ Router} from '@angular/router';
+import {UsersService} from '@shared/services/endpoints/users.service'
+
+class PagedApplicationsOnBoardingDto extends PagedRequestDto {
   keyword: string;
-  isActive: boolean | null;
 }
 
 @Component({
   templateUrl: './users-list-approval.component.html',
   styleUrls:['./users-list-approval.component.css'],
-  animations: [appModuleAnimation()]
+  animations: [appModuleAnimation()],
 })
-export class UsersListApprovalComponent extends PagedListingComponentBase<UserDto> {
-  //users: UserApprovalDto[] = [];
-  users:any;
-  keyword = '';
-  isActive: boolean | null;
-  advancedFiltersVisible = false;
-
-  constructor(
-    injector: Injector,
-    private _userService: UserServiceProxy,
-    private _BulkOnBoardingServiceProxy: BulkOnBoardingServiceProxy,
-    private _Router:Router,
-    private _modalService: BsModalService
-  ) {
-    super(injector);
-
-    this.users = [
-      {name:'yasmin1',email:'yasmin@gmail',phoneNumber:'0111111',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
-      {name:'yasmin2',email:'yasmin@gmail',phoneNumber:'0122222',nationalID:'98760123',age:28,addresss:'minia',submitedDate:'15/03/2023'},
- ]
+export class UsersListApprovalComponent implements OnInit{
+  protected delete(entity: ApplicationsOnBoardingDto): void {
 
   }
+  applicationsOnBoardingDto: ApplicationsOnBoardingDto[] = [];
+  keyword = '';
+ 
+ users:any;
+
+  constructor(injector: Injector, 
+    private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,
+    private _RiskServiceProxy:RiskServiceProxy,
+    private _Router:Router,
+    private _userService:UsersService,
+    ) {
+    
+    
+    //  super(injector);
+   
+ 
+    
+    
+  }
+
+  ngOnInit() {
+    this.getUserApprovalList();
+ }
+
+ getUserApprovalList(page :number = 1 ,pageSize :number = 10  ){
+  
+
+   this._userService.getWaitingRiskApprovalList(false,page, pageSize).subscribe(res => {
+    
+     if(res.result.data != null)
+       this.users = res.result.data ; 
+
+   })
+ }
+ 
+
+viewDetails(phoneNum:string): void {
+this._Router.navigate(['/app/user-item/'+ phoneNum])
+}
+
 
 
   
-
-  clearFilters(): void {
-    this.keyword = '';
-    this.isActive = undefined;
-    this.getDataPage(1);
-  }
-
-  protected list(
-    request: PagedUsersRequestDto,
-    pageNumber: number,
-    finishedCallback: Function
-  ): void {
-    request.keyword = this.keyword;
-    request.isActive = this.isActive;
-
-    // this._userService
-    //   .getAll(
-    //     request.keyword,
-    //     request.isActive,
-    //     request.skipCount,
-    //     request.maxResultCount
-    //   )
-    //   .pipe(
-    //     finalize(() => {
-    //       finishedCallback();
-    //     })
-    //   )
-    //   .subscribe((result: UserDtoPagedResultDto) => {
-    //     this.users = result.items;
-    //     this.showPaging(result, pageNumber);
-    //   });
-
-   
-
-  }
-
-
-
-
-  protected delete(user: UserDto): void {
-    // abp.message.confirm(
-    //   this.l('UserDeleteWarningMessage', user.fullName),
-    //   undefined,
-    //   (result: boolean) => {
-    //     if (result) {
-    //       this._userService.delete(user.id).subscribe(() => {
-    //         abp.notify.success(this.l('SuccessfullyDeleted'));
-    //         this.refresh();
-    //       });
-    //     }
-    //   }
-    // );
-  }
-
-  viewDetails(phoneNum:string): void {
-    this._Router.navigate(['/app/user-item/'+ phoneNum])
-  }
 
  
-  
+
+ 
+
+ 
+
 }

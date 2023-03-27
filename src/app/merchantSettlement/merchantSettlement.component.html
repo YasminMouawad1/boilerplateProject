@@ -22,100 +22,54 @@
          
           <br>
  
-             <div class="card" style="visibility: hidden;">
-                 <div class="card-body">
-                     <div class="table-responsive" >
-                         <table class="table table-striped table-bordered" [busy]="isTableLoading">
-                             <thead class="bg-light">
-                             <tr>
-                                 <th>{{ "UserName" | localize }}</th>
-                                 <th>{{ "FullName" | localize }}</th>
-                                 <th>{{ "EmailAddress" | localize }}</th>
-                                 <th>{{ "IsActive" | localize }}</th>
-                                 <th style="width: 310px;">{{ "Actions" | localize }}</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                             <tr
-                                     *ngFor="
-                   let user of users
-                     | paginate
-                       : {
-                           id: 'server',
-                           itemsPerPage: pageSize,
-                           currentPage: pageNumber,
-                           totalItems: totalItems
-                         }
-                 "
-                             >
-                                 <td>{{ user.userName }}</td>
-                                 <td>{{ user.fullName }}</td>
-                                 <td>{{ user.emailAddress }}</td>
-                                 <td>
-                                     <div class="custom-control custom-checkbox">
-                                         <input
-                                                 type="checkbox"
-                                                 class="custom-control-input"
-                                                 disabled
-                                                 [checked]="user.isActive"
-                                         />
-                                         <label class="custom-control-label"></label>
-                                     </div>
-                                 </td>
-                                 <td>
-                                     <button
-                                             type="button"
-                                             class="btn btn-sm mx-2 bgPink"
-                                             (click)="delete(user)"
-                                     >
-                                         <i class="fas fa-trash"></i>
-                                         {{ "Delete" | localize }}
-                                     </button>
-                                     <button
-                                             type="button"
-                                             class="btn btn-sm mx-2 bgYellow"
-                                             (click)="editUser(user)"
-                                     >
-                                         <i class="fas fa-pencil-alt"></i>
-                                         {{ "Edit" | localize }}
-                                     </button>
-                                     <button
-                                             type="button"
-                                             class="btn btn-sm bgGreen" 
-                                     >
-                                         <i class="fas fa-lock"></i>
-                                         {{ "ResetPassword" | localize }}
-                                     </button>
-                                 </td>
-                             </tr>
-                             </tbody>
-                         </table>
+          <div class="card">
+            <div class="card-body">
+               <p *ngIf="showTable" class="alert alert-warning text-center">Data is Empty</p>
+
+                <div *ngIf="!showTable" class="table-responsive">
+                    <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                        <thead class="bg-light">
+                        <tr>
+                            <th>Merchant Code</th>
+                            <th>Settlement plan ID</th>
+                            <th>Settlement plan Name</th>
+                            <th>Days</th> 
+                            <th>{{ "Actions" | localize }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let plan of MerchantPlans | paginate: { itemsPerPage: numberRows, currentPage: currentPage }
+                                   ">
+                            <td>{{plan.merchantCode}}</td>
+                            <td>{{plan.planID}}</td>
+                            <td>{{plan.planName}}</td>
+                            <td>{{plan.days}}</td> 
+                            <td>
+                                  
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div *ngIf="!showTable" class="row justify-content-space-between align-items-center">
+                   <div class="col-md-1">
+                     <select [(ngModel)]="numberRows" class="form-select">
+                       <option [ngValue]="5">5</option>
+                       <option [ngValue]="10">10</option>
+                       <option [ngValue]="50">50</option>
+                       <option [ngValue]="100">100</option>
+                       <option [ngValue]="200">200</option>
+                     </select>
+                   </div>
+                     <div class="col-md-11 text-right">
+                        <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
                      </div>
-                 </div>
-                 <div class="card-footer table-card-footer bg-light border-top">
-                     <div class="row">
-                         <div class="col-sm-4 col-12 text-sm-left text-center">
-                             <button class="btn btn-secondary" (click)="refresh()">
-                                 <i class="fas fa-redo-alt"></i>
-                             </button>
-                         </div>
-                         <div class="col-sm-4 col-12 text-center">
-                             <p class="mb-0 my-2">
-                                 {{ "TotalRecordsCount" | localize: totalItems }}
-                             </p>
-                         </div>
-                         <div class="col-sm-4 col-12">
-                             <div class="float-sm-right m-auto">
-                                 <abp-pagination-controls
-                                         id="server"
-                                         (pageChange)="getDataPage($event)"
-                                 >
-                                 </abp-pagination-controls>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+       
+                  </div>
+            </div>
+            
+        </div>
          </div> 
      </section>
     </div>

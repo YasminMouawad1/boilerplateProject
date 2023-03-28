@@ -31,6 +31,7 @@
                         <thead class="bg-light">
                         <tr>
                             <th>Merchant Code</th>
+                            <th>Merchant Name</th>
                             <th>Settlement plan ID</th>
                             <th>Settlement plan Name</th>
                             <th>Days</th> 
@@ -41,8 +42,9 @@
                         <tr *ngFor="let plan of MerchantPlans | paginate: { itemsPerPage: numberRows, currentPage: currentPage }
                                    ">
                             <td>{{plan.merchantCode}}</td>
-                            <td>{{plan.planID}}</td>
-                            <td>{{plan.planName}}</td>
+                            <td>{{plan.merchantName}}</td>
+                            <td>{{plan.settlementPlanId}}</td>
+                            <td>{{plan.settlementPlanName}}</td>
                             <td>{{plan.days}}</td> 
                             <td>
                                   

@@ -70,6 +70,7 @@ this.isTableLoading = true;
       }else
          this.showTable = false;
  
+         console.log(this.MerchantPlans)
    })
  
    this.isTableLoading = false;

@@ -18,18 +18,19 @@ export abstract class UrlEndpoints {
   static readonly POST_AllUsersList: string = 'api/Risk/ClietSearch?str=';
   
   static readonly GET_MerchantSettlementPlan: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlan';
+  static readonly GET_MerchantSettlementPlanByID: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlanById?merchanstsCode=';
 
  
   static readonly Get_ClientActivation: string = 'api/Risk/ClientActivation?mobileNumber=';
   static readonly GET_RiskRejectedOnlyList: string = 'api/Risk/ProfilePlus?isRejectedOnly='+true;
 
   //static readonly GET_UserById: string = 'api/Risk/GetUserDocumentsByClientId?MobileNumber=';
-  static readonly POST_ApproveUser: string = 'api/Risk/Approve';
+  static readonly POST_ApproveUser: string = 'api/services/app/Risk/Approve';
   static readonly POST_SoftApproveUser: string = 'api/Risk/SoftApprove';
   static readonly Edit_RiskLimit: string = 'api/Risk/EditRiskLimt';
   static readonly POST_EditRiskClientNote: string = 'api/Risk/EditRiskClientNote?userMobile=';
 
-static readonly post_UpdateNationalIdData: string = 'api/Risk/EditNationalIDData';
+static readonly post_UpdateNationalIdData: string = 'api/services/app/Risk/EditNationalIDData';
 static readonly GET_maritalStatus: string = 'api/services/app/LookUp/GetMaritalStatus';
 
 

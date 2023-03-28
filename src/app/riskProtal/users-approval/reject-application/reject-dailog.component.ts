@@ -55,6 +55,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
 
     ngOnInit(): void {
 
+      console.log(this._modalOption.initialState)
      this.userItem = this._modalOption.initialState;
      this.submitrejectform = this._modalOption.initialState.submitrejectform;
      this.rejectionValidationForm = this._modalOption.initialState.rejectionValidationForm;
@@ -62,6 +63,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
      this.rejectRiskComment=this._modalOption.initialState.rejectRiskComment; 
      this.salesRepMessage = this._modalOption.initialState.salesRepMessage; 
      this.rejectResponse = this._modalOption.initialState.rejectResponse;
+ 
     }
 
  
@@ -71,13 +73,14 @@ import { UsersService } from '@shared/services/endpoints/users.service';
     }
 
 
-    async rejectRiskApplication() {
+   rejectRiskApplication() {
       this.submitrejectform = true;
       if (!this.rejectionValidationForm.valid)
         return;
   
+        console.log(this.userItem)
       const data = {
-        clientNationalId: this.userItem.nationalId,
+        clientNationalId: this.userItem.userItem.nationalId,
         riskComment: this.rejectRiskComment,
         rejectionReason: this.rejectionReason,
         clientStatus: false,
@@ -86,12 +89,16 @@ import { UsersService } from '@shared/services/endpoints/users.service';
   
       };
       
-      await this._usersServices.postUser(data).subscribe((res) => {
-        if (res.status) {
-          //this.toastr.error("",  'Reject Risk successfully');
-          //this.router.navigate(['/app/users-approval'])
-        }
+     
+       this._usersServices.postUser(data).subscribe((res) => {
+        if (res) {
+          abp.message.success("Reject Risk successfully")
+          this.router.navigate(['/app/users-approval'])
+        }else
+        abp.message.success(res.message)
       });
+
+      
     }
  
   }

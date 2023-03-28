@@ -20,6 +20,7 @@ import {
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { UsersService } from '@shared/services/endpoints/users.service';
 
+
   @Component({
     templateUrl: './accept-dailog.component.html',
     styleUrls:['../users-list-approval.component.css']
@@ -45,7 +46,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
       public _modalOption:ModalOptions,
       private _DueTransactionsServiceProxy :DueTransactionsServiceProxy,
       private _usersServices:UsersService, 
-      private router: Router
+      private router: Router, 
     ) {
       super(injector);
     }
@@ -57,7 +58,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
      this.approveRiskComment = this._modalOption.initialState.approveRiskComment;
      this.salesRepMessage = this._modalOption.initialState.salesRepMessage;
      this.submitAcceptform = this._modalOption.initialState.submitAcceptform;
-
+ 
     }
 
  
@@ -71,18 +72,19 @@ import { UsersService } from '@shared/services/endpoints/users.service';
 
         this.submitAcceptform = true;
         const data = {
-          clientNationalId: this.userItem.nationalId,
+          clientNationalId: this.userItem.userItem.nationalId,
           riskComment: this.approveRiskComment,
           riskApprovedLimit: this.riskApprovedLimit,
           clientStatus: true,
           salesRepMessage:this.salesRepMessage
     
         }; 
+ 
     
           this._usersServices.postUser(data).subscribe((res) => {
-          if (res.status) { 
-           // this.toastr.success("",  'Accept Risk successfully');
-            this.router.navigate(['/layout/users-approval'])
+          if (res) { 
+            abp.message.success("Accept Risk successfully")
+            this.router.navigate(['/app/users-approval'])
           }
         });
       }

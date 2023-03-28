@@ -16,6 +16,7 @@ import {
 } from '@shared/service-proxies/service-proxies'; 
 import { SetMerchantPlanDialogComponent } from './create-merchant/set-merchant-plan-dialog.component';
 import { UsersService } from '@shared/services/endpoints/users.service';
+import { editMerchantPlanDialogComponent } from './edit-merchant/edit-merchant-dailog.component';
 
  
 class PagedUsersRequestDto extends PagedRequestDto {
@@ -76,12 +77,14 @@ this.isTableLoading = true;
    this.isTableLoading = false;
  }
 
-  createUser(): void {
-    this.showCreateOrEditUserDialog();
+ e 
+
+  createPlan() {
+    this.showCreatePlanDialog();
   }
 
-  editUser(user: UserDto): void {
-    this.showCreateOrEditUserDialog(user.id);
+  editPlan(merchantCode:any) {
+    this.showEditPlanDialog(merchantCode);
   }
 
   
@@ -89,19 +92,30 @@ this.isTableLoading = true;
  
  
 
-  private showCreateOrEditUserDialog(id?: number): void {
+  private showCreatePlanDialog(): void {
     let createOrEditUserDialog: BsModalRef;
-    if (!id) {
-      createOrEditUserDialog = this._modalService.show(
+    createOrEditUserDialog = this._modalService.show(
         SetMerchantPlanDialogComponent,
         {
           class: 'modal-lg',
         }
       );
-    }  
+  
+  }
 
-    // createOrEditUserDialog.content.onSave.subscribe(() => {
-    //   this.refresh();
-    // });
+  private showEditPlanDialog(merchantCode:any): void {
+    let EditPlanDialog: BsModalRef;
+
+    const initialState = {
+      init_merchantCode: merchantCode, 
+    };
+    
+      EditPlanDialog = this._modalService.show(
+        editMerchantPlanDialogComponent,
+        {class: 'modal-lg', initialState }
+      );
+ 
+
+    
   }
 }

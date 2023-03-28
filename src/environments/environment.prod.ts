@@ -3,5 +3,6 @@
 export const environment = {
     production: true,
     hmr: false,
-    appConfig: 'appconfig.production.json'
+    appConfig: 'appconfig.production.json',
+    remoteServiceBaseUrl: "http://192.168.20.2:45"
 };

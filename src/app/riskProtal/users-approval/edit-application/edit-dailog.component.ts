@@ -93,83 +93,18 @@ import { UsersService } from '@shared/services/endpoints/users.service';
         dateOfBirth:this.editPersonalData.value.dateOfBirth,
       };
   
-  
-  
+   
   
       this._usersServices.EditUserNationalIdData(data).subscribe((res) => {
-        if(res.status)
-        {
-          
-         //this.toastr.success("",  'Edit Data successfully');
+        if(res)
+        { 
+          abp.message.success("Edit USer NationalID Data successfully")
+          this.router.navigate(['/app/users-approval'])
        
-        }
-        //this.getUserById();
+        } 
       });
   
     }
 
-    isriskApprovedLimitChanged: boolean = false
-    editRiskLimit(cancel: boolean = false) {
-  
-      this.isEditRiskLimit = !this.isEditRiskLimit;
-  
-      if (cancel) {
-        this.riskApprovedLimit = this.oldRiskApprovedLimit;
-        this.isriskApprovedLimitChanged = false;
-        this.isEditRiskLimit = false;
-        return;
-      }
-      if (this.isriskApprovedLimitChanged) {
-        // const swalWithBootstrapButtons = Swal.mixin({
-        //   customClass: {
-        //     confirmButton: 'btn btn-success',
-        //     cancelButton: 'btn btn-danger ms-2'
-        //   },
-        //   buttonsStyling: false
-        // });
-  
-        // swalWithBootstrapButtons
-        //   .fire({
-        //     title: this._TranslateService.instant('USERITEMINFO.areYouSure'),
-        //     text: this._TranslateService.instant('USERITEMINFO.msgEidtrisk') + this.oldRiskApprovedLimit + this._TranslateService.instant('USERITEMINFO.to') + this.riskApprovedLimit,
-        //     icon: 'warning',
-        //     confirmButtonText: this._TranslateService.instant('USERITEMINFO.yesChange'),
-        //     cancelButtonText: this._TranslateService.instant('USERITEMINFO.noRollback'),
-        //     showCancelButton: true
-        //   })
-        //   .then(result => {
-  
-  
-        //     if (result.value) {
-        //       this.oldRiskApprovedLimit = this.riskApprovedLimit;
-        //       this.isriskApprovedLimitChanged = false;
-        //       swalWithBootstrapButtons.fire({
-        //         title: this._TranslateService.instant('USERITEMINFO.yesTitle'),
-        //         text: this._TranslateService.instant('USERITEMINFO.yesMsg'),
-        //         confirmButtonText: this._TranslateService.instant('USERITEMINFO.ok'),
-        //         icon: 'success'
-        //       });
-        //       this._spinnerService.requestStarted();
-        //       this.ngOnInit();
-        //     } else if (
-        //       /* Read more about handling dismissals below */
-        //       result.dismiss === Swal.DismissReason.cancel
-        //     ) {
-        //       swalWithBootstrapButtons.fire({
-        //         title: this._TranslateService.instant('USERITEMINFO.rollTitle'),
-        //         text: this._TranslateService.instant('USERITEMINFO.rollMsg'),
-        //         confirmButtonText: this._TranslateService.instant('USERITEMINFO.ok'),
-        //         icon: 'error'
-        //       });
-        //       this.isEditRiskLimit = !this.isEditRiskLimit;
-        //       this.riskApprovedLimit = this.oldRiskApprovedLimit;
-        //     }
-        //     else {
-        //       this.isriskApprovedLimitChanged = false;
-        //       this.riskApprovedLimit = this.oldRiskApprovedLimit;
-        //     }
-        //   });
-      }
-      this.isriskApprovedLimitChanged = true;
-    }
+     
   }

@@ -4,7 +4,7 @@ import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { finalize } from 'rxjs/operators';
 import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 
 import {
   PagedListingComponentBase,
@@ -24,6 +24,7 @@ import {
   SetMerchantSettlementPlanDto,
   PortalRegistrationUsersServiceProxy
 } from '@shared/service-proxies/service-proxies';
+import { UsersService } from '@shared/services/endpoints/users.service';
 
 
 class PagedApplicationsOnBoardingDto extends PagedRequestDto {
@@ -31,11 +32,11 @@ class PagedApplicationsOnBoardingDto extends PagedRequestDto {
 }
 
 @Component({
-  templateUrl: './set-merchant-plan-dialog.component.html',
+  templateUrl:  './edit-merchant-dailog.component.html',
   styleUrls:['../merchantSettlement.component.css'],
   animations: [appModuleAnimation()],
 })
-export class SetMerchantPlanDialogComponent extends PagedListingComponentBase<SetMerchantSettlementPlanDto>{
+export class editMerchantPlanDialogComponent implements OnInit{
   protected delete(entity: SetMerchantSettlementPlanDto): void {
 
   }
@@ -62,13 +63,18 @@ export class SetMerchantPlanDialogComponent extends PagedListingComponentBase<Se
   public daysData: Array<Select2OptionData>;
   public daysOptions: Options;
 
+
+  init_merchantCode:any;
+
   constructor(injector: Injector,
     public bsModalRef: BsModalRef,
     private _rolesService: RoleServiceProxy,
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy, 
     private _LookUpServiceProxy:LookUpServiceProxy,
-    private _portalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy) {
-    super(injector);
+    private _portalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy,
+      public _modalOption:ModalOptions,
+      private _usersServices:UsersService) {
+    //super(injector);
     
     
 
@@ -195,27 +201,20 @@ this.daysOptions={
   }
 
 
+  ngOnInit(): void {
+    this.init_merchantCode =  this._modalOption.initialState.init_merchantCode;
 
-  list(
-    request: PagedApplicationsOnBoardingDto,
-    pageNumber: number,
-    finishedCallback: Function
-  ): void {
-    request.keyword = this.keyword;
+    this.GetMerchanstsSettlementPlanById();
+  }
 
-    this._BulkOnBoardingServiceProxy
-      .getAll(request.keyword, request.skipCount, request.maxResultCount)
-      .pipe(
-        finalize(() => {
-          finishedCallback();
+
+  GetMerchanstsSettlementPlanById(){
+        this._usersServices.getMerchantPlanByID(this.init_merchantCode).subscribe((res) =>{
+             this.MerchantCode = res.result.data.merchantCode;
+             this.settlementPlan = res.result.data.settlementPlanName;
+             
+              
         })
-      )
-      .subscribe((result: ApplicationsOnBoardingDtoPagedResultDto) => {
-        debugger
-     this.applicationsOnBoardingDto = result.items;
-
-        this.showPaging(result, pageNumber);
-      });
   }
 
 
@@ -223,7 +222,7 @@ this.daysOptions={
     this.bsModalRef.hide()
   }
 
-  createSettlementPlan(){
+  EditSettlementPlan(){
 debugger
     let body  = {
       "merchantCode": this.MerchantCode,
@@ -231,15 +230,15 @@ debugger
       "day": this.day,
       "days": this.days, 
     }
-  var object = new SetMerchantSettlementPlanDto ()
+//   var object = new SetMerchantSettlementPlanDto ()
 
-  console.log(object)
-  object.init(body) 
-  this._portalRegistrationUsersServiceProxy.setMerchantSettlementPlan(object).subscribe( (res ) => {
+//   console.log(object)
+//   object.init(body) 
+//   this._portalRegistrationUsersServiceProxy.setMerchantSettlementPlan(object).subscribe( (res ) => {
         
   
-       abp.message.success("Create Settlement plan successfully")
-  })
+//        abp.message.success("Create Settlement plan successfully")
+//   })
   
 
   

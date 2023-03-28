@@ -120,7 +120,8 @@ export class UserItemComponent implements OnInit {
     this.getUserById();
 
     this._userService.getRejectResponse().subscribe(res => {
-      this.rejectResponse = res.data
+      this.rejectResponse = res.result.data
+       
 
     })
 
@@ -204,7 +205,8 @@ export class UserItemComponent implements OnInit {
   
   
       this._userService.getmaritalStatus().subscribe(res=>{
-          this.maritalStatuses = res.result.data;
+        this.maritalStatuses = res.result;
+ 
       })
   
     });

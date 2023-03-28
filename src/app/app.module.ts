@@ -76,7 +76,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
  import{rejectDialogComponent} from './riskProtal/users-approval/reject-application/reject-dailog.component';
  import{editDialogComponent} from './riskProtal/users-approval/edit-application/edit-dailog.component';
 
-
+import {editMerchantPlanDialogComponent} from './merchantSettlement/edit-merchant/edit-merchant-dailog.component'
 @NgModule({
     declarations: [
         AppComponent,
@@ -100,6 +100,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
         CreateEmailContentComponent,
         rejectDialogComponent,
         editDialogComponent,
+        editMerchantPlanDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

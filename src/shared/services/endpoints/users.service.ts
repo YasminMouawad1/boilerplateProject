@@ -34,6 +34,10 @@ export class UsersService {
     return this._API.doGet(UrlEndpoints.GET_UserDocumentsByClientId + mobileNumber)
   }
 
+  getMerchantPlanByID(merchantCode: string){
+    return this._API.doGet(UrlEndpoints.GET_MerchantSettlementPlanByID + merchantCode)
+  }
+
   softApproveCorporate(corpApprove: any){
     return this._API.doPost(UrlEndpoints.POST_softApproveCorporate, corpApprove)
   }

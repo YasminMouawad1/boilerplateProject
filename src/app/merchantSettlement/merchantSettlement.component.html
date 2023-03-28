@@ -7,7 +7,7 @@
                      <h1>Merchant Settlement</h1>
                  </div>
                  <div class="col-6 text-right">
-                     <a href="javascript:;" class="btn btnCreate" (click)="createUser()">
+                     <a href="javascript:;" class="btn btnCreate" (click)="createPlan()">
                          <i class="fa-solid fa-plus"></i>
                          {{ "Create" | localize }}
                      </a>
@@ -46,9 +46,7 @@
                             <td>{{plan.settlementPlanId}}</td>
                             <td>{{plan.settlementPlanName}}</td>
                             <td>{{plan.days}}</td> 
-                            <td>
-                                  
-                            </td>
+                            <td> <button (click)="editPlan(plan.merchantCode)">edit</button> </td>
                         </tr>
                         </tbody>
                     </table>

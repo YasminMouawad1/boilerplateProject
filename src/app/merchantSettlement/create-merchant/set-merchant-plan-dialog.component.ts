@@ -66,24 +66,27 @@ export class SetMerchantPlanDialogComponent extends PagedListingComponentBase<Se
     public bsModalRef: BsModalRef,
     private _rolesService: RoleServiceProxy,
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy, 
+    private _LookUpServiceProxy:LookUpServiceProxy,
     private _portalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy) {
     super(injector);
     
     
 
-  this.merchantData = [
-    {id: '4', text: 'egabi stuff'},
-    {id: '3', text: 'trade Line'},
-    {id: '4', text: 'ikia'},
-    {id: '5', text: 'Hyper One'},
-    {id: '7', text: 'zad baldna'},
-    {id: '8', text: 'Sharp'},
-    {id: '11',text: 'Al morshady'},
-    {id: '15',text: 'Dubai phone'},
-    {id: '16',text: 'abdel Aziz store '},
-    {id: '17',text: 'Orascom contraction'},
-    {id: '18',text: 'el naggar tourism'}
-];
+//   this.merchantData = [
+//     {id: '4', text: 'egabi stuff'},
+//     {id: '3', text: 'trade Line'},
+//     {id: '4', text: 'ikia'},
+//     {id: '5', text: 'Hyper One'},
+//     {id: '7', text: 'zad baldna'},
+//     {id: '8', text: 'Sharp'},
+//     {id: '11',text: 'Al morshady'},
+//     {id: '15',text: 'Dubai phone'},
+//     {id: '16',text: 'abdel Aziz store '},
+//     {id: '17',text: 'Orascom contraction'},
+//     {id: '18',text: 'el naggar tourism'}
+// ];
+
+this.getAllMerchants();
 
 this.merchantPlans = [
   {id: '1', text: 'Selected Dates'},
@@ -240,5 +243,25 @@ debugger
   
   }
 
+  getAllMerchants(){
+    debugger
+    this._LookUpServiceProxy.getAllMerchants().subscribe((result: any) =>{
+
+      this.merchantData = result.map(item=>{
+
+        return <Select2OptionData>
+        {
+              id : item.merchantCode,
+              text: item.englishName
+         };
+
+      });
+
+
+    });
+
+
+
+  }
      
 }

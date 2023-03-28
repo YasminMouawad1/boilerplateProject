@@ -81,7 +81,7 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
       allowClear: true
     };
 
-    //this.getAllCorporates();
+    this.getAllCorporates();
   }
 
 

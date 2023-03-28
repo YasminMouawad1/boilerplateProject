@@ -1,8 +1,8 @@
 <form
   class="form-horizontal"
   autocomplete="off"
-  #createUserModal="ngForm"
-  (ngSubmit)="save()"
+  [formGroup]="registerationForm"
+  (ngSubmit)="registerUser()"
 >
   <abp-modal-header
     [title]="'[Create New User]'"
@@ -23,14 +23,8 @@
               id="enName"
               required
               maxlength="32"
-              [(ngModel)]="user.enName"
-              #enNameModel="ngModel"
-              #enName
-            />
-            <abp-validation-summary
-              [control]="enNameModel"
-              [controlEl]="enName"
-            ></abp-validation-summary>
+              formControlName="enName" 
+            /> 
           </div>
         </div>
         <div class="form-group row required">
@@ -45,14 +39,8 @@
               id="arName"
               required
               maxlength="32"
-              [(ngModel)]="user.arName"
-              #arNameModel="ngModel"
-              #arName
-            />
-            <abp-validation-summary
-              [control]="arNameModel"
-              [controlEl]="arName"
-            ></abp-validation-summary>
+              formControlName="arName" 
+            /> 
           </div>
         </div> 
         <div class="form-group row required">
@@ -67,80 +55,55 @@
               id="mobileNumber"
               required
               maxlength="32"
-              [(ngModel)]="user.mobileNumber"
-              #mobileNumberModel="ngModel"
-              #mobileNumber
-            />
-            <abp-validation-summary
-              [control]="mobileNumberModel"
-              [controlEl]="mobileNumber"
-            ></abp-validation-summary>
+              formControlName="mobileNumber" 
+            /> 
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="branchNumber">
+          <label class="col-md-3 col-form-label" for="branchPhoneNumber">
             [Branch phone number]
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="branchNumber"
-              id="branchNumber"
+              name="branchPhoneNumber"
+              id="branchPhoneNumber"
               required
               maxlength="32" 
-              [(ngModel)]="user.branchNumber"
-              #branchNumberModel="ngModel"
-              #branchNumber
-            />
-            <abp-validation-summary
-              [control]="branchNumberModel"
-              [controlEl]="branchNumber"
-            ></abp-validation-summary>
+              formControlName="branchPhoneNumber" 
+            /> 
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="activationPointID">
+          <label class="col-md-3 col-form-label" for="activationPointId">
             [activation point id]
           </label>
           <div class="col-md-9">
             <input
               type="text"
               class="form-control"
-              name="activationPointID"
-              id="activationPointID"
+              name="activationPointId"
+              id="activationPointId"
               required
               maxlength="32" 
-              [(ngModel)]="user.activationPointID"
-              #activationPointIDModel="ngModel"
-              #activationPointID
-            />
-            <abp-validation-summary
-              [control]="activationPointIDModel"
-              [controlEl]="activationPointID"
-            ></abp-validation-summary>
+              formControlName="activationPointId" 
+            /> 
           </div>
         </div> 
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="merchantCode">
             [Merchant code]
           </label>
-          <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="merchantCode"
-              id="merchantCode"
-              required
-              maxlength="32" 
-              [(ngModel)]="user.merchantCode"
-              #merchantCodeModel="ngModel"
-              #merchantCode
-            />
-            <abp-validation-summary
-              [control]="merchantCodeModel"
-              [controlEl]="merchantCode"
-            ></abp-validation-summary>
+          <div class="col-md-9"> 
+            <ng-select2 [data]="merchantData" 
+                           name="merchantCode"
+                           [placeholder]="'Select merchant'"
+                            [options]="merchantOptions"
+                            formControlName="merchantCode" 
+                            class="select2-container w-100"
+                        >
+            </ng-select2> 
           </div>
         </div> 
         <div class="form-group row required">
@@ -155,40 +118,27 @@
               id="merchantLogo"
               required
               maxlength="32" 
-              [(ngModel)]="user.merchantLogo"
-              #merchantLogoModel="ngModel"
-              #merchantLogo
-            />
-            <abp-validation-summary
-              [control]="merchantLogoModel"
-              [controlEl]="merchantLogo"
-            ></abp-validation-summary>
+              formControlName="merchantLogo" 
+            /> 
           </div>
         </div> 
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="passoword">
+          <label class="col-md-3 col-form-label" for="password">
            password
           </label>
           <div class="col-md-9">
             <input
               type="password"
               class="form-control"
-              name="passoword"
-              id="passoword"
+              name="password"
+              id="password"
               required
               maxlength="32"
               validateEqual="confirmPassword"
               reverse="true"
               pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
-              [(ngModel)]="user.passoword"
-              #passowordModel="ngModel"
-              #passoword
-            />
-            <abp-validation-summary
-              [control]="passowordModel"
-              [controlEl]="passoword"
-              [customValidationErrors]="passwordValidationErrors"
-            ></abp-validation-summary>
+              formControlName="password" 
+            /> 
           </div>
         </div>
         <div class="form-group row required">
@@ -206,15 +156,8 @@
               validateEqual="confirmPassword"
               reverse="true"
               pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
-              [(ngModel)]="user.confirmPassword"
-              #confirmPasswordModel="ngModel"
-              #confirmPassword
-            />
-            <abp-validation-summary
-              [control]="confirmPasswordModel"
-              [controlEl]="confirmPassword"
-              [customValidationErrors]="passwordValidationErrors"
-            ></abp-validation-summary>
+              formControlName="confirmPassword" 
+            /> 
           </div>
         </div>
      
@@ -225,13 +168,13 @@
               <input
                       type="checkbox"
                       class="custom-control-input"
-                      id="isActives"
-                      name="isActive" 
-                      [value]="true"
+                      id="salesSignUp"
+                      name="salesSignUp" 
+                      formControlName="salesSignUp" 
               />
               <label
                       class="custom-control-label"
-                      for="isActives"
+                      for="salesSignUp"
               >
               [Sales sign up]
               </label>
@@ -242,13 +185,13 @@
               <input
                       type="checkbox"
                       class="custom-control-input"
-                      id="isActivem"
-                      name="isActivem" 
-                      [value]="true"
+                      id="merchantSignUp"
+                      name="merchantSignUp" 
+                      formControlName="merchantSignUp" 
               />
               <label
                       class="custom-control-label"
-                      for="isActivem"
+                      for="merchantSignUp"
               >
               [Merchant sign up]
               </label>
@@ -262,13 +205,13 @@
             <input
                     type="checkbox"
                     class="custom-control-input"
-                    id="isActivep"
-                    name="isActivep" 
-                    [value]="true"
+                    id="merchantPortalSignUp"
+                    name="merchantPortalSignUp" 
+                    formControlName="merchantPortalSignUp" 
             />
             <label
                     class="custom-control-label"
-                    for="isActivep"
+                    for="merchantPortalSignUp"
             >
             [Merchant portal sign up]
             </label>
@@ -279,13 +222,13 @@
             <input
                     type="checkbox"
                     class="custom-control-input"
-                    id="isActivesm"
-                    name="isActivesm" 
-                    [value]="true"
+                    id="sendSms"
+                    name="sendSms"  
+                    formControlName="sendSms"
             />
             <label
                     class="custom-control-label"
-                    for="isActivesm"
+                    for="sendSms"
             >
             [Send sms]
             </label>
@@ -294,9 +237,8 @@
      </div>
     
   </div>
-  <abp-modal-footer
-    [cancelDisabled]="saving"
-    [saveDisabled]="!createUserModal.form.valid || saving"
-    (onCancelClick)="bsModalRef.hide()"
-  ></abp-modal-footer>
+  <div class="text-right">
+    <button class="btn btnCancel" type="button" (click)="hide()">Cancel</button>
+    <button class="btn btnSave" type="submit" (click)="registerUser()">Save</button>
+</div>
 </form>

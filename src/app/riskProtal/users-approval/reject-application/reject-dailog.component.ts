@@ -78,7 +78,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
       if (!this.rejectionValidationForm.valid)
         return;
   
-        console.log(this.userItem)
+         
       const data = {
         clientNationalId: this.userItem.userItem.nationalId,
         riskComment: this.rejectRiskComment,

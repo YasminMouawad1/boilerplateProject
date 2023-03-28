@@ -121,10 +121,7 @@ this.dayData= [
   {id: '25', text: '25'},
   {id: '26', text: '26'},
   {id: '27', text: '27'},
-  {id: '28', text: '28'},
-  {id: '29', text: '29'},
-  {id: '30', text: '30'},
-  {id: '31', text: '31'},
+  {id: '28', text: '28'}, 
 ]
 this.daysData= [
   {id: '1', text: '1'},
@@ -154,10 +151,7 @@ this.daysData= [
   {id: '25', text: '25'},
   {id: '26', text: '26'},
   {id: '27', text: '27'},
-  {id: '28', text: '28'},
-  {id: '29', text: '29'},
-  {id: '30', text: '30'},
-  {id: '31', text: '31'},
+  {id: '28', text: '28'}, 
 ]
 this.merchantOptions = {
   multiple: false,

@@ -5,12 +5,9 @@
            <button class="btn-dwonload"><i class="fa-regular fa-file-pdf"></i> download PDF</button>
            <div style="clear: both;"></div>
  
-           <div class="row">
-                <div class="col-md-8">
-                   <div class="darkDiv">
-                     <!-- <h2>Hi,Jennifer! </h2>
-                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,<br>
-                        deleniti. Quidem voluptates obcaecati.</p> -->
+           <div class="row d-flex align-items-center">
+                <div class="col-md-10">
+                   <div class="darkDiv"> 
                      
                      <textarea rows="3"></textarea>
                      <button>Edit note</button>
@@ -18,63 +15,33 @@
                    </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="lightDiv pink">
-                     <h2><i class="fa-solid fa-plus"></i>11</h2>
-                     <p>reviews</p> 
-                    </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="lightDiv green">
-                     <h2><i class="fa-solid fa-plus"></i>78</h2>
-                     <p>patients</p> 
-                  </div>
-                </div>
+                   <button class="btnActions bgPink"><i class="fa-solid fa-xmark"></i> Reject</button>
+                   <button class="btnActions bgYellow"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                   <button class="btnActions bgGreen"><i class="fa-solid fa-check"></i> Accept</button>
+                </div> 
            </div>
- <br>
-           <div class="analytics">
-               <h3>Patient analytics</h3>
-               <div class="row">
-                   <div class="col-md-4">
-                       <div class="inner">
-                           <div class="icon">
-                             <i class="fa-solid fa-xmark"></i>
-                           </div>
-                           <div class="text">
-                              <h4>Reject Application</h4>
-                              <p>16 persons</p>
-                           </div>
-                       </div>
-                   </div>
  
-                   <div class="col-md-4">
-                     <div class="inner" style="background-color: #f8b25a;">
-                       <div class="icon" style=" background-color: #e3a454;">
-                         <i class="fa-solid fa-pen-to-square"></i>
-                       </div>
-                       <div class="text">
-                          <h4>Edit Application</h4>
-                          <p>125 for the month</p>
-                       </div>
-                   </div>
-                   </div>
- 
-                   <div class="col-md-4">
-                       <div class="inner" style="background-color: #5eb2a8;">
-                           <div class="icon" style="background-color: #5ba39a;">
-                             <i class="fa-solid fa-check"></i>
-                           </div>
-                           <div class="text">
-                              <h4>Accept Application </h4>
-                              <p>200+</p>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
  <br>
             <div class="detiles">
                <div class="row">
-                   <div class="col-md-8">
+                   <div class="col-md-6">
+
+                    <div class="content">
+                        <div class="header border-0"> 
+                             <h4> SalesRepMessage </h4>
+                         </div>
+                         <div class="row d-flex input-group fiedInput">
+                          <form  class="d-flex align-items-end w-100" (ngSubmit)="saveMessage(SalMessage)">
+                            <div class="col-md-12">
+                              <textarea [(ngModel)]="salesRepMessage" class="form-control" placeholder="Enter message" name="SalesRepMessage" #SalMessage></textarea>
+                            </div> 
+                
+                            </form>
+                          </div>
+                    </div>
+
+                    <br>
+
                       <div class="content">
                          <div class="header">
                            <div class="icon">
@@ -84,29 +51,74 @@
                          </div>
                          <table class="table table-nowrap mb-0">
                            <tr>
-                             <td>10000</td>
+                             <td>{{ userItem.income }}</td>
                              <th>الدخل</th>
                            </tr>
                            <tr>
-                             <td>N/A</td>
+                             <td>{{ userItem.activeCreditFacility }}</td>
                              <th>التسهيلات الائتمانية النشطة</th>
                            </tr>
-                           <tr>
-                             <td>file://192.168.20.4/iscorePFDs/27012262102343.pdf</td>
-                             <th> الملف الاساسي</th>
+                           <tr> 
+                             <td>  {{userItem.iscoreFile}} </td>
+                             <th> I-score</th>
                            </tr>
                            <tr>
-                             <td><button class="calc">حساب الحد الادني للرصيد</button></td>
-                             <th> الحد الائتماني</th>
+                              <td>{{ userItem.otherDocuments }}</td>
+                              <th>مستندات أخري</th>
                            </tr>
                            <tr>
-                             <td>N/A</td>
+                              <td>{{ userItem.creditLimit }}</td>
+                              <th>الحد الائتماني</th>
+                           </tr> 
+                           <tr>
+                            <td> 
+                              <input  [readonly]="isEditRiskLimit?'':true" (keypress)="numberOnly($event)" maxlength="6"  [(ngModel)]="riskApprovedLimit" value="{{ riskApprovedLimit }}" type="text" class="mb-3 form-control" id="formrow-inputCity">   &nbsp;
+                              <button (click)="editRiskLimit()" 
+                                   [disabled]="isEditRiskLimit && (riskApprovedLimit<5000 || riskApprovedLimit > 100000) " 
+                                   type="button" [ngClass]="isEditRiskLimit ? 'btn btn-success' : 'btn btn-primary'">
+                                   <i [ngClass]="isEditRiskLimit ? 'bx bx-save font-size-16 align-middle me-2' : 'bx bx-edit font-size-16 align-middle me-2'">
+                                   </i>
+                                    {{isEditRiskLimit?'Save Risk Limt':'Edit Risk Limet'}} </button>
+                              &nbsp; 
+                              <button *ngIf="isEditRiskLimit" (click)="editRiskLimit(true)" type="button" class='btn btn-danger'>
+                                <i class='bx bx-x font-size-16 align-middle me-2'></i>  Cancel </button>
+                            </td>
+                            
+                            <th scope="row"> حد المخاطرة </th>
+                          </tr>
+                           <tr>
+                             <td>{{ userItem.assumedIncome }}</td>
                              <th> الدخل المفترض</th>
                            </tr>
+                           <tr>
+                            <td>{{ userItem.instantLimit }}</td>
+                            <th> منح من قبل النظام	</th>
+                          </tr>
                        </table>
                       </div>
+
+                      <br>
+
+                      <div class="content">
+                        <div class="header">
+                          <div class="icon"> 
+                            <i class="fa-regular fa-clipboard"></i>
+                          </div>
+                          <h4>Score Card </h4>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table table-nowrap mb-0">
+                          <tbody>
+                            <tr *ngFor="let item of userItem.rejectionList">
+                           
+                              <td><span class="alert alert-danger">{{item.name}}</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      </div>
                    </div>
-                   <div class="col-md-4">
+                   <div class="col-md-6">
                      <div class="content">
                        <div class="header">
                          <div class="icon">
@@ -116,73 +128,166 @@
                      </div>
                      <table class="table table-nowrap mb-0">
                          <tr>
-                           <td>الجيزة</td>
+                           <td>{{ userItem.governorate }}</td>
                            <th>المحافظة</th>
                          </tr>
                          <tr>
-                           <td>المنيرة</td>
+                           <td>{{ userItem.area }}</td>
                            <th>المنطقة</th>
                          </tr>
                          <tr>
-                           <td>ش منصور زيادة - ش الجامع - المنيرة </td>
+                            <td>{{ userItem.city }}</td>
+                            <th>المدينة</th>
+                         </tr>
+                         <tr>
+                           <td> {{ userItem.homeAddress }} </td>
                            <th>عنوان المنزل</th>
                          </tr>
                          <tr>
-                           <td>ش منصور زيادة - ش الجامع - المنيرة </td>
+                           <td> {{ userItem.niHomeAddress }} </td>
                            <th>العنوان المحدث</th>
                          </tr>
                      </table>
                      </div>
+
+                     <br> 
+                     <div class="content">
+                      <div class="header">
+                        <div class="icon"> 
+                          <i class="fa-solid fa-user"></i>
+                        </div>
+                        <h4>المعلومات الشخصية </h4>
+                    </div>
+                    <table class="table table-nowrap mb-0">
+                      <tr>
+                        <td>{{ userItem.mobileNumber }}</td>
+                        <th>رقم الهاتف</th>
+                      </tr>
+                      <tr>
+                        <td>{{ userItem.name }}</td>
+                        <th> الاسم كامل</th>
+                      </tr>
+                      <tr> 
+                        <td>  {{ userItem.nationalId }} </td>
+                        <th> الرقم القومي</th>
+                      </tr>
+                      <tr>
+                         <td>{{ userItem.expiryDate }}</td>
+                         <th> تاريخ انتهاء الهوية</th>
+                      </tr>
+                      <tr>
+                         <td>{{ userItem.gender }}</td>
+                         <th> النوع</th>
+                      </tr> 
+                      <tr>
+                        <td>{{ userItem.age }}</td>
+                        <th>  العمر</th>
+                      </tr>
+                      <tr>
+                       <td>{{ userItem.maritalStatus }}</td>
+                       <th> الحالة الاجتماعية</th>
+                     </tr>
+                     <tr>
+                      <td>{{ userItem.email }}</td>
+                      <th> البريد الالكتروني	</th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.companyName }}</td>
+                      <th>  اسم الشركة</th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.education }}</td>
+                      <th>  التعليم</th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.occupation}}</td>
+                      <th>المهنة</th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.jobTitle }}</td>
+                      <th>المسمي الوظيفي</th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.emergencyContactPerson }}</td>
+                      <th>شخص للتواصل في حالات الطوارئ</th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.emergencyContactPhoneNumber }}</td>
+                      <th>رقم للتواصل في حالات الطوارئ</th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.car }}</td>
+                      <th>السيارة </th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.carModelYear }}</td>
+                      <th>موديل السيارة  </th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.clubId }}</td>
+                      <th>النادي </th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.clubCategory }}</td>
+                      <th>فئة النادي </th>
+                    </tr>
+                    <tr>
+                      <td>{{ userItem.status }}</td>
+                      <th>الحالة </th>
+                    </tr>
+                  </table>
+                    </div>
                   </div>
                </div>
             </div>
+
        </div>
        <div class="col-md-3">
            <div class="rightContent">
-                <img src="assets/img/user.png" alt="">
-                 <h2>نهاد منسى ابراهيم داود</h2>
-                 <h6> 27012262102343</h6>
-                 <h6>01069544103</h6>
-                 <h6> <span>Rejected</span> - ربه منزل </h6>
+                <img [src]="pesonalImages" alt="">
+                 <h2> {{ userItem.name }} </h2>
+                 <h6> {{ userItem.nationalId }}</h6>
+                 <h6>{{ userItem.mobileNumber }}</h6>
+                 <h6> <span>{{ userItem.status }}</span> -   {{ userItem.jobTitle }} </h6>
  
              <br>
- 
-                 <h4>Verified by </h4>
-                 <div class="eventBox">
-                     <img src="assets/img/Verified_3.png" class="w-25">
-                     <img src="assets/img/Verified_2.png" class="w-25">
-                     <img src="assets/img/Verified_1.png" class="w-25">
-                     <img src="assets/img/Verified_4.png" class="w-25">
+               <div *ngIf="verify_list.length > 0">
+                <h4>Verified by </h4>
+                <div class="eventBox">
+                  <div class="row">
+                    <div class="col-md-3" *ngFor="let verBy of verify_list">
+                      <img [src]="verBy" class="w-75 imgVerified">
+                    </div>
+                  </div> 
                  </div>
- 
+               </div>
+                  
              <br>
-                
-               <h4>pending by </h4>
-                 <div class="eventBox">
-                     <img src="assets/img/Verified_3.png" class="w-25">
-                     <img src="assets/img/Verified_2.png" class="w-25"> 
-                     <img src="assets/img/Verified_4.png" class="w-25">
-                 </div>
-                 <!-- <div class="eventBox">
-                   <div class="icon" style="background-color: #f28d8a;">
-                     <i class="fa-solid fa-calendar-days"></i>
-                   </div>
-                   <div class="text">
-                       <h5>Medical conference</h5>
-                       <h6>May 5 - 11:00 AM</h6> 
-                   </div>
-                </div> -->
- 
+
+             <div *ngIf="reject_list.length > 0">
+              <h4>Rejected by </h4>
+              <div class="eventBox">
+                <div class="row">
+                  <div class="col-md-3" *ngFor="let rejBy of reject_list">
+                    <img [src]="rejBy" class="w-75 imgVerified"  title="click me">
+                  </div>
+                </div> 
+               </div>
+             </div>
+
              <br>
-              
-                <h4>New notifications</h4>
-                <div class="notification">
-                    <button>
-                       <i class="fa fa-close"></i>
-                    </button>
-                    <p>this Patient will come to <br>
-                     you in 5 minutes.</p>
-                </div>
+
+             <div *ngIf="bending_list.length > 0">
+              <h4>Pending by </h4>
+              <div class="eventBox">
+                <div class="row">
+                  <div class="col-md-3" *ngFor="let bend of bending_list">
+                    <img [src]="bend" class="w-75 imgVerified"  title="click me">
+                  </div>
+                </div> 
+               </div>
+             </div>
+
            </div>
        </div>
    </div>

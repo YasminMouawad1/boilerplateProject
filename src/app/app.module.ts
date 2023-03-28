@@ -71,7 +71,7 @@ import { TranslateLoader } from '@ngx-translate/core/public_api';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgSelect2Module } from 'ng-select2';
- 
+import { ClipboardModule } from '@angular/cdk/clipboard';
  
 
 
@@ -148,6 +148,7 @@ CommonModule,
         NgxPaginationModule,
         MatSlideToggleModule,
         NgSelect2Module,
+        ClipboardModule,
          FormsModule,
         TranslateModule.forRoot({
             // loader:{

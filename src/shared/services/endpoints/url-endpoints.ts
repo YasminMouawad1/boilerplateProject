@@ -13,14 +13,15 @@ export abstract class UrlEndpoints {
   static readonly GET_RejectedProfilePlusList: string = 'api/services/app/Risk/RejectedProfilePlus';
   static readonly GET_RejectedProfilePlusSystemErrors: string = 'api/services/app/Risk/RejectedProfilePlusSystemErrors';
   static readonly GET_ReviwList: string = 'api/services/app/Risk/ReviewProfilePlus';
-  
+  static readonly GET_UserById: string = 'api/services/app/Risk/GetUserDocumentsByClientId?MobileNumber=';
+  static readonly GET_RejectResponse: string = 'api/services/app/Risk/RejectResponse';
   static readonly POST_AllUsersList: string = 'api/Risk/ClietSearch?str=';
   
  
   static readonly Get_ClientActivation: string = 'api/Risk/ClientActivation?mobileNumber=';
   static readonly GET_RiskRejectedOnlyList: string = 'api/Risk/ProfilePlus?isRejectedOnly='+true;
 
-  static readonly GET_UserById: string = 'api/Risk/GetUserDocumentsByClientId?MobileNumber=';
+  //static readonly GET_UserById: string = 'api/Risk/GetUserDocumentsByClientId?MobileNumber=';
   static readonly POST_ApproveUser: string = 'api/Risk/Approve';
   static readonly POST_SoftApproveUser: string = 'api/Risk/SoftApprove';
   static readonly Edit_RiskLimit: string = 'api/Risk/EditRiskLimt';
@@ -42,7 +43,7 @@ static readonly post_AddClientDocument: string = 'api/Risk/AddClientDocument';
  
 
   // Reject Response
-  static readonly GET_RejectResponse: string = 'api/Risk/RejectResponse';
+  //static readonly GET_RejectResponse: string = 'api/Risk/RejectResponse';
 
 
 //System Configuration

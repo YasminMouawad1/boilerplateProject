@@ -24,9 +24,9 @@
  
           <div class="card">
             <div class="card-body">
-               <p *ngIf="showTable" class="alert alert-warning text-center">Data is Empty</p>
+               <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
 
-                <div *ngIf="!showTable" class="table-responsive">
+                <div *ngIf="showTable" class="table-responsive">
                     <table class="table table-striped table-bordered" [busy]="isTableLoading">
                         <thead class="bg-light">
                         <tr>
@@ -52,7 +52,7 @@
                     </table>
                 </div>
 
-                <div *ngIf="!showTable" class="row justify-content-space-between align-items-center">
+                <div *ngIf="showTable" class="row justify-content-space-between align-items-center">
                    <div class="col-md-1">
                      <select [(ngModel)]="numberRows" class="form-select">
                        <option [ngValue]="5">5</option>

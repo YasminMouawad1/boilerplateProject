@@ -14,6 +14,10 @@ export class UsersService {
     return this._API.doGet(UrlEndpoints.GET_WaitingRiskApprovalList+'?isRejectedOnly='+isRejectedOnly+'&page='+page+'&pageSize='+pageSize)
   }
 
+  getMerchantSettlementPlan(){
+    return this._API.doGet(UrlEndpoints.GET_MerchantSettlementPlan);
+  }
+
   getLimitReviw(page :number = 1 ,pageSize :number = 10){
     return this._API.doGet(UrlEndpoints.GET_ReviwList+'?page='+page+'&pageSize='+pageSize)
   }

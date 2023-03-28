@@ -9,7 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import * as jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas'; 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { acceptDialogComponent } from '../accept-application/accept-dailog.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { rejectDialogComponent } from './../reject-application/reject-dailog.component';
+import { editDialogComponent } from '../edit-application/edit-dailog.component';
 
 @Component({
   templateUrl: './user-item.component.html',
@@ -93,7 +98,9 @@ export class UserItemComponent implements OnInit {
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,
               private _spinnerService:SpinnerService,private _userService:UsersService,
               //private toastr: ToastrService,
-              private renderer: Renderer2
+              private renderer: Renderer2,
+              private modalService: NgbModal,
+              private _modalService: BsModalService
               ) {
     //super(injector);
   }
@@ -129,8 +136,8 @@ export class UserItemComponent implements OnInit {
       debugger
       this._spinnerService.requestEnded();
   
-      this.userItem = res.data;
-  console.log(res.data)
+      this.userItem = res.result.data;
+  
   
       for (let i in this.userItem) {
         if (this.userItem[i] === null || this.userItem[i] === '') {
@@ -168,7 +175,7 @@ export class UserItemComponent implements OnInit {
         this.oldRiskApprovedLimit = this.riskApprovedLimit;
       }
   
-      this.allContractImages = res.data.userDocuments;
+      this.allContractImages = res.result.data.userDocuments;
   
   
       this.allContractImages.forEach(element => {
@@ -177,51 +184,191 @@ export class UserItemComponent implements OnInit {
         element.content =this._sanitizer.bypassSecurityTrustUrl(element.content)
       });
   
-      if(res.data.userDocuments.length > 0){
-        this.imgSrc = res.data.userDocuments[0].content;
+      if(res.result.data.userDocuments.length > 0){
+        this.imgSrc = res.result.data.userDocuments[0].content;
   
-        if(res.data.userDocuments[0].activatorDetails != null){
-          this.locationName = res.data.userDocuments[0].activatorDetails.activatorLocation.name;
-          this.mobileNum = res.data.userDocuments[0].activatorDetails.mobileNumber;
-          this.name = res.data.userDocuments[0].activatorDetails.nameEn;
+        if(res.result.data.userDocuments[0].activatorDetails != null){
+          this.locationName = res.result.data.userDocuments[0].activatorDetails.activatorLocation.name;
+          this.mobileNum = res.result.data.userDocuments[0].activatorDetails.mobileNumber;
+          this.name = res.result.data.userDocuments[0].activatorDetails.nameEn;
         }
       }
   
+      debugger
       this.pesonalImages = this._sanitizer.bypassSecurityTrustResourceUrl(
-        'data:image/jpg;base64,' + res.data.personalImage
-      );
+        'data:image/jpg;base64,' + res.result.data.personalImage
+      ); 
   
-      if(res.data.personalImage == 'N/A')
+      if(res.result.data.personalImage == 'N/A')
           this.PersonalIMG = false;
   
   
       this._userService.getmaritalStatus().subscribe(res=>{
-          this.maritalStatuses = res.data;
+          this.maritalStatuses = res.result.data;
       })
   
     });
   }
 
-  
-    accceptRiskApplication() {
 
-    this.submitAcceptform = true;
-    const data = {
-      clientNationalId: this.userItem.nationalId,
-      riskComment: this.approveRiskComment,
-      riskApprovedLimit: this.riskApprovedLimit,
-      clientStatus: true,
-      salesRepMessage:this.salesRepMessage
-
-    }; 
-
-      this._userService.postUser(data).subscribe((res) => {
-      if (res.status) { 
-       // this.toastr.success("",  'Accept Risk successfully');
-        this.router.navigate(['/layout/users-approval'])
-      }
-    });
+  AceeptRisk(): void {
+   
+    this.showAcceptDialog(this.userItem,this.riskApprovedLimit,this.approveRiskComment,this.salesRepMessage,this.submitAcceptform);
   }
+
+  private showAcceptDialog(userItem:any,riskapproved:any,riskComment:any,salesRepMessage:any,submitAccept:any): void {
+    let acceptDialog: BsModalRef;
+
+    const initialState = {
+      userItem: userItem,
+      riskApprovedLimit:riskapproved,
+      approveRiskComment:riskComment,
+      salesRepMessage:salesRepMessage,
+      submitAcceptform:submitAccept
+    };
+
+    debugger
+
+      acceptDialog = this._modalService.show(acceptDialogComponent,{class: 'modal-lg', initialState });
+
+
+       
+  }
+  
+  RejectRisk(): void {
+   
+    this.showRejectDialog(this.userItem,this.submitrejectform,this.rejectionValidationForm,
+      this.rejectionReason,this.rejectRiskComment,this.salesRepMessage,this.rejectResponse);
+  }
+
+  private showRejectDialog(userItem:any,submitrejectform:any,rejectionValidationForm:any,
+    rejectionReason:any,rejectRiskComment:any,salesRepMessage:any,rejectResponse:any): void {
+    let rejectDialog: BsModalRef;
+
+    const initialState = {
+      userItem: userItem,
+      submitrejectform:submitrejectform,
+      rejectionValidationForm:rejectionValidationForm,
+      rejectionReason:rejectionReason,
+      rejectRiskComment:rejectRiskComment,
+      salesRepMessage:salesRepMessage,
+      rejectResponse:rejectResponse
+    };
+
+    debugger
+
+    rejectDialog = this._modalService.show(rejectDialogComponent,{class: 'modal-lg', initialState });
+
+
+       
+  }
+
+
+  EditRisk(): void {
+   
+    this.showEditDialog(this.userItem,this.oldRiskApprovedLimit,this.isEditRiskLimit,
+      this.riskApprovedLimit,this.editPersonalData, 
+      this.expireDate, this.dateOfBirth,this.gender,
+      this.maritalStatuses,this.maritalStatus);
+  }
+
+  private showEditDialog(userItem:any,oldRiskApprovedLimit:any,isEditRiskLimit:any,
+    riskApprovedLimit:any,editPersonalData:any,expireDate:any,
+    dateOfBirth:any,gender:any,maritalStatuses:any,maritalStatus:any): void {
+    let editDialog: BsModalRef;
+
+    const initialState = {
+      userItem: userItem,
+      oldRiskApprovedLimit:oldRiskApprovedLimit,
+      isEditRiskLimit:isEditRiskLimit,
+      riskApprovedLimit:riskApprovedLimit,
+      editPersonalData:editPersonalData,
+      expireDate:expireDate,
+      dateOfBirth:dateOfBirth,
+      gender:gender,
+      maritalStatuses:maritalStatuses,
+      maritalStatus:maritalStatus
+    };
+
+    debugger
+
+    editDialog = this._modalService.show(editDialogComponent,{class: 'modal-lg', initialState });
+
+
+       
+  }
+  
+
+  isriskApprovedLimitChanged: boolean = false
+    editRiskLimit(cancel: boolean = false) {
+  
+      this.isEditRiskLimit = !this.isEditRiskLimit;
+  
+      if (cancel) {
+        this.riskApprovedLimit = this.oldRiskApprovedLimit;
+        this.isriskApprovedLimitChanged = false;
+        this.isEditRiskLimit = false;
+        return;
+      }
+      if (this.isriskApprovedLimitChanged) {
+        // const swalWithBootstrapButtons = Swal.mixin({
+        //   customClass: {
+        //     confirmButton: 'btn btn-success',
+        //     cancelButton: 'btn btn-danger ms-2'
+        //   },
+        //   buttonsStyling: false
+        // });
+  
+        // swalWithBootstrapButtons
+        //   .fire({
+        //     title: this._TranslateService.instant('USERITEMINFO.areYouSure'),
+        //     text: this._TranslateService.instant('USERITEMINFO.msgEidtrisk') + this.oldRiskApprovedLimit + this._TranslateService.instant('USERITEMINFO.to') + this.riskApprovedLimit,
+        //     icon: 'warning',
+        //     confirmButtonText: this._TranslateService.instant('USERITEMINFO.yesChange'),
+        //     cancelButtonText: this._TranslateService.instant('USERITEMINFO.noRollback'),
+        //     showCancelButton: true
+        //   })
+        //   .then(result => {
+  
+  
+        //     if (result.value) {
+        //       this.oldRiskApprovedLimit = this.riskApprovedLimit;
+        //       this.isriskApprovedLimitChanged = false;
+        //       swalWithBootstrapButtons.fire({
+        //         title: this._TranslateService.instant('USERITEMINFO.yesTitle'),
+        //         text: this._TranslateService.instant('USERITEMINFO.yesMsg'),
+        //         confirmButtonText: this._TranslateService.instant('USERITEMINFO.ok'),
+        //         icon: 'success'
+        //       });
+        //       this._spinnerService.requestStarted();
+        //       this.ngOnInit();
+        //     } else if (
+        //       /* Read more about handling dismissals below */
+        //       result.dismiss === Swal.DismissReason.cancel
+        //     ) {
+        //       swalWithBootstrapButtons.fire({
+        //         title: this._TranslateService.instant('USERITEMINFO.rollTitle'),
+        //         text: this._TranslateService.instant('USERITEMINFO.rollMsg'),
+        //         confirmButtonText: this._TranslateService.instant('USERITEMINFO.ok'),
+        //         icon: 'error'
+        //       });
+        //       this.isEditRiskLimit = !this.isEditRiskLimit;
+        //       this.riskApprovedLimit = this.oldRiskApprovedLimit;
+        //     }
+        //     else {
+        //       this.isriskApprovedLimitChanged = false;
+        //       this.riskApprovedLimit = this.oldRiskApprovedLimit;
+        //     }
+        //   });
+      }
+      this.isriskApprovedLimitChanged = true;
+    }
+
+  openModal(content: any) {
+
+    this.modalService.open(content);
+  }
+
   cpoyPDFLink() {
     this.IscoreFileLink = 'file://192.168.10.2/iscorePFDs/' + this.userItem.nationalId + '.pdf';
     //navigator.clipboard.writeText(this.IscoreFileLink);
@@ -238,93 +385,9 @@ export class UserItemComponent implements OnInit {
   get form() {
     return this.rejectionValidationForm.controls;
   }
-  async rejectRiskApplication() {
-    this.submitrejectform = true;
-    if (!this.rejectionValidationForm.valid)
-      return;
+ 
 
-    const data = {
-      clientNationalId: this.userItem.nationalId,
-      riskComment: this.rejectRiskComment,
-      rejectionReason: this.rejectionReason,
-      clientStatus: false,
-
-      salesRepMessage:this.salesRepMessage
-
-    };
-    
-    await this._userService.postUser(data).subscribe((res) => {
-      if (res.status) {
-        //this.toastr.error("",  'Reject Risk successfully');
-        //this.router.navigate(['/app/users-approval'])
-      }
-    });
-  }
-
-  isriskApprovedLimitChanged: boolean = false
-  editRiskLimit(cancel: boolean = false) {
-
-    this.isEditRiskLimit = !this.isEditRiskLimit;
-
-    // if (cancel) {
-    //   this.riskApprovedLimit = this.oldRiskApprovedLimit;
-    //   this.isriskApprovedLimitChanged = false;
-    //   this.isEditRiskLimit = false;
-    //   return;
-    // }
-    // if (this.isriskApprovedLimitChanged) {
-    //   const swalWithBootstrapButtons = Swal.mixin({
-    //     customClass: {
-    //       confirmButton: 'btn btn-success',
-    //       cancelButton: 'btn btn-danger ms-2'
-    //     },
-    //     buttonsStyling: false
-    //   });
-
-    //   swalWithBootstrapButtons
-    //     .fire({
-    //       title: this._TranslateService.instant('USERITEMINFO.areYouSure'),
-    //       text: this._TranslateService.instant('USERITEMINFO.msgEidtrisk') + this.oldRiskApprovedLimit + this._TranslateService.instant('USERITEMINFO.to') + this.riskApprovedLimit,
-    //       icon: 'warning',
-    //       confirmButtonText: this._TranslateService.instant('USERITEMINFO.yesChange'),
-    //       cancelButtonText: this._TranslateService.instant('USERITEMINFO.noRollback'),
-    //       showCancelButton: true
-    //     })
-    //     .then(result => {
-
-
-    //       if (result.value) {
-    //         this.oldRiskApprovedLimit = this.riskApprovedLimit;
-    //         this.isriskApprovedLimitChanged = false;
-    //         swalWithBootstrapButtons.fire({
-    //           title: this._TranslateService.instant('USERITEMINFO.yesTitle'),
-    //           text: this._TranslateService.instant('USERITEMINFO.yesMsg'),
-    //           confirmButtonText: this._TranslateService.instant('USERITEMINFO.ok'),
-    //           icon: 'success'
-    //         });
-    //         this._spinnerService.requestStarted();
-    //         this.ngOnInit();
-    //       } else if (
-    //         /* Read more about handling dismissals below */
-    //         result.dismiss === Swal.DismissReason.cancel
-    //       ) {
-    //         swalWithBootstrapButtons.fire({
-    //           title: this._TranslateService.instant('USERITEMINFO.rollTitle'),
-    //           text: this._TranslateService.instant('USERITEMINFO.rollMsg'),
-    //           confirmButtonText: this._TranslateService.instant('USERITEMINFO.ok'),
-    //           icon: 'error'
-    //         });
-    //         this.isEditRiskLimit = !this.isEditRiskLimit;
-    //         this.riskApprovedLimit = this.oldRiskApprovedLimit;
-    //       }
-    //       else {
-    //         this.isriskApprovedLimitChanged = false;
-    //         this.riskApprovedLimit = this.oldRiskApprovedLimit;
-    //       }
-    //     });
-    // }
-    // this.isriskApprovedLimitChanged = true;
-  }
+ 
    
   numberOnly(event: any): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;

@@ -14,9 +14,11 @@ export abstract class UrlEndpoints {
   static readonly GET_RejectedProfilePlusSystemErrors: string = 'api/services/app/Risk/RejectedProfilePlusSystemErrors';
   static readonly GET_ReviwList: string = 'api/services/app/Risk/ReviewProfilePlus';
   static readonly GET_UserById: string = 'api/services/app/Risk/GetUserDocumentsByClientId?MobileNumber=';
-  static readonly GET_RejectResponse: string = 'api/services/app/Risk/RejectResponse';
+  static readonly GET_RejectResponse: string = 'api/services/app/Risk/GetRejectResponse';
   static readonly POST_AllUsersList: string = 'api/Risk/ClietSearch?str=';
   
+  static readonly GET_MerchantSettlementPlan: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlan';
+
  
   static readonly Get_ClientActivation: string = 'api/Risk/ClientActivation?mobileNumber=';
   static readonly GET_RiskRejectedOnlyList: string = 'api/Risk/ProfilePlus?isRejectedOnly='+true;
@@ -28,7 +30,7 @@ export abstract class UrlEndpoints {
   static readonly POST_EditRiskClientNote: string = 'api/Risk/EditRiskClientNote?userMobile=';
 
 static readonly post_UpdateNationalIdData: string = 'api/Risk/EditNationalIDData';
-static readonly GET_maritalStatus: string = 'api/lookUps/MaritalStatuses';
+static readonly GET_maritalStatus: string = 'api/services/app/LookUp/GetMaritalStatus';
 
 
 static readonly GET_callNationalId: string = 'api/Risk/CallNationalId?nid=';

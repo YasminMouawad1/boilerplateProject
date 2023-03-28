@@ -15,6 +15,7 @@ import {
   ApplicationsOnBoardingDtoPagedResultDto
 } from '@shared/service-proxies/service-proxies'; 
 import { SetMerchantPlanDialogComponent } from './create-merchant/set-merchant-plan-dialog.component';
+import { UsersService } from '@shared/services/endpoints/users.service';
 
  
 class PagedUsersRequestDto extends PagedRequestDto {
@@ -42,6 +43,7 @@ MerchantPlans:any;
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
+    private _usersService:UsersService,
     private _BulkOnBoardingServiceProxy: BulkOnBoardingServiceProxy,
 
     private _modalService: BsModalService
@@ -50,9 +52,28 @@ MerchantPlans:any;
 
   }
 
+   
+
   ngOnInit() {
+    this.getSettlementPlan();
+ }
+
+ getSettlementPlan( ){
+   
+this.isTableLoading = true;
+   this._usersService.getMerchantSettlementPlan().subscribe(res => {
     
-  }
+     if(res.result.data != null)
+       {
+        this.MerchantPlans = res.result.data ; 
+        this.showTable = true;
+      }else
+         this.showTable = false;
+ 
+   })
+ 
+   this.isTableLoading = false;
+ }
 
   createUser(): void {
     this.showCreateOrEditUserDialog();

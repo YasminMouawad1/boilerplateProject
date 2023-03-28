@@ -72,7 +72,9 @@ import { TranslateLoader } from '@ngx-translate/core/public_api';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgSelect2Module } from 'ng-select2';
 import { ClipboardModule } from '@angular/cdk/clipboard';
- 
+ import{acceptDialogComponent} from './riskProtal/users-approval/accept-application/accept-dailog.component';
+ import{rejectDialogComponent} from './riskProtal/users-approval/reject-application/reject-dailog.component';
+ import{editDialogComponent} from './riskProtal/users-approval/edit-application/edit-dailog.component';
 
 
 @NgModule({
@@ -96,6 +98,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
         EmailContentComponent,
         CreateEmailContentDialogComponent,
         CreateEmailContentComponent,
+        rejectDialogComponent,
+        editDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,
@@ -110,6 +114,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
         TenantsComponent,
         CreateTenantDialogComponent,
         EditTenantDialogComponent,
+        acceptDialogComponent,
         // roles
         RolesComponent,
         CreateRoleDialogComponent,

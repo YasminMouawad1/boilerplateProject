@@ -1,4 +1,7 @@
 <div [@routerTransition]>
+
+
+
     <div class="container-fluid">
      <div class="row">
        <div class="col-md-9 leftContent">
@@ -15,9 +18,14 @@
                    </div>
                 </div>
                 <div class="col-md-2">
-                   <button class="btnActions bgPink"><i class="fa-solid fa-xmark"></i> Reject</button>
-                   <button class="btnActions bgYellow"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-                   <button class="btnActions bgGreen"><i class="fa-solid fa-check"></i> Accept</button>
+                   <button class="btnActions bgPink" [disabled]="isEditRiskLimit" (click)="RejectRisk()">
+                    <i class="fa-solid fa-xmark"></i> Reject</button>
+
+                   <button class="btnActions bgYellow" [disabled]="isEditRiskLimit" (click)="EditRisk()">
+                    <i class="fa-solid fa-pen-to-square"></i> Edit</button>
+
+                   <button class="btnActions bgGreen" [disabled]="isEditRiskLimit" (click)="AceeptRisk()">
+                    <i class="fa-solid fa-check"></i> Accept</button>
                 </div> 
            </div>
  
@@ -244,11 +252,12 @@
        </div>
        <div class="col-md-3">
            <div class="rightContent">
-                <img [src]="pesonalImages" alt="">
+                <img [src]="pesonalImages" alt="" style="height: 135px;" class="img-thumbnail rounded-circle">
                  <h2> {{ userItem.name }} </h2>
                  <h6> {{ userItem.nationalId }}</h6>
                  <h6>{{ userItem.mobileNumber }}</h6>
-                 <h6> <span>{{ userItem.status }}</span> -   {{ userItem.jobTitle }} </h6>
+                 <h6> <span>{{ userItem.status }}</span> </h6>
+                  <h6>   {{ userItem.jobTitle }} </h6>
  
              <br>
                <div *ngIf="verify_list.length > 0">

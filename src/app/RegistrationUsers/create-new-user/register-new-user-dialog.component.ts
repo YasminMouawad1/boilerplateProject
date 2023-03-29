@@ -198,7 +198,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
 
     registerUser(){
        const data = {
-        NationalId:this.registerationForm.controls['NationalId'].value,
+        //NationalId:this.registerationForm.controls['NationalId'].value,
         arName: this.registerationForm.controls['arName'].value,
         enName: this.registerationForm.controls['enName'].value,
         mobileNumber: this.registerationForm.controls['mobileNumber'].value,  
@@ -214,6 +214,11 @@ import { UsersService } from '@shared/services/endpoints/users.service';
        }
 
        console.log(data)
+       this._usersServices.registerationUser(data).subscribe((res) => {
+
+        abp.message.success("Create user successfully");
+       this.bsModalRef.hide();
+       })
     }
   }
   

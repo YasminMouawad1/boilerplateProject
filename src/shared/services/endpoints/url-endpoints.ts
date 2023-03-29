@@ -18,8 +18,9 @@ export abstract class UrlEndpoints {
   static readonly POST_AllUsersList: string = 'api/Risk/ClietSearch?str=';
   static readonly GET_ALLActivationPoint: string = 'api/services/app/PortalRegistrationUsers/GetActivarionPoints';
   
-
+  static readonly POST_RegisterationUser: string = 'api/services/app/PortalRegistrationUsers/RegistrationPortalUsers';
   ///
+
   static readonly GET_MerchantSettlementPlan: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlan';
   static readonly GET_MerchantSettlementPlanByID: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlanById?merchanstsCode=';
 

@@ -46,6 +46,11 @@ export class UsersService {
     return this._API.doPost(UrlEndpoints.POST_softApproveCorporate, corpApprove)
   }
 
+  registerationUser(body: any){
+    return this._API.doPost(UrlEndpoints.POST_RegisterationUser, body)
+    
+  }
+
   getUserById(id: string){
 return this._API.doGet(UrlEndpoints.GET_UserById + id)
   }

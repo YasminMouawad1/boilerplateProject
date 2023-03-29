@@ -12,7 +12,8 @@ import {
     UserServiceProxy, 
     RoleDto,
     LookUpServiceProxy,
-    PortalRegistrationUsersServiceProxy
+    PortalRegistrationUsersServiceProxy,
+    PortalUsersRegistrationDto
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -82,10 +83,10 @@ import { UsersService } from '@shared/services/endpoints/users.service';
         branchPhoneNumber: new FormControl('', Validators.required), 
         merchantCode: new FormControl('', Validators.required), 
         merchantLogo: new FormControl('', Validators.required), 
-        sendSms: new FormControl('', Validators.required), 
-        merchantPortalSignUp: new FormControl('', Validators.required), 
-        merchantSignUp: new FormControl('', Validators.required), 
-        salesSignUp: new FormControl('', Validators.required), 
+        sendSms: new FormControl(false, Validators.required), 
+        merchantPortalSignUp: new FormControl(false, Validators.required), 
+        merchantSignUp: new FormControl(false, Validators.required), 
+        salesSignUp: new FormControl(false, Validators.required), 
       
       });
 
@@ -196,9 +197,19 @@ import { UsersService } from '@shared/services/endpoints/users.service';
       });
     }
 
+    handleUpload(event) { 
+      const file = event.target.files[0]; 
+      const reader = new FileReader(); 
+      reader.readAsDataURL(file);
+       reader.onload = () => { 
+        console.log(reader.result);
+       };
+   }
+
     registerUser(){
 
       debugger
+      
        const data = {
         NationalId:this.registerationForm.controls['NationalId'].value,
         arName: this.registerationForm.controls['arName'].value,
@@ -215,13 +226,25 @@ import { UsersService } from '@shared/services/endpoints/users.service';
         salesSignUp: this.registerationForm.controls['salesSignUp'].value
        
        }
+ 
+      //  this._usersServices.registerationUser(data).subscribe((res) => {
 
-       console.log(data)
-       this._usersServices.registerationUser(data).subscribe((res) => {
+      //   abp.message.success("Create user successfully");
+      //  this.bsModalRef.hide();
+      //  })
 
-        abp.message.success("Create user successfully");
-       this.bsModalRef.hide();
-       })
+      var object = new  PortalUsersRegistrationDto()
+object.init(data) 
+ 
+
+      this._PortalRegistrationUsersServiceProxy.registrationPortalUsers(object).subscribe((res : boolean)=> {
+        
+          abp.message.success("Create user successfully");
+          this.bsModalRef.hide();
+      } );
+    
     }
+
+    
   }
   

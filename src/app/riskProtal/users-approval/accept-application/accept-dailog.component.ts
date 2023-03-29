@@ -69,7 +69,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
 
 
     accceptRiskApplication() {
-
+     
         this.submitAcceptform = true;
         const data = {
           clientNationalId: this.userItem.userItem.nationalId,

@@ -438,7 +438,7 @@ export class UserItemComponent implements OnInit {
     let pdf = new jspdf.jsPDF('p', 'mm', 'a4');
     var position = 0;
     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-    pdf.save('new-file.pdf');
+    pdf.save('user-item.pdf');
     });
 
   }
@@ -485,9 +485,9 @@ export class UserItemComponent implements OnInit {
 
 
    this._userService.EditRiskClientNote(data).subscribe((res) => {
-     if(res.status)
+     if(res)
      {
-      //this.toastr.success("",  'Edit Note successfully');
+      abp.message.success("Edit Note successfully");
      }
    });
   }

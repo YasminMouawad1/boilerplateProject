@@ -2,18 +2,27 @@
 
 
 
-    <div class="container-fluid">
-     <div class="row">
+    <div class="container-fluid" id="contentToConvert">
+     <div class="row" >
        <div class="col-md-9 leftContent">
-           <button class="btn-dwonload"><i class="fa-regular fa-file-pdf"></i> download PDF</button>
+           <button class="btn-dwonload" (click)="convetToPDF()"><i class="fa-regular fa-file-pdf"></i> download PDF</button>
            <div style="clear: both;"></div>
  
+           
            <div class="row d-flex align-items-center">
                 <div class="col-md-10">
                    <div class="darkDiv"> 
-                     
-                     <textarea rows="3"></textarea>
-                     <button>Edit note</button>
+                    <div class="row d-flex input-group fiedInput w-100">
+                      <form  class=" w-100" (ngSubmit)="editRiskClientNote()">
+                        <div class="col-md-12">
+                          <textarea class="form-control" placeholder="" name="NoteMsg" [(ngModel)]= "NoteMsg"></textarea>
+                        </div>
+                        <div>
+                          <button class="btn btn-primary mx-1" for="inputGroupSelect01" type="submit"> Edit Note </button>
+                        </div>
+        
+                        </form>
+                      </div> 
                      <div style="clear: both;"></div>
                    </div>
                 </div>

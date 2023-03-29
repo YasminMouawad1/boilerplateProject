@@ -197,12 +197,15 @@ import { UsersService } from '@shared/services/endpoints/users.service';
     }
 
     registerUser(){
+
+      debugger
        const data = {
-        //NationalId:this.registerationForm.controls['NationalId'].value,
+        NationalId:this.registerationForm.controls['NationalId'].value,
         arName: this.registerationForm.controls['arName'].value,
         enName: this.registerationForm.controls['enName'].value,
         mobileNumber: this.registerationForm.controls['mobileNumber'].value,  
-        activationPointId: 0,
+        activationPointId: this.registerationForm.controls['activationPointId'].value, 
+        password:'',
         branchPhoneNumber: this.registerationForm.controls['branchPhoneNumber'].value,
         merchantCode: this.registerationForm.controls['merchantCode'].value,
         merchantLogo: this.registerationForm.controls['merchantLogo'].value,

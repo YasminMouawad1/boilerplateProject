@@ -25,32 +25,20 @@
                                  <th>Name</th>
                                  <th>Email</th>
                                  <th>Phone Number</th>
-                                 <th>National ID</th>
-                                 <th>Age</th>
+                                 <th>National ID</th> 
                                  <th>address</th>
-                                 <th>Submited Date</th>
-                                 <th>{{ "Actions" | localize }}</th>
+                                 <th>Submited Date</th> 
                              </tr>
                              </thead>
                              <tbody>
-                             <tr *ngFor="let user of users | paginate: { itemsPerPage: numberRows, currentPage: currentPage }
-                                        ">
+                             <tr *ngFor="let user of users | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                                (click)="viewDetails(user.mobileNumber)" class="btnView">
                                  <td>{{ user.name }}</td>
                                  <td>{{ user.email }}</td>
                                  <td>{{ user.mobileNumber }}</td>
-                                 <td>{{user.nationalId}}</td>
-                                 <td>{{user.age}}</td>
+                                 <td>{{user.nationalId}}</td> 
                                  <td>{{user.homeAddress}}</td>
-                                 <td>{{user.submitDate }}</td>
-                                 <td>
-                                     <button
-                                             type="button"
-                                             class="btn btn-sm mx-2 colorPink" 
-                                             (click)="viewDetails(user.mobileNumber)"
-                                     >
-                                     <i class="fa-sharp fa-solid fa-eye"></i> 
-                                     </button>   
-                                 </td>
+                                 <td>{{user.submitDate }}</td> 
                              </tr>
                              </tbody>
                          </table>

@@ -85,3 +85,8 @@
 .btnEdit i{
     margin-right: 6px;
 }
+ 
+.select2-container--default::ng-deep .select2-selection--multiple::ng-deep .select2-selection__choice::ng-deep{
+    background-color: #f28d8a;
+}
+ 

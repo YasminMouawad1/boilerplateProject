@@ -16,7 +16,10 @@ export abstract class UrlEndpoints {
   static readonly GET_UserById: string = 'api/services/app/Risk/GetUserDocumentsByClientId?MobileNumber=';
   static readonly GET_RejectResponse: string = 'api/services/app/Risk/GetRejectResponse';
   static readonly POST_AllUsersList: string = 'api/Risk/ClietSearch?str=';
+  static readonly GET_ALLActivationPoint: string = 'api/services/app/PortalRegistrationUsers/GetActivarionPoints';
   
+
+  ///
   static readonly GET_MerchantSettlementPlan: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlan';
   static readonly GET_MerchantSettlementPlanByID: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlanById?merchanstsCode=';
 

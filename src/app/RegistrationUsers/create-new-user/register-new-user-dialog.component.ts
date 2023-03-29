@@ -11,12 +11,14 @@ import {
   import {
     UserServiceProxy, 
     RoleDto,
-    LookUpServiceProxy
+    LookUpServiceProxy,
+    PortalRegistrationUsersServiceProxy
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Select2OptionData } from 'ng-select2';
 import { Options } from 'html2canvas';
+import { UsersService } from '@shared/services/endpoints/users.service';
   
   @Component({
     templateUrl: './register-new-user-dialog.component.html',
@@ -62,6 +64,8 @@ import { Options } from 'html2canvas';
       public bsModalRef: BsModalRef,
       public formBuilder: FormBuilder,
       private _LookUpServiceProxy:LookUpServiceProxy,
+      private _usersServices:UsersService,
+      private _PortalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy
     ) {
       super(injector);
     }
@@ -175,20 +179,21 @@ import { Options } from 'html2canvas';
 
     getAllActivationPoint(){
       
-      // this._LookUpServiceProxy.getAllMerchants().subscribe((result: any) =>{
+      this._usersServices.getActivationPoints().subscribe((result: any) =>{
+  debugger
+        console.log(result)
+        this.activationPointIdData = result.result.data.map(item=>{
   
-      //   this.merchantData = result.map(item=>{
+          return <Select2OptionData>
+          {
+                id : item.id,
+                text: item.name
+           };
   
-      //     return <Select2OptionData>
-      //     {
-      //           id : item.merchantCode,
-      //           text: item.englishName
-      //      };
-  
-      //   });
+        });
   
   
-      // });
+      });
     }
 
     registerUser(){

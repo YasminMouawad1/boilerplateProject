@@ -18,6 +18,10 @@ export class UsersService {
     return this._API.doGet(UrlEndpoints.GET_MerchantSettlementPlan);
   }
 
+  getActivationPoints(){
+    return this._API.doGet(UrlEndpoints.GET_ALLActivationPoint);
+  }
+
   getLimitReviw(page :number = 1 ,pageSize :number = 10){
     return this._API.doGet(UrlEndpoints.GET_ReviwList+'?page='+page+'&pageSize='+pageSize)
   }

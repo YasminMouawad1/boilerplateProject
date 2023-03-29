@@ -95,13 +95,13 @@
         </div> 
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="activationPointId">
-            [activation point id]
+            [activation point]
           </label>
           <div class="col-md-9">
              
             <ng-select2 [data]="activationPointIdData" 
-                           name="merchantCode"
-                           [placeholder]="'Select merchant'"
+                           name="activationPointId"
+                           [placeholder]="'Select activation point'"
                             [options]="activationPointIdOptions"
                             formControlName="activationPointId" 
                             class="select2-container w-100"
@@ -111,7 +111,7 @@
         </div> 
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="merchantCode">
-            [Merchant code]
+            [Merchant]
           </label>
           <div class="col-md-9"> 
             <ng-select2 [data]="merchantData" 

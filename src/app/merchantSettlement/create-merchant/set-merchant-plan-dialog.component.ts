@@ -24,6 +24,7 @@ import {
   SetMerchantSettlementPlanDto,
   PortalRegistrationUsersServiceProxy
 } from '@shared/service-proxies/service-proxies';
+import { Router } from '@angular/router';
 
 
 class PagedApplicationsOnBoardingDto extends PagedRequestDto {
@@ -67,6 +68,7 @@ export class SetMerchantPlanDialogComponent extends PagedListingComponentBase<Se
     private _rolesService: RoleServiceProxy,
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy, 
     private _LookUpServiceProxy:LookUpServiceProxy,
+    private router: Router,
     private _portalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy) {
     super(injector);
     
@@ -228,12 +230,16 @@ debugger
     }
   var object = new SetMerchantSettlementPlanDto ()
 
-  console.log(object)
+  
   object.init(body) 
+  console.log(object)
+
   this._portalRegistrationUsersServiceProxy.setMerchantSettlementPlan(object).subscribe( (res ) => {
         
   
-       abp.message.success("Create Settlement plan successfully")
+       abp.message.success("Create Settlement plan successfully");
+       this.bsModalRef.hide();
+       this.router.navigate(['/app/merchant-settlement']);
   })
   
 

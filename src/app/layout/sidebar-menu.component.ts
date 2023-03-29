@@ -58,6 +58,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 new MenuItem('Roles', '/app/roles', 'fas fa-theater-masks','Pages.Roles'), 
                 new MenuItem('Tenants', '/app/tenants', 'fas fa-building', 'Pages.Tenants'), 
                 new MenuItem('Users', '/app/users', 'fas fa-users', 'Pages.Users'), 
+                new MenuItem('registration-users', '/app/registration-users','fas fa-users'),
             ]),  
 
               
@@ -75,7 +76,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
         ]), 
     
-            new MenuItem('registration-users', '/app/registration-users','fas fa-users'),
+            
 
             new MenuItem(this.l('[Risk Portal]'), '', 'fas fa-toolbox', '', [
                 new MenuItem('Users Approval', '/app/users-approval', 'fas fa-user-check'),

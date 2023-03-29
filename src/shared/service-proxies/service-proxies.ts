@@ -1847,6 +1847,63 @@ export class PortalRegistrationUsersServiceProxy {
         }
         return _observableOf(null as any);
     }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    addActivarionPoints(body: AddActivationPointDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/AddActivarionPoints";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddActivarionPoints(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddActivarionPoints(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processAddActivarionPoints(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
 }
 
 @Injectable()
@@ -4450,6 +4507,61 @@ export class UserServiceProxy {
     }
 }
 
+export class AddActivationPointDto implements IAddActivationPointDto {
+    id: number;
+    name: string | undefined;
+    longitude: string | undefined;
+    latitude: string | undefined;
+
+    constructor(data?: IAddActivationPointDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.longitude = _data["longitude"];
+            this.latitude = _data["latitude"];
+        }
+    }
+
+    static fromJS(data: any): AddActivationPointDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new AddActivationPointDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["longitude"] = this.longitude;
+        data["latitude"] = this.latitude;
+        return data;
+    }
+
+    clone(): AddActivationPointDto {
+        const json = this.toJSON();
+        let result = new AddActivationPointDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IAddActivationPointDto {
+    id: number;
+    name: string | undefined;
+    longitude: string | undefined;
+    latitude: string | undefined;
+}
+
 export class AddClientDocumentDto implements IAddClientDocumentDto {
     doc: string | undefined;
     docType: number;
@@ -6321,6 +6433,7 @@ export class PortalUsersRegistrationDto implements IPortalUsersRegistrationDto {
     enName: string | undefined;
     mobileNumber: string | undefined;
     password: string | undefined;
+    nationalId: string | undefined;
     activationPointId: number;
     branchPhoneNumber: string | undefined;
     merchantCode: string | undefined;
@@ -6345,6 +6458,7 @@ export class PortalUsersRegistrationDto implements IPortalUsersRegistrationDto {
             this.enName = _data["enName"];
             this.mobileNumber = _data["mobileNumber"];
             this.password = _data["password"];
+            this.nationalId = _data["nationalId"];
             this.activationPointId = _data["activationPointId"];
             this.branchPhoneNumber = _data["branchPhoneNumber"];
             this.merchantCode = _data["merchantCode"];
@@ -6369,6 +6483,7 @@ export class PortalUsersRegistrationDto implements IPortalUsersRegistrationDto {
         data["enName"] = this.enName;
         data["mobileNumber"] = this.mobileNumber;
         data["password"] = this.password;
+        data["nationalId"] = this.nationalId;
         data["activationPointId"] = this.activationPointId;
         data["branchPhoneNumber"] = this.branchPhoneNumber;
         data["merchantCode"] = this.merchantCode;
@@ -6393,6 +6508,7 @@ export interface IPortalUsersRegistrationDto {
     enName: string | undefined;
     mobileNumber: string | undefined;
     password: string | undefined;
+    nationalId: string | undefined;
     activationPointId: number;
     branchPhoneNumber: string | undefined;
     merchantCode: string | undefined;

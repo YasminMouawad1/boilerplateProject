@@ -38,6 +38,7 @@ import { MessageTemplateComponent } from './messageTemplate/messageTemplate.comp
 import {EmailTypeComponent} from './emailType/emailType.component';
 import { EmailContentComponent } from './emailContent/email-content.component';
 import { CreateEmailContentComponent } from './emailContent/email-content/create-email-content.component';
+import { ActivationPointComponent } from './activationPoint/activation-point.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { CreateEmailContentComponent } from './emailContent/email-content/create
                     { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
                     { path: 'bulk-on-boarding', component: BulkComponent, canActivate: [AppRouteGuard] },
                     { path: 'merchant-settlement', component: MerchantComponent, canActivate: [AppRouteGuard] },
+                    { path: 'activation-point', component: ActivationPointComponent, canActivate: [AppRouteGuard] },
                     { path: 'message-type', component: MessageTypeComponent, canActivate: [AppRouteGuard] },
                     { path: 'message-template', component: MessageTemplateComponent, canActivate: [AppRouteGuard] },
                     { path: 'email-type', component: EmailTypeComponent, canActivate: [AppRouteGuard] },

@@ -77,7 +77,7 @@ this.isTableLoading = true;
    this.isTableLoading = false;
  }
 
- e 
+ 
 
   createPlan() {
     this.showCreatePlanDialog();

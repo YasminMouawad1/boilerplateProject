@@ -31,6 +31,8 @@ import {CreateEmailTypeDialogComponent} from '@app/emailType/create-email-type/c
 import {EmailContentComponent} from '@app/emailContent/email-content.component';
 import {CreateEmailContentDialogComponent} from '@app/emailContent/create-email-conent/create-email-content-dailog.component';
 import {CreateEmailContentComponent} from '@app/emailContent/email-content/create-email-content.component';
+import {ActivationPointComponent} from '@app/activationPoint/activation-point.component';
+import {AddActivationPointDialogComponent} from '@app/activationPoint/add-activation-point/add-activation-point-dailog.component';
 //-------------risk ----------
 import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval.component';
 import {UsersListHardRejectedComponent} from '@app/riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
@@ -101,6 +103,8 @@ import {editMerchantPlanDialogComponent} from './merchantSettlement/edit-merchan
         rejectDialogComponent,
         editDialogComponent,
         editMerchantPlanDialogComponent,
+        ActivationPointComponent,
+        AddActivationPointDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

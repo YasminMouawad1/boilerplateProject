@@ -236,10 +236,12 @@ debugger
 
   this._portalRegistrationUsersServiceProxy.setMerchantSettlementPlan(object).subscribe( (res ) => {
         
-  
-       abp.message.success("Create Settlement plan successfully");
-       this.bsModalRef.hide();
-       this.router.navigate(['/app/merchant-settlement']);
+      if(res){
+        abp.message.success("Create Settlement plan successfully");
+        this.bsModalRef.hide();
+        this.router.navigate(['/app/merchant-settlement']);
+      }
+       
   })
   
 

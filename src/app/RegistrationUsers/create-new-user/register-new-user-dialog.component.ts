@@ -58,6 +58,9 @@ import { UsersService } from '@shared/services/endpoints/users.service';
  
  public activationPointIdData: Array<Select2OptionData>;
  public activationPointIdOptions: Options;
+
+ document:any = '';
+
     constructor(
       injector: Injector,
       public _userService: UserServiceProxy,
@@ -182,7 +185,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
       
       this._usersServices.getActivationPoints().subscribe((result: any) =>{
   debugger
-        console.log(result)
+  
         this.activationPointIdData = result.result.data.map(item=>{
   
           return <Select2OptionData>
@@ -197,14 +200,25 @@ import { UsersService } from '@shared/services/endpoints/users.service';
       });
     }
 
-    handleUpload(event) { 
-      const file = event.target.files[0]; 
-      const reader = new FileReader(); 
-      reader.readAsDataURL(file);
-       reader.onload = () => { 
-        console.log(reader.result);
-       };
-   }
+
+
+   selectFile(event:any){
+      
+    if(!event.target.files[0] || event.target.files[0].length == 0) {
+      return;
+    }
+      
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    
+    reader.onload = (_event) => { 
+      this.document = reader.result; 
+    }
+
+    console.log(this.document)
+ 
+  }
+
 
     registerUser(){
 
@@ -219,7 +233,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
         password:'',
         branchPhoneNumber: this.registerationForm.controls['branchPhoneNumber'].value,
         merchantCode: this.registerationForm.controls['merchantCode'].value,
-        merchantLogo: this.registerationForm.controls['merchantLogo'].value,
+        merchantLogo: this.document,
         sendSms: this.registerationForm.controls['sendSms'].value,
         merchantPortalSignUp: this.registerationForm.controls['merchantPortalSignUp'].value, 
         merchantSignUp: this.registerationForm.controls['merchantSignUp'].value,
@@ -227,11 +241,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
        
        }
  
-      //  this._usersServices.registerationUser(data).subscribe((res) => {
-
-      //   abp.message.success("Create user successfully");
-      //  this.bsModalRef.hide();
-      //  })
+      
 
       var object = new  PortalUsersRegistrationDto()
 object.init(data) 
@@ -239,8 +249,10 @@ object.init(data)
 
       this._PortalRegistrationUsersServiceProxy.registrationPortalUsers(object).subscribe((res : boolean)=> {
         
-          abp.message.success("Create user successfully");
-          this.bsModalRef.hide();
+          if(res){
+            abp.message.success("Create user successfully");
+            this.bsModalRef.hide();
+          }
       } );
     
     }

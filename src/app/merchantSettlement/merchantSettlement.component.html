@@ -31,8 +31,7 @@
                         <thead class="bg-light">
                         <tr>
                             <th>Merchant Code</th>
-                            <th>Merchant Name</th>
-                            <th>Settlement plan ID</th>
+                            <th>Merchant Name</th> 
                             <th>Settlement plan Name</th>
                             <th>Days</th> 
                             <th>{{ "Actions" | localize }}</th>
@@ -42,8 +41,7 @@
                         <tr *ngFor="let plan of MerchantPlans | paginate: { itemsPerPage: numberRows, currentPage: currentPage }
                                    ">
                             <td>{{plan.merchantCode}}</td>
-                            <td>{{plan.merchantName}}</td>
-                            <td>{{plan.settlementPlanId}}</td>
+                            <td>{{plan.merchantName}}</td> 
                             <td>{{plan.settlementPlanName}}</td>
                             <td>{{plan.days}}</td> 
                             <td> <button (click)="editPlan(plan.merchantCode)" class="btnEdit"><i class="fas fa-edit"></i>edit</button> </td>

@@ -10,6 +10,24 @@
   ></abp-modal-header>
   <div class="modal-body">
     
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="NationalId">
+        [National ID]
+      </label>
+       
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="NationalId"
+          id="NationalId"
+          required
+          maxlength="32"
+          formControlName="NationalId" 
+        /> 
+      </div>
+    </div>
+
        <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="enName">
             [English name]
@@ -80,15 +98,15 @@
             [activation point id]
           </label>
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="activationPointId"
-              id="activationPointId"
-              required
-              maxlength="32" 
-              formControlName="activationPointId" 
-            /> 
+             
+            <ng-select2 [data]="activationPointIdData" 
+                           name="merchantCode"
+                           [placeholder]="'Select merchant'"
+                            [options]="activationPointIdOptions"
+                            formControlName="activationPointId" 
+                            class="select2-container w-100"
+                        >
+            </ng-select2> 
           </div>
         </div> 
         <div class="form-group row required">
@@ -122,44 +140,7 @@
             /> 
           </div>
         </div> 
-        <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="password">
-           password
-          </label>
-          <div class="col-md-9">
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              id="password"
-              required
-              maxlength="32"
-              validateEqual="confirmPassword"
-              reverse="true"
-              pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
-              formControlName="password" 
-            /> 
-          </div>
-        </div>
-        <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="confirmPassword">
-           confirm password
-          </label>
-          <div class="col-md-9">
-            <input
-              type="password"
-              class="form-control"
-              name="confirmPassword"
-              id="confirmPassword"
-              required
-              maxlength="32"
-              validateEqual="confirmPassword"
-              reverse="true"
-              pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
-              formControlName="confirmPassword" 
-            /> 
-          </div>
-        </div>
+         
      
 
        <div class="form-group row flex-nowrap">

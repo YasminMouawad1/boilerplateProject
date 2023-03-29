@@ -73,3 +73,15 @@
 .btnCancel{
     background-color: #dfdfde;
 }
+
+.btnEdit{
+    border: none;
+    color: #fff;
+    background-color: #f28d8a;
+    border-radius: 3px;
+    padding: 3px 15px;
+}
+
+.btnEdit i{
+    margin-right: 6px;
+}

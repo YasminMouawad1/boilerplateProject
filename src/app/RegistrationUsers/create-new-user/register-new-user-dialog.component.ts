@@ -53,6 +53,8 @@ import { Options } from 'html2canvas';
  public merchantData: Array<Select2OptionData>;
  public merchantOptions: Options;
  
+ public activationPointIdData: Array<Select2OptionData>;
+ public activationPointIdOptions: Options;
     constructor(
       injector: Injector,
       public _userService: UserServiceProxy,
@@ -68,6 +70,7 @@ import { Options } from 'html2canvas';
       
 
       this.registerationForm = new FormGroup({
+        NationalId:new FormControl('', Validators.required), 
         arName: new FormControl('', Validators.required), 
         enName: new FormControl('', Validators.required), 
         mobileNumber: new FormControl('', Validators.required), 
@@ -93,7 +96,7 @@ import { Options } from 'html2canvas';
 
 
       this.getAllMerchants();
-
+      this.getAllActivationPoint();
       // this.merchantOptions = {
       //   multiple: false,
       //   closeOnSelect: true,
@@ -168,17 +171,32 @@ import { Options } from 'html2canvas';
   
   
       });
+    }
+
+    getAllActivationPoint(){
+      
+      // this._LookUpServiceProxy.getAllMerchants().subscribe((result: any) =>{
+  
+      //   this.merchantData = result.map(item=>{
+  
+      //     return <Select2OptionData>
+      //     {
+      //           id : item.merchantCode,
+      //           text: item.englishName
+      //      };
+  
+      //   });
   
   
-  
+      // });
     }
 
     registerUser(){
        const data = {
+        NationalId:this.registerationForm.controls['NationalId'].value,
         arName: this.registerationForm.controls['arName'].value,
         enName: this.registerationForm.controls['enName'].value,
-        mobileNumber: this.registerationForm.controls['mobileNumber'].value, 
-        password: this.registerationForm.controls['password'].value,
+        mobileNumber: this.registerationForm.controls['mobileNumber'].value,  
         activationPointId: 0,
         branchPhoneNumber: this.registerationForm.controls['branchPhoneNumber'].value,
         merchantCode: this.registerationForm.controls['merchantCode'].value,

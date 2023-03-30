@@ -22,7 +22,7 @@
 
 .bgPink{
     background-color: #f28d8a;
-    color: #fff;
+    color: #f28d8a;
 }
 
 .colorPink{
@@ -43,14 +43,13 @@
     background-color: #f28d8a;
   }
 
- 
   .title{
     margin-top: 2rem;
     font-weight: bold;
     font-size: 36px;
   }
 
-
+ 
   .my-pagination ::ng-deep .ngx-pagination{
     margin-top: 1.5rem;
 } 
@@ -59,4 +58,11 @@
     background: #556ee6;
     border-radius: 50%;
     cursor: pointer;
+}
+.btnView{
+    cursor: pointer;
+}
+
+.btnView:hover{
+    background-color: #e0b7b6; 
 }

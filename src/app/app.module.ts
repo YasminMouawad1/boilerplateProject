@@ -82,6 +82,9 @@ import {editMerchantPlanDialogComponent} from './merchantSettlement/edit-merchan
 import { rejectSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/reject-application/reject-dailog.component';
 import { editSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/edit-application/edit-dailog.component';
 import { acceptSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/accept-application/accept-dailog.component';
+import { acceptSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/accept-application/accept-dailog.component';
+import { editSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/edit-application/edit-dailog.component';
+import { rejectSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/reject-application/reject-dailog.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -111,6 +114,9 @@ import { acceptSoftRejectDialogComponent } from './riskProtal/users-rejected/use
         rejectSoftRejectDialogComponent,
         editSoftRejectDialogComponent,
         acceptSoftRejectDialogComponent,
+        acceptSystemRejectDialogComponent,
+        editSystemRejectDialogComponent,
+        rejectSystemRejectDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

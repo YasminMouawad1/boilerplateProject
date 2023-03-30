@@ -58,7 +58,6 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 new MenuItem('Roles', '/app/roles', 'fas fa-theater-masks','Pages.Roles'), 
                 new MenuItem('Tenants', '/app/tenants', 'fas fa-building', 'Pages.Tenants'), 
                 new MenuItem('Users', '/app/users', 'fas fa-users', 'Pages.Users'), 
-                new MenuItem('registration-users', '/app/registration-users','fas fa-users'),
             ]),  
 
               
@@ -67,9 +66,11 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                     new MenuItem('BulkOnBoarding', '/app/bulk-on-boarding', 'fas fa-id-card'), 
                     new MenuItem('Merchants Due Transactions','/app/due-transactions','fas fa-money-bill-wave'), 
                     new MenuItem('Activation Point','/app/activation-point','fa-solid fa-location-dot'), 
+                    new MenuItem('registration-users', '/app/registration-users','fas fa-users'),
+
 
             ]), 
-            new MenuItem(this.l('[System Configuration]'), '', 'fas fa-layer-group', '', [ 
+            new MenuItem(this.l('[System Configuration]'), '', 'fas fa-gears', '', [ 
                 new MenuItem('Message Type','/app/message-type','fas fa-envelope'),
                 new MenuItem('Message Template','/app/message-template','fas fa-envelope-open-text'),
                 new MenuItem('Email Type','/app/email-type','fas fa-envelope'),
@@ -95,11 +96,12 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                 //     new MenuItem('configuration professions', '/app/system-configuration-professions', 'fas fa-dot-circle')
                 // ]),
                 
-                new MenuItem(this.l('bulk-on-boaring'), '/app/bulk-onborading', 'fas fa-id-card', '', [ 
+                new MenuItem(this.l('bulk-on-boaring'), '', 'fas fa-id-card', '', [ 
+                    new MenuItem('Bulk on borading', '/app/bulk-onborading', 'fas fa-id-card'),
                     new MenuItem('Coporates', '/app/coporates', 'fas fa-store')
                 ]),
 
-                // new MenuItem('Customers', '/app/customers', 'fas fa-users'), 
+                new MenuItem('Customers', '/app/customers', 'fas fa-users'), 
 
             ]), 
 

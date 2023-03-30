@@ -35,6 +35,9 @@ import { ActivationPointComponent } from './activationPoint/activation-point.com
 import { UserItemLimitReviewComponent } from './riskProtal/limit-review/user-item/user-item.component';
 import { BulkOnBoradingListComponent } from './riskProtal/bulk-on-borading/bulk-on-borading-list.component';
 import { bulkOnBoradingITemComponent } from './riskProtal/bulk-on-borading/bulk-on-borading-item/bulk-on-borading-item.component';
+import { CoporatesListComponent } from './riskProtal/coporates/coporates.component';
+import { CustmersComponent } from './riskProtal/customers/customers.component';
+import { CustomerItemComponent } from './riskProtal/customers/customer-item/customer-item.component';
 
 
 @NgModule({
@@ -76,6 +79,9 @@ import { bulkOnBoradingITemComponent } from './riskProtal/bulk-on-borading/bulk-
                     { path: 'user-itemLimit/:id', component: UserItemLimitReviewComponent, canActivate: [AppRouteGuard] },
                     { path: 'bulk-onborading', component: BulkOnBoradingListComponent, canActivate: [AppRouteGuard] },
                     { path: 'bulkonborading-item/:id', component: bulkOnBoradingITemComponent, canActivate: [AppRouteGuard] },
+                    { path: 'coporates', component: CoporatesListComponent, canActivate: [AppRouteGuard] },
+                    { path: 'customers', component: CustmersComponent, canActivate: [AppRouteGuard] },
+                    { path: 'customer-item/:id', component: CustomerItemComponent, canActivate: [AppRouteGuard] },
            ]
             }
         ])

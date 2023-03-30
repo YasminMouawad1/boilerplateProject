@@ -90,6 +90,9 @@ import{BulkOnBoradingListComponent} from './riskProtal/bulk-on-borading/bulk-on-
 import{bulkOnBoradingITemComponent} from './riskProtal/bulk-on-borading/bulk-on-borading-item/bulk-on-borading-item.component';
 import {acceptBulkDialogComponent} from './riskProtal/bulk-on-borading/accept-application/accept-dailog.component';
 import{rejectBulkDialogComponent} from './riskProtal/bulk-on-borading/reject-application/reject-dailog.component';
+import {CoporatesListComponent} from './riskProtal/coporates/coporates.component';
+import {CustmersComponent} from './riskProtal/customers/customers.component';
+import {CustomerItemComponent} from './riskProtal/customers/customer-item/customer-item.component'
 
 @NgModule({
     declarations: [
@@ -139,6 +142,9 @@ import{rejectBulkDialogComponent} from './riskProtal/bulk-on-borading/reject-app
         bulkOnBoradingITemComponent,
         acceptBulkDialogComponent,
         rejectBulkDialogComponent,
+        CoporatesListComponent,
+        CustmersComponent,
+        CustomerItemComponent,
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,

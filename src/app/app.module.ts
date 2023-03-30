@@ -79,6 +79,9 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
  import{editDialogComponent} from './riskProtal/users-approval/edit-application/edit-dailog.component';
 
 import {editMerchantPlanDialogComponent} from './merchantSettlement/edit-merchant/edit-merchant-dailog.component'
+import { rejectSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/reject-application/reject-dailog.component';
+import { editSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/edit-application/edit-dailog.component';
+import { acceptSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/accept-application/accept-dailog.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -105,6 +108,9 @@ import {editMerchantPlanDialogComponent} from './merchantSettlement/edit-merchan
         editMerchantPlanDialogComponent,
         ActivationPointComponent,
         AddActivationPointDialogComponent,
+        rejectSoftRejectDialogComponent,
+        editSoftRejectDialogComponent,
+        acceptSoftRejectDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

@@ -9,14 +9,8 @@ import {
   PagedListingComponentBase,
   PagedRequestDto
 } from '@shared/paged-listing-component-base';
-import {
-  RoleServiceProxy, 
-  ApplicationsOnBoardingDtoPagedResultDto,
-  BulkOnBoardingServiceProxy,
-  LookUpServiceProxy,
-  LookupCorporateDto,
-  CreateBulkOnBoardingConfigDto,
-  ApplicationOnBoardingServiceProxy,
+import { 
+  BulkOnBoardingServiceProxy, 
   ApplicationsOnBoardingDto,
   RiskServiceProxy
 } from '@shared/service-proxies/service-proxies';

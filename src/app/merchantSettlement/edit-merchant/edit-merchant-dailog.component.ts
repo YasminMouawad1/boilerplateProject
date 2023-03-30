@@ -25,6 +25,7 @@ import {
   PortalRegistrationUsersServiceProxy
 } from '@shared/service-proxies/service-proxies';
 import { UsersService } from '@shared/services/endpoints/users.service';
+import { Router } from '@angular/router';
 
 
 class PagedApplicationsOnBoardingDto extends PagedRequestDto {
@@ -73,7 +74,8 @@ export class editMerchantPlanDialogComponent implements OnInit{
     private _LookUpServiceProxy:LookUpServiceProxy,
     private _portalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy,
       public _modalOption:ModalOptions,
-      private _usersServices:UsersService) {
+      private _usersServices:UsersService,
+      private router: Router,) {
     //super(injector);
     
     
@@ -230,15 +232,19 @@ debugger
       "day": this.day,
       "days": this.days, 
     }
-//   var object = new SetMerchantSettlementPlanDto ()
+  var object = new SetMerchantSettlementPlanDto ()
 
-//   console.log(object)
-//   object.init(body) 
-//   this._portalRegistrationUsersServiceProxy.setMerchantSettlementPlan(object).subscribe( (res ) => {
+  console.log(object)
+  object.init(body) 
+  this._portalRegistrationUsersServiceProxy.setMerchantSettlementPlan(object).subscribe( (res ) => {
         
-  
-//        abp.message.success("Create Settlement plan successfully")
-//   })
+      if(res){
+        abp.message.success("Edit Settlement plan successfully");
+        this.bsModalRef.hide();
+        this.router.navigate(['/app/merchant-settlement']);
+      }
+       
+  })
   
 
   

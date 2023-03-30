@@ -10,15 +10,8 @@ import { UsersComponent } from './users/users.component';
 import { TenantsComponent } from './tenants/tenants.component';
 import { RolesComponent } from 'app/roles/roles.component';
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
-
-import { CoporatesComponent } from './riskProtal/bulk-on-boarding/coporates/coporates.component';
-import { BulkOnBoradingListComponent } from './riskProtal/bulk-on-boarding/bulk-on-borading-list/bulk-on-borading-list.component';
-import { CustomersListComponent } from './riskProtal/get-customers/customers-list/customers-list.component';
-import { LimitReviewComponent } from './riskProtal/limit-review/limit-review.component';
-import { SystemCoreConfigurationComponent } from './riskProtal/system-configuration/system-core-configuration/system-core-configuration.component';
-import { SystemConfigurationProfessionsComponent } from './riskProtal/system-configuration/system-configuration-professions/system-configuration-professions.component';
-import { SystemRejectionReasonsComponent } from './riskProtal/system-configuration/system-rejection-reasons/system-rejection-reasons.component';
-
+ 
+import { LimitReviewComponent } from './riskProtal/limit-review/limit-review.component'; 
 // risk portal
 import { UsersListApprovalComponent } from './riskProtal/users-approval/users-list-approval.component';
 import { UsersListHardRejectedComponent } from './riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
@@ -40,6 +33,8 @@ import { EmailContentComponent } from './emailContent/email-content.component';
 import { CreateEmailContentComponent } from './emailContent/email-content/create-email-content.component';
 import { ActivationPointComponent } from './activationPoint/activation-point.component';
 import { UserItemLimitReviewComponent } from './riskProtal/limit-review/user-item/user-item.component';
+import { BulkOnBoradingListComponent } from './riskProtal/bulk-on-borading/bulk-on-borading-list.component';
+import { bulkOnBoradingITemComponent } from './riskProtal/bulk-on-borading/bulk-on-borading-item/bulk-on-borading-item.component';
 
 
 @NgModule({
@@ -68,14 +63,7 @@ import { UserItemLimitReviewComponent } from './riskProtal/limit-review/user-ite
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
 
                     // risk poratl
-                    { path: 'coporates', component: CoporatesComponent, canActivate: [AppRouteGuard] },
-                    { path: 'bulkOnBaording', component: BulkOnBoradingListComponent, canActivate: [AppRouteGuard] },
-                    { path: 'customers', component: CustomersListComponent, canActivate: [AppRouteGuard] },
-                    
-                    { path: 'system-configuration', component: SystemCoreConfigurationComponent, canActivate: [AppRouteGuard] },
-                    { path: 'system-configuration-professions', component: SystemConfigurationProfessionsComponent, canActivate: [AppRouteGuard] },
-                    { path: 'system-rejection-reasons', component: SystemRejectionReasonsComponent, canActivate: [AppRouteGuard] },
-                    
+                  
                     { path: 'users-approval', component: UsersListApprovalComponent, canActivate: [AppRouteGuard] },
                     { path: 'user-item/:id', component: UserItemComponent, canActivate: [AppRouteGuard] },
                     { path: 'users-softRejected', component: UsersListRejectedComponent, canActivate: [AppRouteGuard] },
@@ -86,6 +74,8 @@ import { UserItemLimitReviewComponent } from './riskProtal/limit-review/user-ite
                     { path: 'user-itemsystemReject/:id', component: UserItemSystemRejectComponent, canActivate: [AppRouteGuard] },
                     { path: 'limit-review', component: LimitReviewComponent, canActivate: [AppRouteGuard] },
                     { path: 'user-itemLimit/:id', component: UserItemLimitReviewComponent, canActivate: [AppRouteGuard] },
+                    { path: 'bulk-onborading', component: BulkOnBoradingListComponent, canActivate: [AppRouteGuard] },
+                    { path: 'bulkonborading-item/:id', component: bulkOnBoradingITemComponent, canActivate: [AppRouteGuard] },
            ]
             }
         ])

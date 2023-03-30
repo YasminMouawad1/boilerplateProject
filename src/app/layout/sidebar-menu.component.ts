@@ -89,17 +89,17 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
                 new MenuItem('Limit Review', '/app/limit-review', 'fa-solid fa-id-card'),
 
-                new MenuItem(this.l('System Configuration'), '', 'fas fa-users-gear', '', [
-                    new MenuItem('core configuration', '/app/system-configuration', 'fas fa-users-gear'),
-                    new MenuItem('Rejection Reasons', '/app/system-rejection-reasons', 'fas fa-dot-circle'),
-                    new MenuItem('configuration professions', '/app/system-configuration-professions', 'fas fa-dot-circle')
-                ]),
-                new MenuItem(this.l('bulk-on-boaring'), '', 'fas fa-id-card', '', [
-                    new MenuItem('Boarding List', '/app/bulkOnBaording', 'fas fa-id-card'),
+                // new MenuItem(this.l('System Configuration'), '', 'fas fa-users-gear', '', [
+                //     new MenuItem('core configuration', '/app/system-configuration', 'fas fa-users-gear'),
+                //     new MenuItem('Rejection Reasons', '/app/system-rejection-reasons', 'fas fa-dot-circle'),
+                //     new MenuItem('configuration professions', '/app/system-configuration-professions', 'fas fa-dot-circle')
+                // ]),
+                
+                new MenuItem(this.l('bulk-on-boaring'), '/app/bulk-onborading', 'fas fa-id-card', '', [ 
                     new MenuItem('Coporates', '/app/coporates', 'fas fa-store')
                 ]),
 
-                new MenuItem('Customers', '/app/customers', 'fas fa-users'), 
+                // new MenuItem('Customers', '/app/customers', 'fas fa-users'), 
 
             ]), 
 

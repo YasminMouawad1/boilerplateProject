@@ -86,6 +86,11 @@ import { acceptSystemRejectDialogComponent } from './riskProtal/users-rejected/u
 import { editSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/edit-application/edit-dailog.component';
 import { rejectSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/reject-application/reject-dailog.component';
 import { rejectLimitReviewDialogComponent } from './riskProtal/limit-review/reject-application/reject-dailog.component';
+import{BulkOnBoradingListComponent} from './riskProtal/bulk-on-borading/bulk-on-borading-list.component';
+import{bulkOnBoradingITemComponent} from './riskProtal/bulk-on-borading/bulk-on-borading-item/bulk-on-borading-item.component';
+import {acceptBulkDialogComponent} from './riskProtal/bulk-on-borading/accept-application/accept-dailog.component';
+import{rejectBulkDialogComponent} from './riskProtal/bulk-on-borading/reject-application/reject-dailog.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -130,6 +135,10 @@ import { rejectLimitReviewDialogComponent } from './riskProtal/limit-review/reje
         UserItemHardRejectComponent,
         UserItemSoftRejectComponent,
         UserItemSystemRejectComponent,
+        BulkOnBoradingListComponent,
+        bulkOnBoradingITemComponent,
+        acceptBulkDialogComponent,
+        rejectBulkDialogComponent,
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,

@@ -77,7 +77,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
  import{acceptDialogComponent} from './riskProtal/users-approval/accept-application/accept-dailog.component';
  import{rejectDialogComponent} from './riskProtal/users-approval/reject-application/reject-dailog.component';
  import{editDialogComponent} from './riskProtal/users-approval/edit-application/edit-dailog.component';
-
+import {UserItemLimitReviewComponent} from './riskProtal/limit-review/user-item/user-item.component';
 import {editMerchantPlanDialogComponent} from './merchantSettlement/edit-merchant/edit-merchant-dailog.component'
 import { rejectSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/reject-application/reject-dailog.component';
 import { editSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/edit-application/edit-dailog.component';
@@ -85,6 +85,7 @@ import { acceptSoftRejectDialogComponent } from './riskProtal/users-rejected/use
 import { acceptSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/accept-application/accept-dailog.component';
 import { editSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/edit-application/edit-dailog.component';
 import { rejectSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/reject-application/reject-dailog.component';
+import { rejectLimitReviewDialogComponent } from './riskProtal/limit-review/reject-application/reject-dailog.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -117,6 +118,8 @@ import { rejectSystemRejectDialogComponent } from './riskProtal/users-rejected/u
         acceptSystemRejectDialogComponent,
         editSystemRejectDialogComponent,
         rejectSystemRejectDialogComponent,
+        UserItemLimitReviewComponent,
+        rejectLimitReviewDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

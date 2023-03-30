@@ -39,6 +39,7 @@ import {EmailTypeComponent} from './emailType/emailType.component';
 import { EmailContentComponent } from './emailContent/email-content.component';
 import { CreateEmailContentComponent } from './emailContent/email-content/create-email-content.component';
 import { ActivationPointComponent } from './activationPoint/activation-point.component';
+import { UserItemLimitReviewComponent } from './riskProtal/limit-review/user-item/user-item.component';
 
 
 @NgModule({
@@ -70,7 +71,7 @@ import { ActivationPointComponent } from './activationPoint/activation-point.com
                     { path: 'coporates', component: CoporatesComponent, canActivate: [AppRouteGuard] },
                     { path: 'bulkOnBaording', component: BulkOnBoradingListComponent, canActivate: [AppRouteGuard] },
                     { path: 'customers', component: CustomersListComponent, canActivate: [AppRouteGuard] },
-                    { path: 'limit-review', component: LimitReviewComponent, canActivate: [AppRouteGuard] },
+                    
                     { path: 'system-configuration', component: SystemCoreConfigurationComponent, canActivate: [AppRouteGuard] },
                     { path: 'system-configuration-professions', component: SystemConfigurationProfessionsComponent, canActivate: [AppRouteGuard] },
                     { path: 'system-rejection-reasons', component: SystemRejectionReasonsComponent, canActivate: [AppRouteGuard] },
@@ -83,7 +84,8 @@ import { ActivationPointComponent } from './activationPoint/activation-point.com
                     { path: 'user-itemHardreject/:id', component: UserItemHardRejectComponent, canActivate: [AppRouteGuard] },
                     { path: 'users-systemRejected', component: UsersListSystemRejectedComponent, canActivate: [AppRouteGuard] },
                     { path: 'user-itemsystemReject/:id', component: UserItemSystemRejectComponent, canActivate: [AppRouteGuard] },
-
+                    { path: 'limit-review', component: LimitReviewComponent, canActivate: [AppRouteGuard] },
+                    { path: 'user-itemLimit/:id', component: UserItemLimitReviewComponent, canActivate: [AppRouteGuard] },
            ]
             }
         ])

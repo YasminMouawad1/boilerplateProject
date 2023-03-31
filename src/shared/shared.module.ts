@@ -9,6 +9,7 @@ import { AppAuthService } from './auth/app-auth.service';
 import { AppRouteGuard } from './auth/auth-route-guard';
 import { LocalizePipe } from '@shared/pipes/localize.pipe';
 import{SearchPipe} from '@shared/pipes/search.pipe';
+import{CheckedListService} from '@shared/services/endpoints/checkedList.services';
 
 import { AbpPaginationControlsComponent } from './components/pagination/abp-pagination-controls.component';
 import { AbpValidationSummaryComponent } from './components/validation/abp-validation.summary.component';
@@ -25,7 +26,7 @@ import {UsersService} from '@shared/services/endpoints/users.service';
     imports: [
         CommonModule,
         RouterModule,
-        NgxPaginationModule, 
+        NgxPaginationModule,  
     ],
     declarations: [
         AbpPaginationControlsComponent,
@@ -33,7 +34,7 @@ import {UsersService} from '@shared/services/endpoints/users.service';
         AbpModalHeaderComponent,
         AbpModalFooterComponent,
         LocalizePipe,
-        SearchPipe,
+        SearchPipe, 
         BusyDirective,
         EqualValidator, 
     ],
@@ -43,7 +44,7 @@ import {UsersService} from '@shared/services/endpoints/users.service';
         AbpModalHeaderComponent,
         AbpModalFooterComponent,
         LocalizePipe,
-        SearchPipe,
+        SearchPipe, 
         BusyDirective,
         EqualValidator, 
     ]
@@ -58,7 +59,8 @@ export class SharedModule {
                 AppAuthService,
                 AppRouteGuard,
                 LayoutStoreService,
-                UsersService
+                UsersService,
+                CheckedListService
             ]
         };
     }

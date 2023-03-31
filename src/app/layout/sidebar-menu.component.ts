@@ -67,7 +67,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
                     new MenuItem('Merchants Due Transactions','/app/due-transactions','fas fa-money-bill-wave'), 
                     new MenuItem('Activation Point','/app/activation-point','fa-solid fa-location-dot'), 
                     new MenuItem('registration-users', '/app/registration-users','fas fa-users'),
-
+                    new MenuItem('Accept Claims','/app/accept-claims','fas fa-money-bill-wave')
 
             ]), 
             new MenuItem(this.l('[System Configuration]'), '', 'fas fa-gears', '', [ 

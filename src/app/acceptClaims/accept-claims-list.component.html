@@ -1,0 +1,128 @@
+<div [@routerTransition]>
+    <div class="bgGrey m-2">
+
+      <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1> Accept Claims</h1>
+                </div>
+                <div class="col-md-4 row">
+                    <div class="col-md-3">
+                        <p class="boldText">Merchant</p>
+                    </div>
+                    <div class="col-md-9">
+                        <ng-select2 [data]="merchantList"
+                          [placeholder]="'Select Merchant'"
+                          [options]="options"
+                             (ngModelChange)="onMrchantChanged($event)"
+                          [(ngModel)]="merchantCode"
+                          class="select2-container"
+                          >
+                        </ng-select2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content px-2">
+      <div class="container-fluid">
+    <br>
+
+       <div class="card">
+           <div class="card-body">
+               <p *ngIf="showMSG" class="alert alert-warning text-center">{{noTransactionsMSG}}</p>
+
+               <div *ngIf="!showMSG" class="table-responsive">
+                   <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                       <thead class="bg-light">
+                       <tr>
+                        <th class="transTdCheck"><input  [(ngModel)]="masterSelected" (change)="checkUncheckAll()"   
+                              type="checkbox" class="form-check-input"></th>
+                           <th>Code</th>
+                           <th>branch name</th>
+                           <th>client name</th>
+                           <th>loan Amount</th>
+                           <th>national Id</th>
+                           <th>Commission Rate</th>
+                           <th>Commission</th>
+                           <th>adminFee</th>
+                           <th>Discount Rate</th>
+                           <th>Discount</th>
+                           <th>booking Date</th>
+                           <th>merchant Due</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr
+                            *ngFor="let transaction of merchantDueTransactions | paginate: {
+                                    id: 'server',
+                                    itemsPerPage: pageSize,
+                                    currentPage: pageNumber,
+                                    totalItems: totalItems
+                                }"
+                       >
+                           <td class="transTdCheck">
+                              <input
+                              [(ngModel)]="transaction.isSelected" (change)="isAllSelected()"
+                                      type="checkbox" class="form-check-input">
+                            </td>
+                           <td>{{ transaction.debtRecordCode }}</td>
+                           <td>{{ transaction.branchAname }}</td>
+                           <td>{{ transaction.clientAname }}</td>
+                           <td>{{ transaction.loanAmount }}</td>
+                           <td>{{ transaction.nationalId }}</td>
+                           <td>{{ transaction.merchantCommissionRate }}</td>
+                           <td>{{ transaction.merchantCommission }}</td>
+                           <td>{{ transaction.adminFee }}</td>
+                           <td>{{ transaction.merchantDiscountRate }}</td>
+                           <td>{{ transaction.merchantDiscount }}</td>
+                           <td>{{ transaction.bookingDate }}</td>
+                           <td>{{ transaction.merchantDue }}</td>
+
+                       </tr>
+                       </tbody>
+                   </table>
+
+                   <div class="text-center">
+                    <button class="btn btnClaim"  (click)="createClaims()">Claim</button>
+                  </div>
+               </div>
+
+               
+           </div>
+           <div class="card-footer table-card-footer bg-light border-top">
+               <div class="row">
+                   <div class="col-sm-4 col-12 text-sm-left text-center">
+                       <button class="btn btn-secondary" (click)="refresh()">
+                           <i class="fas fa-redo-alt"></i>
+                       </button>
+                   </div>
+                   <div class="col-sm-4 col-12 text-center">
+                       <p class="mb-0 my-2">
+                           {{ "TotalRecordsCount" | localize }} : {{countRows}}
+                       </p>
+                   </div>
+                   <div class="col-sm-4 col-12">
+                       <div class="float-sm-right m-auto">
+                           <abp-pagination-controls
+                                   id="server"
+                                   (pageChange)="getDataPage($event)"
+                           >
+                           </abp-pagination-controls>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+      </div>
+
+
+    </section>
+
+
+
+    </div>
+  </div>

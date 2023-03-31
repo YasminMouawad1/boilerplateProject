@@ -38,6 +38,8 @@ import { bulkOnBoradingITemComponent } from './riskProtal/bulk-on-borading/bulk-
 import { CoporatesListComponent } from './riskProtal/coporates/coporates.component';
 import { CustmersComponent } from './riskProtal/customers/customers.component';
 import { CustomerItemComponent } from './riskProtal/customers/customer-item/customer-item.component';
+import { AcceptClaimsListComponent } from './acceptClaims/accept-claims-list.component';
+import { AcceptedClaimsComponent } from './acceptClaims/accepted-claims/accepted-claims.component';
 
 
 @NgModule({
@@ -64,6 +66,10 @@ import { CustomerItemComponent } from './riskProtal/customers/customer-item/cust
                     { path: 'registration-users', component: RegistrationUserComponent, canActivate: [AppRouteGuard] },
                     { path: 'due-transactions', component: DueTransactionComponent, canActivate: [AppRouteGuard] },
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
+                    { path: 'accept-claims', component: AcceptClaimsListComponent, canActivate: [AppRouteGuard] },
+                    { path: 'accepted-claims', component: AcceptedClaimsComponent, canActivate: [AppRouteGuard] },
+                  //  { path: 'accepted-claims', component: , canActivate: [AppRouteGuard] },
+
 
                     // risk poratl
                   

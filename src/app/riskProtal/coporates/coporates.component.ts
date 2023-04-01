@@ -63,7 +63,7 @@ export class CoporatesListComponent implements OnInit{
   
 this._SpinnerService.requestStarted();
 this.isTableLoading = true;
-   this._userService.getWaitingRiskApprovalList(false,page, pageSize).subscribe(res => {
+   this._userService.getBulkBorading(page, pageSize).subscribe(res => {
     
      if(res.result.data != null)
        {

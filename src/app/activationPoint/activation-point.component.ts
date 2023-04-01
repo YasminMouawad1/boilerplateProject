@@ -17,6 +17,7 @@ import {
 } from '@shared/service-proxies/service-proxies';  
 import { AddActivationPointDialogComponent } from '@app/activationPoint/add-activation-point/add-activation-point-dailog.component';
 import { UsersService } from '@shared/services/endpoints/users.service';
+import { EditActivationPointDialogComponent } from './edit-activation-point/edit-activation-point-dailog.component';
 
  
 class PagedUsersRequestDto extends PagedRequestDto {
@@ -62,8 +63,8 @@ export class ActivationPointComponent extends PagedListingComponentBase<UserDto>
     this.showAddActivationPointDialog();
   }
  
-  editPoint(){
-    
+  editPoint(id:any){
+     this.showEditActivationPointDialog();
   }
 
   clearFilters(): void {
@@ -131,6 +132,26 @@ export class ActivationPointComponent extends PagedListingComponentBase<UserDto>
     }  
 
     createActivationPointDialog.content.onSave.subscribe(() => {
+      this.refreshTab();
+    });
+  }
+
+  private showEditActivationPointDialog(id?: number): void {
+
+
+    const initialState = {
+      init_pointID: id, 
+    };
+
+    let editActivationPointDialog: BsModalRef;
+    if (!id) {
+      editActivationPointDialog = this._modalService.show(
+        EditActivationPointDialogComponent,
+        {class: 'modal-lg', initialState }
+      );
+    }  
+
+    editActivationPointDialog.content.onSave.subscribe(() => {
       this.refreshTab();
     });
   }

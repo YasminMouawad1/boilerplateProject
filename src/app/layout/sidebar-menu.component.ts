@@ -20,7 +20,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
     menuItemsMap: { [key: number]: MenuItem } = {};
     activatedMenuItems: MenuItem[] = [];
     routerEvents: BehaviorSubject<RouterEvent> = new BehaviorSubject(undefined);
-    homeRoute = '/app/about';
+    homeRoute = '/app/home';
 
     constructor(injector: Injector, private router: Router) {
         super(injector);
@@ -52,9 +52,9 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             //             'far fa-circle'
             //         ),
 
-            new MenuItem(this.l('[Admin]'), '', 'fas fa-screwdriver-wrench', '', [
-                new MenuItem('About', '/app/about', 'fas fa-info-circle'),
-                new MenuItem('HomePage', '/app/home', 'fas fa-home'), 
+            new MenuItem('Dashboard', '/app/home', 'fas fa-home'), 
+
+            new MenuItem(this.l('[Admin]'), '', 'fas fa-screwdriver-wrench', '', [ 
                 new MenuItem('Roles', '/app/roles', 'fas fa-theater-masks','Pages.Roles'), 
                 new MenuItem('Tenants', '/app/tenants', 'fas fa-building', 'Pages.Tenants'), 
                 new MenuItem('Users', '/app/users', 'fas fa-users', 'Pages.Users'), 
@@ -83,9 +83,9 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem(this.l('[Risk Portal]'), '', 'fas fa-toolbox', '', [
                 new MenuItem('Users Approval', '/app/users-approval', 'fas fa-user-check'),
                 new MenuItem(this.l('Rejected Requests'), '', 'fas fa-user-minus', '', [
-                    new MenuItem('Soft reject', '/app/users-softRejected', 'fas fa-user-slash'),
-                    new MenuItem('system Reject', '/app/users-systemRejected', 'fas fa-user-slash'),
-                    new MenuItem('hard Rejected', '/app/users-hardRejected', 'fas fa-user-slash')
+                    new MenuItem('Soft reject', '/app/users-soft-rejected', 'fas fa-user-slash'),
+                    new MenuItem('system Reject', '/app/users-system-rejected', 'fas fa-user-slash'),
+                    new MenuItem('hard Rejected', '/app/users-hard-rejected', 'fas fa-user-slash')
                 ]),
 
                 new MenuItem('Limit Review', '/app/limit-review', 'fa-solid fa-id-card'),

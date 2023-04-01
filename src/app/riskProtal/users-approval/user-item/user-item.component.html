@@ -27,14 +27,16 @@
                    </div>
                 </div>
                 <div class="col-md-2">
+                  <button class="btnActions bgGreen" [disabled]="isEditRiskLimit" (click)="AceeptRisk()">
+                    <i class="fa-solid fa-check"></i> Accept</button>
+                    
                    <button class="btnActions bgPink" [disabled]="isEditRiskLimit" (click)="RejectRisk()">
                     <i class="fa-solid fa-xmark"></i> Reject</button>
 
                    <button class="btnActions bgYellow" [disabled]="isEditRiskLimit" (click)="EditRisk()">
                     <i class="fa-solid fa-pen-to-square"></i> Edit</button>
 
-                   <button class="btnActions bgGreen" [disabled]="isEditRiskLimit" (click)="AceeptRisk()">
-                    <i class="fa-solid fa-check"></i> Accept</button>
+                   
                 </div> 
            </div>
  

@@ -83,7 +83,7 @@ this.isTableLoading = true;
  
 
 viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/itemsystemReject/'+ phoneNum])
+this._Router.navigate(['/app/user-items-system-reject/'+ phoneNum])
 }
 
 

@@ -95,6 +95,8 @@ import {CustmersComponent} from './riskProtal/customers/customers.component';
 import {CustomerItemComponent} from './riskProtal/customers/customer-item/customer-item.component';
 import{AcceptClaimsListComponent} from './acceptClaims/accept-claims-list.component';
 import {AcceptedClaimsComponent} from './acceptClaims/accepted-claims/accepted-claims.component';
+import{EditActivationPointDialogComponent} from './activationPoint/edit-activation-point/edit-activation-point-dailog.component';
+
 
 @NgModule({
     declarations: [
@@ -130,6 +132,7 @@ import {AcceptedClaimsComponent} from './acceptClaims/accepted-claims/accepted-c
         rejectSystemRejectDialogComponent,
         UserItemLimitReviewComponent,
         rejectLimitReviewDialogComponent,
+        EditActivationPointDialogComponent,
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,

@@ -43,7 +43,7 @@ static readonly GET_callNationalId: string = 'api/Risk/CallNationalId?nid=';
 static readonly post_AddClientDocument: string = 'api/Risk/AddClientDocument';
 
   //bulkOnBorading
-  static readonly GET_onBoradingList: string = 'api/Risk/GetAllCorporate';
+  static readonly GET_onBoradingList: string = 'api/services/app/LookUp/GetAllCorporate';
   static readonly GET_CorpProfilePlus: string = 'api/Risk/CorpProfilePlus?corpCode=';
   static readonly GET_UserDocumentsByClientId: string = 'api/Risk/getUserDocumentsByClientId?MobileNumber=';
   static readonly POST_softApproveCorporate: string = 'api/Risk/softApproveCorporate';

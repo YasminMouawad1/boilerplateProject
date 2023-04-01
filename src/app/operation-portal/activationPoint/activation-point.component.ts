@@ -15,7 +15,7 @@ import {
   ApplicationsOnBoardingDtoPagedResultDto,
   PortalRegistrationUsersServiceProxy
 } from '@shared/service-proxies/service-proxies';  
-import { AddActivationPointDialogComponent } from '@app/activationPoint/add-activation-point/add-activation-point-dailog.component';
+import { AddActivationPointDialogComponent } from './add-activation-point/add-activation-point-dailog.component';
 import { UsersService } from '@shared/services/endpoints/users.service';
 import { EditActivationPointDialogComponent } from './edit-activation-point/edit-activation-point-dailog.component';
 

@@ -14,14 +14,7 @@ import { AppComponent } from './app.component';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';
-import { AboutComponent } from '@app/about/about.component'; 
-import { BulkComponent } from '@app/bulkOnBoarding/bulk.component';
-import {MerchantComponent } from '@app/merchantSettlement/merchantSettlement.component';
-import {SetMerchantPlanDialogComponent} from '@app/merchantSettlement/create-merchant/set-merchant-plan-dialog.component'
-import {RegistrationUserComponent} from '@app/RegistrationUsers/RegistrationUsers.component';
-import {RegisterNewUserDialogComponent} from '@app/RegistrationUsers/create-new-user/register-new-user-dialog.component'
-import {DueTransactionComponent} from '@app/dueTransactions/dueTransactions.component';
-import {ClaimsDialogComponent} from '@app/dueTransactions/add-claims/claims-dialog.component';
+import { AboutComponent } from '@app/about/about.component';  
 import {MessageTypeComponent} from '@app/messageType/messageType.component';
 import {CreateMessageTypeDialogComponent} from '@app/messageType/create-message-type/create-message-type-dialog.component';
 import {MessageTemplateComponent} from '@app/messageTemplate/messageTemplate.component';
@@ -30,9 +23,7 @@ import {EmailTypeComponent} from '@app/emailType/emailType.component';
 import {CreateEmailTypeDialogComponent} from '@app/emailType/create-email-type/create-email-type-dailog.component';
 import {EmailContentComponent} from '@app/emailContent/email-content.component';
 import {CreateEmailContentDialogComponent} from '@app/emailContent/create-email-conent/create-email-content-dailog.component';
-import {CreateEmailContentComponent} from '@app/emailContent/email-content/create-email-content.component';
-import {ActivationPointComponent} from '@app/activationPoint/activation-point.component';
-import {AddActivationPointDialogComponent} from '@app/activationPoint/add-activation-point/add-activation-point-dailog.component';
+import {CreateEmailContentComponent} from '@app/emailContent/email-content/create-email-content.component'; 
 //-------------risk ----------
 import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval.component';
 import {UsersListHardRejectedComponent} from '@app/riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
@@ -77,8 +68,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
  import{acceptDialogComponent} from './riskProtal/users-approval/accept-application/accept-dailog.component';
  import{rejectDialogComponent} from './riskProtal/users-approval/reject-application/reject-dailog.component';
  import{editDialogComponent} from './riskProtal/users-approval/edit-application/edit-dailog.component';
-import {UserItemLimitReviewComponent} from './riskProtal/limit-review/user-item/user-item.component';
-import {editMerchantPlanDialogComponent} from './merchantSettlement/edit-merchant/edit-merchant-dailog.component'
+import {UserItemLimitReviewComponent} from './riskProtal/limit-review/user-item/user-item.component'; 
 import { rejectSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/reject-application/reject-dailog.component';
 import { editSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/edit-application/edit-dailog.component';
 import { acceptSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/accept-application/accept-dailog.component';
@@ -92,24 +82,12 @@ import {acceptBulkDialogComponent} from './riskProtal/bulk-on-borading/accept-ap
 import{rejectBulkDialogComponent} from './riskProtal/bulk-on-borading/reject-application/reject-dailog.component';
 import {CoporatesListComponent} from './riskProtal/coporates/coporates.component';
 import {CustmersComponent} from './riskProtal/customers/customers.component';
-import {CustomerItemComponent} from './riskProtal/customers/customer-item/customer-item.component';
-import{AcceptClaimsListComponent} from './acceptClaims/accept-claims-list.component';
-import {AcceptedClaimsComponent} from './acceptClaims/accepted-claims/accepted-claims.component';
-import{EditActivationPointDialogComponent} from './activationPoint/edit-activation-point/edit-activation-point-dailog.component';
-
-
+import {CustomerItemComponent} from './riskProtal/customers/customer-item/customer-item.component'; 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        AboutComponent,
-        BulkComponent,
-        MerchantComponent,
-        SetMerchantPlanDialogComponent,
-        RegistrationUserComponent,
-        RegisterNewUserDialogComponent,
-        DueTransactionComponent,
-        ClaimsDialogComponent,
+        AboutComponent, 
         MessageTypeComponent, 
         CreateMessageTypeDialogComponent,
         MessageTemplateComponent,
@@ -120,10 +98,7 @@ import{EditActivationPointDialogComponent} from './activationPoint/edit-activati
         CreateEmailContentDialogComponent,
         CreateEmailContentComponent,
         rejectDialogComponent,
-        editDialogComponent,
-        editMerchantPlanDialogComponent,
-        ActivationPointComponent,
-        AddActivationPointDialogComponent,
+        editDialogComponent, 
         rejectSoftRejectDialogComponent,
         editSoftRejectDialogComponent,
         acceptSoftRejectDialogComponent,
@@ -131,8 +106,7 @@ import{EditActivationPointDialogComponent} from './activationPoint/edit-activati
         editSystemRejectDialogComponent,
         rejectSystemRejectDialogComponent,
         UserItemLimitReviewComponent,
-        rejectLimitReviewDialogComponent,
-        EditActivationPointDialogComponent,
+        rejectLimitReviewDialogComponent, 
         //risk
         UsersListApprovalComponent,
         UsersListRejectedComponent,
@@ -149,9 +123,7 @@ import{EditActivationPointDialogComponent} from './activationPoint/edit-activati
         rejectBulkDialogComponent,
         CoporatesListComponent,
         CustmersComponent,
-        CustomerItemComponent,
-        AcceptClaimsListComponent,
-        AcceptedClaimsComponent,
+        CustomerItemComponent, 
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,
@@ -204,6 +176,17 @@ CommonModule,
             //     deps:[HttpClient]
             // }
         }),
+    ],
+    exports:[
+        HeaderComponent,
+        HeaderLeftNavbarComponent,
+        HeaderLanguageMenuComponent,
+        HeaderUserMenuComponent,
+        FooterComponent,
+        SidebarComponent,
+        SidebarLogoComponent,
+        SidebarUserPanelComponent,
+        SidebarMenuComponent
     ],
     providers: []
 })

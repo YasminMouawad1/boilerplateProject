@@ -185,7 +185,7 @@ this.getAllMerchant();
    
     this._checklist.setList(this.checkedList,this.listID); 
 
-    this._Router.navigate(['/app/accepted-claims/'])
+    this._Router.navigate(['/app/operation-portal/accepted-claims/'])
   }
 
   

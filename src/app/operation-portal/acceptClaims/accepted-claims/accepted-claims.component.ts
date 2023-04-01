@@ -72,7 +72,7 @@ import { Router } from '@angular/router';
 
     
     back(){
-      this._Router.navigate(['/app/accept-claims/'])
+      this._Router.navigate(['/app/operation-portal/accept-claims/'])
     }
 
     hide(){

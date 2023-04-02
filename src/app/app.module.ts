@@ -13,8 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { SharedModule } from '@shared/shared.module';
-import { HomeComponent } from '@app/home/home.component';
-import { AboutComponent } from '@app/about/about.component';  
+import { HomeComponent } from '@app/home/home.component';   
 import {MessageTypeComponent} from '@app/messageType/messageType.component';
 import {CreateMessageTypeDialogComponent} from '@app/messageType/create-message-type/create-message-type-dialog.component';
 import {MessageTemplateComponent} from '@app/messageTemplate/messageTemplate.component';
@@ -24,17 +23,7 @@ import {CreateEmailTypeDialogComponent} from '@app/emailType/create-email-type/c
 import {EmailContentComponent} from '@app/emailContent/email-content.component';
 import {CreateEmailContentDialogComponent} from '@app/emailContent/create-email-conent/create-email-content-dailog.component';
 import {CreateEmailContentComponent} from '@app/emailContent/email-content/create-email-content.component'; 
-//-------------risk ----------
-import {UsersListApprovalComponent} from '@app/riskProtal/users-approval/users-list-approval.component';
-import {UsersListHardRejectedComponent} from '@app/riskProtal/users-rejected/users-hard-reject/users-list-hardRejected.component';
-import {UsersListRejectedComponent} from '@app/riskProtal/users-rejected/users-soft-reject/users-list-rejected.component';
-import {UsersListSystemRejectedComponent} from '@app/riskProtal/users-rejected/users-system-reject/users-list-systemRejected.component';
-import {LimitReviewComponent} from '@app/riskProtal/limit-review/limit-review.component';
-import {UserItemComponent} from '@app/riskProtal/users-approval/user-item/user-item.component';
-import {UserItemHardRejectComponent} from '@app/riskProtal/users-rejected/users-hard-reject/user-item/user-item-hard.component';
-import {UserItemSoftRejectComponent} from '@app/riskProtal/users-rejected/users-soft-reject/user-item/user-item.component';
-import {UserItemSystemRejectComponent} from '@app/riskProtal/users-rejected/users-system-reject/user-item/user-itemsystemReject.component';
-// tenants
+ // tenants
 import { TenantsComponent } from '@app/tenants/tenants.component';
 import { CreateTenantDialogComponent } from './tenants/create-tenant/create-tenant-dialog.component';
 import { EditTenantDialogComponent } from './tenants/edit-tenant/edit-tenant-dialog.component';
@@ -64,30 +53,11 @@ import { TranslateLoader } from '@ngx-translate/core/public_api';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgSelect2Module } from 'ng-select2';
-import { ClipboardModule } from '@angular/cdk/clipboard';
- import{acceptDialogComponent} from './riskProtal/users-approval/accept-application/accept-dailog.component';
- import{rejectDialogComponent} from './riskProtal/users-approval/reject-application/reject-dailog.component';
- import{editDialogComponent} from './riskProtal/users-approval/edit-application/edit-dailog.component';
-import {UserItemLimitReviewComponent} from './riskProtal/limit-review/user-item/user-item.component'; 
-import { rejectSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/reject-application/reject-dailog.component';
-import { editSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/edit-application/edit-dailog.component';
-import { acceptSoftRejectDialogComponent } from './riskProtal/users-rejected/users-soft-reject/accept-application/accept-dailog.component';
-import { acceptSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/accept-application/accept-dailog.component';
-import { editSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/edit-application/edit-dailog.component';
-import { rejectSystemRejectDialogComponent } from './riskProtal/users-rejected/users-system-reject/reject-application/reject-dailog.component';
-import { rejectLimitReviewDialogComponent } from './riskProtal/limit-review/reject-application/reject-dailog.component';
-import{BulkOnBoradingListComponent} from './riskProtal/bulk-on-borading/bulk-on-borading-list.component';
-import{bulkOnBoradingITemComponent} from './riskProtal/bulk-on-borading/bulk-on-borading-item/bulk-on-borading-item.component';
-import {acceptBulkDialogComponent} from './riskProtal/bulk-on-borading/accept-application/accept-dailog.component';
-import{rejectBulkDialogComponent} from './riskProtal/bulk-on-borading/reject-application/reject-dailog.component';
-import {CoporatesListComponent} from './riskProtal/coporates/coporates.component';
-import {CustmersComponent} from './riskProtal/customers/customers.component';
-import {CustomerItemComponent} from './riskProtal/customers/customer-item/customer-item.component'; 
+import { ClipboardModule } from '@angular/cdk/clipboard'; 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
-        AboutComponent, 
+        HomeComponent, 
         MessageTypeComponent, 
         CreateMessageTypeDialogComponent,
         MessageTemplateComponent,
@@ -96,39 +66,11 @@ import {CustomerItemComponent} from './riskProtal/customers/customer-item/custom
         CreateEmailTypeDialogComponent,
         EmailContentComponent,
         CreateEmailContentDialogComponent,
-        CreateEmailContentComponent,
-        rejectDialogComponent,
-        editDialogComponent, 
-        rejectSoftRejectDialogComponent,
-        editSoftRejectDialogComponent,
-        acceptSoftRejectDialogComponent,
-        acceptSystemRejectDialogComponent,
-        editSystemRejectDialogComponent,
-        rejectSystemRejectDialogComponent,
-        UserItemLimitReviewComponent,
-        rejectLimitReviewDialogComponent, 
-        //risk
-        UsersListApprovalComponent,
-        UsersListRejectedComponent,
-        UsersListSystemRejectedComponent,
-        UsersListHardRejectedComponent, 
-        LimitReviewComponent,
-        UserItemComponent,
-        UserItemHardRejectComponent,
-        UserItemSoftRejectComponent,
-        UserItemSystemRejectComponent,
-        BulkOnBoradingListComponent,
-        bulkOnBoradingITemComponent,
-        acceptBulkDialogComponent,
-        rejectBulkDialogComponent,
-        CoporatesListComponent,
-        CustmersComponent,
-        CustomerItemComponent, 
+        CreateEmailContentComponent,  
         // tenants
         TenantsComponent,
         CreateTenantDialogComponent,
-        EditTenantDialogComponent,
-        acceptDialogComponent,
+        EditTenantDialogComponent, 
         // roles
         RolesComponent,
         CreateRoleDialogComponent,

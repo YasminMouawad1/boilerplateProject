@@ -44,14 +44,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
     getMenuItems(): MenuItem[] {
         return [ 
-
-            // new MenuItem(this.l('About'), '/app/about', 'fas fa-info-circle')
-            // new MenuItem(
-            //             'Home',
-            //             'https://aspnetboilerplate.com?ref=abptmpl',
-            //             'far fa-circle'
-            //         ),
-
+ 
             new MenuItem('Dashboard', '/app/home', 'fas fa-home'), 
 
             new MenuItem(this.l('[Admin]'), '', 'fas fa-screwdriver-wrench', '', [ 
@@ -81,27 +74,22 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             
 
             new MenuItem(this.l('[Risk Portal]'), '', 'fas fa-toolbox', '', [
-                new MenuItem('Users Approval', '/app/users-approval', 'fas fa-user-check'),
-                new MenuItem(this.l('Rejected Requests'), '', 'fas fa-user-minus', '', [
-                    new MenuItem('Soft reject', '/app/users-soft-rejected', 'fas fa-user-slash'),
-                    new MenuItem('system Reject', '/app/users-system-rejected', 'fas fa-user-slash'),
-                    new MenuItem('hard Rejected', '/app/users-hard-rejected', 'fas fa-user-slash')
-                ]),
-
-                new MenuItem('Limit Review', '/app/limit-review', 'fa-solid fa-id-card'),
-
-                // new MenuItem(this.l('System Configuration'), '', 'fas fa-users-gear', '', [
-                //     new MenuItem('core configuration', '/app/system-configuration', 'fas fa-users-gear'),
-                //     new MenuItem('Rejection Reasons', '/app/system-rejection-reasons', 'fas fa-dot-circle'),
-                //     new MenuItem('configuration professions', '/app/system-configuration-professions', 'fas fa-dot-circle')
-                // ]),
+                new MenuItem('Users Approval', '/app/risk-portal/users-approval', 'fas fa-user-check'),
                 
-                new MenuItem(this.l('bulk-on-boaring'), '', 'fas fa-id-card', '', [ 
-                    new MenuItem('Bulk on borading', '/app/bulk-onborading', 'fas fa-id-card'),
-                    new MenuItem('Coporates', '/app/coporates', 'fas fa-store')
+                new MenuItem(this.l('Rejected Requests'), '', 'fas fa-user-minus', '', [
+                    new MenuItem('Soft reject', '/app/risk-portal/users-soft-rejected', 'fas fa-user-slash'),
+                    new MenuItem('system Reject', '/app/risk-portal/users-system-rejected', 'fas fa-user-slash'),
+                    new MenuItem('hard Rejected', '/app/risk-portal/users-hard-rejected', 'fas fa-user-slash')
                 ]),
 
-                new MenuItem('Customers', '/app/customers', 'fas fa-users'), 
+                new MenuItem('Limit Review', '/app/risk-portal/limit-review', 'fa-solid fa-id-card'),
+
+                new MenuItem(this.l('bulk-on-boaring'), '', 'fas fa-id-card', '', [ 
+                    new MenuItem('Bulk on borading', '/app/risk-portal/bulk-onborading', 'fas fa-id-card'),
+                    new MenuItem('Coporates', '/app/risk-portal/coporates', 'fas fa-store')
+                ]),
+
+                new MenuItem('Customers', '/app/risk-portal/customers', 'fas fa-users'), 
 
             ]), 
 

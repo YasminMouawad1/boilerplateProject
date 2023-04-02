@@ -86,7 +86,7 @@ this.isTableLoading = true;
 
 
 viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/customer-item/'+ phoneNum])
+this._Router.navigate(['/app/risk-portal/customer-item/'+ phoneNum])
 }
 
 

@@ -83,7 +83,7 @@ this.isTableLoading = true;
  
 
 viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/user-itemLimit/'+ phoneNum])
+this._Router.navigate(['/app/risk-portal/user-itemLimit/'+ phoneNum])
 }
 
 

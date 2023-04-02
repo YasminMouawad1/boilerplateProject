@@ -48,9 +48,9 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
             new MenuItem('Dashboard', '/app/dashboard', 'fas fa-home'), 
 
             new MenuItem(this.l('[Admin]'), '', 'fas fa-screwdriver-wrench', '', [ 
-                new MenuItem('Roles', '/app/roles', 'fas fa-theater-masks','Pages.Roles'), 
-                new MenuItem('Tenants', '/app/tenants', 'fas fa-building', 'Pages.Tenants'), 
-                new MenuItem('Users', '/app/users', 'fas fa-users', 'Pages.Users'), 
+                new MenuItem('Roles', '/app/admin/roles', 'fas fa-theater-masks','Pages.Roles'), 
+                new MenuItem('Tenants', '/app/admin/tenants', 'fas fa-building', 'Pages.Tenants'), 
+                new MenuItem('Users', '/app/admin/users', 'fas fa-users', 'Pages.Users'), 
             ]),  
 
               

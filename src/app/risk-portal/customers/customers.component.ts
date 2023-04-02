@@ -59,28 +59,28 @@ export class CustmersComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getUserApprovalList();
+     
  }
 
- getUserApprovalList(page :number = 1 ,pageSize :number = 10  ){
+//  getUserApprovalList(page :number = 1 ,pageSize :number = 10  ){
   
-this._SpinnerService.requestStarted();
-this.isTableLoading = true;
-   this._userService.getWaitingRiskApprovalList(false,page, pageSize).subscribe(res => {
+// this._SpinnerService.requestStarted();
+// this.isTableLoading = true;
+//    this._userService.getWaitingRiskApprovalList(false,page, pageSize).subscribe(res => {
     
-     if(res.result.data != null)
-       {
-        this.users = res.result.data ; 
-        this.showTable = true;
-      }else
-         this.showTable = false;
+//      if(res.result.data != null)
+//        {
+//         this.users = res.result.data ; 
+//         this.showTable = true;
+//       }else
+//          this.showTable = false;
 
-       this._SpinnerService.requestEnded();
-   })
+//        this._SpinnerService.requestEnded();
+//    })
 
-   this._SpinnerService.requestEnded();
-   this.isTableLoading = false;
- }
+//    this._SpinnerService.requestEnded();
+//    this.isTableLoading = false;
+//  }
  
  
 
@@ -96,16 +96,17 @@ handleKeyUp(e:any){
   }
 }
 
-details(e:any){ 
-
+details(){ 
+debugger
   if(this.customerName === null || this.customerName == ""){
     this.showTable = false; 
      return;
   }
   else{
     this._userService.getAllUsersList(this.customerName).subscribe(res => {
-      if(res.data != null)
-         this.users = res.data ; 
+      console.log(res.result)
+      if(res != null)
+         this.users = res.result; 
 
 
          this.showTable = this.users?.length == 0 ?false : true

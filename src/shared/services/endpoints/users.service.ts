@@ -30,6 +30,16 @@ export class UsersService {
     return this._API.doGet(UrlEndpoints.GET_onBoradingList+'?page='+page+'&pageSize='+pageSize)
   }
 
+
+  getBulkBoradingList(page :number = 1 ,pageSize :number = 10){
+    return this._API.doGet(UrlEndpoints.GET_BulkonBoradingList+'?page='+page+'&pageSize='+pageSize)
+  }
+
+getAllCoporates(){
+  
+}
+
+
   getCorpProfilePlus(code: Number){
     return this._API.doGet(UrlEndpoints.GET_CorpProfilePlus + code)
   }

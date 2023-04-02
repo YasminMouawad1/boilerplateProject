@@ -32,7 +32,7 @@
                                  </thead>
                                  <tbody>
                                  <tr *ngFor="let corp of corpList | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
-                                    class="btnView">
+                                   >
                                      <td>{{corp.cityCode}}</td>
                                      <td>{{ corp.arName }}</td>
                                      <td>{{ corp.contactPersonName }}</td>

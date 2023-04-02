@@ -63,17 +63,19 @@ export class BulkOnBoradingListComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getBulkonBoarding();
-    this.getBulkOnBoardingList();
+    this.getBulkonBoarding(); 
  }
 
 
  getBulkonBoarding(page :number = 1 ,pageSize :number = 10 ){
  
-  this._userService.getBulkBorading(page, pageSize).subscribe(res => {
+  this._userService.getBulkBoradingList(page, pageSize).subscribe(res => {
     
-    if(res.data != null)
-      this.corpList = res.data ; 
+    console.log(res)
+    if(res != null)
+      this.corpList = res.result.data ; 
+
+
       //this.showTable = this.corpList?.length == 0 ?false : true
       this.showTable = false;
        
@@ -82,33 +84,15 @@ export class BulkOnBoradingListComponent implements OnInit{
   })
 }
 
- getBulkOnBoardingList(page :number = 1 ,pageSize :number = 10  ){
-  
-this._SpinnerService.requestStarted();
-this.isTableLoading = true;
-   this._userService.getWaitingRiskApprovalList(false,page, pageSize).subscribe(res => {
-    
-     if(res.result.data != null)
-       {
-        this.users = res.result.data ; 
-        this.showTable = true;
-      }else
-         this.showTable = false;
-
-       this._SpinnerService.requestEnded();
-   })
-
-   this._SpinnerService.requestEnded();
-   this.isTableLoading = false;
- }
+ 
  
 
  Details(code:number){ 
 
    this._userService.getCorpProfilePlus(code).subscribe(res => {
      
-     if(res.data != null)
-       this.users = res.data ; 
+     if(res != null)
+       this.users = res.result.data ; 
       else
         this.users.length = 0;
 
@@ -119,7 +103,7 @@ this.isTableLoading = true;
 }
 
 viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/bulkonborading-item/'+ phoneNum])
+this._Router.navigate(['/app/risk-portal/bulk-on-borading-item/'+ phoneNum])
 }
 
 

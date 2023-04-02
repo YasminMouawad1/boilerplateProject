@@ -56,14 +56,13 @@ export class CoporatesListComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getUserApprovalList();
+    this.getAllCoporates();
  }
 
- getUserApprovalList(page :number = 1 ,pageSize :number = 10  ){
-  
-this._SpinnerService.requestStarted();
+ getAllCoporates(page :number = 1 ,pageSize :number = 10  ){
+   
 this.isTableLoading = true;
-   this._userService.getBulkBorading(page, pageSize).subscribe(res => {
+   this._userService.getBulkBoradingList(page, pageSize).subscribe(res => {
     
      if(res.result.data != null)
        {
@@ -71,11 +70,9 @@ this.isTableLoading = true;
         this.showTable = true;
       }else
          this.showTable = false;
-
-       this._SpinnerService.requestEnded();
+ 
    })
-
-   this._SpinnerService.requestEnded();
+ 
    this.isTableLoading = false;
  }
  

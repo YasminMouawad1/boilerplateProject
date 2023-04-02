@@ -18,7 +18,7 @@
                 <div class="card-body">
                
                  <div class="row d-flex input-group mb-3"> 
-                <form  class="d-flex justify-content-center w-100" (ngSubmit)="details(customerName)">
+                <form  class="d-flex justify-content-center w-100" (ngSubmit)="details()">
                   <div class="col-md-10">
                     <input type="text" class="form-control" [(ngModel)]= "customerName" placeholder="Search By name"
                          name="customerName" (keyup)="handleKeyUp($event)">

@@ -15,7 +15,7 @@ export abstract class UrlEndpoints {
   static readonly GET_ReviwList: string = 'api/services/app/Risk/ReviewProfilePlus';
   static readonly GET_UserById: string = 'api/services/app/Risk/GetUserDocumentsByClientId?MobileNumber=';
   static readonly GET_RejectResponse: string = 'api/services/app/Risk/GetRejectResponse';
-  static readonly POST_AllUsersList: string = 'api/Risk/ClietSearch?str=';
+  static readonly POST_AllUsersList: string = 'api/services/app/Risk/ClietSearch?clienttName=';
   static readonly GET_ALLActivationPoint: string = 'api/services/app/PortalRegistrationUsers/GetActivarionPoints';
   
   static readonly POST_RegisterationUser: string = 'api/services/app/PortalRegistrationUsers/RegistrationPortalUsers';
@@ -42,13 +42,17 @@ static readonly GET_callNationalId: string = 'api/Risk/CallNationalId?nid=';
 
 static readonly post_AddClientDocument: string = 'api/Risk/AddClientDocument';
 
+static readonly GET_BulkonBoradingList: string = 'api/services/app/Risk/GetAllCorporate';
+ 
+
   //bulkOnBorading
   static readonly GET_onBoradingList: string = 'api/services/app/LookUp/GetAllCorporate';
-  static readonly GET_CorpProfilePlus: string = 'api/Risk/CorpProfilePlus?corpCode=';
+  static readonly GET_CorpProfilePlus: string = 'api/services/app/Risk/CorpProfilePlus?corpCode=';
   static readonly GET_UserDocumentsByClientId: string = 'api/Risk/getUserDocumentsByClientId?MobileNumber=';
   static readonly POST_softApproveCorporate: string = 'api/Risk/softApproveCorporate';
  
 
+  
   // Reject Response
   //static readonly GET_RejectResponse: string = 'api/Risk/RejectResponse';
 

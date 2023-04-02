@@ -9,12 +9,7 @@ import { TenantsComponent } from './tenants/tenants.component';
 import { RolesComponent } from 'app/roles/roles.component';
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
   
-
-  import { MessageTypeComponent } from './messageType/messageType.component';
-import { MessageTemplateComponent } from './messageTemplate/messageTemplate.component';
-import {EmailTypeComponent} from './emailType/emailType.component';
-import { EmailContentComponent } from './emailContent/email-content.component';
-import { CreateEmailContentComponent } from './emailContent/email-content/create-email-content.component';  
+  
 
 
 @NgModule({
@@ -30,12 +25,7 @@ import { CreateEmailContentComponent } from './emailContent/email-content/create
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
                    // { path: 'about', component: AboutComponent, canActivate: [AppRouteGuard] },
-                   
-                    { path: 'message-type', component: MessageTypeComponent, canActivate: [AppRouteGuard] },
-                    { path: 'message-template', component: MessageTemplateComponent, canActivate: [AppRouteGuard] },
-                    { path: 'email-type', component: EmailTypeComponent, canActivate: [AppRouteGuard] },
-                    { path: 'email-content', component: EmailContentComponent, canActivate: [AppRouteGuard] },
-                    { path: 'create-email', component: CreateEmailContentComponent, canActivate: [AppRouteGuard] },
+                  
                     
                     { path: 'update-password', component: ChangePasswordComponent, canActivate: [AppRouteGuard] },
                  
@@ -52,6 +42,11 @@ import { CreateEmailContentComponent } from './emailContent/email-content/create
             {
                 path: 'risk-portal',
                 loadChildren: () => import('app/risk-portal/risk-portal.module').then(m => m.RiskPortalModule), // Lazy load operation module
+                data: { preload: true }
+            },
+            {
+                path: 'system-configuration',
+                loadChildren: () => import('app/system-configuration/system-configuration.module').then(m => m.SystemConfigurationModule), // Lazy load operation module
                 data: { preload: true }
             },
         ])

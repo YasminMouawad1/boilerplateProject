@@ -20,7 +20,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
     menuItemsMap: { [key: number]: MenuItem } = {};
     activatedMenuItems: MenuItem[] = [];
     routerEvents: BehaviorSubject<RouterEvent> = new BehaviorSubject(undefined);
-    homeRoute = '/app/home';
+    homeRoute = '/app/dashboard';
 
     constructor(injector: Injector, private router: Router) {
         super(injector);
@@ -45,7 +45,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
     getMenuItems(): MenuItem[] {
         return [ 
  
-            new MenuItem('Dashboard', '/app/home', 'fas fa-home'), 
+            new MenuItem('Dashboard', '/app/dashboard', 'fas fa-home'), 
 
             new MenuItem(this.l('[Admin]'), '', 'fas fa-screwdriver-wrench', '', [ 
                 new MenuItem('Roles', '/app/roles', 'fas fa-theater-masks','Pages.Roles'), 
@@ -64,10 +64,10 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
 
             ]), 
             new MenuItem(this.l('[System Configuration]'), '', 'fas fa-gears', '', [ 
-                new MenuItem('Message Type','/app/message-type','fas fa-envelope'),
-                new MenuItem('Message Template','/app/message-template','fas fa-envelope-open-text'),
-                new MenuItem('Email Type','/app/email-type','fas fa-envelope'),
-                new MenuItem('Email content','/app/create-email','fas fa-envelope-open-text'),
+                new MenuItem('Message Type','/app/system-configuration/message-type','fas fa-envelope'),
+                new MenuItem('Message Template','/app/system-configuration/message-template','fas fa-envelope-open-text'),
+                new MenuItem('Email Type','/app/system-configuration/email-type','fas fa-envelope'),
+                new MenuItem('Email content','/app/system-configuration/create-email','fas fa-envelope-open-text'),
 
         ]), 
     

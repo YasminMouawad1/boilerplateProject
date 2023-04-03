@@ -20,6 +20,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Select2OptionData } from 'ng-select2';
 import { Options } from 'html2canvas';
 import { UsersService } from '@shared/services/endpoints/users.service';
+import { Router } from '@angular/router';
   
   @Component({
     templateUrl: './register-new-user-dialog.component.html',
@@ -69,6 +70,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
       public formBuilder: FormBuilder,
       private _LookUpServiceProxy:LookUpServiceProxy,
       private _usersServices:UsersService,
+      private router:Router,
       private _PortalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy
     ) {
       super(injector);
@@ -252,11 +254,18 @@ object.init(data)
           if(res){
             abp.message.success("Create user successfully");
             this.bsModalRef.hide();
+            this.reloadCurrentRoute();
           }
       } );
     
     }
 
+    reloadCurrentRoute() {
+      const currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this.router.navigate([currentUrl]);
+      });
+    }
     
   }
   

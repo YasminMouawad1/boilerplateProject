@@ -102,6 +102,7 @@ this.merchantPlans = [
 ]
 
 this.dayData= [
+  {id: '0', text: '0'},
   {id: '1', text: '1'},
   {id: '2', text: '2'},
   {id: '3', text: '3'},
@@ -129,12 +130,10 @@ this.dayData= [
   {id: '25', text: '25'},
   {id: '26', text: '26'},
   {id: '27', text: '27'},
-  {id: '28', text: '28'},
-  {id: '29', text: '29'},
-  {id: '30', text: '30'},
-  {id: '31', text: '31'},
+  {id: '28', text: '28'}, 
 ]
 this.daysData= [
+  {id: '0', text: '0'},
   {id: '1', text: '1'},
   {id: '2', text: '2'},
   {id: '3', text: '3'},
@@ -162,10 +161,7 @@ this.daysData= [
   {id: '25', text: '25'},
   {id: '26', text: '26'},
   {id: '27', text: '27'},
-  {id: '28', text: '28'},
-  {id: '29', text: '29'},
-  {id: '30', text: '30'},
-  {id: '31', text: '31'},
+  {id: '28', text: '28'}, 
 ]
 this.merchantOptions = {
   multiple: false,
@@ -240,15 +236,23 @@ debugger
         
       if(res){
         abp.message.success("Edit Settlement plan successfully");
-        this.bsModalRef.hide();
-        this.router.navigate(['/app/merchant-settlement']);
+        this.bsModalRef.hide(); 
+        //this.router.navigate(['/app/operation-portal/merchant-settlement']);
+        this.reloadCurrentRoute();
       }
        
   })
   
-
+ 
   
   }
+
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
 
   getAllMerchants(){
     debugger

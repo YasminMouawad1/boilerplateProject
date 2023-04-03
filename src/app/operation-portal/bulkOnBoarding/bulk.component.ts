@@ -21,6 +21,7 @@ import {
   ApplicationOnBoardingServiceProxy,
   ApplicationsOnBoardingDto
 } from '@shared/service-proxies/service-proxies';
+import { Router } from '@angular/router';
 
 class PagedApplicationsOnBoardingDto extends PagedRequestDto {
   keyword: string;
@@ -64,6 +65,7 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
     private _rolesService: RoleServiceProxy,
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,
     private _LookUpServiceProxy:LookUpServiceProxy,
+    private router: Router,
     private _ApplicationOnBoardingServiceProxy:ApplicationOnBoardingServiceProxy) {
     super(injector);
     // this.exampleData = [
@@ -168,9 +170,18 @@ object.init(body)
 this._ApplicationOnBoardingServiceProxy.createBulkOnBoardingConfig(object).subscribe( (res : number) => {
      console.log(res)
 
-     abp.message.success("Create Bulk Onboarding successfully")
+     abp.message.success("Create Bulk Onboarding successfully");
+     this.reloadCurrentRoute();
 })
 
 
 }
+
+reloadCurrentRoute() {
+  const currentUrl = this.router.url;
+  this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+  });
+}
+
 }

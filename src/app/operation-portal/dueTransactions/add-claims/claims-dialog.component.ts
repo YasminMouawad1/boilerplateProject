@@ -17,6 +17,7 @@ import {
     DueTransactionsServiceProxy
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
+import { Router } from '@angular/router';
 
   @Component({
     templateUrl: './claims-dialog.component.html',
@@ -39,6 +40,7 @@ import {
       public _lookupService: LookUpServiceProxy,
       public bsModalRef: BsModalRef,
       public _modalOption:ModalOptions,
+      private router:Router,
       private _DueTransactionsServiceProxy :DueTransactionsServiceProxy
     ) {
       super(injector);
@@ -58,9 +60,10 @@ import {
     const data = { merchants: this.listID };
     this._DueTransactionsServiceProxy.createRequestClaim(this.listID).subscribe((result: boolean) =>{
        if(result){
-        abp.notify.success(this.l('CreateRequestClaimSuccessfully'));
+        abp.notify.success(this.l('Create Request Claim Successfully'));
         abp.ui.clearBusy()
-        this.bsModalRef.hide()
+        this.bsModalRef.hide();
+        this.reloadCurrentRoute();
        }
 
       });
@@ -71,4 +74,11 @@ import {
     }
 
  
+    reloadCurrentRoute() {
+      const currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this.router.navigate([currentUrl]);
+      });
+    }
+
   }

@@ -127,6 +127,7 @@ this.dayData= [
   {id: '28', text: '28'}, 
 ]
 this.daysData= [
+  {id: '0', text: '0'},
   {id: '1', text: '1'},
   {id: '2', text: '2'},
   {id: '3', text: '3'},
@@ -239,7 +240,7 @@ debugger
       if(res){
         abp.message.success("Create Settlement plan successfully");
         this.bsModalRef.hide();
-        this.router.navigate(['/app/merchant-settlement']);
+        this.reloadCurrentRoute();
       }
        
   })
@@ -247,6 +248,13 @@ debugger
 
   
   }
+
+  reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
 
   getAllMerchants(){
     debugger

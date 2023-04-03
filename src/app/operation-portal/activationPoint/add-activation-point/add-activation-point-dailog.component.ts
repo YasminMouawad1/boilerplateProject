@@ -123,12 +123,17 @@ import { Router } from '@angular/router';
         if(res){
           abp.message.success("Create Activation Point successfully");
           this.bsModalRef.hide();
-          this.router.navigate(['/app/activation-point']);
+           this.reloadCurrentRoute();
         }
     });
     }
 
-
+    reloadCurrentRoute() {
+      const currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this.router.navigate([currentUrl]);
+      });
+    }
 
   }
   

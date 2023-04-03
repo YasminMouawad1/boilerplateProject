@@ -42,6 +42,10 @@ export class ActivationPointComponent extends PagedListingComponentBase<UserDto>
  isTableLoading:boolean = false;
  showTable:boolean = true;
  
+ isShowGetActivationPoints = abp.auth.isGranted('Pages.Operation.ActivationPoint');
+ isShowCreateActivationPoints = abp.auth.isGranted('Pages.Operation.ActivationPoint.Add');
+ isShowEditActivationPoints = abp.auth.isGranted('Pages.Operation.ActivationPoint.Edit');
+ 
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,

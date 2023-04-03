@@ -72,12 +72,12 @@
                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                       (change)="handleUpload($event)">
                     </div>
-                    <button  class="btn bgGreen mt-3 w-100" (click)="createBulkOnBoarding()">
+                    <button *ngIf="isShowAddBulkOnBoardingBtn" class="btn bgGreen mt-3 w-100" (click)="createBulkOnBoarding()">
                       <i class="fa-solid fa-upload"></i> Bulk Boarding</button>
                </div>
             </div>
 
-            <div class="card">
+            <div class="card" *ngIf="isShowBulkOnBoardingList">
                 <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-striped table-bordered"
@@ -112,7 +112,9 @@
                             <td>{{applicationsOnBoarding.isSend}}</td>
                             <td>{{applicationsOnBoarding.creationTime}}</td>
                             <td>-- </td>
-                            <td> <button class="bgPink border-0"><i class="fa-solid fa-rotate"></i> Send Again</button></td>
+                            <td> 
+                              <button *ngIf="isShowSendAginBtn" class="bgPink border-0"><i class="fa-solid fa-rotate"></i> Send Again</button>
+                            </td>
 
                           </tr>
                         </tbody>

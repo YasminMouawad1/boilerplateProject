@@ -41,6 +41,8 @@ export class UsersListSystemRejectedComponent implements OnInit{
  isTableLoading:boolean = false;
  showTable:boolean = true;
  
+ isShowRiskSystem = abp.auth.isGranted("Pages.Risk.SystemRejected");
+
   constructor(injector: Injector, 
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,
     private _RiskServiceProxy:RiskServiceProxy,

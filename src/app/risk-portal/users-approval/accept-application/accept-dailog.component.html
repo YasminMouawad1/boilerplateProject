@@ -4,7 +4,7 @@
   
       <button type="button" class="btn-close" aria-hidden="true" (click)="hide()"><i class="fa fa-close"></i></button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" [busy]="isTableLoading">
       <p> AreSureAccept {{ userItem.name }}?</p>
       <p><b>   riskLimit  {{ riskApprovedLimit }} </b></p>
       <div class="mb-3">

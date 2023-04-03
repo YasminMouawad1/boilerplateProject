@@ -38,6 +38,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
     salesRepMessage:any;
     submitAcceptform:any;
 
+    isTableLoading:boolean = false;
     constructor(
       injector: Injector,
       public _userService: UserServiceProxy,
@@ -52,6 +53,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
     }
 
     ngOnInit(): void {
+      this.isTableLoading = true;
 
      this.userItem = this._modalOption.initialState;
      this.riskApprovedLimit = this._modalOption.initialState.riskApprovedLimit;
@@ -59,6 +61,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
      this.salesRepMessage = this._modalOption.initialState.salesRepMessage;
      this.submitAcceptform = this._modalOption.initialState.submitAcceptform;
  
+     this.isTableLoading = false;
     }
 
  
@@ -69,7 +72,8 @@ import { UsersService } from '@shared/services/endpoints/users.service';
 
 
     accceptRiskApplication() {
-     
+      
+
         this.submitAcceptform = true;
         const data = {
           clientNationalId: this.userItem.userItem.nationalId,
@@ -84,7 +88,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
           this._usersServices.postUser(data).subscribe((res) => {
           if (res) { 
             abp.message.success("Accept Risk successfully")
-            this.router.navigate(['/app/users-approval'])
+            this.router.navigate(['/app/risk-portal/users-approval'])
           }
         });
       }

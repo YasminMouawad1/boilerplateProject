@@ -91,6 +91,11 @@ export class CustomerItemComponent implements OnInit {
   reject_list :any[] = [];
   bending_list :any[] = [];
 
+  isShowScoreCard = abp.auth.isGranted("Pages.Risk.Customers.ScoreCard");
+  isShowAddress = abp.auth.isGranted("Pages.Risk.Customers.ShowAddressInfo"); 
+  isShowMainInfo = abp.auth.isGranted("Pages.Risk.Customers.ShowMainInfo");
+
+
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,
               private _spinnerService:SpinnerService,private _userService:UsersService,
@@ -104,6 +109,7 @@ export class CustomerItemComponent implements OnInit {
 
   ngOnInit() {
 
+    this.isShowScoreCard = false
     
 
     this.rejectionValidationForm = this.formBuilder.group({

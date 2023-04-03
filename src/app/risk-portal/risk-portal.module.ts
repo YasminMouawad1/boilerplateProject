@@ -29,7 +29,7 @@ import { CustomerItemComponent } from './customers/customer-item/customer-item.c
 import { LimitReviewComponent } from './limit-review/limit-review.component';
 import {UserItemLimitReviewComponent} from './limit-review/user-item/user-item.component';
 import {rejectLimitReviewDialogComponent } from './limit-review/reject-application/reject-dailog.component';
-import { SpinnerComponent } from './spinner/spinner.component';
+ 
 import { UsersListApprovalComponent } from './users-approval/users-list-approval.component';
 import {UserItemComponent} from './users-approval/user-item/user-item.component';
 import {acceptDialogComponent} from './users-approval/accept-application/accept-dailog.component';
@@ -89,7 +89,6 @@ import { rejectSystemRejectDialogComponent } from './users-rejected/users-system
         LimitReviewComponent,
         UserItemLimitReviewComponent,
         rejectLimitReviewDialogComponent,
-        SpinnerComponent,
         UsersListApprovalComponent,
         UserItemComponent,
         acceptDialogComponent,

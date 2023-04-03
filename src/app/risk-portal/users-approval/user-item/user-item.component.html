@@ -2,7 +2,7 @@
 
 
 
-    <div class="container-fluid" id="contentToConvert">
+    <div class="container-fluid" id="contentToConvert" [busy]="isTableLoading">
      <div class="row" >
        <div class="col-md-9 leftContent">
            <button class="btn-dwonload" (click)="convetToPDF()"><i class="fa-regular fa-file-pdf"></i> download PDF</button>
@@ -12,13 +12,19 @@
            <div class="row d-flex align-items-center">
                 <div class="col-md-10">
                    <div class="darkDiv"> 
+                    <div *ngIf="!isShowEditNoteBtn" class="overlay">
+                      <i class="fa-solid fa-lock"></i>
+                    </div>
+
                     <div class="row d-flex input-group fiedInput w-100">
-                      <form  class=" w-100" (ngSubmit)="editRiskClientNote()">
+                      <form  [ngStyle]="{ 'visibility':isShowEditNoteBtn ? 'initial':'hidden'}"
+                        class=" w-100" (ngSubmit)="editRiskClientNote()">
                         <div class="col-md-12">
                           <textarea class="form-control" placeholder="" name="NoteMsg" [(ngModel)]= "NoteMsg"></textarea>
                         </div>
-                        <div>
-                          <button class="btn btn-primary mx-1" for="inputGroupSelect01" type="submit"> Edit Note </button>
+                        <div [ngStyle]="{ 'visibility':isShowEditNoteBtn ? 'initial':'hidden'}">
+                          <button disabled="isShowEditNoteBtn" [ngStyle]="{ 'visibility':isSaveEditNoteBtn ? 'initial':'hidden'}"
+                             class="btn btn-primary mx-1" for="inputGroupSelect01" type="submit"> Edit Note </button>
                         </div>
         
                         </form>
@@ -27,13 +33,13 @@
                    </div>
                 </div>
                 <div class="col-md-2">
-                  <button class="btnActions bgGreen" [disabled]="isEditRiskLimit" (click)="AceeptRisk()">
+                  <button *ngIf="isShowAcceptBtn" class="btnActions bgGreen" [disabled]="isEditRiskLimit" (click)="AceeptRisk()">
                     <i class="fa-solid fa-check"></i> Accept</button>
                     
-                   <button class="btnActions bgPink" [disabled]="isEditRiskLimit" (click)="RejectRisk()">
+                   <button *ngIf="isShowRejectBtn" class="btnActions bgPink" [disabled]="isEditRiskLimit" (click)="RejectRisk()">
                     <i class="fa-solid fa-xmark"></i> Reject</button>
 
-                   <button class="btnActions bgYellow" [disabled]="isEditRiskLimit" (click)="EditRisk()">
+                   <button *ngIf="isShowEditBtn" class="btnActions bgYellow" [disabled]="isEditRiskLimit" (click)="EditRisk()">
                     <i class="fa-solid fa-pen-to-square"></i> Edit</button>
 
                    
@@ -119,13 +125,17 @@
                       <br>
 
                       <div class="content">
-                        <div class="header">
+                        <div *ngIf="!isShowScoreCard" class="overlay">
+                          <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <div class="header" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
                           <div class="icon"> 
                             <i class="fa-regular fa-clipboard"></i>
                           </div>
                           <h4>Score Card </h4>
                       </div>
-                      <div class="table-responsive">
+                      <div class="table-responsive" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
                         <table class="table table-nowrap mb-0">
                           <tbody>
                             <tr *ngFor="let item of userItem.rejectionList">
@@ -139,13 +149,18 @@
                    </div>
                    <div class="col-md-6">
                      <div class="content">
-                       <div class="header">
+                      <div *ngIf="!isShowAddressInfo" class="overlay">
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+
+                       <div class="header" [ngStyle]="{ 'visibility':isShowAddressInfo ? 'initial':'hidden'}">
                          <div class="icon">
                            <i class="fa-solid fa-location-dot"></i>
                          </div>
                          <h4>العنوان </h4>
                      </div>
-                     <table class="table table-nowrap mb-0">
+                     <table [ngStyle]="{ 'visibility':isShowAddressInfo ? 'initial':'hidden'}"
+                         class="table table-nowrap mb-0">
                          <tr>
                            <td>{{ userItem.governorate }}</td>
                            <th>المحافظة</th>
@@ -171,13 +186,18 @@
 
                      <br> 
                      <div class="content">
-                      <div class="header">
+                      <div *ngIf="!isShowMainInfo" class="overlay">
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+
+                      <div class="header" [ngStyle]="{ 'visibility':isShowMainInfo ? 'initial':'hidden'}">
                         <div class="icon"> 
                           <i class="fa-solid fa-user"></i>
                         </div>
                         <h4>المعلومات الشخصية </h4>
                     </div>
-                    <table class="table table-nowrap mb-0">
+                    <table [ngStyle]="{ 'visibility':isShowMainInfo ? 'initial':'hidden'}"
+                      class="table table-nowrap mb-0">
                       <tr>
                         <td>{{ userItem.mobileNumber }}</td>
                         <th>رقم الهاتف</th>
@@ -262,13 +282,16 @@
 
        </div>
        <div class="col-md-3">
-           <div class="rightContent">
-                <img [src]="pesonalImages" alt="" style="height: 135px;" class="img-thumbnail rounded-circle">
-                 <h2> {{ userItem.name }} </h2>
+           <div class="rightContent">  
+            <img [src]="pesonalImages" alt="" style="height: 135px;" class="img-thumbnail rounded-circle">
+                 
+                <div *ngIf="isShowMainInfo">
+                <h2> {{ userItem.name }} </h2>
                  <h6> {{ userItem.nationalId }}</h6>
                  <h6>{{ userItem.mobileNumber }}</h6>
                  <h6> <span>{{ userItem.status }}</span> </h6>
                   <h6>   {{ userItem.jobTitle }} </h6>
+                </div>
  
              <br>
                <div *ngIf="verify_list.length > 0">

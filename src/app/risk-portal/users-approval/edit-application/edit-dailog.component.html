@@ -5,7 +5,7 @@
 
     <button type="button" class="btn-close" aria-hidden="true" (click)="hide()"><i class="fa fa-close"></i></button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" [busy]="isTableLoading">
     <form [formGroup]="editPersonalData" (ngSubmit)="updatePersonalData()">
 
     <div class="row mb-3">

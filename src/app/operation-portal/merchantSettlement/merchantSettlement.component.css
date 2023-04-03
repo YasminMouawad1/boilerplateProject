@@ -8,6 +8,10 @@
     color: #fff;
 }
 
+button{
+    cursor: pointer;
+}
+
 .bgYellow{
     background-color: #f8b25a; 
     color: #fff;

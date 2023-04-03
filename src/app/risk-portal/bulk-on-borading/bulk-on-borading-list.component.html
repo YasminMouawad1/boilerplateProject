@@ -14,7 +14,7 @@
          
               <br>
      
-                 <div class="card">
+                 <div class="card" *ngIf="isShowBulkListBtn">
                      <div class="card-body">
                         <div *ngIf="showTable" class="p-3">
                             <input type="text" class="form-control" [(ngModel)]="term"  placeholder="Search by name .." name="">

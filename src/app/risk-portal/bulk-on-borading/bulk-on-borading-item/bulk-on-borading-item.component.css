@@ -16,6 +16,10 @@
     margin-bottom: 8px;
 }
 
+.darkDiv{
+    position: relative; 
+}
+
 .darkDiv,
 .lightDiv{
     background-color: #5eb2a8;
@@ -158,6 +162,9 @@
 
 /* ------------------------ */
 
+.content{
+    position: relative;
+}
 .rightContent{
     text-align: center;
     padding: 0rem 1.5rem;  
@@ -323,4 +330,21 @@
 
 .bgGreen i{
     background-color: #5ba39a;
+}
+
+.overlay{
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    border-radius: 17px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(106 107 107 / 40%);
+    z-index: 2;
+    color: #e6e6e6;
+    font-size: 25px;
 }

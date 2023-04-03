@@ -63,6 +63,8 @@ export class UserItemSystemRejectComponent implements OnInit {
   rejectOption: string = '';
   rejectComment: string = '';
 
+  isTableLoading:boolean = false;
+
   rejection: FormGroup = new FormGroup({
     options: new FormControl(null, Validators.required),
     comment: new FormControl(null, Validators.required)
@@ -93,6 +95,16 @@ export class UserItemSystemRejectComponent implements OnInit {
   verify_list :any[] = [];
   reject_list :any[] = [];
   bending_list :any[] = [];
+
+  isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.SystemRejected.Accept");
+  isShowRejectBtn = abp.auth.isGranted("Pages.Risk.SystemRejected.Reject");
+  isShowEditBtn = abp.auth.isGranted("Pages.Risk.SystemRejected.Edit");
+  isSaveEditNoteBtn = abp.auth.isGranted("Pages.Risk.SystemRejected.SaveEditNote");
+  isShowEditNoteBtn = abp.auth.isGranted("Pages.Risk.SystemRejected.ShowEditNote");
+  isShowScoreCard = abp.auth.isGranted("Pages.Risk.SystemRejected.ScoreCard"); 
+  isShowAddressInfo = abp.auth.isGranted("Pages.Risk.SystemRejected.ShowAddressInfo");
+  isShowMainInfo = abp.auth.isGranted("Pages.Risk.SystemRejected.ShowMainInfo");
+
 
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,

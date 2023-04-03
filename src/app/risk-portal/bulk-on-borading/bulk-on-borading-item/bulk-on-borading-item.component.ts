@@ -93,6 +93,16 @@ export class bulkOnBoradingITemComponent implements OnInit {
   reject_list :any[] = [];
   bending_list :any[] = [];
 
+ isShowEditBtn = abp.auth.isGranted("Pages.Risk.BulkOnBorading.Edit");
+ isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.BulkOnBorading.Accept");
+ isShowRejectBtn = abp.auth.isGranted("Pages.Risk.BulkOnBorading.Reject");
+ isShowSaveNoteBtn = abp.auth.isGranted("Pages.Risk.BulkOnBorading.SaveEditNote");
+ isShowScoreCard = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ScoreCard");
+ isShowAddress = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ShowAddressInfo");
+ isShowEditNote = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ShowEditNote");
+ isShowMainInfo = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ShowMainInfo");
+
+
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,
               private _spinnerService:SpinnerService,private _userService:UsersService,
@@ -106,6 +116,7 @@ export class bulkOnBoradingITemComponent implements OnInit {
 
   ngOnInit() {
 
+    this.isShowMainInfo = false
     
 
     this.rejectionValidationForm = this.formBuilder.group({

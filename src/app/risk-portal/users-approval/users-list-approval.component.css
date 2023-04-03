@@ -63,6 +63,10 @@
     cursor: pointer;
 }
 
+.btnView td{
+    cursor: pointer;
+}
+
 .btnView:hover{
     background-color: #e0b7b6; 
 }

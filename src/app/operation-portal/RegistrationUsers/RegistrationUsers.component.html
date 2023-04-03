@@ -6,7 +6,7 @@
                  <div class="col-6">
                      <h1>{{ "Users" | localize }}</h1>
                  </div>
-                 <div class="col-6 text-right">
+                 <div  *ngIf="isShowRegisterUserAddBtn" class="col-6 text-right">
                      <a href="javascript:;" class="btn btnCreate" (click)="createUser()">
                          <i class="fa-solid fa-plus"></i>
                          {{ "Create" | localize }}

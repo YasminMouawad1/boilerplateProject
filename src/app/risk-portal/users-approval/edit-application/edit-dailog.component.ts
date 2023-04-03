@@ -42,6 +42,8 @@ import { UsersService } from '@shared/services/endpoints/users.service';
     maritalStatuses:any;
     maritalStatus:any;
 
+    isTableLoading : boolean = false;
+
     constructor(
       injector: Injector,
       public _userService: UserServiceProxy,
@@ -57,6 +59,8 @@ import { UsersService } from '@shared/services/endpoints/users.service';
 
     ngOnInit(): void {
 
+      this.isTableLoading = true;
+
       this.userItem = this._modalOption.initialState;
       this.oldRiskApprovedLimit = this._modalOption.initialState.oldRiskApprovedLimit;
       this.isEditRiskLimit = this._modalOption.initialState.isEditRiskLimit;
@@ -67,6 +71,8 @@ import { UsersService } from '@shared/services/endpoints/users.service';
       this.gender = this._modalOption.initialState.gender;
       this.maritalStatuses=this._modalOption.initialState.maritalStatuses;
       this.maritalStatus= this._modalOption.initialState.maritalStatus;
+
+      this.isTableLoading = false;
     }
 
  

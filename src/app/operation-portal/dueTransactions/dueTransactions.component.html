@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <h1> Due Transactions</h1>
                 </div>
-                <div class="col-md-4 row">
+                <div class="col-md-4 row" *ngIf="isShowMerchantForTransactions">
                     <div class="col-md-3">
                         <p class="boldText">Merchant</p>
                     </div>
@@ -86,7 +86,7 @@
                    </table>
 
                    <div class="text-center">
-                    <button class="btn btnClaim"  (click)="createClaims()">Claim</button>
+                    <button *ngIf="isShowMerchantForClaimsBtn" class="btn btnClaim"  (click)="createClaims()">Claim</button>
                   </div>
                </div>
 

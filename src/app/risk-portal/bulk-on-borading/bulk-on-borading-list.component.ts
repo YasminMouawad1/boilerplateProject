@@ -45,6 +45,8 @@ export class BulkOnBoradingListComponent implements OnInit{
  term:string = '';
  CorpCode!:number;  
  corpList:any[] = [];
+
+ isShowBulkListBtn = abp.auth.isGranted("Pages.Risk.BulkOnBorading");
  
   constructor(injector: Injector, 
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,

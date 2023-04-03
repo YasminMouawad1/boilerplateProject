@@ -55,6 +55,11 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
   public corporatesList: Array<Select2OptionData>;
   public options: Options;
 
+
+  isShowBulkOnBoardingList = abp.auth.isGranted('Pages.Operation.BulkOnBoarding');
+  isShowAddBulkOnBoardingBtn = abp.auth.isGranted('Pages.Operation.BulkOnBoarding.Add');
+  isShowSendAginBtn = abp.auth.isGranted('Pages.Operation.BulkOnBoarding.Send');
+
   constructor(injector: Injector,
     private _rolesService: RoleServiceProxy,
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,

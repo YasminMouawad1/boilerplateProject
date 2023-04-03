@@ -40,6 +40,8 @@ export class UsersListRejectedComponent implements OnInit{
  currentPage: number = 1;
  isTableLoading:boolean = false;
  showTable:boolean = true;
+
+ isShowRiskSoftReject = abp.auth.isGranted("Pages.Risk.SoftRejected");
  
   constructor(injector: Injector, 
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,

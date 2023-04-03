@@ -45,6 +45,7 @@ export class UserItemComponent implements OnInit {
   rejectResponse: any[] = [];
   approveRiskComment: string = '';
 
+  isTableLoading:boolean = false;
 
   riskApprovedLimit: number = 0;
   oldRiskApprovedLimit: number = 0;
@@ -85,7 +86,16 @@ export class UserItemComponent implements OnInit {
   degree:number = 0;
 
 
+  isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Accept");
+  isShowRejectBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Reject");
+  isShowEditBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Edit");
+  isSaveEditNoteBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.SaveEditNote");
+  isShowEditNoteBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowEditNote");
+  isShowScoreCard = abp.auth.isGranted("Pages.Risk.UsersApproval.ScoreCard"); 
+  isShowAddressInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowAddressInfo");
+  isShowMainInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowMainInfo");
 
+  
   salesRepMessage :string = '';
 
   verifyChecked: boolean = false;
@@ -126,10 +136,13 @@ export class UserItemComponent implements OnInit {
     })
 
     this._spinnerService.requestEnded();
+
+   
     
   }
 
   getUserById(){
+    this.isTableLoading = true;
 
     this._spinnerService.requestStarted();
     this._userService.getUserById(this.userId).subscribe((res) => {
@@ -208,8 +221,11 @@ export class UserItemComponent implements OnInit {
         this.maritalStatuses = res.result;
  
       })
+
+      this.isTableLoading = false;
   
     });
+ 
   }
 
 

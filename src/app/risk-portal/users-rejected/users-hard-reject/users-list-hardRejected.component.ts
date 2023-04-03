@@ -39,6 +39,9 @@ export class UsersListHardRejectedComponent implements OnInit {
   showTable: boolean = true;
   isTableLoading:boolean= false;
   
+
+  isShowHardReject = abp.auth.isGranted("Pages.Risk.HardRejected")
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
@@ -53,7 +56,7 @@ export class UsersListHardRejectedComponent implements OnInit {
   }
 
 
-ngOnInit() {
+ngOnInit() { 
   this.getUserHardRejectedList();
 }
 

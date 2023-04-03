@@ -16,6 +16,7 @@ import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from '@app/home/home.component';    
  
 // layout
+import { SpinnerComponent } from './layout/spinner.component';
 import { HeaderComponent } from './layout/header.component';
 import { HeaderLeftNavbarComponent } from './layout/header-left-navbar.component';
 import { HeaderLanguageMenuComponent } from './layout/header-language-menu.component';
@@ -32,12 +33,15 @@ import { TranslateLoader } from '@ngx-translate/core/public_api';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgSelect2Module } from 'ng-select2';
 import { ClipboardModule } from '@angular/cdk/clipboard'; 
+
+
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,  
        
-        // layout
+        // layout 
+        SpinnerComponent,
         HeaderComponent,
         HeaderLeftNavbarComponent,
         HeaderLanguageMenuComponent,
@@ -49,7 +53,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
         SidebarMenuComponent
     ],
     imports: [ 
-        CommonModule,
+    
+    CommonModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
@@ -74,7 +79,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
             // }
         }),
     ],
-    exports:[
+    exports:[ 
+        SpinnerComponent,
         HeaderComponent,
         HeaderLeftNavbarComponent,
         HeaderLanguageMenuComponent,

@@ -17,12 +17,14 @@ export class SpinnerService {
 
   requestStarted() {
     if (++this.count === 1) {
-      this.spinner$.next('start');
+      this.spinner$.next('start'); 
     }
+   
   }
 
   requestEnded() {
     if (this.count === 0 || --this.count === 0) {
+       
       this.spinner$.next('stop');
     }
   }

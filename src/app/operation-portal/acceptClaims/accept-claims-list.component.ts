@@ -56,6 +56,10 @@ export class AcceptClaimsListComponent extends PagedListingComponentBase<UserDto
   showMSG:boolean = true;
   
   countRows:number = 0;
+
+  isShowGetMerchantList = abp.auth.isGranted('Pages.Operation.DueTransactions');
+  isShowClaimsBtn = abp.auth.isGranted('Pages.Operation.DueTransactions.Claim');
+
   constructor(injector: Injector,  private _LookUpServiceProxy:LookUpServiceProxy, 
     private _DueTransactionsServiceProxy :DueTransactionsServiceProxy,
     private _userService: UserServiceProxy,

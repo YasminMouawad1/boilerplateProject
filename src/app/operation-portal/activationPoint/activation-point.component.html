@@ -6,7 +6,7 @@
                  <div class="col-6">
                      <h1>Activation Point</h1>
                  </div>
-                 <div class="col-6 text-right">
+                 <div class="col-6 text-right" *ngIf="isShowCreateActivationPoints">
                      <a href="javascript:;" class="btn btnCreate" (click)="createPoint()">
                          <i class="fa-solid fa-plus"></i>
                          {{ "Create" | localize }}
@@ -22,7 +22,7 @@
          
           <br>
  
-             <div class="card">
+             <div class="card" *ngIf="isShowGetActivationPoints">
                  <div class="card-body">
                     <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
 
@@ -48,6 +48,7 @@
                                  <td>
                                     
                                      <button
+                                             *ngIf="isShowEditActivationPoints"
                                              type="button"
                                              class="btn btn-sm mx-2 bgPink"
                                              (click)="editPoint(point.id)"

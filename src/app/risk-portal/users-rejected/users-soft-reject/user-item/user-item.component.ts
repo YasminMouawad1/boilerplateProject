@@ -85,6 +85,7 @@ export class UserItemSoftRejectComponent implements OnInit {
   degree:number = 0;
 
 
+  isTableLoading:boolean = false;
 
   salesRepMessage :string = '';
 
@@ -93,6 +94,15 @@ export class UserItemSoftRejectComponent implements OnInit {
   verify_list :any[] = [];
   reject_list :any[] = [];
   bending_list :any[] = [];
+
+  isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.SoftRejected.Accept");
+  isShowRejectBtn = abp.auth.isGranted("Pages.Risk.SoftRejected.Reject");
+  isShowEditBtn = abp.auth.isGranted("Pages.Risk.SoftRejected.Edit");
+  isSaveEditNoteBtn = abp.auth.isGranted("Pages.Risk.SoftRejected.SaveEditNote");
+  isShowEditNoteBtn = abp.auth.isGranted("Pages.Risk.SoftRejected.ShowEditNote");
+  isShowScoreCard = abp.auth.isGranted("Pages.Risk.SoftRejected.ScoreCard"); 
+  isShowAddressInfo = abp.auth.isGranted("Pages.Risk.SoftRejected.ShowAddressInfo");
+  isShowMainInfo = abp.auth.isGranted("Pages.Risk.SoftRejected.ShowMainInfo");
 
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,
@@ -106,8 +116,6 @@ export class UserItemSoftRejectComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
 
     this.rejectionValidationForm = this.formBuilder.group({
       rejectionReason: ['', [Validators.required]],
@@ -130,6 +138,7 @@ export class UserItemSoftRejectComponent implements OnInit {
   }
 
   getUserById(){
+     this.isTableLoading = true;
 
     this._spinnerService.requestStarted();
     this._userService.getUserById(this.userId).subscribe((res) => {
@@ -208,6 +217,7 @@ export class UserItemSoftRejectComponent implements OnInit {
         this.maritalStatuses = res.result;
  
       })
+      this.isTableLoading = false;
   
     });
   }

@@ -55,6 +55,9 @@ export class DueTransactionComponent extends PagedListingComponentBase<UserDto> 
   showMSG:boolean = true;
   
   countRows:number = 0;
+  isShowMerchantForTransactions = abp.auth.isGranted('Pages.Operation.DueTransactions');
+  isShowMerchantForClaimsBtn = abp.auth.isGranted('Pages.Operation.DueTransactions.Claim');
+
   constructor(injector: Injector,  private _LookUpServiceProxy:LookUpServiceProxy, private _DueTransactionsServiceProxy :DueTransactionsServiceProxy,private _userService: UserServiceProxy,
     private _modalService: BsModalService) {
     super(injector);

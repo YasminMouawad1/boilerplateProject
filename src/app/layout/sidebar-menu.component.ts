@@ -45,7 +45,7 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
     getMenuItems(): MenuItem[] {
         return [ 
  
-            new MenuItem('Dashboard', '/app/dashboard', 'fas fa-home'), 
+            new MenuItem('Dashboard', '/app/home', 'fas fa-home'), 
 
             new MenuItem(this.l('[Admin]'), '', 'fas fa-screwdriver-wrench', '', [ 
                 new MenuItem('Roles', '/app/admin/roles', 'fas fa-theater-masks','Pages.Roles'), 
@@ -56,11 +56,11 @@ export class SidebarMenuComponent extends AppComponentBase implements OnInit {
               
             new MenuItem(this.l('[Operational Portal]'), '', 'fas fa-layer-group', '', [
                     new MenuItem('Merchant settlement', '/app/operation-portal/merchant-settlement', 'fas fa-users-gear'),
-                    new MenuItem('BulkOnBoarding', '/app/operation-portal/bulk-on-boarding', 'fas fa-id-card'), 
-                    new MenuItem('Merchants Due Transactions','/app/operation-portal/due-transactions','fas fa-money-bill-wave'), 
-                    new MenuItem('Activation Point','/app/operation-portal/activation-point','fa-solid fa-location-dot'), 
-                    new MenuItem('registration-users', '/app/operation-portal/registration-users','fas fa-users'),
-                    new MenuItem('Accept Claims','/app/operation-portal/accept-claims','fas fa-money-bill-wave')
+                    new MenuItem('BulkOnBoarding', '/app/operation-portal/bulk-on-boarding', 'fas fa-id-card','Pages.Operation.BulkOnBoarding'), 
+                    new MenuItem('Merchants Due Transactions','/app/operation-portal/due-transactions','fas fa-money-bill-wave','Pages.Operation.DueTransactions'), 
+                    new MenuItem('Activation Point','/app/operation-portal/activation-point','fa-solid fa-location-dot','Pages.Operation.ActivationPoint'), 
+                    new MenuItem('registration-users', '/app/operation-portal/registration-users','fas fa-users','Pages.Operation.RegistrationUsers'),
+                    new MenuItem('Accept Claims','/app/operation-portal/accept-claims','fas fa-money-bill-wave','Pages.Operation.DueTransactions')
 
             ]), 
             new MenuItem(this.l('[System Configuration]'), '', 'fas fa-gears', '', [ 

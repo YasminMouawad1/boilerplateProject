@@ -91,6 +91,13 @@ export class UserItemLimitReviewComponent implements OnInit {
   verify_list :any[] = [];
   reject_list :any[] = [];
   bending_list :any[] = [];
+  
+ isShowRejectBtn = abp.auth.isGranted("Pages.Risk.LimitReview.Reject");
+ isShowSaveNoteBtn = abp.auth.isGranted("Pages.Risk.LimitReview.SaveEditNote");
+ isShowScoreCard = abp.auth.isGranted("Pages.Risk.LimitReview.ScoreCard");
+ isShowAddress = abp.auth.isGranted("Pages.Risk.LimitReview.ShowAddressInfo");
+ isShowEditNote = abp.auth.isGranted("Pages.Risk.LimitReview.ShowEditNote");
+ isShowMainInfo = abp.auth.isGranted("Pages.Risk.LimitReview.ShowMainInfo");
 
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,
@@ -104,8 +111,7 @@ export class UserItemLimitReviewComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
+ 
 
     this.rejectionValidationForm = this.formBuilder.group({
       rejectionReason: ['', [Validators.required]],

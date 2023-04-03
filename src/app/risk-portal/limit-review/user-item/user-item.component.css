@@ -6,6 +6,10 @@
     padding: 1.5rem;
 }
 
+.content{
+   position: relative;
+}
+
 .btn-dwonload{
     border: 2px solid #5eb2a8;
     border-radius: 13px;
@@ -16,6 +20,9 @@
     margin-bottom: 8px;
 }
 
+.darkDiv{
+    position: relative;
+}
 .darkDiv,
 .lightDiv{
     background-color: #5eb2a8;
@@ -323,4 +330,21 @@
 
 .bgGreen i{
     background-color: #5ba39a;
+}
+
+.overlay{
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    border-radius: 17px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(106 107 107 / 40%);
+    z-index: 2;
+    color: #e6e6e6;
+    font-size: 25px;
 }

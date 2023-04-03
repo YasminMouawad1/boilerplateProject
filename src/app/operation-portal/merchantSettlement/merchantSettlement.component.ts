@@ -17,6 +17,7 @@ import {
 import { SetMerchantPlanDialogComponent } from './create-merchant/set-merchant-plan-dialog.component';
 import { UsersService } from '@shared/services/endpoints/users.service';
 import { editMerchantPlanDialogComponent } from './edit-merchant/edit-merchant-dailog.component';
+import { SpinnerService } from '@shared/services/endpoints/spinner.service';
 
  
 class PagedUsersRequestDto extends PagedRequestDto {
@@ -46,7 +47,7 @@ MerchantPlans:any;
     private _userService: UserServiceProxy,
     private _usersService:UsersService,
     private _BulkOnBoardingServiceProxy: BulkOnBoardingServiceProxy,
-
+    private _spinnerService:SpinnerService,
     private _modalService: BsModalService
   ) {
     //super(injector);
@@ -56,23 +57,27 @@ MerchantPlans:any;
    
 
   ngOnInit() {
+    this._spinnerService.requestStarted();
     this.getSettlementPlan();
  }
 
  getSettlementPlan( ){
-   
-this.isTableLoading = true;
+   debugger
+ 
+ this.isTableLoading = true;
+  this._spinnerService.requestStarted();
+
    this._usersService.getMerchantSettlementPlan().subscribe(res => {
     
-     if(res.result.data != null)
+     if(res != null)
        {
         this.MerchantPlans = res.result.data ; 
         this.showTable = true;
       }else
          this.showTable = false;
- 
-         console.log(this.MerchantPlans)
+  
    })
+
  
    this.isTableLoading = false;
  }

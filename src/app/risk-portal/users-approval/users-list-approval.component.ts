@@ -40,6 +40,39 @@ export class UsersListApprovalComponent implements OnInit{
  currentPage: number = 1;
  isTableLoading:boolean = false;
  showTable:boolean = true;
+
+ isShowRiskApproval=abp.auth.isGranted("Pages.Risk.UsersApproval");
+ 
+//  Pages.Risk.UsersApproval
+// : 
+// "true"
+// Pages.Risk.UsersApproval.Accept
+// : 
+// "true"
+// Pages.Risk.UsersApproval.Edit
+// : 
+// "true"
+// Pages.Risk.UsersApproval.Reject
+// : 
+// "true"
+// Pages.Risk.UsersApproval.SaveEditNote
+// : 
+// "true"
+// Pages.Risk.UsersApproval.ScoreCard
+// : 
+// "true"
+// Pages.Risk.UsersApproval.Show
+// : 
+// "true"
+// Pages.Risk.UsersApproval.ShowAddressInfo
+// : 
+// "true"
+// Pages.Risk.UsersApproval.ShowEditNote
+// : 
+// "true"
+// "Pages.Risk.UsersApproval.ShowMainInfo "
+// : 
+// "true"
  
   constructor(injector: Injector, 
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,

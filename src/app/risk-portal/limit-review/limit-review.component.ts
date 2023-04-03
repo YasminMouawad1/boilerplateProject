@@ -41,6 +41,9 @@ export class LimitReviewComponent implements OnInit{
  isTableLoading:boolean = false;
  showTable:boolean = true;
  
+
+ isShowLimitREeviewBtn = abp.auth.isGranted("Pages.Risk.LimitReview");
+
   constructor(injector: Injector, 
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,
     private _RiskServiceProxy:RiskServiceProxy,
@@ -57,7 +60,7 @@ export class LimitReviewComponent implements OnInit{
     
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.getUserApprovalList();
  }
 

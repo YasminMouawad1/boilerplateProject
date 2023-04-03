@@ -42,6 +42,7 @@ export class CustmersComponent implements OnInit{
  showTable:boolean = true;
  customerName:string = '';
  
+ isShowCustomerList = abp.auth.isGranted('Pages.Risk.Customers');
   constructor(injector: Injector, 
     private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,
     private _RiskServiceProxy:RiskServiceProxy,
@@ -59,6 +60,7 @@ export class CustmersComponent implements OnInit{
   }
 
   ngOnInit() {
+    
      
  }
 
@@ -96,17 +98,15 @@ handleKeyUp(e:any){
   }
 }
 
-details(){ 
-debugger
+details(){  
   if(this.customerName === null || this.customerName == ""){
     this.showTable = false; 
      return;
   }
   else{
     this._userService.getAllUsersList(this.customerName).subscribe(res => {
-      console.log(res.result)
-      if(res != null)
-         this.users = res.result; 
+       
+         this.users = res.result.data; 
 
 
          this.showTable = this.users?.length == 0 ?false : true

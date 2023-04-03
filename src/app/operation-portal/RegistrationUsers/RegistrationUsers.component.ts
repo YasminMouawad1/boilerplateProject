@@ -33,6 +33,10 @@ export class RegistrationUserComponent extends PagedListingComponentBase<UserDto
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+isShowUsersList = abp.auth.isGranted('Pages.Operation.RegistrationUsers');
+isShowRegisterUserAddBtn = abp.auth.isGranted('Pages.Operation.RegistrationUsers.Add');
+isShowRegisterUserEditBtn = abp.auth.isGranted('Pages.Operation.RegistrationUsers.Edit');
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,

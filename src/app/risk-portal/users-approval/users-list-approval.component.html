@@ -14,11 +14,11 @@
      
           <br>
  
-             <div class="card">
+             <div class="card"  *ngIf="isShowRiskApproval">
                  <div class="card-body">
                     <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
 
-                     <div *ngIf="showTable" class="table-responsive">
+                     <div *ngIf="showTable" class="table-responsive" [busy]="isTableLoading">
                          <table class="table table-striped table-bordered" [busy]="isTableLoading">
                              <thead class="bg-light">
                              <tr>

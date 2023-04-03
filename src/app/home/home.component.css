@@ -1,3 +1,62 @@
+.content{
+    background-image: url('assets/img/cooming.jpg');
+    background-size: cover; 
+    height: 90vh; 
+}
+.content .overlay{ 
+    height: 100%; 
+    text-align: center;
+    background-color: rgba(106, 124, 128 , 0.7);
+}
+
+.overlay h1{
+    color: #fff;
+    font-size: 41px;
+    font-family: system-ui;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 9%;
+}
+
+.overlay p{
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 18px 0px;
+}
+
+.overlay button{
+    border: none;
+    background-color: #f28d8a;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 17px;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.counter{
+    padding-top: 10%;
+    width: 44%;
+    margin: 0 auto;
+    color: #fff;
+
+}
+
+.counter .box{
+    border: 1px solid;
+    border-radius: 14px;
+}
+
+ 
+
+.counter .divCol{
+      font-size: 27px;
+      font-weight: bold;
+}
+
+/* --------------------------- */
+
 .alert{
     background-color: #5eb2a8;
     color: #fff;

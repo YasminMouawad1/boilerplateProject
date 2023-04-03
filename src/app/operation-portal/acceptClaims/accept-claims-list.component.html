@@ -86,7 +86,7 @@
                    </table>
 
                    <div class="text-center">
-                    <button class="btn btnClaim"  (click)="createClaims()">Claim</button>
+                    <button *ngIf="isShowClaimsBtn" class="btn btnClaim"  (click)="createClaims()">Claim</button>
                   </div>
                </div>
 

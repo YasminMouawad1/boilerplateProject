@@ -32,8 +32,8 @@ import { DueTransactionComponent } from './dueTransactions/dueTransactions.compo
 import { ClaimsDialogComponent } from './dueTransactions/add-claims/claims-dialog.component';
 import { RegistrationUserComponent } from './RegistrationUsers/RegistrationUsers.component';
 import { RegisterNewUserDialogComponent } from './RegistrationUsers/create-new-user/register-new-user-dialog.component';
-
-
+import { RiskPortalModule } from '@app/risk-portal/risk-portal.module';
+ 
 
 
 @NgModule({
@@ -56,6 +56,7 @@ import { RegisterNewUserDialogComponent } from './RegistrationUsers/create-new-u
         MatSlideToggleModule,
         NgSelect2Module,
         ClipboardModule,
+        RiskPortalModule,
          FormsModule,
         TranslateModule.forRoot({
             // loader:{

@@ -13,12 +13,16 @@
                 <div class="col-md-10">
                    <div class="darkDiv"> 
                     <div class="row d-flex input-group fiedInput w-100">
-                      <form  class=" w-100" (ngSubmit)="editRiskClientNote()">
+                    <form  [ngStyle]="{ 'visibility':isShowEditNote ? 'initial':'hidden'}"  
+                      class=" w-100" (ngSubmit)="editRiskClientNote()">
                         <div class="col-md-12">
                           <textarea class="form-control" placeholder="" name="NoteMsg" [(ngModel)]= "NoteMsg"></textarea>
                         </div>
-                        <div>
-                          <button class="btn btn-primary mx-1" for="inputGroupSelect01" type="submit"> Edit Note </button>
+                        <div  [ngStyle]="{ 'visibility':isShowEditNote ? 'initial':'hidden'}">
+                         
+                          <button [disabled]="!isShowEditNote"
+                          [ngStyle]="{ 'visibility':isShowSaveNoteBtn ? 'initial':'hidden'}" 
+                            class="btn btn-primary mx-1" for="inputGroupSelect01" type="submit"> Edit Note </button>
                         </div>
         
                         </form>
@@ -114,13 +118,16 @@
                       <br>
 
                       <div class="content">
-                        <div class="header">
+                        <div *ngIf="!isShowScoreCard" class="overlay">
+                          <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <div class="header" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
                           <div class="icon"> 
                             <i class="fa-regular fa-clipboard"></i>
                           </div>
                           <h4>Score Card </h4>
                       </div>
-                      <div class="table-responsive">
+                      <div class="table-responsive"  [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
                         <table class="table table-nowrap mb-0">
                           <tbody>
                             <tr *ngFor="let item of userItem.rejectionList">
@@ -134,13 +141,16 @@
                    </div>
                    <div class="col-md-6">
                      <div class="content">
-                       <div class="header">
+                      <div *ngIf="!isShowAddress" class="overlay">
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+                       <div class="header" [ngStyle]="{ 'visibility':isShowAddress ? 'initial':'hidden'}">
                          <div class="icon">
                            <i class="fa-solid fa-location-dot"></i>
                          </div>
                          <h4>العنوان </h4>
                      </div>
-                     <table class="table table-nowrap mb-0">
+                     <table class="table table-nowrap mb-0" [ngStyle]="{ 'visibility':isShowAddress ? 'initial':'hidden'}">
                          <tr>
                            <td>{{ userItem.governorate }}</td>
                            <th>المحافظة</th>
@@ -166,13 +176,17 @@
 
                      <br> 
                      <div class="content">
-                      <div class="header">
+                      <div *ngIf="!isShowMainInfo" class="overlay">
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+
+                      <div class="header" [ngStyle]="{ 'visibility':isShowMainInfo ? 'initial':'hidden'}">
                         <div class="icon"> 
                           <i class="fa-solid fa-user"></i>
                         </div>
                         <h4>المعلومات الشخصية </h4>
                     </div>
-                    <table class="table table-nowrap mb-0">
+                    <table class="table table-nowrap mb-0" [ngStyle]="{ 'visibility':isShowMainInfo ? 'initial':'hidden'}">
                       <tr>
                         <td>{{ userItem.mobileNumber }}</td>
                         <th>رقم الهاتف</th>
@@ -259,11 +273,13 @@
        <div class="col-md-3">
            <div class="rightContent">
                 <img [src]="pesonalImages" alt="" style="height: 135px;" class="img-thumbnail rounded-circle">
-                 <h2> {{ userItem.name }} </h2>
-                 <h6> {{ userItem.nationalId }}</h6>
-                 <h6>{{ userItem.mobileNumber }}</h6>
-                 <h6> <span>{{ userItem.status }}</span> </h6>
-                  <h6>   {{ userItem.jobTitle }} </h6>
+                 <div *ngIf="isShowMainInfo">
+                  <h2> {{ userItem.name }} </h2>
+                  <h6> {{ userItem.nationalId }}</h6>
+                  <h6>{{ userItem.mobileNumber }}</h6>
+                  <h6> <span>{{ userItem.status }}</span> </h6>
+                   <h6>   {{ userItem.jobTitle }} </h6>
+                 </div>
  
              <br>
                <div *ngIf="verify_list.length > 0">

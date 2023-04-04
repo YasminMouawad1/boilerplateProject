@@ -205,7 +205,7 @@ import { Router } from '@angular/router';
 
 
    selectFile(event:any){
-      
+      debugger
     if(!event.target.files[0] || event.target.files[0].length == 0) {
       return;
     }
@@ -248,10 +248,11 @@ import { Router } from '@angular/router';
       var object = new  PortalUsersRegistrationDto()
 object.init(data) 
  
-
+console.log(data)
       this._PortalRegistrationUsersServiceProxy.registrationPortalUsers(object).subscribe((res : boolean)=> {
         
           if(res){
+            console.log(res)
             abp.message.success("Create user successfully");
             this.bsModalRef.hide();
             this.reloadCurrentRoute();

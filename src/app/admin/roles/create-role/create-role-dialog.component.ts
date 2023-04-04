@@ -26,7 +26,7 @@ export class CreateRoleDialogComponent extends AppComponentBase
   role = new RoleDto();
   permissions: PermissionDto[] = [];
   checkedPermissionsMap: { [key: string]: boolean } = {};
-  defaultPermissionCheckedStatus = true;
+  defaultPermissionCheckedStatus = false;
 
   @Output() onSave = new EventEmitter<any>();
 

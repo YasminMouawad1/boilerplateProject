@@ -176,7 +176,8 @@ this.merchantPlansOptions = {
   closeOnSelect: true,
   width: '100%',
   placeholder: "Select a plan",
-  allowClear: true
+  allowClear: true, 
+  
 }
 
 this.dayOptions={
@@ -208,6 +209,7 @@ this.daysOptions={
 
   GetMerchanstsSettlementPlanById(){
         this._usersServices.getMerchantPlanByID(this.init_merchantCode).subscribe((res) =>{
+          console.log(res)
              this.MerchantCode = res.result.data.merchantCode;
              this.settlementPlan = res.result.data.settlementPlanName;
              

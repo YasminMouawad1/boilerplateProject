@@ -100,7 +100,7 @@ export class bulkOnBoradingITemComponent implements OnInit {
  isShowScoreCard = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ScoreCard");
  isShowAddress = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ShowAddressInfo");
  isShowEditNote = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ShowEditNote");
- isShowMainInfo = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ShowMainInfo");
+ isShowMainInfo = abp.auth.isGranted("Pages.Risk.BulkOnBorading.ShowMainInfo ");
 
 
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
@@ -115,8 +115,7 @@ export class bulkOnBoradingITemComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.isShowMainInfo = false
+ 
     
 
     this.rejectionValidationForm = this.formBuilder.group({

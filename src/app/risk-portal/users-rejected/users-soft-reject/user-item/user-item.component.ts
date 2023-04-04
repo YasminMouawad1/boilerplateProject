@@ -102,7 +102,7 @@ export class UserItemSoftRejectComponent implements OnInit {
   isShowEditNoteBtn = abp.auth.isGranted("Pages.Risk.SoftRejected.ShowEditNote");
   isShowScoreCard = abp.auth.isGranted("Pages.Risk.SoftRejected.ScoreCard"); 
   isShowAddressInfo = abp.auth.isGranted("Pages.Risk.SoftRejected.ShowAddressInfo");
-  isShowMainInfo = abp.auth.isGranted("Pages.Risk.SoftRejected.ShowMainInfo");
+  isShowMainInfo = abp.auth.isGranted("Pages.Risk.SoftRejected.ShowMainInfo ");
 
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,
@@ -116,6 +116,7 @@ export class UserItemSoftRejectComponent implements OnInit {
   }
 
   ngOnInit() {
+     
 
     this.rejectionValidationForm = this.formBuilder.group({
       rejectionReason: ['', [Validators.required]],

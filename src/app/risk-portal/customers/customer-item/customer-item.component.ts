@@ -93,7 +93,7 @@ export class CustomerItemComponent implements OnInit {
 
   isShowScoreCard = abp.auth.isGranted("Pages.Risk.Customers.ScoreCard");
   isShowAddress = abp.auth.isGranted("Pages.Risk.Customers.ShowAddressInfo"); 
-  isShowMainInfo = abp.auth.isGranted("Pages.Risk.Customers.ShowMainInfo");
+  isShowMainInfo = abp.auth.isGranted("Pages.Risk.Customers.ShowMainInfo ");
 
 
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
@@ -109,7 +109,7 @@ export class CustomerItemComponent implements OnInit {
 
   ngOnInit() {
 
-    this.isShowScoreCard = false
+    
     
 
     this.rejectionValidationForm = this.formBuilder.group({

@@ -103,7 +103,7 @@ export class UserItemSystemRejectComponent implements OnInit {
   isShowEditNoteBtn = abp.auth.isGranted("Pages.Risk.SystemRejected.ShowEditNote");
   isShowScoreCard = abp.auth.isGranted("Pages.Risk.SystemRejected.ScoreCard"); 
   isShowAddressInfo = abp.auth.isGranted("Pages.Risk.SystemRejected.ShowAddressInfo");
-  isShowMainInfo = abp.auth.isGranted("Pages.Risk.SystemRejected.ShowMainInfo");
+  isShowMainInfo = abp.auth.isGranted("Pages.Risk.SystemRejected.ShowMainInfo ");
 
 
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
@@ -119,7 +119,7 @@ export class UserItemSystemRejectComponent implements OnInit {
 
   ngOnInit() {
 
-    
+      
 
     this.rejectionValidationForm = this.formBuilder.group({
       rejectionReason: ['', [Validators.required]],

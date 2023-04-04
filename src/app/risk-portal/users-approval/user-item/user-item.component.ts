@@ -93,7 +93,7 @@ export class UserItemComponent implements OnInit {
   isShowEditNoteBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowEditNote");
   isShowScoreCard = abp.auth.isGranted("Pages.Risk.UsersApproval.ScoreCard"); 
   isShowAddressInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowAddressInfo");
-  isShowMainInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowMainInfo");
+  isShowMainInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowMainInfo ");
 
   
   salesRepMessage :string = '';
@@ -116,8 +116,7 @@ export class UserItemComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
+ 
 
     this.rejectionValidationForm = this.formBuilder.group({
       rejectionReason: ['', [Validators.required]],

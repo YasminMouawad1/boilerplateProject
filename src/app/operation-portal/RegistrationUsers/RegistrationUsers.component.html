@@ -16,189 +16,170 @@
          </div>
      </section>
      <section class="content px-2">
-         <div class="container-fluid">
-  
-                   
-           <div class="row"> 
-                  
-            </div>
-             <!-- <div *ngIf="advancedFiltersVisible" class="card mb-0 mt-1">
-                         <div class="card-body">
-                             <form class="form-horizontal">
-                                 <div class="row">
-                                     <div class="col-md-6">
-                                         <div class="form-group row mb-0">
-                                             <label class="col-md-3 col-form-label">
-                                                 {{ "IsActive" | localize }}
-                                             </label>
-                                             <div class="col-md-9 pt-2 d-flex justify-content-between">
-                                                 <div class="custom-control custom-radio d-inline">
-                                                     <input
-                                                             type="radio"
-                                                             class="custom-control-input"
-                                                             id="isActiveAll"
-                                                             name="isActive"
-                                                             [(ngModel)]="isActive"
-                                                             [value]="undefined"
-                                                             checked
-                                                     />
-                                                     <label class="custom-control-label" for="isActiveAll">
-                                                         {{ "All" | localize }}
-                                                     </label>
-                                                 </div>
-                                                 <div class="custom-control custom-radio d-inline mx-3">
-                                                     <input
-                                                             type="radio"
-                                                             class="custom-control-input"
-                                                             id="isActiveActive"
-                                                             name="isActive"
-                                                             [(ngModel)]="isActive"
-                                                             [value]="true"
-                                                     />
-                                                     <label
-                                                             class="custom-control-label"
-                                                             for="isActiveActive"
-                                                     >
-                                                         {{ "Yes" | localize }}
-                                                     </label>
-                                                 </div>
-                                                 <div class="custom-control custom-radio d-inline">
-                                                     <input
-                                                             type="radio"
-                                                             class="custom-control-input"
-                                                             id="isActivePassive"
-                                                             name="isActive"
-                                                             [(ngModel)]="isActive"
-                                                             [value]="false"
-                                                     />
-                                                     <label
-                                                             class="custom-control-label"
-                                                             for="isActivePassive"
-                                                     >
-                                                         {{ "No" | localize }}
-                                                     </label>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     </div>
+         <div class="container-fluid" *ngIf="isShowUsersList">
+            <tabset>
+                <tab [heading]="'Merchants Portal Users'" class="pt-3 px-2 ">
+                    <div class="card">
+                        <div class="card-body">
+                           <p *ngIf="!showTablePortal" class="alert alert-warning text-center">Data is Empty</p>
+       
+                            <div *ngIf="showTablePortal" class="table-responsive" [busy]="isTableLoading">
+                                <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                                    <thead class="bg-light">
+                                    <tr>
+                                        <th>Ar Name</th>
+                                        <th>En Name</th> 
+                                        <th>Mobile Number</th> 
+                                        <th>Branch Phone Number</th>
+                                        <th>Merchant Code</th> 
+                                        <th>Merchant Logo</th> 
+                                        <th>Action</th> 
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let user of portalUsers | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                                    >
+                                        <td>{{ user.nameAr }}</td>
+                                        <td>{{ user.nameEn }}</td>
+                                        <td>{{ user.mobileNumber }}</td>
+                                        <td>{{user.branchPhoneNumber}}</td> 
+                                        <td>{{user.merchantCode}}</td>
+                                        <td>{{user.merchantLogo }}</td> 
+                                        <td>
+                                            <button (click)="editUser(user.mobileNumber)" class="btnEdit"><i class="fas fa-edit"></i>edit</button>
+                                        </td> 
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+       
+                            <div *ngIf="showTablePortal" class="row justify-content-space-between align-items-center">
+                               <div class="col-md-1">
+                                 <select [(ngModel)]="numberRows" class="form-select">
+                                   <option [ngValue]="5">5</option>
+                                   <option [ngValue]="10">10</option>
+                                   <option [ngValue]="50">50</option>
+                                   <option [ngValue]="100">100</option>
+                                   <option [ngValue]="200">200</option>
+                                 </select>
+                               </div>
+                                 <div class="col-md-11 text-right">
+                                    <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
                                  </div>
-                             </form>
-                         </div>
-                         <div class="card-footer text-right">
-                             <button
-                                     type="button"
-                                     class="btn mr-2 bgGreen"
-                                     (click)="getDataPage(1)" 
-                             >
-                                 {{ "Search" | localize }}
-                             </button>
-                             <button
-                                     type="button"
-                                     class="btn btn-default float-right"
-                                     (click)="clearFilters()"
-                             >
-                                 {{ "Clear" | localize }}
-                             </button>
-                         </div>
-             </div> -->
-                  
-          <br>
- 
-             <!-- <div class="card"> 
-                 <div class="card-body">
-                     <div class="table-responsive">
-                         <table class="table table-striped table-bordered" [busy]="isTableLoading">
-                             <thead class="bg-light">
-                             <tr>
-                                 <th>{{ "UserName" | localize }}</th>
-                                 <th>{{ "FullName" | localize }}</th>
-                                 <th>{{ "EmailAddress" | localize }}</th>
-                                 <th>{{ "IsActive" | localize }}</th>
-                                 <th style="width: 310px;">{{ "Actions" | localize }}</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                             <tr
-                                     *ngFor="
-                   let user of users
-                     | paginate
-                       : {
-                           id: 'server',
-                           itemsPerPage: pageSize,
-                           currentPage: pageNumber,
-                           totalItems: totalItems
-                         }
-                 "
-                             >
-                                 <td>{{ user.userName }}</td>
-                                 <td>{{ user.fullName }}</td>
-                                 <td>{{ user.emailAddress }}</td>
-                                 <td>
-                                     <div class="custom-control custom-checkbox">
-                                         <input
-                                                 type="checkbox"
-                                                 class="custom-control-input"
-                                                 disabled
-                                                 [checked]="user.isActive"
-                                         />
-                                         <label class="custom-control-label"></label>
-                                     </div>
-                                 </td>
-                                 <td>
-                                     <button
-                                             type="button"
-                                             class="btn btn-sm mx-2 bgPink"
-                                             (click)="delete(user)"
-                                     >
-                                         <i class="fas fa-trash"></i>
-                                         {{ "Delete" | localize }}
-                                     </button>
-                                     <button
-                                             type="button"
-                                             class="btn btn-sm mx-2 bgYellow"
-                                             (click)="editUser(user)"
-                                     >
-                                         <i class="fas fa-pencil-alt"></i>
-                                         {{ "Edit" | localize }}
-                                     </button>
-                                     <button
-                                             type="button"
-                                             class="btn btn-sm bgGreen" 
-                                     >
-                                         <i class="fas fa-lock"></i>
-                                         {{ "ResetPassword" | localize }}
-                                     </button>
-                                 </td>
-                             </tr>
-                             </tbody>
-                         </table>
-                     </div>
-                 </div>
-                 <div class="card-footer table-card-footer bg-light border-top">
-                     <div class="row">
-                         <div class="col-sm-4 col-12 text-sm-left text-center">
-                             <button class="btn btn-secondary" (click)="refresh()">
-                                 <i class="fas fa-redo-alt"></i>
-                             </button>
-                         </div>
-                         <div class="col-sm-4 col-12 text-center">
-                             <p class="mb-0 my-2">
-                                 {{ "TotalRecordsCount" | localize: totalItems }}
-                             </p>
-                         </div>
-                         <div class="col-sm-4 col-12">
-                             <div class="float-sm-right m-auto">
-                                 <abp-pagination-controls
-                                         id="server"
-                                         (pageChange)="getDataPage($event)"
-                                 >
-                                 </abp-pagination-controls>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div> -->
-         </div> 
+                   
+                              </div>
+                        </div>
+                        
+                    </div>
+                </tab>
+
+                <tab [heading]="'Merchant Purchase Users'" class="pt-3 px-2">
+                    <div class="card">
+                        <div class="card-body">
+                           <p *ngIf="!showTablePurchase" class="alert alert-warning text-center">Data is Empty</p>
+       
+                            <div *ngIf="showTablePurchase" class="table-responsive" [busy]="isTableLoading">
+                                <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                                    <thead class="bg-light">
+                                    <tr>
+                                        <th>Ar Name</th>
+                                        <th>En Name</th> 
+                                        <th>Mobile Number</th> 
+                                        <th>Branch Phone Number</th>
+                                        <th>National ID</th> 
+                                        <th>Device Type</th>  
+                                         <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let user of PurchaseUsers | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                                    >
+                                        <td>{{ user.nameAr }}</td>
+                                        <td>{{ user.nameEn }}</td>
+                                        <td>{{ user.mobileNumber }}</td>
+                                        <td>{{user.branchPhoneNumber}}</td> 
+                                        <td>{{user.nationalId}}</td>
+                                        <td>{{user.deviceType }}</td> 
+                                        <td>
+                                            <button (click)="editUser(user.mobileNumber)" class="btnEdit"><i class="fas fa-edit"></i>edit</button>
+                                        </td> 
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+       
+                            <div *ngIf="showTablePurchase" class="row justify-content-space-between align-items-center">
+                               <div class="col-md-1">
+                                 <select [(ngModel)]="numberRows" class="form-select">
+                                   <option [ngValue]="5">5</option>
+                                   <option [ngValue]="10">10</option>
+                                   <option [ngValue]="50">50</option>
+                                   <option [ngValue]="100">100</option>
+                                   <option [ngValue]="200">200</option>
+                                 </select>
+                               </div>
+                                 <div class="col-md-11 text-right">
+                                    <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
+                                 </div>
+                   
+                              </div>
+                        </div>
+                        
+                    </div>
+                </tab>
+
+                <tab [heading]="'Merchant Activators'" class="pt-3 px-2 text-gray">
+                    <div class="card">
+                        <div class="card-body">
+                           <p *ngIf="!showTableActivators" class="alert alert-warning text-center">Data is Empty</p>
+       
+                            <div *ngIf="showTableActivators" class="table-responsive" [busy]="isTableLoading">
+                                <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                                    <thead class="bg-light">
+                                    <tr>
+                                        <th>Ar Name</th>
+                                        <th>En Name</th> 
+                                        <th>Mobile Number</th> 
+                                        <th>Activation Point</th>  
+                                        <th>Action</th>  
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let user of Activators | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                                    >
+                                        <td>{{ user.nameAr }}</td>
+                                        <td>{{ user.nameEn }}</td>
+                                        <td>{{ user.mobileNumber }}</td> 
+                                        <td>{{user.activationPoint.name}}</td> 
+                                        <td>
+                                            <button (click)="editUser(user.mobileNumber)" class="btnEdit"><i class="fas fa-edit"></i>edit</button>
+                                        </td> 
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+       
+                            <div *ngIf="showTableActivators" class="row justify-content-space-between align-items-center">
+                               <div class="col-md-1">
+                                 <select [(ngModel)]="numberRows" class="form-select">
+                                   <option [ngValue]="5">5</option>
+                                   <option [ngValue]="10">10</option>
+                                   <option [ngValue]="50">50</option>
+                                   <option [ngValue]="100">100</option>
+                                   <option [ngValue]="200">200</option>
+                                 </select>
+                               </div>
+                                 <div class="col-md-11 text-right">
+                                    <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
+                                 </div>
+                   
+                              </div>
+                        </div>
+                        
+                    </div>
+                </tab>
+            </tabset>
+         </div>
      </section>
     </div>
  </div>

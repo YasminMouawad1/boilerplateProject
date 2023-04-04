@@ -123,5 +123,19 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
   addCleintDocument(DocData:any){
     return this._API.doPost(UrlEndpoints.post_AddClientDocument, DocData)
   }
+
+
+  getMerchantPortalUsers(){
+    return this._API.doGet(UrlEndpoints.GET_MerchantsPortalUsers);
+  }
+
+  getMerchantPurchaseUsers(){
+    return this._API.doGet(UrlEndpoints.GET_MerchantPurchaseUsers);
+  }
+
+  getMerchantActivators(){
+    return this._API.doGet(UrlEndpoints.GET_MerchantActivators);
+  }
+
 }
 

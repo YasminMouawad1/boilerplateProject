@@ -34,6 +34,11 @@ export class MessageTemplateComponent extends PagedListingComponentBase<UserDto>
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  isShowMessageTemplateList = abp.auth.isGranted("Pages.SystemConfiguration.MessageTemplate ");
+  isShowMessageTemplateCreate = abp.auth.isGranted("Pages.SystemConfiguration.MessageTemplate.Add");
+  isShowMessageTemplateEdit = abp.auth.isGranted("Pages.SystemConfiguration.MessageTemplate.Edit");
+
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,

@@ -34,6 +34,10 @@ export class MessageTypeComponent extends PagedListingComponentBase<UserDto> {
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  isShowMessageTypeList = abp.auth.isGranted("Pages.SystemConfiguration.MessageType ");
+  isShowMessageTypeCreate = abp.auth.isGranted("Pages.SystemConfiguration.MessageType.Add");
+  isShowMessageTypeEdit = abp.auth.isGranted("Pages.SystemConfiguration.MessageType.Edit");
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
@@ -42,6 +46,7 @@ export class MessageTypeComponent extends PagedListingComponentBase<UserDto> {
     private _modalService: BsModalService
   ) {
     super(injector);
+
 
   }
 

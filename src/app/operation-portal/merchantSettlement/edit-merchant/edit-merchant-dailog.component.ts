@@ -78,21 +78,7 @@ export class editMerchantPlanDialogComponent implements OnInit{
       private router: Router,) {
     //super(injector);
     
-    
-
-//   this.merchantData = [
-//     {id: '4', text: 'egabi stuff'},
-//     {id: '3', text: 'trade Line'},
-//     {id: '4', text: 'ikia'},
-//     {id: '5', text: 'Hyper One'},
-//     {id: '7', text: 'zad baldna'},
-//     {id: '8', text: 'Sharp'},
-//     {id: '11',text: 'Al morshady'},
-//     {id: '15',text: 'Dubai phone'},
-//     {id: '16',text: 'abdel Aziz store '},
-//     {id: '17',text: 'Orascom contraction'},
-//     {id: '18',text: 'el naggar tourism'}
-// ];
+     
 
 this.getAllMerchants();
 

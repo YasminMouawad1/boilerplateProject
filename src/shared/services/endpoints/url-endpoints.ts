@@ -24,6 +24,10 @@ export abstract class UrlEndpoints {
   static readonly GET_MerchantSettlementPlan: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlan';
   static readonly GET_MerchantSettlementPlanByID: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlanById?merchanstsCode=';
 
+  //register users
+  static readonly GET_MerchantsPortalUsers: string  = 'api/services/app/PortalRegistrationUsers/GetMerchantsPortalUsers';
+  static readonly GET_MerchantPurchaseUsers: string  = 'api/services/app/PortalRegistrationUsers/GetMerchantPurchaseUsers';
+  static readonly GET_MerchantActivators: string  = 'api/services/app/PortalRegistrationUsers/GetMerchantActivators';
  
   static readonly Get_ClientActivation: string = 'api/Risk/ClientActivation?mobileNumber=';
   static readonly GET_RiskRejectedOnlyList: string = 'api/Risk/ProfilePlus?isRejectedOnly='+true;

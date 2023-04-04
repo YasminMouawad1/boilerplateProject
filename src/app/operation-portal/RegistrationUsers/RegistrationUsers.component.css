@@ -58,3 +58,29 @@
   .select2-container::ng-deep .select2-selection--single{
     height: 34px !important;
 }
+
+.my-pagination ::ng-deep .ngx-pagination{
+    margin-top: 1.5rem;
+} 
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: #556ee6;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav-tabs .nav-link{
+    color: grey;
+}
+
+.btnEdit{
+    border: none;
+    color: #fff;
+    background-color: #f28d8a;
+    border-radius: 3px;
+    padding: 3px 15px;
+}
+
+.btnEdit i{
+    margin-right: 6px;
+}

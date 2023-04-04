@@ -34,6 +34,10 @@ export class EmailContentComponent extends PagedListingComponentBase<UserDto> {
   isActive: boolean | null;
   advancedFiltersVisible = false;
 
+  isShowEmailContentList = abp.auth.isGranted("Pages.SystemConfiguration.CreateEmail ");
+  isShowEmailContentCreate = abp.auth.isGranted("Pages.SystemConfiguration.CreateEmail.Add");
+  isShowEmailContentEdit = abp.auth.isGranted("Pages.SystemConfiguration.CreateEmail.Edit");
+
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,

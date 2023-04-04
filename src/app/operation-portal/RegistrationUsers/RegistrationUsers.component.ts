@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -15,6 +15,10 @@ import {
   ApplicationsOnBoardingDtoPagedResultDto
 } from '@shared/service-proxies/service-proxies'; 
 import { RegisterNewUserDialogComponent } from './create-new-user/register-new-user-dialog.component';
+import { AppComponentBase } from '@shared/app-component-base';
+import { UsersService } from '@shared/services/endpoints/users.service';
+import { EditUserDialogComponent } from './../../admin/users/edit-user/edit-user-dialog.component';
+import { editUserDialogComponent } from './edit_user/edit-user-dailog.component';
 
  
 class PagedUsersRequestDto extends PagedRequestDto {
@@ -27,11 +31,22 @@ class PagedUsersRequestDto extends PagedRequestDto {
   styleUrls:['./RegistrationUsers.component.css'],
   animations: [appModuleAnimation()]
 })
-export class RegistrationUserComponent extends PagedListingComponentBase<UserDto> {
+export class RegistrationUserComponent extends AppComponentBase implements OnInit{
   users: UserDto[] = [];
   keyword = '';
   isActive: boolean | null;
   advancedFiltersVisible = false;
+
+  portalUsers:any;
+  PurchaseUsers:any;
+  Activators:any;
+
+ numberRows:number = 10;
+ currentPage: number = 1;
+ isTableLoading:boolean = false;
+  showTablePortal:boolean = true;
+  showTablePurchase:boolean = true;
+  showTableActivators:boolean = true;
 
 isShowUsersList = abp.auth.isGranted('Pages.Operation.RegistrationUsers');
 isShowRegisterUserAddBtn = abp.auth.isGranted('Pages.Operation.RegistrationUsers.Add');
@@ -39,90 +54,101 @@ isShowRegisterUserEditBtn = abp.auth.isGranted('Pages.Operation.RegistrationUser
 
   constructor(
     injector: Injector,
-    private _userService: UserServiceProxy,
-    private _BulkOnBoardingServiceProxy: BulkOnBoardingServiceProxy,
-
+    private _UsersServices:UsersService,
     private _modalService: BsModalService
   ) {
     super(injector);
 
   }
 
+
+  ngOnInit(): void {
+    this.getPortalUsers();
+    this.getPurchaseUsers();
+    this.getActivators();
+  }
+
+  getPortalUsers(){
+    this.isTableLoading = true;
+
+       this._UsersServices.getMerchantPortalUsers().subscribe((res) =>{
+           if(res)
+              this.portalUsers = res.result.data;
+
+              if(this.portalUsers.length > 0)
+                  this.showTablePortal = true;
+              else
+                  this.showTablePortal = false;
+       })
+       this.isTableLoading = false;
+  }
+
+  getPurchaseUsers(){
+    this.isTableLoading = true;
+    this._UsersServices.getMerchantPurchaseUsers().subscribe((res) =>{
+        if(res)
+           this.PurchaseUsers = res.result.data;
+
+           if(this.PurchaseUsers.length > 0)
+               this.showTablePurchase = true;
+           else
+               this.showTablePurchase = false;
+    });
+    this.isTableLoading = false;
+}
+
+getActivators(){
+  this.isTableLoading = true;
+
+  this._UsersServices.getMerchantActivators().subscribe((res) =>{
+      if(res)
+         this.Activators = res.result.data;
+
+         if(this.Activators.length > 0)
+             this.showTableActivators = true;
+         else
+             this.showTableActivators = false;
+  });
+  this.isTableLoading = false;
+}
+
   createUser(): void {
-    this.showCreateOrEditUserDialog();
+    this.showCreateUserDialog();
   }
 
-  editUser(user: UserDto): void {
-    this.showCreateOrEditUserDialog(user.id);
-  }
-
- 
-
-  clearFilters(): void {
-    this.keyword = '';
-    this.isActive = undefined;
-    this.getDataPage(1);
-  }
-
-  protected list(
-    request: PagedUsersRequestDto,
-    pageNumber: number,
-    finishedCallback: Function
-  ): void {
-    request.keyword = this.keyword;
-    request.isActive = this.isActive;
-
-    this._userService
-      .getAll(
-        request.keyword,
-        request.isActive,
-        request.skipCount,
-        request.maxResultCount
-      )
-      .pipe(
-        finalize(() => {
-          finishedCallback();
-        })
-      )
-      .subscribe((result: UserDtoPagedResultDto) => {
-        this.users = result.items;
-        this.showPaging(result, pageNumber);
-      });
-
+  editUser(userID: any): void {
+    this.showCEditUserDialog(userID);
   }
 
 
-
-
-  protected delete(user: UserDto): void {
-    abp.message.confirm(
-      this.l('UserDeleteWarningMessage', user.fullName),
-      undefined,
-      (result: boolean) => {
-        if (result) {
-          this._userService.delete(user.id).subscribe(() => {
-            abp.notify.success(this.l('SuccessfullyDeleted'));
-            this.refresh();
-          });
-        }
-      }
-    );
-  }
- 
-
-  private showCreateOrEditUserDialog(id?: number): void {
+  private showCreateUserDialog(): void {
     let createOrEditUserDialog: BsModalRef;
-    if (!id) {
+    
       createOrEditUserDialog = this._modalService.show(
         RegisterNewUserDialogComponent,
         {
           class: 'modal-lg',
         }
       );
-    }  
+   
 
-    createOrEditUserDialog.content.onSave.subscribe(() => {
-      this.refresh();
-    });
+   
   }
+
+  private showCEditUserDialog(id: any): void {
+    let createOrEditUserDialog: BsModalRef;
+     
+      createOrEditUserDialog = this._modalService.show(
+        editUserDialogComponent,
+        {
+          class: 'modal-lg',
+        }
+      );
+   
+
+   
+  }
+
+
+
 }

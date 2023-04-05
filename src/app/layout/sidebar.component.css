@@ -1,0 +1,38 @@
+
+
+.sub-menu-list{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul li{
+    margin-bottom: 5px;
+}
+
+ #sidebar-menu ul li a{
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 17px;
+ }
+
+
+ .active{
+   background-color: #5eb2a8;
+    border-radius: 5px;
+    padding: 5px 17px;
+  }
+
+  a.active{
+    color: #fff !important;
+  }
+
+#side-menu li a.sub-active{
+    background-color: #5eb2a8;
+     border-radius: 5px;
+     padding: 5px 17px;
+     color: #fff !important;
+     font-size: 15px !important;
+}

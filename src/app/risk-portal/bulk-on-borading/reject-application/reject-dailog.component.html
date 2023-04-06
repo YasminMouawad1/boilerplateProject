@@ -1,63 +1,89 @@
  
   <div class="modal-header">
-    <h5 class="modal-title mt-0"> risk Rejection</h5>
+    <h5 class="modal-title mt-0"> [ Rejection risk]</h5>
 
-    <button type="button" class="btn-close" aria-hidden="true" (click)="hide()"><i class="fa fa-close"></i></button>
+    <button type="button" class="btn-close" aria-hidden="true" (click)="hide()"></button>
   </div>
   <div class="modal-body">
-    <p>  areSureReject {{ userItem.name }}?</p>
+    <label class="form-label">   areSureReject {{ userItem.name }}?</label>
 
 
     <form (ngSubmit)="rejectRiskApplication()" [formGroup]="rejectionValidationForm">
       <div class="mb-3">
-        <label class="form-label">  rejection Reason </label>
-
-        <select class="form-control"
-                placeholder="Select Reject Response"
-                formControlName="rejectionReason"
-                [(ngModel)]="rejectionReason"
-                [ngClass]="{
-            'is-invalid':rejectionValidationForm.get('rejectionReason')?.invalid && submitrejectform
-          }">
-          <option value="" selected> chooseResponse</option>
-          <option *ngFor="let reject of rejectResponse"
-                  value="{{reject.id}}">
-            {{ reject.name }}
-          </option>
-        </select>
-        <div>
-          <span *ngIf="rejectionValidationForm.get('rejectionReason')?.invalid && submitrejectform" class="text-danger">Required</span>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">reject Comment </label>
-        <div>
-          <textarea [(ngModel)]="rejectRiskComment" [value]="rejectRiskComment"
-                    name="rejectRiskComment" class="form-control" rows="5" placeholder="write a comment..."
-                    formControlName="rejectRiskComment"
-                    [(ngModel)]="rejectRiskComment"
-                    [ngClass]="{
-                  'is-invalid':rejectionValidationForm.get('rejectRiskComment')?.invalid && submitrejectform
-
-                }"></textarea>
-          <div class="invalid-feedback">
-            <span>is Required</span>
+        <div class="row">
+          <div class="col md-3">
+            <label class="form-label">  rejection Reason </label>
+          </div>
+  
+          <div class="col-md-9">
+              
+          <select class="form-control"
+          placeholder="Select Reject Response"
+          formControlName="rejectionReason"
+          [(ngModel)]="rejectionReason"
+          [ngClass]="{
+              'is-invalid':rejectionValidationForm.get('rejectionReason')?.invalid && submitrejectform
+            }">
+            <option value="" selected> chooseResponse</option>
+            <option *ngFor="let reject of rejectResponse"
+                    value="{{reject.id}}">
+              {{ reject.name }}
+            </option>
+          </select>
+          <div>
+            <span *ngIf="rejectionValidationForm.get('rejectionReason')?.invalid && submitrejectform" class="text-danger">Required</span>
+          </div>
           </div>
         </div>
+        
+        
+
       </div>
 
       <div class="mb-3">
-        <label class="form-label">salesRepMessage </label>
+        <div class="row">
+           <div class="col-md-3">
+            <label class="form-label">reject Comment </label>
+           </div>
+           <div class="col-md-9">
+            <textarea [(ngModel)]="rejectRiskComment" [value]="rejectRiskComment"
+            name="rejectRiskComment" class="form-control" rows="4" placeholder="write a comment..."
+            formControlName="rejectRiskComment"
+            [(ngModel)]="rejectRiskComment"
+            [ngClass]="{
+          'is-invalid':rejectionValidationForm.get('rejectRiskComment')?.invalid && submitrejectform
+
+              }"></textarea>
+        <div class="invalid-feedback">
+          <span>is Required</span>
+        </div>
+           </div>
+        </div>
+        
         <div>
-          <textarea [(ngModel)]="salesRepMessage" [value]="salesRepMessage"
-                    name="salesRepMessage" class="form-control" rows="5" 
-                    [ngModelOptions]="{standalone: true}" placeholder="Sales Rep Message..."
+          
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="row">
+           <div class="col-md-3">
+            <label class="form-label">salesRepMessage </label>
+           </div>
+           <div class="col-md-9">
+            <textarea [(ngModel)]="salesRepMessage" [value]="salesRepMessage"
+            name="salesRepMessage" class="form-control" rows="4" 
+            [ngModelOptions]="{standalone: true}" placeholder="Sales Rep Message..."
               ></textarea>
 
           <div class="invalid-feedback">
             <span>is Required </span>
           </div>
+           </div>
+        </div>
+       
+        <div>
+          
         </div>
       </div>
       <div class="modal-footer">

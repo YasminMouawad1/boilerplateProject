@@ -9,7 +9,28 @@
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
-      
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="pointId">
+        ID
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="pointId"
+          id="pointId"
+          required
+          maxlength="32"
+          [(ngModel)]="pointId"
+          #pointIdModel="ngModel"
+          #pointIdEl
+        />
+        <abp-validation-summary
+          [control]="pointIdModel"
+          [controlEl]="pointIdEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
 
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="name">

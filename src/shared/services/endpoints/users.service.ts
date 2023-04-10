@@ -52,6 +52,11 @@ getAllCoporates(){
     return this._API.doGet(UrlEndpoints.GET_MerchantSettlementPlanByID + merchantCode)
   }
 
+  getActivationByID(pointID: number){
+    return this._API.doGet(UrlEndpoints.GET_ActivationPointByID + pointID)
+  }
+
+
   softApproveCorporate(corpApprove: any){
     return this._API.doPost(UrlEndpoints.POST_softApproveCorporate, corpApprove)
   }

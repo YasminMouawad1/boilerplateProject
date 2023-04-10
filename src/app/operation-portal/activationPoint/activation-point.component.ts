@@ -68,7 +68,7 @@ export class ActivationPointComponent extends PagedListingComponentBase<UserDto>
   }
  
   editPoint(id:any){
-     this.showEditActivationPointDialog();
+     this.showEditActivationPointDialog(id);
   }
 
   clearFilters(): void {
@@ -140,7 +140,7 @@ export class ActivationPointComponent extends PagedListingComponentBase<UserDto>
     });
   }
 
-  private showEditActivationPointDialog(id?: number): void {
+  private showEditActivationPointDialog(id: number): void {
 
 
     const initialState = {
@@ -148,16 +148,13 @@ export class ActivationPointComponent extends PagedListingComponentBase<UserDto>
     };
 
     let editActivationPointDialog: BsModalRef;
-    if (!id) {
+    
       editActivationPointDialog = this._modalService.show(
         EditActivationPointDialogComponent,
         {class: 'modal-lg', initialState }
       );
-    }  
-
-    editActivationPointDialog.content.onSave.subscribe(() => {
-      this.refreshTab();
-    });
+    
+ 
   }
 
   refreshTab(){

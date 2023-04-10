@@ -10,7 +10,29 @@
   ></abp-modal-header>
   <div class="modal-body">
       
-    
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="init_pointID">
+        ID
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="init_pointID"
+          id="init_pointID"
+          required
+          maxlength="32"
+          [(ngModel)]="init_pointID"
+          #init_pointIDModel="ngModel"
+          #init_pointIDEl
+        />
+        <abp-validation-summary
+          [control]="init_pointIDModel"
+          [controlEl]="init_pointIDEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="name">
             Name

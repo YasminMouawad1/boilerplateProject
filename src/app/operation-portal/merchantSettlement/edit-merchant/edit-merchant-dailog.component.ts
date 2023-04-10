@@ -195,7 +195,7 @@ this.daysOptions={
 
   GetMerchanstsSettlementPlanById(){
         this._usersServices.getMerchantPlanByID(this.init_merchantCode).subscribe((res) =>{
-          console.log(res)
+         
              this.MerchantCode = res.result.data.merchantCode;
              this.settlementPlan = res.result.data.settlementPlanName;
              
@@ -217,15 +217,13 @@ debugger
       "days": this.days, 
     }
   var object = new SetMerchantSettlementPlanDto ()
-
-  console.log(object)
+ 
   object.init(body) 
   this._portalRegistrationUsersServiceProxy.setMerchantSettlementPlan(object).subscribe( (res ) => {
         
       if(res){
         abp.message.success("Edit Settlement plan successfully");
-        this.bsModalRef.hide(); 
-        //this.router.navigate(['/app/operation-portal/merchant-settlement']);
+        this.bsModalRef.hide();  
         this.reloadCurrentRoute();
       }
        

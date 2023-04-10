@@ -46,7 +46,7 @@ import { Router } from '@angular/router';
     ];
   
     @Output() onSave = new EventEmitter<any>();
-    pointId : number = 0;
+    pointId : number;
     name : string = '';
     longitude : string = '';
     latitude : string = '';
@@ -116,7 +116,6 @@ import { Router } from '@angular/router';
   
     
     object.init(body) 
-    console.log(object)
   
     this._portalRegistrationUsersServiceProxy.addActivarionPoints(object).subscribe( (res ) => {
           

@@ -17,7 +17,9 @@ export abstract class UrlEndpoints {
   static readonly GET_RejectResponse: string = 'api/services/app/Risk/GetRejectResponse';
   static readonly POST_AllUsersList: string = 'api/services/app/Risk/ClientSearch?clientName=';
   static readonly GET_ALLActivationPoint: string = 'api/services/app/PortalRegistrationUsers/GetActivarionPoints';
+  static readonly GET_ActivationPointByID: string = 'api/services/app/PortalRegistrationUsers/GetActivarionPoint?id=';
   
+
   static readonly POST_RegisterationUser: string = 'api/services/app/PortalRegistrationUsers/RegistrationPortalUsers';
   ///
 

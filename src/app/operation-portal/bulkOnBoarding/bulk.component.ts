@@ -83,7 +83,7 @@ export class BulkComponent extends PagedListingComponentBase<ApplicationsOnBoard
     this.options = {
       multiple: false,
       closeOnSelect: true,
-      width: '300',
+      width: '260',
       placeholder: "Select a Corporate",
       allowClear: true
     };

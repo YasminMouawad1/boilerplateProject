@@ -18,6 +18,7 @@ import {
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { Router } from '@angular/router';
+import { UsersService } from '@shared/services/endpoints/users.service';
   
   @Component({
     templateUrl: './edit-activation-point-dailog.component.html',
@@ -59,59 +60,35 @@ import { Router } from '@angular/router';
       private router: Router,
       public _portalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy,
       public _modalOption:ModalOptions,
+      private _usersServices:UsersService,
     ) {
       super(injector);
     }
   
     ngOnInit(): void {
 
-        this.init_pointID =  this._modalOption.initialState.init_merchantCode;
-      
-      debugger
-  this._lookupService.getAllCorporate().subscribe((result) => {
-     console.log(result)
-  });
-  
-      this._userService.getRoles().subscribe((result) => {
-        this.roles = result.items;
-        this.setInitialRolesStatus();
-      });
+        this.init_pointID =  this._modalOption.initialState.init_pointID;
+       
+        this.GetActivationPointById();
+    }
 
-
-    }
-  
-    setInitialRolesStatus(): void {
-      _map(this.roles, (item) => {
-        this.checkedRolesMap[item.normalizedName] = this.isRoleChecked(
-          item.normalizedName
-        );
-      });
-    }
-  
-    isRoleChecked(normalizedName: string): boolean {
-      // just return default role checked status
-      // it's better to use a setting
-      return this.defaultRoleCheckedStatus;
-    }
-  
-    onRoleChange(role: RoleDto, $event) {
-      this.checkedRolesMap[role.normalizedName] = $event.target.checked;
-    }
-  
-    getCheckedRoles(): string[] {
-      const roles: string[] = [];
-      _forEach(this.checkedRolesMap, function (value, key) {
-        if (value) {
-          roles.push(key);
-        }
-      });
-      return roles;
-    }
+    GetActivationPointById(){
+      this._usersServices.getActivationByID(this.init_pointID).subscribe((res) =>{
+       
+           this.init_pointID = res.result.data.id;
+           this.name = res.result.data.name;
+           this.longitude = res.result.data.longitude;
+           this.latitude = res.result.data.latitude;
+          console.log(res)
+      })
+}
+   
   
     save(): void {
       this.saving = true;
    
       let body  = { 
+        id:this.init_pointID,
         name: this.name,
         longitude: this.longitude,
         latitude: this.latitude
@@ -119,13 +96,12 @@ import { Router } from '@angular/router';
     var object = new AddActivationPointDto ()
   
     
-    object.init(body) 
-    console.log(object)
+    object.init(body)  
   
     this._portalRegistrationUsersServiceProxy.addActivarionPoints(object).subscribe( (res ) => {
           
         if(res){
-          abp.message.success("Create Activation Point successfully");
+          abp.message.success("Edit Activation Point successfully");
           this.bsModalRef.hide();
          this.reloadCurrentRoute();
         }

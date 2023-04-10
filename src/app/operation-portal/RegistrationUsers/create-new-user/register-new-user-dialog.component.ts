@@ -258,7 +258,7 @@ console.log(data)
             this.reloadCurrentRoute();
           }
       } );
-    
+       
     }
 
     reloadCurrentRoute() {

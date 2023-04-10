@@ -21,7 +21,8 @@ export abstract class UrlEndpoints {
   
 
   static readonly POST_RegisterationUser: string = 'api/services/app/PortalRegistrationUsers/RegistrationPortalUsers';
-  ///
+  static readonly POST_GetUSerByID: string = 'api/services/app/PortalRegistrationUsers/MerchantUserById';
+  
 
   static readonly GET_MerchantSettlementPlan: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlan';
   static readonly GET_MerchantSettlementPlanByID: string = 'api/services/app/PortalRegistrationUsers/GetMerchanstsSettlementPlanById?merchanstsCode=';

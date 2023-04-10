@@ -116,15 +116,15 @@ getActivators(){
     this.showCreateUserDialog();
   }
 
-  editUser(userID: any): void {
-    this.showCEditUserDialog(userID);
+  editUser(userID: any,type:any): void {
+    this.showCEditUserDialog(userID,type);
   }
 
 
   private showCreateUserDialog(): void {
-    let createOrEditUserDialog: BsModalRef;
+    let creatUserDialog: BsModalRef;
     
-      createOrEditUserDialog = this._modalService.show(
+    creatUserDialog = this._modalService.show(
         RegisterNewUserDialogComponent,
         {
           class: 'modal-lg',
@@ -135,14 +135,39 @@ getActivators(){
    
   }
 
-  private showCEditUserDialog(id: any): void {
-    let createOrEditUserDialog: BsModalRef;
+  private showCEditUserDialog(id: any,type:string): void {
+
+    let initialState = {};
+
+    if(type == 'portal'){
+          initialState = {
+          init_id: id, 
+          merchantPortalSignUp:true,
+          merchantSignUp:false,
+          salesSignUp:false
+       };
+    }else if(type == 'purchase'){
+      initialState = {
+        init_id: id, 
+        merchantPortalSignUp:false,
+        merchantSignUp:true,
+        salesSignUp:false
+     };
+    }else{
+       initialState = {
+        init_id: id, 
+        merchantPortalSignUp:false,
+        merchantSignUp:false,
+        salesSignUp:true
+     };
+    }
+    
+
+    let EditUserDialog: BsModalRef;
      
-      createOrEditUserDialog = this._modalService.show(
+    EditUserDialog = this._modalService.show(
         editUserDialogComponent,
-        {
-          class: 'modal-lg',
-        }
+        { class: 'modal-lg', initialState}
       );
    
 

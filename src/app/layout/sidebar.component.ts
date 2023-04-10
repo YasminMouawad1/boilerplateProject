@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit {
   newLanguage:any;
   checkLanguage:boolean = false;
 
-  isShowAdmin = abp.auth.isAnyGranted("Pages.Roles","Pages.Tenants","Pages.Users");
+  isShowAdmin = abp.auth.isAnyGranted("Pages.Roles","Pages.Users");
   isShowAdminUsers = abp.auth.isGranted("Pages.Users");
   isShowAdminRoles = abp.auth.isGranted("Pages.Roles");
   isShowAdminTenants = abp.auth.isGranted("Pages.Tenants");

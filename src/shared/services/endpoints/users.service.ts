@@ -56,6 +56,10 @@ getAllCoporates(){
     return this._API.doGet(UrlEndpoints.GET_ActivationPointByID + pointID)
   }
 
+  getMerchantUserByID(body:any){
+    return this._API.doPost(UrlEndpoints.POST_GetUSerByID ,body)
+  }
+
 
   softApproveCorporate(corpApprove: any){
     return this._API.doPost(UrlEndpoints.POST_softApproveCorporate, corpApprove)

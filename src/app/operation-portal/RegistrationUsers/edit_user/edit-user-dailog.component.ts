@@ -4,24 +4,15 @@ import { appModuleAnimation } from '@shared/animations/routerTransition';
 import { finalize } from 'rxjs/operators';
 import { Select2OptionData } from 'ng-select2';
 import { Options } from 'select2';
-import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalRef, ModalOptions, ModalModule } from 'ngx-bootstrap/modal';
 
 import {
   PagedListingComponentBase,
   PagedRequestDto
 } from '@shared/paged-listing-component-base';
-import {
-  RoleServiceProxy,
-  RoleDto,
-  RoleDtoPagedResultDto,
-  ApplicationsOnBoardingDtoPagedResultDto,
-  BulkOnBoardingServiceProxy,
-  LookUpServiceProxy,
-  LookupCorporateDto,
-  CreateBulkOnBoardingConfigDto,
-  ApplicationOnBoardingServiceProxy,
-  ApplicationsOnBoardingDto,
-  SetMerchantSettlementPlanDto,
+import { 
+  RoleDto, 
+  LookUpServiceProxy, 
   PortalRegistrationUsersServiceProxy,
   PortalUsersRegistrationDto,
   UserServiceProxy
@@ -31,10 +22,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 
-
-class PagedApplicationsOnBoardingDto extends PagedRequestDto {
-  keyword: string;
-}
+ 
 
 @Component({
   templateUrl:  './edit-user-dailog.component.html',
@@ -64,6 +52,12 @@ export class editUserDialogComponent implements OnInit{
     @Output() onSave = new EventEmitter<any>();
   
 
+init_id:any;
+merchantPortalSignUp:any;
+merchantSignUp:any;
+salesSignUp:any;
+mobileNumber:any;
+smsMsg:boolean = false;
 
 
  registerationForm:FormGroup;
@@ -78,46 +72,26 @@ export class editUserDialogComponent implements OnInit{
 
     constructor(
       injector: Injector,
-      public _userService: UserServiceProxy,
+      public _userService: UserServiceProxy, 
       public _lookupService: LookUpServiceProxy,
       public bsModalRef: BsModalRef,
       public formBuilder: FormBuilder,
       private _LookUpServiceProxy:LookUpServiceProxy,
       private _usersServices:UsersService,
       private router:Router,
+      public _modalOption:ModalOptions,
       private _PortalRegistrationUsersServiceProxy:PortalRegistrationUsersServiceProxy
     ) {
       //super(injector);
     }
   
     ngOnInit(): void { 
+       
+       
       
-
-      this.registerationForm = new FormGroup({
-        NationalId:new FormControl('', Validators.required), 
-        arName: new FormControl('', Validators.required), 
-        enName: new FormControl('', Validators.required), 
-        mobileNumber: new FormControl('', Validators.required), 
-        activationPointId: new FormControl('', Validators.required), 
-        branchPhoneNumber: new FormControl('', Validators.required), 
-        merchantCode: new FormControl('', Validators.required), 
-        merchantLogo: new FormControl('', Validators.required), 
-        sendSms: new FormControl(false, Validators.required), 
-        merchantPortalSignUp: new FormControl(false, Validators.required), 
-        merchantSignUp: new FormControl(false, Validators.required), 
-        salesSignUp: new FormControl(false, Validators.required), 
-      
-      });
-
-  this._lookupService.getAllCorporate().subscribe((result) => {
-    
-  });
+ 
   
-      this._userService.getRoles().subscribe((result) => {
-        this.roles = result.items;
-        this.setInitialRolesStatus();
-      });
-
+     
 
       this.getAllMerchants();
       this.getAllActivationPoint();
@@ -128,40 +102,85 @@ export class editUserDialogComponent implements OnInit{
       //   placeholder: "Select a merchant",
       //   allowClear: true
       // };
+
+      this.init_id =  this._modalOption.initialState.init_id;
+      this.merchantPortalSignUp =  this._modalOption.initialState.merchantPortalSignUp;
+      this.merchantSignUp =  this._modalOption.initialState.merchantSignUp;
+      this.salesSignUp =  this._modalOption.initialState.salesSignUp;
+     
+
+      this.getUserByID();
     }
   
-    setInitialRolesStatus(): void {
+   
+    getUserByID(){
+      let body = {
+        id:this.init_id,
+        NationalId:'',
+        arName: '',
+        enName: '',
+        mobileNumber: '',  
+        activationPointId: 0, 
+        password:'',
+        branchPhoneNumber: '',
+        merchantCode: '',
+        merchantLogo: '',
+        sendSms: false,
+        merchantPortalSignUp: this.merchantPortalSignUp, 
+        merchantSignUp: this.merchantSignUp,
+        salesSignUp: this.salesSignUp
        
+      } 
+
+        this._usersServices.getMerchantUserByID(body).subscribe( (res) =>{
+       
+        
+           this.mobileNumber = res.result.data.mobileNumber;
+           
+         
+         
+        })
+    }
+
+    editUser(){
+ 
+
+      let body = {
+          //id:this.init_id,
+          NationalId:'',
+          arName: '',
+          enName: '', 
+          mobileNumber: this.mobileNumber,
+          activationPointId: 0, 
+          password:'',
+          branchPhoneNumber: '',
+          merchantCode: '',
+          merchantLogo: '', 
+          sendSms: this.smsMsg,
+          merchantPortalSignUp: this.merchantPortalSignUp,
+          merchantSignUp: this.merchantSignUp,
+          salesSignUp: this.salesSignUp,
+          
+          
+         
+        
+      }
+ 
+
+      console.log(body)
+
+      this._usersServices.registerationUser(body).subscribe((res) =>{
+         
+          if(res){
+             abp.message.success("reset Password successfully");
+             this.bsModalRef.hide();
+             //this.reloadCurrentRoute();
+          }
+            
+      })
     }
   
-    isRoleChecked(normalizedName: string): boolean {
-      // just return default role checked status
-      // it's better to use a setting
-      return this.defaultRoleCheckedStatus;
-    }
-  
-    onRoleChange(role: RoleDto, $event) {
-      this.checkedRolesMap[role.normalizedName] = $event.target.checked;
-    }
-  
-    
-  
-    save(): void {
-      this.saving = true;
-  
-      // this.user.roleNames = this.getCheckedRoles();
-  
-      // this._userService.create(this.user).subscribe(
-      //   () => {
-      //     this.notify.info(this.l('SavedSuccessfully'));
-      //     this.bsModalRef.hide();
-      //     this.onSave.emit();
-      //   },
-      //   () => {
-      //     this.saving = false;
-      //   }
-      // );
-    }
+   
 
     hide(){
       this.bsModalRef.hide()
@@ -223,45 +242,7 @@ export class editUserDialogComponent implements OnInit{
  
   }
 
-
-    registerUser(){
-
-      debugger
-      
-       const data = {
-        NationalId:this.registerationForm.controls['NationalId'].value,
-        arName: this.registerationForm.controls['arName'].value,
-        enName: this.registerationForm.controls['enName'].value,
-        mobileNumber: this.registerationForm.controls['mobileNumber'].value,  
-        activationPointId: this.registerationForm.controls['activationPointId'].value, 
-        password:'',
-        branchPhoneNumber: this.registerationForm.controls['branchPhoneNumber'].value,
-        merchantCode: this.registerationForm.controls['merchantCode'].value,
-        merchantLogo: this.document,
-        sendSms: this.registerationForm.controls['sendSms'].value,
-        merchantPortalSignUp: this.registerationForm.controls['merchantPortalSignUp'].value, 
-        merchantSignUp: this.registerationForm.controls['merchantSignUp'].value,
-        salesSignUp: this.registerationForm.controls['salesSignUp'].value
-       
-       }
  
-      
-
-      var object = new  PortalUsersRegistrationDto()
-object.init(data) 
- 
-console.log(data)
-      this._PortalRegistrationUsersServiceProxy.registrationPortalUsers(object).subscribe((res : boolean)=> {
-        
-          if(res){
-            console.log(res)
-            abp.message.success("Create user successfully");
-            this.bsModalRef.hide();
-            this.reloadCurrentRoute();
-          }
-      } );
-    
-    }
 
     reloadCurrentRoute() {
       const currentUrl = this.router.url;

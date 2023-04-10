@@ -23,7 +23,7 @@
                         <div class="card-body">
                            <p *ngIf="!showTablePortal" class="alert alert-warning text-center">Data is Empty</p>
        
-                            <div *ngIf="showTablePortal" class="table-responsive" [busy]="isTableLoading">
+                            <div *ngIf="showTablePortal" class="table-responsive">
                                 <table class="table table-striped table-bordered" [busy]="isTableLoading">
                                     <thead class="bg-light">
                                     <tr>
@@ -46,7 +46,9 @@
                                         <td>{{user.merchantCode}}</td>
                                         <td>{{user.merchantLogo }}</td> 
                                         <td>
-                                            <button (click)="editUser(user.mobileNumber)" class="btnEdit"><i class="fas fa-edit"></i>edit</button>
+                                            <button (click)="editUser(user.id,'portal')" class="btnEdit">
+                                                <i class="fas fa-rotate"></i>Reset Password
+                                            </button>
                                         </td> 
                                     </tr>
                                     </tbody>
@@ -78,7 +80,7 @@
                         <div class="card-body">
                            <p *ngIf="!showTablePurchase" class="alert alert-warning text-center">Data is Empty</p>
        
-                            <div *ngIf="showTablePurchase" class="table-responsive" [busy]="isTableLoading">
+                            <div *ngIf="showTablePurchase" class="table-responsive">
                                 <table class="table table-striped table-bordered" [busy]="isTableLoading">
                                     <thead class="bg-light">
                                     <tr>
@@ -101,7 +103,9 @@
                                         <td>{{user.nationalId}}</td>
                                         <td>{{user.deviceType }}</td> 
                                         <td>
-                                            <button (click)="editUser(user.mobileNumber)" class="btnEdit"><i class="fas fa-edit"></i>edit</button>
+                                            <button (click)="editUser(user.id,'purchase')" class="btnEdit">
+                                                <i class="fas fa-rotate"></i>Reset Password
+                                            </button>
                                         </td> 
                                     </tr>
                                     </tbody>
@@ -133,7 +137,7 @@
                         <div class="card-body">
                            <p *ngIf="!showTableActivators" class="alert alert-warning text-center">Data is Empty</p>
        
-                            <div *ngIf="showTableActivators" class="table-responsive" [busy]="isTableLoading">
+                            <div *ngIf="showTableActivators" class="table-responsive">
                                 <table class="table table-striped table-bordered" [busy]="isTableLoading">
                                     <thead class="bg-light">
                                     <tr>
@@ -152,7 +156,9 @@
                                         <td>{{ user.mobileNumber }}</td> 
                                         <td>{{user.activationPoint.name}}</td> 
                                         <td>
-                                            <button (click)="editUser(user.mobileNumber)" class="btnEdit"><i class="fas fa-edit"></i>edit</button>
+                                            <button (click)="editUser(user.id,'activators')" class="btnEdit">
+                                                <i class="fas fa-rotate"></i>Reset Password    
+                                            </button>
                                         </td> 
                                     </tr>
                                     </tbody>

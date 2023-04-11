@@ -35,6 +35,9 @@ import { RegisterNewUserDialogComponent } from './RegistrationUsers/create-new-u
 import { RiskPortalModule } from '@app/risk-portal/risk-portal.module';
  
 import {editUserDialogComponent} from './RegistrationUsers/edit_user/edit-user-dailog.component';
+import {ActivatorUserDialogComponent} from './RegistrationUsers/create-activator/create-activator-dailog.component';
+import {PortalUserDialogComponent} from './RegistrationUsers/create-portal-user/create-portal-user-dialog.component';
+import {PurchaseUserDialogComponent} from './RegistrationUsers/create-purchase-user/create-purchase-user-dialog.component';
 
 @NgModule({
     imports: [
@@ -81,7 +84,10 @@ import {editUserDialogComponent} from './RegistrationUsers/edit_user/edit-user-d
         SetMerchantPlanDialogComponent,
         RegistrationUserComponent,
         RegisterNewUserDialogComponent,
-        editUserDialogComponent
+        editUserDialogComponent,
+        ActivatorUserDialogComponent,
+        PortalUserDialogComponent,
+        PurchaseUserDialogComponent
     ]
 })
 export class OperationPortalModule {

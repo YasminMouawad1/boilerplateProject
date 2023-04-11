@@ -84,3 +84,8 @@
 .btnEdit i{
     margin-right: 6px;
 }
+
+.divBtnCreate{
+   text-align: right;
+   margin-bottom: 15px;
+}

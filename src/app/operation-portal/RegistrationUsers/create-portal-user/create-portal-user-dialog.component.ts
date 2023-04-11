@@ -23,31 +23,12 @@ import { UsersService } from '@shared/services/endpoints/users.service';
 import { Router } from '@angular/router';
   
   @Component({
-    templateUrl: './register-new-user-dialog.component.html',
+    templateUrl: './create-portal-user-dialog.component.html',
     styleUrls:['../RegistrationUsers.component.css']
   })
-  export class RegisterNewUserDialogComponent extends AppComponentBase
+  export class PortalUserDialogComponent extends AppComponentBase
     implements OnInit {
-    saving = false; 
-     
-    roles: RoleDto[] = [];
-    checkedRolesMap: { [key: string]: boolean } = {};
-    defaultRoleCheckedStatus = false;
-    passwordValidationErrors: Partial<AbpValidationError>[] = [
-      {
-        name: 'pattern',
-        localizationKey:
-          'PasswordsMustBeAtLeast8CharactersContainLowercaseUppercaseNumber',
-      },
-    ];
-    confirmPasswordValidationErrors: Partial<AbpValidationError>[] = [
-      {
-        name: 'validateEqual',
-        localizationKey: 'PasswordsDoNotMatch',
-      },
-    ];
-  
-    @Output() onSave = new EventEmitter<any>();
+    
   
 
 
@@ -57,8 +38,7 @@ import { Router } from '@angular/router';
  public merchantData: Array<Select2OptionData>;
  public merchantOptions: Options;
  
- public activationPointIdData: Array<Select2OptionData>;
- public activationPointIdOptions: Options;
+ 
 
  document:any = '';
 
@@ -79,19 +59,14 @@ import { Router } from '@angular/router';
     ngOnInit(): void { 
       
 
-      this.registerationForm = new FormGroup({
-        NationalId:new FormControl('', Validators.required), 
+      this.registerationForm = new FormGroup({ 
         arName: new FormControl('', Validators.required), 
-        enName: new FormControl('', Validators.required), 
-        mobileNumber: new FormControl('', Validators.required), 
+        enName: new FormControl('', Validators.required),  
         activationPointId: new FormControl('', Validators.required), 
         branchPhoneNumber: new FormControl('', Validators.required), 
         merchantCode: new FormControl('', Validators.required), 
         merchantLogo: new FormControl('', Validators.required), 
-        sendSms: new FormControl(false, Validators.required), 
-        merchantPortalSignUp: new FormControl(false, Validators.required), 
-        merchantSignUp: new FormControl(false, Validators.required), 
-        salesSignUp: new FormControl(false, Validators.required), 
+        sendSms: new FormControl(false, Validators.required),   
       
       });
 
@@ -99,67 +74,17 @@ import { Router } from '@angular/router';
     
   });
   
-      this._userService.getRoles().subscribe((result) => {
-        this.roles = result.items;
-        this.setInitialRolesStatus();
-      });
+      
 
 
       this.getAllMerchants();
-      this.getAllActivationPoint();
-      // this.merchantOptions = {
-      //   multiple: false,
-      //   closeOnSelect: true,
-      //   width: '100%',
-      //   placeholder: "Select a merchant",
-      //   allowClear: true
-      // };
+      
     }
   
-    setInitialRolesStatus(): void {
-      _map(this.roles, (item) => {
-        this.checkedRolesMap[item.normalizedName] = this.isRoleChecked(
-          item.normalizedName
-        );
-      });
-    }
+   
+   
   
-    isRoleChecked(normalizedName: string): boolean {
-      // just return default role checked status
-      // it's better to use a setting
-      return this.defaultRoleCheckedStatus;
-    }
-  
-    onRoleChange(role: RoleDto, $event) {
-      this.checkedRolesMap[role.normalizedName] = $event.target.checked;
-    }
-  
-    getCheckedRoles(): string[] {
-      const roles: string[] = [];
-      _forEach(this.checkedRolesMap, function (value, key) {
-        if (value) {
-          roles.push(key);
-        }
-      });
-      return roles;
-    }
-  
-    save(): void {
-      this.saving = true;
-  
-      // this.user.roleNames = this.getCheckedRoles();
-  
-      // this._userService.create(this.user).subscribe(
-      //   () => {
-      //     this.notify.info(this.l('SavedSuccessfully'));
-      //     this.bsModalRef.hide();
-      //     this.onSave.emit();
-      //   },
-      //   () => {
-      //     this.saving = false;
-      //   }
-      // );
-    }
+    
 
     hide(){
       this.bsModalRef.hide()
@@ -183,25 +108,7 @@ import { Router } from '@angular/router';
       });
     }
 
-    getAllActivationPoint(){
-      
-      this._usersServices.getActivationPoints().subscribe((result: any) =>{
-  debugger
-  
-        this.activationPointIdData = result.result.data.map(item=>{
-  
-          return <Select2OptionData>
-          {
-                id : item.id,
-                text: item.name
-           };
-  
-        });
-  
-  
-      });
-    }
-
+ 
 
 
    selectFile(event:any){
@@ -224,20 +131,14 @@ import { Router } from '@angular/router';
 
     registerUser(){
  
-       const data = {
-        NationalId:this.registerationForm.controls['NationalId'].value,
+       const data = { 
         arName: this.registerationForm.controls['arName'].value,
         enName: this.registerationForm.controls['enName'].value,
-        mobileNumber: this.registerationForm.controls['mobileNumber'].value,  
-        activationPointId: this.registerationForm.controls['activationPointId'].value, 
-        password:'',
+        mobileNumber: this.registerationForm.controls['mobileNumber'].value,    
         branchPhoneNumber: this.registerationForm.controls['branchPhoneNumber'].value,
         merchantCode: this.registerationForm.controls['merchantCode'].value,
         merchantLogo: this.document,
-        sendSms: this.registerationForm.controls['sendSms'].value,
-        merchantPortalSignUp: this.registerationForm.controls['merchantPortalSignUp'].value, 
-        merchantSignUp: this.registerationForm.controls['merchantSignUp'].value,
-        salesSignUp: this.registerationForm.controls['salesSignUp'].value
+        sendSms: this.registerationForm.controls['sendSms'].value, 
        
        }
  

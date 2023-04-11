@@ -1,31 +1,15 @@
 <form
   class="form-horizontal"
-  autocomplete="off" >
-
+  autocomplete="off"
+ 
 >
   <abp-modal-header
-    [title]="'[Create New User]'"
+    [title]="'[Create Portal User]'"
     (onCloseClick)="bsModalRef.hide()"
   ></abp-modal-header>
   <div class="modal-body">
     
-    <div class="form-group row required">
-      <label class="col-md-3 col-form-label" for="NationalId">
-        [National ID]
-      </label>
-       
-      <div class="col-md-9">
-        <input
-          type="text"
-          class="form-control"
-          name="NationalId"
-          id="NationalId"
-          required
-          maxlength="32"
-          formControlName="NationalId" 
-        /> 
-      </div>
-    </div>
+    
 
        <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="enName">
@@ -92,22 +76,7 @@
             /> 
           </div>
         </div> 
-        <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="activationPointId">
-            [activation point]
-          </label>
-          <div class="col-md-9">
-             
-            <ng-select2 [data]="activationPointIdData" 
-                           name="activationPointId"
-                           [placeholder]="'Select activation point'"
-                            [options]="activationPointIdOptions"
-                            formControlName="activationPointId" 
-                            class="select2-container w-100"
-                        >
-            </ng-select2> 
-          </div>
-        </div> 
+       
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="merchantCode">
             [Merchant]
@@ -142,62 +111,10 @@
         </div> 
          
      
+ 
 
        <div class="form-group row flex-nowrap">
-          <div class="col-md-6">
-            <div class="custom-control custom-checkbox d-inline mx-3">
-              <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="salesSignUp"
-                      name="salesSignUp" 
-                      formControlName="salesSignUp" 
-              />
-              <label
-                      class="custom-control-label"
-                      for="salesSignUp"
-              >
-              [Sales sign up]
-              </label>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="custom-control custom-checkbox d-inline mx-3">
-              <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="merchantSignUp"
-                      name="merchantSignUp" 
-                      formControlName="merchantSignUp" 
-              />
-              <label
-                      class="custom-control-label"
-                      for="merchantSignUp"
-              >
-              [Merchant sign up]
-              </label>
-            </div>
-          </div>
-       </div>
-
-       <div class="form-group row flex-nowrap">
-        <div class="col-md-6">
-          <div class="custom-control custom-checkbox d-inline mx-3">
-            <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="merchantPortalSignUp"
-                    name="merchantPortalSignUp" 
-                    formControlName="merchantPortalSignUp" 
-            />
-            <label
-                    class="custom-control-label"
-                    for="merchantPortalSignUp"
-            >
-            [Merchant portal sign up]
-            </label>
-          </div>
-        </div>
+        
         <div class="col-md-6">
           <div class="custom-control custom-checkbox d-inline mx-3">
             <input

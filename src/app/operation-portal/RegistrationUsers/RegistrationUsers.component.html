@@ -7,7 +7,7 @@
                      <h1>{{ "Users" | localize }}</h1>
                  </div>
                  <div  *ngIf="isShowRegisterUserAddBtn" class="col-6 text-right">
-                     <a href="javascript:;" class="btn btnCreate" (click)="createUser()">
+                     <a href="javascript:;" class="btn btnCreate"  >
                          <i class="fa-solid fa-plus"></i>
                          {{ "Create" | localize }}
                      </a>
@@ -24,6 +24,10 @@
                            <p *ngIf="!showTablePortal" class="alert alert-warning text-center">Data is Empty</p>
        
                             <div *ngIf="showTablePortal" class="table-responsive">
+                                <div class="divBtnCreate">
+                                    <button class="btn btnCreate" (click)="createPortalUserDialog()"><i class="fa-solid fa-plus"></i> Create</button>
+                                </div>
+
                                 <table class="table table-striped table-bordered" [busy]="isTableLoading">
                                     <thead class="bg-light">
                                     <tr>
@@ -32,7 +36,7 @@
                                         <th>Mobile Number</th> 
                                         <th>Branch Phone Number</th>
                                         <th>Merchant Code</th> 
-                                        <th>Merchant Logo</th> 
+                                       
                                         <th>Action</th> 
                                     </tr>
                                     </thead>
@@ -44,7 +48,7 @@
                                         <td>{{ user.mobileNumber }}</td>
                                         <td>{{user.branchPhoneNumber}}</td> 
                                         <td>{{user.merchantCode}}</td>
-                                        <td>{{user.merchantLogo }}</td> 
+                                       
                                         <td>
                                             <button (click)="editUser(user.id,'portal')" class="btnEdit">
                                                 <i class="fas fa-rotate"></i>Reset Password
@@ -81,15 +85,17 @@
                            <p *ngIf="!showTablePurchase" class="alert alert-warning text-center">Data is Empty</p>
        
                             <div *ngIf="showTablePurchase" class="table-responsive">
+                                <div class="divBtnCreate">
+                                    <button class="btn btnCreate" (click)="createPurchaseUserDialog()"><i class="fa-solid fa-plus"></i> Create</button>
+                                </div>
+
                                 <table class="table table-striped table-bordered" [busy]="isTableLoading">
                                     <thead class="bg-light">
                                     <tr>
                                         <th>Ar Name</th>
                                         <th>En Name</th> 
                                         <th>Mobile Number</th> 
-                                        <th>Branch Phone Number</th>
-                                        <th>National ID</th> 
-                                        <th>Device Type</th>  
+                                        <th>Activation Point</th>   
                                          <th>Action</th>
                                     </tr>
                                     </thead>
@@ -99,9 +105,7 @@
                                         <td>{{ user.nameAr }}</td>
                                         <td>{{ user.nameEn }}</td>
                                         <td>{{ user.mobileNumber }}</td>
-                                        <td>{{user.branchPhoneNumber}}</td> 
-                                        <td>{{user.nationalId}}</td>
-                                        <td>{{user.deviceType }}</td> 
+                                        <td>{{user.activationPoint}}</td>  
                                         <td>
                                             <button (click)="editUser(user.id,'purchase')" class="btnEdit">
                                                 <i class="fas fa-rotate"></i>Reset Password
@@ -138,6 +142,10 @@
                            <p *ngIf="!showTableActivators" class="alert alert-warning text-center">Data is Empty</p>
        
                             <div *ngIf="showTableActivators" class="table-responsive">
+                                <div class="divBtnCreate">
+                                    <button class="btn btnCreate" (click)="createActivatorUserDialog()"><i class="fa-solid fa-plus"></i> Create</button>
+                                </div>
+
                                 <table class="table table-striped table-bordered" [busy]="isTableLoading">
                                     <thead class="bg-light">
                                     <tr>

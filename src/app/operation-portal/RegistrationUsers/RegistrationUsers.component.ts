@@ -19,6 +19,9 @@ import { AppComponentBase } from '@shared/app-component-base';
 import { UsersService } from '@shared/services/endpoints/users.service';
 import { EditUserDialogComponent } from './../../admin/users/edit-user/edit-user-dialog.component';
 import { editUserDialogComponent } from './edit_user/edit-user-dailog.component';
+import { PortalUserDialogComponent } from './create-portal-user/create-portal-user-dialog.component';
+import { PurchaseUserDialogComponent } from './create-purchase-user/create-purchase-user-dialog.component';
+import { ActivatorUserDialogComponent } from './create-activator/create-activator-dailog.component';
 
  
 class PagedUsersRequestDto extends PagedRequestDto {
@@ -112,28 +115,49 @@ getActivators(){
   this.isTableLoading = false;
 }
 
-  createUser(): void {
-    this.showCreateUserDialog();
-  }
+ 
 
-  editUser(userID: any,type:any): void {
-    this.showCEditUserDialog(userID,type);
-  }
-
-
-  private showCreateUserDialog(): void {
+  createPortalUserDialog(): void {
     let creatUserDialog: BsModalRef;
     
     creatUserDialog = this._modalService.show(
-        RegisterNewUserDialogComponent,
+        PortalUserDialogComponent,
         {
           class: 'modal-lg',
         }
       );
-   
+  
+ }
 
-   
+ createPurchaseUserDialog(): void {
+  let creatUserDialog: BsModalRef;
+  
+  creatUserDialog = this._modalService.show(
+      PurchaseUserDialogComponent,
+      {
+        class: 'modal-lg',
+      }
+    );
+
+}
+
+createActivatorUserDialog(): void {
+  let creatUserDialog: BsModalRef;
+  
+  creatUserDialog = this._modalService.show(
+      ActivatorUserDialogComponent,
+      {
+        class: 'modal-lg',
+      }
+    );
+
+}
+
+  
+  editUser(userID: any,type:any): void {
+    this.showCEditUserDialog(userID,type);
   }
+
 
   private showCEditUserDialog(id: any,type:string): void {
 

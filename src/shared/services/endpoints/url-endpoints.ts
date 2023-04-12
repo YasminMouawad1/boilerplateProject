@@ -31,6 +31,9 @@ export abstract class UrlEndpoints {
   static readonly GET_MerchantsPortalUsers: string  = 'api/services/app/PortalRegistrationUsers/GetMerchantsPortalUsers';
   static readonly GET_MerchantPurchaseUsers: string  = 'api/services/app/PortalRegistrationUsers/GetMerchantPurchaseUsers';
   static readonly GET_MerchantActivators: string  = 'api/services/app/PortalRegistrationUsers/GetMerchantActivators';
+
+  static readonly Post_PURCHASEUSER: string  = 'api/services/app/PortalRegistrationUsers/RegistrationPurchaseUser';
+  static readonly Post_ACTIVATORUSER: string  = 'api/services/app/PortalRegistrationUsers/RegistrationActivatorUsers';
  
   static readonly Get_ClientActivation: string = 'api/Risk/ClientActivation?mobileNumber=';
   static readonly GET_RiskRejectedOnlyList: string = 'api/Risk/ProfilePlus?isRejectedOnly='+true;

@@ -1597,6 +1597,370 @@ export class PortalRegistrationUsersServiceProxy {
      * @param body (optional) 
      * @return Success
      */
+    registrationPortalUser(body: PortalUserRegistrationDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/RegistrationPortalUser";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processRegistrationPortalUser(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processRegistrationPortalUser(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processRegistrationPortalUser(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    registrationPurchaseUser(body: PurchaseUserRegistrationDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/RegistrationPurchaseUser";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processRegistrationPurchaseUser(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processRegistrationPurchaseUser(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processRegistrationPurchaseUser(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    registrationActivatorUsers(body: ActivatorUserRegistrationDto | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/RegistrationActivatorUsers";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processRegistrationActivatorUsers(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processRegistrationActivatorUsers(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<boolean>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<boolean>;
+        }));
+    }
+
+    protected processRegistrationActivatorUsers(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    merchantUserById(body: PortalUsersRegistrationDto | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/MerchantUserById";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json-patch+json",
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processMerchantUserById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processMerchantUserById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processMerchantUserById(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getMerchantsPortalUsers(): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/GetMerchantsPortalUsers";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetMerchantsPortalUsers(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetMerchantsPortalUsers(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processGetMerchantsPortalUsers(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getMerchantPurchaseUsers(): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/GetMerchantPurchaseUsers";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetMerchantPurchaseUsers(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetMerchantPurchaseUsers(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processGetMerchantPurchaseUsers(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getMerchantActivators(): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/GetMerchantActivators";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetMerchantActivators(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetMerchantActivators(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processGetMerchantActivators(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
     setMerchantSettlementPlan(body: SetMerchantSettlementPlanDto | undefined): Observable<boolean> {
         let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/SetMerchantSettlementPlan";
         url_ = url_.replace(/[?&]$/, "");
@@ -1830,6 +2194,58 @@ export class PortalRegistrationUsersServiceProxy {
     }
 
     protected processGetActivarionPoints(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    getActivarionPoint(id: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/PortalRegistrationUsers/GetActivarionPoint?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetActivarionPoint(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetActivarionPoint(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processGetActivarionPoint(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2231,6 +2647,105 @@ export class RiskServiceProxy {
     }
 
     protected processCorpProfilePlus(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return Success
+     */
+    getAllCorporate(): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Risk/GetAllCorporate";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllCorporate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllCorporate(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processGetAllCorporate(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param corpCode (optional) 
+     * @return Success
+     */
+    getCorpProfilePlus(corpCode: string | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Risk/GetCorpProfilePlus?";
+        if (corpCode === null)
+            throw new Error("The parameter 'corpCode' cannot be null.");
+        else if (corpCode !== undefined)
+            url_ += "corpCode=" + encodeURIComponent("" + corpCode) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetCorpProfilePlus(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetCorpProfilePlus(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processGetCorpProfilePlus(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2694,6 +3209,58 @@ export class RiskServiceProxy {
     }
 
     protected processEditNationalIDData(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param clientName (optional) 
+     * @return Success
+     */
+    clientSearch(clientName: string | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Risk/ClientSearch?";
+        if (clientName === null)
+            throw new Error("The parameter 'clientName' cannot be null.");
+        else if (clientName !== undefined)
+            url_ += "clientName=" + encodeURIComponent("" + clientName) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processClientSearch(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processClientSearch(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processClientSearch(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4505,6 +5072,65 @@ export class UserServiceProxy {
         }
         return _observableOf(null as any);
     }
+}
+
+export class ActivatorUserRegistrationDto implements IActivatorUserRegistrationDto {
+    arName: string | undefined;
+    enName: string | undefined;
+    mobileNumber: string | undefined;
+    activationPointId: number | undefined;
+    sendSms: boolean;
+
+    constructor(data?: IActivatorUserRegistrationDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.arName = _data["arName"];
+            this.enName = _data["enName"];
+            this.mobileNumber = _data["mobileNumber"];
+            this.activationPointId = _data["activationPointId"];
+            this.sendSms = _data["sendSms"];
+        }
+    }
+
+    static fromJS(data: any): ActivatorUserRegistrationDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ActivatorUserRegistrationDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["arName"] = this.arName;
+        data["enName"] = this.enName;
+        data["mobileNumber"] = this.mobileNumber;
+        data["activationPointId"] = this.activationPointId;
+        data["sendSms"] = this.sendSms;
+        return data;
+    }
+
+    clone(): ActivatorUserRegistrationDto {
+        const json = this.toJSON();
+        let result = new ActivatorUserRegistrationDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IActivatorUserRegistrationDto {
+    arName: string | undefined;
+    enName: string | undefined;
+    mobileNumber: string | undefined;
+    activationPointId: number | undefined;
+    sendSms: boolean;
 }
 
 export class AddActivationPointDto implements IAddActivationPointDto {
@@ -6428,13 +7054,81 @@ export interface IPermissionDtoListResultDto {
     items: PermissionDto[] | undefined;
 }
 
+export class PortalUserRegistrationDto implements IPortalUserRegistrationDto {
+    arName: string | undefined;
+    enName: string | undefined;
+    mobileNumber: string | undefined;
+    branchPhoneNumber: string | undefined;
+    merchantCode: string | undefined;
+    merchantLogo: string | undefined;
+    sendSms: boolean;
+
+    constructor(data?: IPortalUserRegistrationDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.arName = _data["arName"];
+            this.enName = _data["enName"];
+            this.mobileNumber = _data["mobileNumber"];
+            this.branchPhoneNumber = _data["branchPhoneNumber"];
+            this.merchantCode = _data["merchantCode"];
+            this.merchantLogo = _data["merchantLogo"];
+            this.sendSms = _data["sendSms"];
+        }
+    }
+
+    static fromJS(data: any): PortalUserRegistrationDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PortalUserRegistrationDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["arName"] = this.arName;
+        data["enName"] = this.enName;
+        data["mobileNumber"] = this.mobileNumber;
+        data["branchPhoneNumber"] = this.branchPhoneNumber;
+        data["merchantCode"] = this.merchantCode;
+        data["merchantLogo"] = this.merchantLogo;
+        data["sendSms"] = this.sendSms;
+        return data;
+    }
+
+    clone(): PortalUserRegistrationDto {
+        const json = this.toJSON();
+        let result = new PortalUserRegistrationDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPortalUserRegistrationDto {
+    arName: string | undefined;
+    enName: string | undefined;
+    mobileNumber: string | undefined;
+    branchPhoneNumber: string | undefined;
+    merchantCode: string | undefined;
+    merchantLogo: string | undefined;
+    sendSms: boolean;
+}
+
 export class PortalUsersRegistrationDto implements IPortalUsersRegistrationDto {
+    id: string | undefined;
     arName: string | undefined;
     enName: string | undefined;
     mobileNumber: string | undefined;
     password: string | undefined;
     nationalId: string | undefined;
-    activationPointId: number;
+    activationPointId: number | undefined;
     branchPhoneNumber: string | undefined;
     merchantCode: string | undefined;
     merchantLogo: string | undefined;
@@ -6454,6 +7148,7 @@ export class PortalUsersRegistrationDto implements IPortalUsersRegistrationDto {
 
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.arName = _data["arName"];
             this.enName = _data["enName"];
             this.mobileNumber = _data["mobileNumber"];
@@ -6479,6 +7174,7 @@ export class PortalUsersRegistrationDto implements IPortalUsersRegistrationDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
         data["arName"] = this.arName;
         data["enName"] = this.enName;
         data["mobileNumber"] = this.mobileNumber;
@@ -6504,12 +7200,13 @@ export class PortalUsersRegistrationDto implements IPortalUsersRegistrationDto {
 }
 
 export interface IPortalUsersRegistrationDto {
+    id: string | undefined;
     arName: string | undefined;
     enName: string | undefined;
     mobileNumber: string | undefined;
     password: string | undefined;
     nationalId: string | undefined;
-    activationPointId: number;
+    activationPointId: number | undefined;
     branchPhoneNumber: string | undefined;
     merchantCode: string | undefined;
     merchantLogo: string | undefined;
@@ -6517,6 +7214,69 @@ export interface IPortalUsersRegistrationDto {
     merchantPortalSignUp: boolean;
     merchantSignUp: boolean;
     salesSignUp: boolean;
+}
+
+export class PurchaseUserRegistrationDto implements IPurchaseUserRegistrationDto {
+    arName: string | undefined;
+    enName: string | undefined;
+    nationalId: string | undefined;
+    mobileNumber: string | undefined;
+    branchPhoneNumber: string | undefined;
+    sendSms: boolean;
+
+    constructor(data?: IPurchaseUserRegistrationDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.arName = _data["arName"];
+            this.enName = _data["enName"];
+            this.nationalId = _data["nationalId"];
+            this.mobileNumber = _data["mobileNumber"];
+            this.branchPhoneNumber = _data["branchPhoneNumber"];
+            this.sendSms = _data["sendSms"];
+        }
+    }
+
+    static fromJS(data: any): PurchaseUserRegistrationDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PurchaseUserRegistrationDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["arName"] = this.arName;
+        data["enName"] = this.enName;
+        data["nationalId"] = this.nationalId;
+        data["mobileNumber"] = this.mobileNumber;
+        data["branchPhoneNumber"] = this.branchPhoneNumber;
+        data["sendSms"] = this.sendSms;
+        return data;
+    }
+
+    clone(): PurchaseUserRegistrationDto {
+        const json = this.toJSON();
+        let result = new PurchaseUserRegistrationDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPurchaseUserRegistrationDto {
+    arName: string | undefined;
+    enName: string | undefined;
+    nationalId: string | undefined;
+    mobileNumber: string | undefined;
+    branchPhoneNumber: string | undefined;
+    sendSms: boolean;
 }
 
 export class RegisterInput implements IRegisterInput {

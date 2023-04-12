@@ -146,5 +146,12 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
     return this._API.doGet(UrlEndpoints.GET_MerchantActivators);
   }
 
+  addPurchaseUsers(body:any){
+    return this._API.doPost(UrlEndpoints.Post_PURCHASEUSER, body)
+  }
+
+  addActivatorUsers(body:any){
+    return this._API.doPost(UrlEndpoints.Post_ACTIVATORUSER, body)
+  }
 }
 

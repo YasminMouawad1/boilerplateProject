@@ -13,7 +13,8 @@ import {
     RoleDto,
     LookUpServiceProxy,
     PortalRegistrationUsersServiceProxy,
-    PortalUsersRegistrationDto
+    PortalUsersRegistrationDto,
+    PortalUserRegistrationDto
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -41,6 +42,7 @@ import { Router } from '@angular/router';
  
 
  document:any = '';
+ disBtnSave:boolean = false;
 
     constructor(
       injector: Injector,
@@ -62,7 +64,7 @@ import { Router } from '@angular/router';
       this.registerationForm = new FormGroup({ 
         arName: new FormControl('', Validators.required), 
         enName: new FormControl('', Validators.required),  
-        activationPointId: new FormControl('', Validators.required), 
+        mobileNumber: new FormControl('', Validators.required), 
         branchPhoneNumber: new FormControl('', Validators.required), 
         merchantCode: new FormControl('', Validators.required), 
         merchantLogo: new FormControl('', Validators.required), 
@@ -123,14 +125,14 @@ import { Router } from '@angular/router';
     reader.onload = (_event) => { 
       this.document = reader.result; 
     }
-
-    console.log(this.document)
+ 
  
   }
 
 
     registerUser(){
  
+      this.disBtnSave = true;
        const data = { 
         arName: this.registerationForm.controls['arName'].value,
         enName: this.registerationForm.controls['enName'].value,
@@ -144,11 +146,10 @@ import { Router } from '@angular/router';
  
       
 
-      var object = new  PortalUsersRegistrationDto()
-object.init(data) 
- 
-console.log(data)
-      this._PortalRegistrationUsersServiceProxy.registrationPortalUsers(object).subscribe((res : boolean)=> {
+      var object = new  PortalUserRegistrationDto()
+      object.init(data) 
+  
+      this._PortalRegistrationUsersServiceProxy.registrationPortalUser(object).subscribe((res : boolean)=> {
         
           if(res){
             console.log(res)
@@ -157,6 +158,7 @@ console.log(data)
             this.reloadCurrentRoute();
           }
       } );
+      this.disBtnSave = false;
        
     }
 

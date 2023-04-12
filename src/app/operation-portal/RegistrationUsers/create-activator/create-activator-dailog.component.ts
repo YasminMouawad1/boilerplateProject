@@ -13,7 +13,8 @@ import {
     RoleDto,
     LookUpServiceProxy,
     PortalRegistrationUsersServiceProxy,
-    PortalUsersRegistrationDto
+    PortalUsersRegistrationDto,
+    ActivatorUserRegistrationDto
   } from '@shared/service-proxies/service-proxies';
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -35,6 +36,8 @@ import { Router } from '@angular/router';
  public activationPointIdData: Array<Select2OptionData>;
  public activationPointIdOptions: Options;
 
+
+ disBtnSave:boolean = false;
  
     constructor(
       injector: Injector,
@@ -105,7 +108,8 @@ import { Router } from '@angular/router';
 
 
     registerUser(){
- 
+      this.disBtnSave = true;
+
        const data = { 
         arName: this.registerationForm.controls['arName'].value,
         enName: this.registerationForm.controls['enName'].value,
@@ -117,11 +121,11 @@ import { Router } from '@angular/router';
  
       
 
-      var object = new  PortalUsersRegistrationDto()
+      var object = new  ActivatorUserRegistrationDto()
 object.init(data) 
  
 console.log(data)
-      this._PortalRegistrationUsersServiceProxy.registrationPortalUsers(object).subscribe((res : boolean)=> {
+      this._PortalRegistrationUsersServiceProxy.registrationActivatorUsers(object).subscribe((res : boolean)=> {
         
           if(res){
             console.log(res)
@@ -130,6 +134,8 @@ console.log(data)
             this.reloadCurrentRoute();
           }
       } );
+
+      this.disBtnSave = false;
        
     }
 

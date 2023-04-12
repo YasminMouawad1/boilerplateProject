@@ -13,7 +13,8 @@ import {
   RoleDto,
   LookUpServiceProxy,
   PortalRegistrationUsersServiceProxy,
-  PortalUsersRegistrationDto
+  PortalUsersRegistrationDto,
+  PurchaseUserRegistrationDto
 } from '@shared/service-proxies/service-proxies';
 import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -36,6 +37,8 @@ public activationPointIdData: Array<Select2OptionData>;
 public activationPointIdOptions: Options;
 
 
+disBtnSave:boolean = false;
+
   constructor(
     injector: Injector,
     public _userService: UserServiceProxy,
@@ -56,8 +59,9 @@ public activationPointIdOptions: Options;
     this.registerationForm = new FormGroup({ 
       arName: new FormControl('', Validators.required), 
       enName: new FormControl('', Validators.required), 
+      NationalId:new FormControl('', Validators.required),
       mobileNumber: new FormControl('', Validators.required), 
-      activationPointId: new FormControl('', Validators.required),   
+      branchPhoneNumber: new FormControl('', Validators.required),   
       sendSms: new FormControl(false, Validators.required),  
     
     });
@@ -105,31 +109,44 @@ debugger
 
 
   registerUser(){
+    this.disBtnSave = true;
 
      const data = { 
       arName: this.registerationForm.controls['arName'].value,
       enName: this.registerationForm.controls['enName'].value,
+      NationalId:this.registerationForm.controls['NationalId'].value,
       mobileNumber: this.registerationForm.controls['mobileNumber'].value,  
-      activationPointId: this.registerationForm.controls['activationPointId'].value,  
+      branchPhoneNumber: this.registerationForm.controls['branchPhoneNumber'].value,
       sendSms: this.registerationForm.controls['sendSms'].value, 
      
      }
 
     
 
-    var object = new  PortalUsersRegistrationDto()
+    var object = new  PurchaseUserRegistrationDto()
 object.init(data) 
 
-console.log(data)
-    this._PortalRegistrationUsersServiceProxy.registrationPortalUsers(object).subscribe((res : boolean)=> {
-      
-        if(res){
-          console.log(res)
-          abp.message.success("Create user successfully");
-          this.bsModalRef.hide();
-          this.reloadCurrentRoute();
-        }
-    } );
+ 
+    // this._PortalRegistrationUsersServiceProxy.registrationPurchaseUser(object).subscribe((res : boolean)=> {
+    //   console.log(res)
+    //     if(res){
+         
+    //       abp.message.success("Create user successfully");
+    //       this.bsModalRef.hide();
+    //       this.reloadCurrentRoute();
+    //     }
+    // } );
+
+    this._usersServices.addPurchaseUsers(data).subscribe(res =>{
+       
+      if(res){
+         
+              abp.message.success("Create user successfully");
+              this.bsModalRef.hide();
+              this.reloadCurrentRoute();
+            }
+    })
+    this.disBtnSave = false;
      
   }
 

@@ -1,7 +1,7 @@
 <form
   class="form-horizontal"
   autocomplete="off"
- 
+  [formGroup]="registerationForm"
 >
   <abp-modal-header
     [title]="'[Create Purchase User]'"
@@ -43,6 +43,26 @@
             /> 
           </div>
         </div> 
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="NationalId">
+            [National ID]
+          </label>
+           
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="NationalId"
+              id="NationalId"
+              required
+              maxlength="32"
+              formControlName="NationalId" 
+            /> 
+          </div>
+        </div>
+
+        
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="mobileNumber">
             [Mobile number]
@@ -59,24 +79,25 @@
             /> 
           </div>
         </div> 
-        
+
         <div class="form-group row required">
-          <label class="col-md-3 col-form-label" for="activationPointId">
-            [activation point]
+          <label class="col-md-3 col-form-label" for="branchPhoneNumber">
+            [Branch phone number]
           </label>
           <div class="col-md-9">
-             
-            <ng-select2 [data]="activationPointIdData" 
-                           name="activationPointId"
-                           [placeholder]="'Select activation point'"
-                            [options]="activationPointIdOptions"
-                            formControlName="activationPointId" 
-                            class="select2-container w-100"
-                        >
-            </ng-select2> 
+            <input
+              type="text"
+              class="form-control"
+              name="branchPhoneNumber"
+              id="branchPhoneNumber"
+              required
+              maxlength="32" 
+              formControlName="branchPhoneNumber" 
+            /> 
           </div>
         </div> 
-       
+        
+     
  
        <div class="form-group row flex-nowrap">
         
@@ -102,6 +123,6 @@
   </div>
   <div class="text-right">
     <button class="btn btnCancel" type="button" (click)="hide()">Cancel</button>
-    <button class="btn btnSave" type="submit" (click)="registerUser()">Save</button>
+    <button [disabled]=" disBtnSave" class="btn btnSave" type="submit" (click)="registerUser()">Save</button>
 </div>
 </form>

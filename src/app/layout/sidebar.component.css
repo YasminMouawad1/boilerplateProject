@@ -32,7 +32,7 @@ ul li{
 #side-menu li a.sub-active{
     background-color: #5eb2a8;
      border-radius: 5px;
-     padding: 5px 17px;
+     padding: 5px 10px;
      color: #fff !important;
      font-size: 15px !important;
 }

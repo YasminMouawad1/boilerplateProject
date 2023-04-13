@@ -38,6 +38,10 @@ import {editUserDialogComponent} from './RegistrationUsers/edit_user/edit-user-d
 import {ActivatorUserDialogComponent} from './RegistrationUsers/create-activator/create-activator-dailog.component';
 import {PortalUserDialogComponent} from './RegistrationUsers/create-portal-user/create-portal-user-dialog.component';
 import {PurchaseUserDialogComponent} from './RegistrationUsers/create-purchase-user/create-purchase-user-dialog.component';
+import {PortalUsersComponent} from './RegistrationUsers/portal-users-list/portal-users-list.component';
+import {PurchaseUsersComponent} from './RegistrationUsers/purchase-users-list/purchase-users-list.component';
+import {MerchantActivatorsComponent} from './RegistrationUsers/merchant-activators/merchant-activators.component';
+
 
 @NgModule({
     imports: [
@@ -87,7 +91,10 @@ import {PurchaseUserDialogComponent} from './RegistrationUsers/create-purchase-u
         editUserDialogComponent,
         ActivatorUserDialogComponent,
         PortalUserDialogComponent,
-        PurchaseUserDialogComponent
+        PurchaseUserDialogComponent,
+        PortalUsersComponent,
+        PurchaseUsersComponent,
+        MerchantActivatorsComponent
     ]
 })
 export class OperationPortalModule {

@@ -1,0 +1,91 @@
+.bgGrey{
+    background-color: #f8f8f8;
+    padding: 1rem;
+}
+
+.bgGreen{
+    background-color: #5eb2a8; 
+    color: #fff;
+}
+
+.bgYellow{
+    background-color: #f8b25a; 
+    color: #fff;
+}
+
+.btnCreate{
+    background-color: #5eb2a8;
+    padding: 5px 21px;
+    border-radius: 14px;
+    color: #fff;
+}
+
+.bgPink{
+    background-color: #f28d8a;
+    color: #fff;
+}
+
+.card{
+    box-shadow: none;
+}
+
+.card-footer{
+    background-color: #ebebeb;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border: none;
+    background-color: #f28d8a;
+  }
+
+ 
+  .btnSave,
+  .btnCancel{
+      background-color: #5eb2a8;
+      color: #fff;
+      padding: 7px 20px;
+      border-radius: 7px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      margin-right: 10px;
+  }
+  
+  .btnCancel{
+      background-color: #dfdfde;
+  }
+
+  .select2-container::ng-deep .select2-selection--single{
+    height: 34px !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination{
+    margin-top: 1.5rem;
+} 
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: #556ee6;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav-tabs .nav-link{
+    color: grey;
+}
+
+.btnEdit{
+    border: none;
+    color: #fff;
+    background-color: #f28d8a;
+    border-radius: 3px;
+    padding: 3px 15px;
+}
+
+.btnEdit i{
+    margin-right: 6px;
+}
+
+.divBtnCreate{
+   text-align: right;
+   margin-bottom: 15px;
+}

@@ -119,13 +119,47 @@
               <li *ngIf="isSohwOperationRegisterationUser">
                 <a
                   routerLinkActive="sub-active"
-                  class="side-nav-link-ref"
-                  routerLink="/app/operation-portal/registration-users"
+                  class="side-nav-link-ref" 
+                  data-bs-toggle="collapse" data-bs-target="#registerationUsers"
                 >
                 <i class="fas fa-users"></i>
                   <span>registration-users</span>
                 </a>
               </li>
+              
+              <ul class="collapse sub-menu-list" id="registerationUsers">
+                <li>
+                  <a
+                    routerLinkActive="sub-active"
+                    class="side-nav-link-ref"
+                    routerLink="/app/operation-portal/portal-users"
+                  >
+                  <i class="fas fa-user-check"></i>
+                    <span> Portal Users</span>
+                  </a>
+                </li> 
+                <li>
+                  <a
+                    routerLinkActive="sub-active"
+                    class="side-nav-link-ref"
+                    routerLink="/app/operation-portal/purchase-users"
+                  >
+                  <i class="fas fa-user-check"></i>
+                    <span> Purchase Users</span>
+                  </a>
+                </li> 
+                <li>
+                  <a
+                    routerLinkActive="sub-active"
+                    class="side-nav-link-ref"
+                    routerLink="/app/operation-portal/merchant-activators"
+                  >
+                  <i class="fas fa-user-check"></i>
+                    <span>Merchant Activators</span>
+                  </a>
+                </li> 
+             </ul>
+
               <!-- <li *ngIf="isSohwOperationAcceptClaims">
                 <a
                   routerLinkActive="sub-active"

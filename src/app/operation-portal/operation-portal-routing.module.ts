@@ -10,6 +10,9 @@ import {RegistrationUserComponent} from './RegistrationUsers/RegistrationUsers.c
 import {DueTransactionComponent} from './dueTransactions/dueTransactions.component';
 import {AcceptClaimsListComponent} from './acceptClaims/accept-claims-list.component';
 import {AcceptedClaimsComponent} from './acceptClaims/accepted-claims/accepted-claims.component';
+import { PortalUsersComponent } from './RegistrationUsers/portal-users-list/portal-users-list.component';
+import { PurchaseUsersComponent } from './RegistrationUsers/purchase-users-list/purchase-users-list.component';
+import { MerchantActivatorsComponent } from './RegistrationUsers/merchant-activators/merchant-activators.component';
 
 @NgModule({
     imports: [
@@ -22,6 +25,9 @@ import {AcceptedClaimsComponent} from './acceptClaims/accepted-claims/accepted-c
                     { path: 'merchant-settlement', component: MerchantComponent, canActivate: [AppRouteGuard] },
                     { path: 'activation-point', component: ActivationPointComponent, canActivate: [AppRouteGuard] },
                     { path: 'registration-users', component: RegistrationUserComponent, canActivate: [AppRouteGuard] },
+                    { path: 'portal-users', component: PortalUsersComponent, canActivate: [AppRouteGuard] },
+                    { path: 'purchase-users', component: PurchaseUsersComponent, canActivate: [AppRouteGuard] },
+                    { path: 'merchant-activators', component: MerchantActivatorsComponent, canActivate: [AppRouteGuard] },
                     { path: 'due-transactions', component: DueTransactionComponent, canActivate: [AppRouteGuard] },
                     { path: 'accept-claims', component: AcceptClaimsListComponent, canActivate: [AppRouteGuard] },
                     { path: 'accepted-claims', component: AcceptedClaimsComponent, canActivate: [AppRouteGuard] },

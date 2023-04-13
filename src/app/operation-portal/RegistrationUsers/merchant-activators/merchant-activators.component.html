@@ -1,0 +1,78 @@
+<div [@routerTransition]>
+    <div class="bgGrey m-2">
+     <section class="content-header">
+         <div class="container-fluid">
+             <div class="row">
+                 <div class="col-6">
+                     <h1>Merchant Activators</h1>
+                 </div>
+                 <div  *ngIf="isShowRegisterUserAddBtn" class="col-6 text-right">
+                     <a href="javascript:;" class="btn btnCreate"  (click)="createActivatorUserDialog()">
+                         <i class="fa-solid fa-plus"></i>
+                         {{ "Create" | localize }}
+                     </a>
+                 </div>
+             </div>
+         </div>
+     </section>
+     <section class="content px-2">
+         <div class="container-fluid" *ngIf="isShowUsersList">
+            
+                <div class="card">
+                        <div class="card-body">
+                           <p *ngIf="!showTableActivators" class="alert alert-warning text-center">Data is Empty</p>
+       
+                            <div *ngIf="showTableActivators" class="table-responsive">
+                               
+
+                                <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                                    <thead class="bg-light">
+                                    <tr>
+                                        <th>Ar Name</th>
+                                        <th>En Name</th> 
+                                        <th>Mobile Number</th> 
+                                        <th>Activation Point</th>  
+                                        <th>Action</th>  
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let user of Activators | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                                    >
+                                        <td>{{ user.nameAr }}</td>
+                                        <td>{{ user.nameEn }}</td>
+                                        <td>{{ user.mobileNumber }}</td> 
+                                        <td>{{user.activationPoint.name}}</td> 
+                                        <td>
+                                            <button (click)="editUser(user.id,'activators')" class="btnEdit">
+                                                <i class="fas fa-rotate"></i>Reset Password    
+                                            </button>
+                                        </td> 
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+       
+                            <div *ngIf="showTableActivators" class="row justify-content-space-between align-items-center">
+                               <div class="col-md-1">
+                                 <select [(ngModel)]="numberRows" class="form-select">
+                                   <option [ngValue]="5">5</option>
+                                   <option [ngValue]="10">10</option>
+                                   <option [ngValue]="50">50</option>
+                                   <option [ngValue]="100">100</option>
+                                   <option [ngValue]="200">200</option>
+                                 </select>
+                               </div>
+                                 <div class="col-md-11 text-right">
+                                    <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
+                                 </div>
+                   
+                              </div>
+                        </div>
+                        
+                    </div>
+                
+         </div>
+     </section>
+    </div>
+ </div>
+ 

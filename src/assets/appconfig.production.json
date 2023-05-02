@@ -1,5 +1,5 @@
 {
-  "remoteServiceBaseUrl": "http://192.168.20.2:45",
+  "remoteServiceBaseUrl": "https://bpm.midtakseet.com",
   "appBaseUrl": "http://localhost:4200",
   "localeMappings": [
     {

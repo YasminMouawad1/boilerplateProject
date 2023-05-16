@@ -72,7 +72,7 @@
                 data-bs-toggle="collapse" data-bs-target="#operation"
               >
                 <i class="fas fa-layer-group"></i>
-                <span> [Operational Portal] </span>
+                <span> [Operational Module] </span>
               </a>
         </li>
         <ul class="collapse sub-menu-list" id="operation">
@@ -172,71 +172,40 @@
               </li> -->
         </ul>
 
-        <li *ngIf="isShowSystemConfig">
-          <a
-            routerLinkActive="active"
-            class="side-nav-link-ref" 
-            data-bs-toggle="collapse" data-bs-target="#sysConfig"
-          >
-            <i class="fas fa-layer-group"></i>
-            <span> [System Configuration]</span>
-          </a>
-       </li>
-      <ul class="collapse sub-menu-list" id="sysConfig">
-            <li *ngIf="isShowSystemConfigMessageType">
-              <a
-                routerLinkActive="sub-active"
-                class="side-nav-link-ref"
-                routerLink="/app/system-configuration/message-type"
-              >
-              <i class="fas fa-envelope"></i>
-                <span> Message Type </span>
-              </a>
-            </li>
-            <li *ngIf="isShowSystemConfigMessageTemplate">
-              <a
-                routerLinkActive="sub-active"
-                class="side-nav-link-ref"
-                routerLink="/app/system-configuration/message-template"
-              >
-              <i class="fas fa-envelope-open-text"></i>
-                <span> Message Template </span>
-              </a>
-            </li>
-            <li *ngIf="isShowSystemConfigEmailType">
-              <a
-                routerLinkActive="sub-active"
-                class="side-nav-link-ref"
-                routerLink="/app/system-configuration/email-type"
-              >
-              <i class="fas fa-envelope"></i>
-                <span>Email Type</span>
-              </a>
-            </li>
-            <li *ngIf="isShowSystemConfigEmailContent">
-              <a
-                routerLinkActive="sub-active"
-                class="side-nav-link-ref"
-                routerLink="/app/system-configuration/create-email"
-              >
-              <i class="fas fa-envelope-open-text"></i>
-                <span>Email content</span>
-              </a>
-            </li>
-      </ul>
-    
-       <li *ngIf="isShowRisk">
+        <li *ngIf="isShowRisk">
           <a
               routerLinkActive="active"
               class="side-nav-link-ref" 
               data-bs-toggle="collapse" data-bs-target="#risk"
             >
             <i class="fas fa-toolbox"></i>
-              <span> [Risk Portal] </span>
+              <span> [Risk Module] </span>
           </a>
         </li>
         <ul class="collapse sub-menu-list" id="risk">
-            <li *ngIf="isShowRiskApproval">
+          <li>
+            <a
+              routerLinkActive="sub-active"
+              class="side-nav-link-ref"
+              routerLink="/app/risk-portal/pending"
+            >
+            <i class="fas fa-user-check"></i>
+              <span> Pending </span>
+            </a>
+          </li> 
+          
+          <li>
+            <a
+              routerLinkActive="sub-active"
+              class="side-nav-link-ref"
+              routerLink="/app/risk-portal/approval"
+            >
+            <i class="fas fa-user-check"></i>
+              <span> Approval </span>
+            </a>
+          </li> 
+
+            <!-- <li *ngIf="isShowRiskApproval">
               <a
                 routerLinkActive="sub-active"
                 class="side-nav-link-ref"
@@ -332,7 +301,7 @@
                   <span>Coporates</span>
               </a>
             </li> 
-         </ul>
+         </ul> -->
 
          <li *ngIf="isShowRiskCustomers">
           <a
@@ -346,6 +315,61 @@
         </li> 
 
         </ul>
+
+        <li *ngIf="isShowSystemConfig">
+          <a
+            routerLinkActive="active"
+            class="side-nav-link-ref" 
+            data-bs-toggle="collapse" data-bs-target="#sysConfig"
+          >
+            <i class="fas fa-layer-group"></i>
+            <span> [System Configuration]</span>
+          </a>
+       </li>
+      <ul class="collapse sub-menu-list" id="sysConfig">
+            <li *ngIf="isShowSystemConfigMessageType">
+              <a
+                routerLinkActive="sub-active"
+                class="side-nav-link-ref"
+                routerLink="/app/system-configuration/message-type"
+              >
+              <i class="fas fa-envelope"></i>
+                <span> Message Type </span>
+              </a>
+            </li>
+            <li *ngIf="isShowSystemConfigMessageTemplate">
+              <a
+                routerLinkActive="sub-active"
+                class="side-nav-link-ref"
+                routerLink="/app/system-configuration/message-template"
+              >
+              <i class="fas fa-envelope-open-text"></i>
+                <span> Message Template </span>
+              </a>
+            </li>
+            <li *ngIf="isShowSystemConfigEmailType">
+              <a
+                routerLinkActive="sub-active"
+                class="side-nav-link-ref"
+                routerLink="/app/system-configuration/email-type"
+              >
+              <i class="fas fa-envelope"></i>
+                <span>Email Type</span>
+              </a>
+            </li>
+            <li *ngIf="isShowSystemConfigEmailContent">
+              <a
+                routerLinkActive="sub-active"
+                class="side-nav-link-ref"
+                routerLink="/app/system-configuration/create-email"
+              >
+              <i class="fas fa-envelope-open-text"></i>
+                <span>Email content</span>
+              </a>
+            </li>
+      </ul>
+    
+       
      
         
       </ng-container>

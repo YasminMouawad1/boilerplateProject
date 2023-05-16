@@ -17,6 +17,9 @@ import { UserItemSoftRejectComponent } from './users-rejected/users-soft-reject/
 import { UsersListRejectedComponent } from './users-rejected/users-soft-reject/users-list-rejected.component';
 import { UsersListSystemRejectedComponent } from './users-rejected/users-system-reject/users-list-systemRejected.component';
 import { UserItemSystemRejectComponent } from './users-rejected/users-system-reject/user-item/user-itemsystemReject.component';
+import { PendingListComponent } from './pending/pending-list.component';
+import { ApprovalListComponent } from './approval/approval-list.component';
+import { DetailsItemComponent } from './details/detailsItem.component';
  
 
 @NgModule({
@@ -40,6 +43,12 @@ import { UserItemSystemRejectComponent } from './users-rejected/users-system-rej
                     { path: 'coporates', component: CoporatesListComponent, canActivate: [AppRouteGuard] },
                     { path: 'customers', component: CustmersComponent, canActivate: [AppRouteGuard] },
                     { path: 'customer-item/:id', component: CustomerItemComponent, canActivate: [AppRouteGuard] },
+
+                    { path: 'pending', component: PendingListComponent, canActivate: [AppRouteGuard] },
+                    { path: 'approval', component: ApprovalListComponent, canActivate: [AppRouteGuard] },
+                    { path: 'details-item/:id', component: DetailsItemComponent, canActivate: [AppRouteGuard] },
+
+
                 ]
             }
         ])

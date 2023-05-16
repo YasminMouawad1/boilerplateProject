@@ -49,6 +49,10 @@ import { editSystemRejectDialogComponent } from './users-rejected/users-system-r
 import { rejectSystemRejectDialogComponent } from './users-rejected/users-system-reject/reject-application/reject-dailog.component';
 
 
+import {PendingListComponent} from './pending/pending-list.component';
+import { ApprovalListComponent } from './approval/approval-list.component';
+import {DetailsItemComponent} from './details/detailsItem.component';
+
 @NgModule({
     imports: [ 
     AppModule,
@@ -106,6 +110,9 @@ import { rejectSystemRejectDialogComponent } from './users-rejected/users-system
         acceptSystemRejectDialogComponent,
         editSystemRejectDialogComponent,
         rejectSystemRejectDialogComponent,
+        PendingListComponent,
+        ApprovalListComponent,
+        DetailsItemComponent
     ]
 })
 export class RiskPortalModule {

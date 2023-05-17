@@ -19,10 +19,10 @@
                         <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
     
                          <div *ngIf="showTable" class="table-responsive">
-                            <h5 class="tabTitle">Makers Requests</h5>
-
+                           
                              <table class="table table-striped table-bordered" [busy]="isTableLoading">
-                                 <thead class="bg-light">
+                                <caption>Pending Requests</caption> 
+                                <thead class="bg-light">
                                  <tr>
                                      <th>Name</th>
                                      <th>Email</th>
@@ -70,9 +70,10 @@
                    <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
 
                     <div *ngIf="showTable" class="table-responsive">
-                       <h5 class="tabTitle">Requests</h5>
+                       
 
                         <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                            <caption>New Requests</caption>
                             <thead class="bg-light">
                             <tr>
                                 <th>Name</th>

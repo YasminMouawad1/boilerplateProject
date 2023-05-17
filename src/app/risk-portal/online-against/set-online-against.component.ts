@@ -24,11 +24,11 @@ class PagedApplicationsOnBoardingDto extends PagedRequestDto {
 }
 
 @Component({
-  templateUrl: './approval-list.component.html',
-  styleUrls:['./approval-list.component.css'],
+  templateUrl: './set-online-against.component.html',
+  styleUrls:['./set-online-against.component.css'],
   animations: [appModuleAnimation()],
 })
-export class ApprovalListComponent implements OnInit{
+export class SetonlineAgainstComponent implements OnInit{
   protected delete(entity: ApplicationsOnBoardingDto): void {
 
   }
@@ -40,8 +40,7 @@ export class ApprovalListComponent implements OnInit{
  currentPage: number = 1;
  isTableLoading:boolean = false;
  showTable:boolean = true;
-
- isShowRiskSoftReject = abp.auth.isGranted("Pages.Risk.SoftRejected");
+ 
  
   constructor( 
     private _Router:Router,
@@ -49,44 +48,17 @@ export class ApprovalListComponent implements OnInit{
     private _SpinnerService:SpinnerService,
     ) {
     
-    
-    //  super(injector);
-   
- 
-    
-    
+  
   }
 
   ngOnInit() {
-    this.getUserSoftRejectList();
- }
-
- getUserSoftRejectList(page :number = 1 ,pageSize :number = 10  ){
   
-this._SpinnerService.requestStarted();
-this.isTableLoading = true;
-   this._userService.getRiskRejectedProfileList(page, pageSize).subscribe(res => {
-    
-     if(res.result.data != null)
-       {
-        this.users = res.result.data ; 
-        this.showTable = true;
-      }else
-         this.showTable = false;
-
-       this._SpinnerService.requestEnded();
-   })
-
-   this._SpinnerService.requestEnded();
-   this.isTableLoading = false;
  }
+
  
-
-viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/risk-portal/details-item/'+ phoneNum])
-}
-
-
+ 
+ 
+ 
  
 
 }

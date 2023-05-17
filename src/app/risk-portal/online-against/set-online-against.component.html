@@ -1,0 +1,67 @@
+<div [@routerTransition]>
+    <div class="bgGrey m-2">
+         <section class="content-header">
+             <div class="container-fluid">
+                 <div class="row">
+                     <div class="col-6">
+                         <h1>Set Online Against</h1>
+                     </div> 
+                 </div>
+             </div>
+         </section>
+         <section class="content px-2">
+             <div class="container-fluid">
+         
+              <br>
+     
+                 <div class="card">
+                     <div class="card-body">
+                        <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
+    
+                         <div *ngIf="showTable" class="table-responsive">
+                            
+
+                             <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                                 <thead class="bg-light">
+                                 <tr>
+                                     <th>Name</th>
+                                     <th>X1</th>
+                                     <th>X2</th>
+                                     <th>X3</th>
+                                     <th>Online</th>  
+                                 </tr>
+                                 </thead>
+                                 <tbody>
+                                 <tr>
+                                     <td>Ahmed</td>
+                                     <td>-</td>
+                                     <td>-</td>
+                                     <td>-</td> 
+                                     <td>true</td>
+                                 </tr>
+                                 <tr>
+                                    <td>Mohamed</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td> 
+                                    <td>false</td>
+                                </tr>
+                                 </tbody>
+                             </table>
+
+                              <button class="btnCreate">Save</button>
+                         </div>
+    
+                          
+                     </div>
+                     
+                 </div>
+
+               <br>
+          
+
+             </div> 
+         </section> 
+        </div> 
+     </div>
+     

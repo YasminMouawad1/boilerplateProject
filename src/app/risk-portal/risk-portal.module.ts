@@ -52,6 +52,9 @@ import { rejectSystemRejectDialogComponent } from './users-rejected/users-system
 import {PendingListComponent} from './pending/pending-list.component';
 import { ApprovalListComponent } from './approval/approval-list.component';
 import {DetailsItemComponent} from './details/detailsItem.component';
+import {SetonlineAgainstComponent} from './online-against/set-online-against.component';
+import {SubmitPendingDialogComponent} from './details/submitPending/submit-pending-dialog.component';
+import{SubmitApprovalDialogComponent} from './details/submitApproval/submit-approval-dialog.component';
 
 @NgModule({
     imports: [ 
@@ -112,7 +115,10 @@ import {DetailsItemComponent} from './details/detailsItem.component';
         rejectSystemRejectDialogComponent,
         PendingListComponent,
         ApprovalListComponent,
-        DetailsItemComponent
+        DetailsItemComponent,
+        SetonlineAgainstComponent,
+        SubmitPendingDialogComponent,
+        SubmitApprovalDialogComponent
     ]
 })
 export class RiskPortalModule {

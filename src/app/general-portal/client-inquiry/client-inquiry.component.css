@@ -14,10 +14,11 @@
 }
 
 .btnCreate{
-    background-color: #5eb2a8;
+    background-color: #f28d8a;
     padding: 5px 21px;
-    border-radius: 14px;
+    border-radius: 7px;
     color: #fff;
+    float: right;
 }
 
 .bgPink{
@@ -67,16 +68,28 @@
     background-color: #e0b7b6; 
 }
 
-.tabTitle{
-    text-align: center;
-    color: #545353;
-    font-weight: 600;
-    font-size: 15px;
+
+.input-group{
+   width: 90%;
 }
 
-caption{ 
-    color: #fff;
-    text-align: center;
-    caption-side: top;
-    background-color: #5eb2a8;
-  }
+.input-group span{
+    font-size: 13px;
+}
+
+.inputDate{
+    font-size: 12px;
+    padding: 4px;
+    height: 35px;
+    line-height: 1;
+    margin-left: 4px !important;
+    margin-right: 4px !important;
+    border-radius: 7px !important;
+}
+
+.btnDrop{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    text-align: left;
+}

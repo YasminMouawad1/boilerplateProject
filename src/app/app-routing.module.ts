@@ -38,6 +38,11 @@ import { HomeComponent } from './home/home.component';
                 data: { preload: true }
             },
             {
+                path: 'general-portal',
+                loadChildren: () => import('app/general-portal/general-portal.module').then(m => m.GeneralPortalModule), // Lazy load operation module
+                data: { preload: true }
+            },
+            {
                 path: 'system-configuration',
                 loadChildren: () => import('app/system-configuration/system-configuration.module').then(m => m.SystemConfigurationModule), // Lazy load operation module
                 data: { preload: true }

@@ -20,6 +20,7 @@ import { UserItemSystemRejectComponent } from './users-rejected/users-system-rej
 import { PendingListComponent } from './pending/pending-list.component';
 import { ApprovalListComponent } from './approval/approval-list.component';
 import { DetailsItemComponent } from './details/detailsItem.component';
+import { SetonlineAgainstComponent } from './online-against/set-online-against.component';
  
 
 @NgModule({
@@ -44,10 +45,10 @@ import { DetailsItemComponent } from './details/detailsItem.component';
                     { path: 'customers', component: CustmersComponent, canActivate: [AppRouteGuard] },
                     { path: 'customer-item/:id', component: CustomerItemComponent, canActivate: [AppRouteGuard] },
 
-                    { path: 'pending', component: PendingListComponent, canActivate: [AppRouteGuard] },
-                    { path: 'approval', component: ApprovalListComponent, canActivate: [AppRouteGuard] },
+                    { path: 'pending-requests', component: PendingListComponent, canActivate: [AppRouteGuard] },
+                    { path: 'approval-requests', component: ApprovalListComponent, canActivate: [AppRouteGuard] },
                     { path: 'details-item/:id', component: DetailsItemComponent, canActivate: [AppRouteGuard] },
-
+                    { path: 'set-online-against', component: SetonlineAgainstComponent, canActivate: [AppRouteGuard] },
 
                 ]
             }

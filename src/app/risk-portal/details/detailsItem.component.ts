@@ -12,6 +12,8 @@ import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas'; 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'; 
+import { SubmitPendingDialogComponent } from './submitPending/submit-pending-dialog.component';
+import { SubmitApprovalDialogComponent } from './submitApproval/submit-approval-dialog.component';
 
 @Component({
   templateUrl: './detailsItem.component.html',
@@ -303,88 +305,42 @@ export class DetailsItemComponent implements OnInit {
    
 
 
-  AceeptRisk(): void {
+  SubmitPending(): void {
    
-    this.showAcceptDialog(this.userItem,this.riskApprovedLimit,this.approveRiskComment,this.salesRepMessage,this.submitAcceptform);
+    this.showSubmitPendingDialog(this.userItem);
   }
 
-  private showAcceptDialog(userItem:any,riskapproved:any,riskComment:any,salesRepMessage:any,submitAccept:any): void {
+  private showSubmitPendingDialog(userItem:any): void {
     let acceptDialog: BsModalRef;
 
     const initialState = {
-      userItem: userItem,
-      riskApprovedLimit:riskapproved,
-      approveRiskComment:riskComment,
-      salesRepMessage:salesRepMessage,
-      submitAcceptform:submitAccept
+      userItem: userItem.name
     };
 
+    acceptDialog = this._modalService.show(SubmitPendingDialogComponent,{class: 'modal-lg', initialState });
+
+  }
+
+
+  SubmitApproval(): void {
    
-       
+    this.showSubmitApprovalDialog(this.userItem);
+  }
+
+  private showSubmitApprovalDialog(userItem:any): void {
+    let acceptDialog: BsModalRef;
+
+    const initialState = {
+      userItem: userItem.name
+    };
+
+    acceptDialog = this._modalService.show(SubmitApprovalDialogComponent,{class: 'modal-lg', initialState });
+
   }
   
-  RejectRisk(): void {
-   
-    this.showRejectDialog(this.userItem,this.submitrejectform,this.rejectionValidationForm,
-      this.rejectionReason,this.rejectRiskComment,this.salesRepMessage,this.rejectResponse);
-  }
+  
 
-  private showRejectDialog(userItem:any,submitrejectform:any,rejectionValidationForm:any,
-    rejectionReason:any,rejectRiskComment:any,salesRepMessage:any,rejectResponse:any): void {
-    let rejectDialog: BsModalRef;
-
-    const initialState = {
-      userItem: userItem,
-      submitrejectform:submitrejectform,
-      rejectionValidationForm:rejectionValidationForm,
-      rejectionReason:rejectionReason,
-      rejectRiskComment:rejectRiskComment,
-      salesRepMessage:salesRepMessage,
-      rejectResponse:rejectResponse
-    };
-
-    
-
-   // rejectDialog = this._modalService.show(rejectDialogComponent,{class: 'modal-lg', initialState });
-
-
-       
-  }
-
-
-  EditRisk(): void {
-   
-    this.showEditDialog(this.userItem,this.oldRiskApprovedLimit,this.isEditRiskLimit,
-      this.riskApprovedLimit,this.editPersonalData, 
-      this.expireDate, this.dateOfBirth,this.gender,
-      this.maritalStatuses,this.maritalStatus);
-  }
-
-  private showEditDialog(userItem:any,oldRiskApprovedLimit:any,isEditRiskLimit:any,
-    riskApprovedLimit:any,editPersonalData:any,expireDate:any,
-    dateOfBirth:any,gender:any,maritalStatuses:any,maritalStatus:any): void {
-    let editDialog: BsModalRef;
-
-    const initialState = {
-      userItem: userItem,
-      oldRiskApprovedLimit:oldRiskApprovedLimit,
-      isEditRiskLimit:isEditRiskLimit,
-      riskApprovedLimit:riskApprovedLimit,
-      editPersonalData:editPersonalData,
-      expireDate:expireDate,
-      dateOfBirth:dateOfBirth,
-      gender:gender,
-      maritalStatuses:maritalStatuses,
-      maritalStatus:maritalStatus
-    };
-
-     
-
-    //editDialog = this._modalService.show(editDialogComponent,{class: 'modal-lg', initialState });
-
-
-       
-  }
+ 
   
 
   isriskApprovedLimitChanged: boolean = false

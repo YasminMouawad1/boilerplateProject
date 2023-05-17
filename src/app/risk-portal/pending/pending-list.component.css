@@ -73,3 +73,10 @@
     font-weight: 600;
     font-size: 15px;
 }
+
+caption{ 
+    color: #fff;
+    text-align: center;
+    caption-side: top;
+    background-color: #5eb2a8;
+  }

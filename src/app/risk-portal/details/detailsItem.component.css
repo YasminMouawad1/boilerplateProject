@@ -323,6 +323,7 @@
 
 .bgGreen{
     background-color: #5eb2a8;
+    color: #fff;
 }
 
 .bgGreen i{
@@ -409,9 +410,10 @@ th,td{
 }
 
 .alert-danger{
-    background-color: #f28d8a;
-    border: #f28d8a;
+    background-color: #f7e2e2;
+    border: 1px solid #f28d8a;
     font-size: 14px;
+    color: #000;
 }
 
 .addBtn{
@@ -447,5 +449,12 @@ th,td{
     height: 300px;
     border-radius: 8px;
     
+  }
+
+  caption{ 
+    color: #fff;
+    text-align: center;
+    caption-side: top;
+    background-color: #5eb2a8;
   }
   

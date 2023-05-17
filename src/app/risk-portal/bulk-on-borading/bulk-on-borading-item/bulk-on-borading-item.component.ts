@@ -237,8 +237,7 @@ export class bulkOnBoradingITemComponent implements OnInit {
       salesRepMessage:salesRepMessage,
       submitAcceptform:submitAccept
     };
-
-    debugger
+ 
 
       acceptDialog = this._modalService.show(acceptBulkDialogComponent,{class: 'modal-lg', initialState });
 

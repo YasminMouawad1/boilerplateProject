@@ -24,11 +24,11 @@ class PagedApplicationsOnBoardingDto extends PagedRequestDto {
 }
 
 @Component({
-  templateUrl: './approval-list.component.html',
-  styleUrls:['./approval-list.component.css'],
+  templateUrl: './client-inquiry.component.html',
+  styleUrls:['./client-inquiry.component.css'],
   animations: [appModuleAnimation()],
 })
-export class ApprovalListComponent implements OnInit{
+export class ClientInquiryComponent implements OnInit{
   protected delete(entity: ApplicationsOnBoardingDto): void {
 
   }
@@ -40,10 +40,11 @@ export class ApprovalListComponent implements OnInit{
  currentPage: number = 1;
  isTableLoading:boolean = false;
  showTable:boolean = true;
-
- isShowRiskSoftReject = abp.auth.isGranted("Pages.Risk.SoftRejected");
- 
-  constructor( 
+ customerName:string = '';
+  
+  constructor(injector: Injector, 
+    private _BulkOnBoardingServiceProxy:BulkOnBoardingServiceProxy,
+    private _RiskServiceProxy:RiskServiceProxy,
     private _Router:Router,
     private _userService:UsersService,
     private _SpinnerService:SpinnerService,
@@ -58,35 +59,62 @@ export class ApprovalListComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getUserSoftRejectList();
- }
-
- getUserSoftRejectList(page :number = 1 ,pageSize :number = 10  ){
-  
-this._SpinnerService.requestStarted();
-this.isTableLoading = true;
-   this._userService.getRiskRejectedProfileList(page, pageSize).subscribe(res => {
     
-     if(res.result.data != null)
-       {
-        this.users = res.result.data ; 
-        this.showTable = true;
-      }else
-         this.showTable = false;
-
-       this._SpinnerService.requestEnded();
-   })
-
-   this._SpinnerService.requestEnded();
-   this.isTableLoading = false;
+     
  }
+
+//  getUserApprovalList(page :number = 1 ,pageSize :number = 10  ){
+  
+// this._SpinnerService.requestStarted();
+// this.isTableLoading = true;
+//    this._userService.getWaitingRiskApprovalList(false,page, pageSize).subscribe(res => {
+    
+//      if(res.result.data != null)
+//        {
+//         this.users = res.result.data ; 
+//         this.showTable = true;
+//       }else
+//          this.showTable = false;
+
+//        this._SpinnerService.requestEnded();
+//    })
+
+//    this._SpinnerService.requestEnded();
+//    this.isTableLoading = false;
+//  }
  
+ 
+
 
 viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/risk-portal/details-item/'+ phoneNum])
+this._Router.navigate(['/app/risk-portal/customer-item/'+ phoneNum])
 }
 
 
+handleKeyUp(e:any){
+  if(e.keyCode === 13){
+     this.viewDetails(e);
+  }
+}
+
+details(){  
+  if(this.customerName === null || this.customerName == ""){
+    this.showTable = false; 
+     return;
+  }
+  else{
+    this._userService.getAllUsersList(this.customerName).subscribe(res => {
+       
+         this.users = res.result.data; 
+
+
+         this.showTable = this.users?.length == 0 ?false : true
  
+    })
+  }
+}
 
 }
+
+  
+

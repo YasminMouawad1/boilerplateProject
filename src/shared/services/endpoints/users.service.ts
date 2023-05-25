@@ -153,5 +153,22 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
   addActivatorUsers(body:any){
     return this._API.doPost(UrlEndpoints.Post_ACTIVATORUSER, body)
   }
+
+  GetSystemConfigurationProfessionsList(){
+    return  this._API.doGet(UrlEndpoints.Get_SystemConfigurationProfessionsList)
+  }
+
+  deleteSystemConfigurationProfessionsById(profession:any){
+    return   this._API.doGet(UrlEndpoints.Get_DeleteSystemConfigurationProfessionsById+'?Id='+profession.id+'&isDeleted='+profession.isDeleted)
+  }
+
+  activeSystemConfigurationProfessionsById(profession:any){
+    return   this._API.doGet(UrlEndpoints.Get_ActiveSystemConfigurationProfessionsById+'?Id='+profession.id+'&isActive='+profession.isActive)
+  }
+
+  createSystemCongifurationProfession(configuration:any){
+    return   this._API.doPost(UrlEndpoints.post_CreateSystemConfiguration, configuration)
+  }
+
 }
 

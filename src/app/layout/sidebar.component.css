@@ -12,6 +12,10 @@ ul li{
     margin-bottom: 5px;
 }
 
+ul{
+  padding-left: 1rem;
+}
+
  #sidebar-menu ul li a{
     color: #6c757d;
     cursor: pointer;

@@ -1,0 +1,70 @@
+ 
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">[ِAdd Restricted-iscore]</h5>
+    
+        <button type="button" class="btn-close" aria-hidden="true" (click)="hide()"></button>
+      </div>
+      <div class="modal-body"> 
+        
+        
+        <form [formGroup]="configurationProfession" (ngSubmit)="createSystemConfiguration()">
+            <div class="mb-3 row">
+              <label for="Name" class="col-sm-2 col-form-label">Name</label>
+              <div class="col-sm-10">
+                <input [class.is-valid]="configurationProfession.get('name')?.status=='VALID'"
+                  type="text" formControlName="name" class="form-control" id="Name">
+                  <div *ngIf="configurationProfession.get('name')?.errors && configurationProfession.get('name')?.touched" class="invalid-feedback">
+                    <span *ngIf="configurationProfession.get('name')?.getError('required')">
+                    Required</span>  
+               </div>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="Code" class="col-sm-2 col-form-label">Code</label>
+              <div class="col-sm-10">
+                <input [class.is-valid]="configurationProfession.get('code')?.status=='VALID'"
+                type="text" formControlName="code" class="form-control" id="code">
+                <div *ngIf="configurationProfession.get('code')?.errors && configurationProfession.get('code')?.touched" class="invalid-feedback">
+                  <span  *ngIf="configurationProfession.get('code')?.getError('required')"> Required</span>  
+               </div>
+              </div>
+            </div>
+            <div class="mb-3 row">
+              <label for="isActive" class="col-sm-2 col-form-label">isActive </label>
+              <div class="col-sm-10">
+                <select [class.is-valid]="configurationProfession.get('isActive')?.status=='VALID'"
+                id="isActive" class="form-select" placeholder="Select Active or Deavtive" formControlName="isActive">    
+                     <option value="" selected> choose </option>
+                     <option [ngValue]="true"> active </option>
+                     <option [ngValue]="false"> dactive </option>
+                </select>
+                <div *ngIf="configurationProfession.get('isActive')?.errors && configurationProfession.get('isActive')?.touched"  class="invalid-feedback">
+                  <span  *ngIf="configurationProfession.get('isActive')?.getError('required')">Required</span>  
+               </div>
+              </div>
+            </div>
+    
+            <div class="mb-3 row">
+              <label for="isDeleted" class="col-sm-2 col-form-label">isDeleted</label>
+              <div class="col-sm-10">
+                <select [class.is-valid]="configurationProfession.get('isDeleted')?.status=='VALID'"
+                id="isDeleted" class="form-select" placeholder="Select Delete or not" formControlName="isDeleted">    
+                     <option value="" selected>choose Deleted or not</option>
+                     <option [ngValue]="true">true</option>
+                     <option [ngValue]="false">false</option>
+                </select>
+                <div *ngIf="configurationProfession.get('isDeleted')?.errors && configurationProfession.get('isDeleted')?.touched"  class="invalid-feedback">
+                  <span  *ngIf="configurationProfession.get('isDeleted')?.getError('required')">Required</span>  
+               </div>
+              </div>
+            </div>
+            <div class="text-end">
+              <button type="button" [disabled]="configurationProfession.invalid" class="btn bgGreen">Add</button>
+              <button type="button" class="btn btn-light" (click)="hide()">close</button>
+            </div>
+           </form> 
+
+      </div>
+       
+   
+    

@@ -1,0 +1,105 @@
+<div [@routerTransition]>
+    <div class="bgGrey m-2">
+         <section class="content-header">
+             <div class="container-fluid">
+                 <div class="row">
+                     <div class="col-6">
+                         <h1>Restricted I-score</h1>
+                     </div> 
+                 </div>
+             </div>
+         </section>
+         <section class="content px-2">
+             <div class="container-fluid">
+         
+              <br>
+     
+                 <div class="card">
+                     <div class="card-body">
+                        <div class="table-responsive">
+                            <p *ngIf="!showTable" class="alert alert-warning text-center">Data Is Empty</p>
+                           
+                            <button type="button" (click)="showAddDialog()"
+                            class="btn btnSave btn-rounded mb-3 float-end">
+                              <i class="fas fa-plus"></i>Add
+                            </button>
+                  
+                            <table class="table align-middle table-nowrap table-hover">
+                              <thead class="table-light">
+                                <tr>
+                                  <th scope="col" style="width: 70px">#</th>
+                                  <th scope="col"> Name </th>
+                                  <th scope="col"> Code </th>
+                                  <th scope="col"> Is Active </th>
+                                  <th scope="col"> isDeleted </th>
+                                  <th scope="col"> Actions </th>
+                  
+                  
+                  
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let profession of professionsList | paginate: { itemsPerPage: numberRows, currentPage: currentPage }">
+                                  <td></td>
+                                  <td>{{  profession.name }}</td>
+                                  <td>{{ profession.code }} </td>
+                                  <td>
+                                    <h5> 
+                                        <span
+                                            class="{{profession.isActive ? 'badge bg-success' : 'badge bg-danger'}}">
+                                           {{ profession.isActive? 'Active':'Dactive' }}</span>
+                                     </h5>
+                                  </td>
+                                  <td>
+                                     <h5> 
+                                        <span
+                                            class="{{profession.isDeleted ? 'badge bg-danger' : ''}}">
+                                            {{ profession.isDeleted? 'Deleted':'' }}</span>
+                                     </h5>
+                                  </td>
+                                  <td>
+                                    <button  data-bs-toggle="modal" data-bs-target="#edit"
+                                    class='btn btn-secondary btn-rounded'>
+                                      <i class="fas fa-edit"></i>
+                                      Edit</button>
+                                    &nbsp;
+                                    <button (click)="activeSystemConfiguration(profession)" class=" {{profession.isActive ? 'btn btn-danger btn-rounded' : 'btn btn-success btn-rounded'}}">
+                                      <i class="{{profession.isActive ? 'fas fa-minus-square' : 'far fa-check-square'}}"></i>
+                                      {{profession.isActive ? 'Dactive' : 'Active'}}</button>
+                  
+                                      &nbsp;
+                                      <button (click)="deleteSystemConfiguration(profession) " class="{{profession.isDeleted ? 'btn btn-success btn-rounded' : 'btn btn-danger btn-rounded'}}">
+                                        <i class="{{profession.isDeleted ? 'fas fa-undo-alt' : 'fas fa-trash-alt'}}"></i>
+                                        {{profession.isDeleted ? 'Restore' : 'Delete'}}</button>
+                  
+                  
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                  
+                          <div *ngIf="showTable" class="row justify-content-space-between align-items-center">
+                            <div class="col-md-1">
+                              <select [(ngModel)]="numberRows" class="form-select">
+                                <option [ngValue]="5">5</option>
+                                <option [ngValue]="10">10</option>
+                                <option [ngValue]="50">50</option>
+                                <option [ngValue]="100">100</option>
+                                <option [ngValue]="200">200</option>
+                              </select>
+                            </div>
+                              <div class="col-md-11">
+                                 <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
+                              </div>
+                              
+                           </div>
+                     </div>
+                 </div>
+
+        
+             </div> 
+         </section> 
+        </div> 
+     </div>
+     

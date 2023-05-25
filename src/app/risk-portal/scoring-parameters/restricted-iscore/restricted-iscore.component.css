@@ -1,0 +1,52 @@
+.bgGrey{
+    background-color: #f8f8f8;
+    padding: 1rem;
+}
+
+.bgGreen{
+    background-color: #5eb2a8; 
+    color: #fff;
+    margin-right: 10px;
+}
+
+.card{
+    box-shadow: none;
+}
+
+.card-footer{
+    background-color: #ebebeb;
+}
+
+ 
+
+.btnSave{
+    background-color: #5eb2a8;
+    padding: 5px 21px;
+    margin-top: 17px;
+    border-radius: 8px;
+    color: #fff;
+    float: right;
+}
+
+.bg-success,
+.btn-success{
+    background-color: #34c38f !important;
+    border: #34c38f !important;
+}
+ 
+
+.bg-danger,
+.btn-danger{
+     background-color: #f46a6a !important;
+     border: #f46a6a !important;
+}
+
+.my-pagination ::ng-deep .ngx-pagination{
+    margin-top: 1.5rem;
+} 
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: #556ee6;
+    border-radius: 50%;
+    cursor: pointer;
+}

@@ -44,7 +44,10 @@ export class ConfirmationComponent implements OnInit{
  isTableLoading:boolean = false;
  showTable:boolean = true;
  
- 
+ notifications:number = 14;
+ displayNotifications:string= '';
+
+
   constructor( 
     private _Router:Router,
     private _userService:UsersService,
@@ -56,6 +59,12 @@ export class ConfirmationComponent implements OnInit{
   ngOnInit() {
     this.getNewRequestsList();
     this.getPendingList();
+
+    if(this.notifications > 9)
+    this.displayNotifications = '9 +';
+ else
+    this.displayNotifications = '' + this.notifications;
+    
  }
 
  getPendingList(){

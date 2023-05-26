@@ -31,6 +31,8 @@ import{IncomeComponent} from './scoring-parameters/income/income.component';
 import{RestrictedIscoreComponent} from './scoring-parameters/restricted-iscore/restricted-iscore.component';
 import {RestrictedProfissionComponent} from './scoring-parameters/restricted-profission/restricted-profission.component';
 import {addRestrictedIScoreDialogComponent} from './scoring-parameters/restricted-iscore/add-dailog/add-dailog.component';
+import {TimeLineDialogComponent} from './details/timeLine/time-line-dialog.component';
+
 
 @NgModule({
     imports: [ 
@@ -71,7 +73,8 @@ import {addRestrictedIScoreDialogComponent} from './scoring-parameters/restricte
         IncomeComponent,
         RestrictedIscoreComponent,
         RestrictedProfissionComponent,
-        addRestrictedIScoreDialogComponent
+        addRestrictedIScoreDialogComponent,
+        TimeLineDialogComponent
     ]
 })
 export class RiskPortalModule {

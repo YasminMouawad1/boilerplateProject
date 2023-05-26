@@ -80,3 +80,27 @@ caption{
     caption-side: top;
     background-color: #5eb2a8;
   }
+
+  
+  .containAlerts{
+    margin-bottom: 20px;
+    justify-content: right;
+    align-items: center;
+    float: right;
+    width: 16%; 
+    position: relative;
+  }
+
+  .containAlerts .notifications{
+    width: 40%;
+    position: relative;
+  }
+
+  .containAlerts .notifications i{
+      font-size: 22px;
+  }
+
+  .containAlerts .notifications span{
+    position: absolute;
+    left: 11px;
+  }

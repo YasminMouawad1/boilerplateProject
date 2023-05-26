@@ -459,3 +459,13 @@ th,td{
     background-color: #5eb2a8;
   }
   
+
+  .timeLine{
+    border: none;
+    float: right;
+    margin-right: 20px;
+    color: #fff;
+    background-color: #db8b89;
+    border-radius: 5px;
+    padding: 5px 13px;
+  }

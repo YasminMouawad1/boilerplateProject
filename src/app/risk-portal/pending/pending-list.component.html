@@ -16,10 +16,22 @@
      
                  <div class="card">
                      <div class="card-body">
+
+                        <div class="d-flex containAlerts">
+                            <div class="notifications">
+                                <i class="fa-regular fa-bell" [ngClass]=" notifications > 0 ? 'bx-tada' :'' "></i>
+                                <span class="badge bg-danger rounded-pill">{{displayNotifications}}</span> 
+                            </div>
+
+                            <div style="width: 40%;">
+                                <input type="text" class="form-control w-75">
+                            </div>
+                        </div>
+
                         <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
     
                          <div *ngIf="showTable" class="table-responsive">
-                            <h5 class="tabTitle"></h5>
+                            
 
                              <table class="table table-striped table-bordered" [busy]="isTableLoading">
                                 <caption>Re-Examined Requests</caption>
@@ -67,6 +79,18 @@
                
                <div class="card">
                 <div class="card-body">
+
+                    <div class="d-flex containAlerts">
+                        <div class="notifications">
+                            <i class="fa-regular fa-bell" [ngClass]=" notifications > 0 ? 'bx-tada' :'' "></i>
+                            <span class="badge bg-danger rounded-pill">{{displayNotifications}}</span> 
+                        </div>
+
+                        <div style="width: 40%;">
+                            <input type="text" class="form-control w-75">
+                        </div>
+                    </div>
+                    
                    <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
 
                     <div *ngIf="showTable" class="table-responsive">

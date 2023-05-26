@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'; 
 import { SubmitPendingDialogComponent } from './submitPending/submit-pending-dialog.component';
 import { SubmitApprovalDialogComponent } from './submitApproval/submit-approval-dialog.component';
+import { TimeLineDialogComponent } from './timeLine/time-line-dialog.component';
 
 @Component({
   templateUrl: './detailsItem.component.html',
@@ -352,6 +353,22 @@ export class DetailsItemComponent implements OnInit {
     };
 
     acceptDialog = this._modalService.show(SubmitApprovalDialogComponent,{class: 'modal-lg', initialState });
+
+  }
+
+  TimeLineView(): void {
+   
+    this.TimeLineViewDialog();
+  }
+
+  private TimeLineViewDialog(): void {
+    let timeLineDialog: BsModalRef;
+
+    const initialState = {
+       
+    };
+
+    timeLineDialog = this._modalService.show(TimeLineDialogComponent,{class: 'modal-lg', initialState });
 
   }
   

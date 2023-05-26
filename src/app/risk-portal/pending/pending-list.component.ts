@@ -42,7 +42,8 @@ export class PendingListComponent implements OnInit{
  isTableLoading:boolean = false;
  showTable:boolean = true;
 
- 
+ notifications:number = 14;
+ displayNotifications:string= '';
  
   constructor( 
     private _Router:Router,
@@ -61,6 +62,13 @@ export class PendingListComponent implements OnInit{
   ngOnInit() {
     this.getReExaminedList();
     this.getNewRequestsList();
+
+
+    if(this.notifications > 9)
+    this.displayNotifications = '9 +';
+ else
+    this.displayNotifications = '' + this.notifications;
+
  }
 
  getReExaminedList(){

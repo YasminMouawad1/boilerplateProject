@@ -66,6 +66,10 @@ static readonly GET_BulkonBoradingList: string = 'api/services/app/Risk/GetAllCo
   // Reject Response
   //static readonly GET_RejectResponse: string = 'api/Risk/RejectResponse';
 
+//risk
+static readonly Get_RequestDataGetAll: string = 'api/services/app/RequestData/GetAll';
+static readonly GET_RequestsDetils: string = 'api/services/app/Request/GetRequestDetails?publicId=';
+static readonly POST_AddComment: string = 'api/services/app/Request/AddComment';
 
 //System Configuration
 

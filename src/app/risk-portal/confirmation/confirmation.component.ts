@@ -35,13 +35,15 @@ export class ConfirmationComponent implements OnInit{
   applicationsOnBoardingDto: ApplicationsOnBoardingDto[] = [];
   keyword = '';
  
- users:any;
+ pendingRequests:any;
+ requestReject:any;
+ requestApproval:any;
+ newRequests:any;
  numberRows:number = 10;
  currentPage: number = 1;
  isTableLoading:boolean = false;
  showTable:boolean = true;
-
- isShowRiskSoftReject = abp.auth.isGranted("Pages.Risk.SoftRejected");
+ 
  
   constructor( 
     private _Router:Router,
@@ -49,37 +51,47 @@ export class ConfirmationComponent implements OnInit{
     private _SpinnerService:SpinnerService,
     ) {
     
-    
-    //  super(injector);
-   
- 
-    
-    
   }
 
   ngOnInit() {
-    this.getUserSoftRejectList();
+    this.getNewRequestsList();
+    this.getPendingList();
  }
 
- getUserSoftRejectList(page :number = 1 ,pageSize :number = 10  ){
-  
-this._SpinnerService.requestStarted();
-this.isTableLoading = true;
-   this._userService.getRiskRejectedProfileList(page, pageSize).subscribe(res => {
-    
-     if(res.result.data != null)
-       {
-        this.users = res.result.data ; 
-        this.showTable = true;
-      }else
-         this.showTable = false;
+ getPendingList(){
+  this.isTableLoading = true;
+  this._userService.RequestsDataGetAll(2001).subscribe(res => {
+   
+    if(res.result.items != null)
+      this.requestReject = res.result.items ; 
+  });
 
-       this._SpinnerService.requestEnded();
-   })
-
-   this._SpinnerService.requestEnded();
-   this.isTableLoading = false;
+  this._userService.RequestsDataGetAll(2002).subscribe(res => {
+   
+    if(res.result.items != null)
+      this.requestApproval = res.result.items ; 
+  });
+  this.isTableLoading = false;
+ 
+ 
  }
+
+ getNewRequestsList(){
+   
+  this.isTableLoading = true;
+     this._userService.RequestsDataGetAll(90).subscribe(res => {
+      
+       if(res.result.items != null)
+         {
+          this.newRequests = res.result.items ; 
+          this.showTable = true;
+        }else
+           this.showTable = false;
+   
+     })
+   
+     this.isTableLoading = false;
+   }
  
 
 viewDetails(phoneNum:string): void {

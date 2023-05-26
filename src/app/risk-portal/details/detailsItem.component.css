@@ -307,6 +307,7 @@
 
 .bgPink{
     background-color: #f28d8a;
+    color: #fff;
 }
 
 .bgPink i{
@@ -419,7 +420,7 @@ th,td{
 .addBtn{
     border: none;
     color: #fff;
-    background-color: #db8b89;
+    background-color: #5eb2a8;
     padding: 5px 17px;
     border-radius: 5px;
 }

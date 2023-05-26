@@ -376,10 +376,10 @@
                  <div class="content row">
                   <div class="col-lg-12">
                     <div class="row d-flex input-group fiedInput">
-                      <form  class="d-flex align-items-center" (ngSubmit)="editRiskClientNote()">
+                      <form  class="d-flex align-items-center" (ngSubmit)="addComment(121,newComment)">
                        
                         <div class="col-md-8">
-                          <textarea  class="form-control" placeholder="" name="NoteMsg" [(ngModel)]= "NoteMsg"></textarea>
+                          <textarea  class="form-control" placeholder="" name="newComment" [(ngModel)]= "newComment"></textarea>
                         </div>
                         <div class="col-md-4 text-end">
                           <button class="btn addBtn mx-1" for="inputGroupSelect01" type="submit">Add Comment</button>
@@ -394,13 +394,15 @@
                              <thead>
                                 <th>Comment</th>
                                 <th>Date Time</th>
-                                <th>User</th>
+                                <th>Request Id</th>
+                                <th>Edit</th>
                              </thead>
                               <tbody>
-                                 <tr>
-                                    <td>comment 1</td>
-                                    <td>16/5/2023</td>
-                                    <td>test</td>
+                                 <tr *ngFor="let comment of comments">
+                                    <td>{{comment.comment}}</td>
+                                    <td>{{comment.creationTime | date}}</td>
+                                    <td>{{comment.id}}</td>
+                                    <td><button class="btn bgPink"><i class="fa-solid fa-pencil"></i></button></td>
                                  </tr>
                               </tbody>
                             </table>

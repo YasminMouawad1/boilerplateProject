@@ -33,9 +33,9 @@
                                  </tr>
                                  </thead>
                                  <tbody>
-                                 <tr *ngFor="let user of users | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                                 <tr *ngFor="let user of pendingRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                     (click)="viewDetails(user.mobileNumber)" class="btnView">
-                                     <td>{{ user.name }}</td>
+                                     <td>{{ user.nameEn }}</td>
                                      <td>{{ user.nationalId }}</td>
                                      <td>{{ user.mobileNumber }}</td>
                                      <td></td>
@@ -81,9 +81,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let user of users | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                            <tr *ngFor="let user of newRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                (click)="viewDetails(user.mobileNumber)" class="btnView">
-                                <td>{{ user.name }}</td>
+                                <td>{{ user.nameEn }}</td>
                                 <td>{{ user.nationalId }}</td>
                                 <td>{{ user.mobileNumber }}</td>
                                 <td></td> 

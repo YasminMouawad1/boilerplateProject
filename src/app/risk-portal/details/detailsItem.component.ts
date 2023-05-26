@@ -6,7 +6,7 @@ import { UsersService } from '@shared/services/endpoints/users.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+ 
 
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas'; 
@@ -107,6 +107,12 @@ export class DetailsItemComponent implements OnInit {
   currentStatus : boolean = false;
   uploadDocument! :FormGroup; 
   document:any = '';
+
+
+  
+ comments:any;
+ newComment:any;
+
   eDocType = DocumentType;
 
   keys() : Array<string> {
@@ -118,7 +124,7 @@ export class DetailsItemComponent implements OnInit {
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,
               private _spinnerService:SpinnerService,private _userService:UsersService,
-              //private toastr: ToastrService,
+            
               private renderer: Renderer2,
               private modalService: NgbModal,
               private _modalService: BsModalService
@@ -140,9 +146,9 @@ export class DetailsItemComponent implements OnInit {
     });
 
 
-    this.route.params.subscribe((params) => (this.userId = params['id']));
+    this.route.params.subscribe((params) => (this.userId = params['publicId']));
 
-    this.getUserById();
+    this.getRequestDetails();
 
     this._userService.getRejectResponse().subscribe(res => {
       this.rejectResponse = res.result.data
@@ -156,16 +162,18 @@ export class DetailsItemComponent implements OnInit {
     
   }
 
-  getUserById(){
+  getRequestDetails(){
     this.isTableLoading = true;
 
     this._spinnerService.requestStarted();
-    this._userService.getUserById(this.userId).subscribe((res) => {
+    this._userService.getRequestDetails(this.userId).subscribe((res) => {
   
-      debugger
+       
       this._spinnerService.requestEnded();
-  
-      this.userItem = res.result.data;
+   
+      this.userItem = res.result;
+
+      this.comments = this.userItem.comments;
   
       // this.currentStatus = ( res.data.verify_BlockedClient== 1 &&  res.data.verify_CBE==1  &&  res.data.verify_I_ScoreNationalID==1  &&  res.data.verify_Valifay ==1)
       
@@ -246,6 +254,15 @@ export class DetailsItemComponent implements OnInit {
  
   }
 
+  addComment(requestID:any,comment:any){
+    this._userService.AddComent(requestID,comment).subscribe( res => {
+     if(res){
+      this.newComment = '';
+       this.getRequestDetails();
+     }
+  });
+
+  }
  
   selectFile(event:any){
     if(!event.target.files[0] || event.target.files[0].length == 0) {
@@ -294,7 +311,7 @@ export class DetailsItemComponent implements OnInit {
            {
             this.modalService.dismissAll();
 
-            this.getUserById();
+            this.getRequestDetails();
 
             
            } 
@@ -512,7 +529,7 @@ export class DetailsItemComponent implements OnInit {
        //this.toastr.success("",  'Edit Data successfully');
      
       }
-      this.getUserById();
+      this.getRequestDetails();
     });
 
   }

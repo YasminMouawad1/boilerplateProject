@@ -36,9 +36,9 @@
                                  </tr>
                                  </thead>
                                  <tbody>
-                                 <tr *ngFor="let user of users | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                                 <tr *ngFor="let user of ReExminedRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                     (click)="viewDetails(user.mobileNumber)" class="btnView">
-                                     <td>{{ user.name }}</td>
+                                     <td>{{ user.nameEn }}</td>
                                      <td>{{user.nationalId}}</td> 
                                      <td>{{ user.mobileNumber }}</td>
                                      <td></td>
@@ -58,7 +58,7 @@
                                  <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
                               </div>
                 
-                           </div>
+                         </div>
                      </div>
                      
                  </div>
@@ -86,9 +86,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let user of users | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
-                               (click)="viewDetails(user.mobileNumber)" class="btnView">
-                                <td>{{ user.name }}</td>
+                            <tr *ngFor="let user of NewRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                               (click)="viewDetails(user.publicId)" class="btnView">
+                                <td>{{ user.nameEn }}</td>
                                 <td>{{user.nationalId}}</td> 
                                 <td>{{ user.mobileNumber }}</td>
                                 <td></td>

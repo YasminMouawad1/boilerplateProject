@@ -21,7 +21,7 @@ import { RestrictedProfissionComponent } from './scoring-parameters/restricted-p
                 children: [
                     { path: 'pending', component: PendingListComponent, canActivate: [AppRouteGuard] },
                     { path: 'confirmation', component: ConfirmationComponent, canActivate: [AppRouteGuard] },
-                    { path: 'details-item/:id', component: DetailsItemComponent, canActivate: [AppRouteGuard] },
+                    { path: 'details-item/:publicId', component: DetailsItemComponent, canActivate: [AppRouteGuard] },
                     { path: 'set-online-against', component: SetonlineAgainstComponent, canActivate: [AppRouteGuard] },
                     {path: 'income', component: IncomeComponent, canActivate: [AppRouteGuard]},
                     {path: 'restricted-iscore', component: RestrictedIscoreComponent,canActivate: [AppRouteGuard] },

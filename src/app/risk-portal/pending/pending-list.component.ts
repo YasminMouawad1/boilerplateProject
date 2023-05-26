@@ -35,13 +35,14 @@ export class PendingListComponent implements OnInit{
   applicationsOnBoardingDto: ApplicationsOnBoardingDto[] = [];
   keyword = '';
  
- users:any;
+ ReExminedRequests:any;
+ NewRequests:any;
  numberRows:number = 10;
  currentPage: number = 1;
  isTableLoading:boolean = false;
  showTable:boolean = true;
 
- isShowRiskSoftReject = abp.auth.isGranted("Pages.Risk.SoftRejected");
+ 
  
   constructor( 
     private _Router:Router,
@@ -58,42 +59,50 @@ export class PendingListComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getUserSoftRejectList();
+    this.getReExaminedList();
+    this.getNewRequestsList();
  }
 
- getUserSoftRejectList(page :number = 1 ,pageSize :number = 10  ){
-  
-this._SpinnerService.requestStarted();
+ getReExaminedList(){
+   
 this.isTableLoading = true;
-   this._userService.getRiskRejectedProfileList(page, pageSize).subscribe(res => {
+   this._userService.RequestsDataGetAll(2003).subscribe(res => {
     
-     if(res.result.data != null)
+     if(res.result.items != null)
        {
-        this.users = res.result.data ; 
+        this.ReExminedRequests = res.result.items ; 
         this.showTable = true;
       }else
          this.showTable = false;
-
-       this._SpinnerService.requestEnded();
+ 
    })
-
-   this._SpinnerService.requestEnded();
+ 
    this.isTableLoading = false;
  }
+
+ getNewRequestsList(){
+   
+  this.isTableLoading = true;
+     this._userService.RequestsDataGetAll(2000).subscribe(res => {
+      
+       if(res.result.items != null)
+         {
+          this.NewRequests = res.result.items ; 
+          this.showTable = true;
+        }else
+           this.showTable = false;
+   
+     })
+   
+     this.isTableLoading = false;
+   }
  
 
-viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/risk-portal/details-item/'+ phoneNum])
+viewDetails(publicId:string): void {
+this._Router.navigate(['/app/risk-portal/details-item/'+ publicId])
 }
 
-
-
-  
-
  
-
- 
-
  
 
 }

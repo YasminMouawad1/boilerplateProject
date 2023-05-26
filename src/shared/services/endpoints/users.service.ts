@@ -74,6 +74,10 @@ getAllCoporates(){
 return this._API.doGet(UrlEndpoints.GET_UserById + id)
   }
 
+  getRequestDetails(publicId: string){
+    return this._API.doGet(UrlEndpoints.GET_RequestsDetils + publicId)
+      }
+
   postUser(userApprove: any){
     return this._API.doPost(UrlEndpoints.POST_ApproveUser, userApprove)
   }
@@ -116,6 +120,8 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
     return this._API.doPost(UrlEndpoints.POST_AllUsersList+name,name)
   }
 
+  
+
   getRiskPermanentRejectedProfileList(page :number = 1 ,pageSize :number = 10 ){
     return this._API.doGet(UrlEndpoints.GET_PermanentRejectedProfilePlusList+'?page='+page+'&pageSize='+pageSize)
   }
@@ -152,6 +158,14 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
 
   addActivatorUsers(body:any){
     return this._API.doPost(UrlEndpoints.Post_ACTIVATORUSER, body)
+  }
+
+  RequestsDataGetAll(requestStatus:any){
+    return this._API.doGet(UrlEndpoints.Get_RequestDataGetAll+'?RequestStatus='+requestStatus)
+  }
+
+  AddComent(requestID:any,comment:any){
+    return this._API.doPost(UrlEndpoints.POST_AddComment+'?requestId='+requestID+'&comment='+comment,comment)
   }
 
   GetSystemConfigurationProfessionsList(){

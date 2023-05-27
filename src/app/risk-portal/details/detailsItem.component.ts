@@ -16,6 +16,8 @@ import { SubmitPendingDialogComponent } from './submitPending/submit-pending-dia
 import { SubmitApprovalDialogComponent } from './submitApproval/submit-approval-dialog.component';
 import { TimeLineDialogComponent } from './timeLine/time-line-dialog.component';
 import { EditCommentDialogComponent } from './edit-comment/edit-comment-dialog.component';
+import { NotifyService } from 'abp-ng2-module';
+import Swal from 'sweetalert2';
 
 @Component({
   templateUrl: './detailsItem.component.html',
@@ -120,6 +122,7 @@ export class DetailsItemComponent implements OnInit {
  newComment:any;
 
   eDocType = DocumentType;
+  notify: any;
 
   keys() : Array<string> {
     var keys = Object.keys(this.eDocType);
@@ -130,7 +133,7 @@ export class DetailsItemComponent implements OnInit {
   constructor(injector: Injector,private _sanitizer: DomSanitizer,
     private route: ActivatedRoute, private router: Router,public formBuilder: FormBuilder,
               private _spinnerService:SpinnerService,private _userService:UsersService,
-            
+              private _notify: NotifyService,
               private renderer: Renderer2,
               private modalService: NgbModal,
               private _modalService: BsModalService
@@ -140,6 +143,8 @@ export class DetailsItemComponent implements OnInit {
 
   ngOnInit() {
  
+  
+
     this.uploadDocument = this.formBuilder.group({
       doc: ['', [Validators.required]],
       docType: ['', [Validators.required]],
@@ -282,7 +287,7 @@ export class DetailsItemComponent implements OnInit {
   }
 
   addComment(comment:any){
-    this._userService.AddComent(121,comment).subscribe( res => {
+    this._userService.AddComent(this.userItem.id,comment).subscribe( res => {
      if(res){
       this.newComment = '';
        this.getRequestDetails();
@@ -293,11 +298,27 @@ export class DetailsItemComponent implements OnInit {
 
 
   ReleaseAssignment(){
-    this._userService.ReleaseAssignment(121).subscribe(res => {
-      if(res){
-        console.log(res)
-      }
-  })
+
+    Swal.fire({
+      title: 'Are You Sure for Release ?',
+      showCancelButton: true,
+      confirmButtonText: 'Release', 
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+        Swal.fire('Saved!', '', 'success');
+
+        this._userService.ReleaseAssignment(this.userItem.id).subscribe(res => {
+          if(res){ 
+           // this._notify.success('Successfully Release ');
+            this.router.navigate(['/app/risk-portal/pending']);
+          }
+      });
+      
+      }  
+    })
+    
+ 
 
 }
  
@@ -374,9 +395,11 @@ export class DetailsItemComponent implements OnInit {
    
 
 
-  SubmitPending(): void {
-   
-    this.showSubmitPendingDialog(this.userItem);
+  Submit(): void {
+    if(this.userItem.status == 2000)
+        this.showSubmitPendingDialog(this.userItem);
+    else if(this.userItem.status == 90)
+        this.showSubmitApprovalDialog(this.userItem);
   }
 
   private showSubmitPendingDialog(userItem:any): void {
@@ -389,12 +412,6 @@ export class DetailsItemComponent implements OnInit {
     acceptDialog = this._modalService.show(SubmitPendingDialogComponent,{class: 'modal-lg', initialState });
 
   }
-
-
-  // SubmitApproval(): void {
-   
-  //   this.showSubmitApprovalDialog(this.userItem);
-  // }
 
   private showSubmitApprovalDialog(userItem:any): void {
     let acceptDialog: BsModalRef;

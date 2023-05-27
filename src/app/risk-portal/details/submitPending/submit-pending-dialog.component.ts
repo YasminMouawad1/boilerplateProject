@@ -79,6 +79,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
      this.isTableLoading = false;
  
      
+     
     }
 
  
@@ -111,9 +112,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
       if (!this.submitPendingForm.valid)
         return;
   
-         
+         if(this.userItem.systemRiskLimit == 'N/A'){
+            this.userItem.systemRiskLimit  = 0
+         }
+
+         if(this.userItem.riskApprovedLimit == 'N/A'){
+          this.userItem.riskApprovedLimit  = 0
+       }
+
+
       const data = {
-        requestId :121,
+        requestId :this.userItem.id,
         systemRiskLimit: this.userItem.systemRiskLimit,
         riskApprovedLimit :this.userItem.riskApprovedLimit,
         programID: 0,
@@ -121,10 +130,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
         comment:this.submitPendingForm.value.comment
   
       };
-       
+
+
+     // console.log(data)  
+
       this._usersServices.CahngeRequestStatus(data).subscribe(res => {
         if(res)
           this.hide();
+           
       })
       
 

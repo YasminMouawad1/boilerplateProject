@@ -60,6 +60,8 @@ export class ConfirmationComponent implements OnInit{
 
   ngOnInit() {
     
+    this.getPendingList();
+    this.getNewRequestsList();
 
     if(this.notifications > 9)
     this.displayNotifications = '9 +';
@@ -86,7 +88,7 @@ export class ConfirmationComponent implements OnInit{
 
  getPendingList(){
   this.isTableLoading = true;
-  this._userService.RequestsDataGetAll(2001).subscribe(res => {
+  this._userService.RequestsDataGetAll([2001,2002]).subscribe(res => {
    
     if(res.result.items != null)
       this.requestReject = res.result.items ; 
@@ -122,7 +124,7 @@ export class ConfirmationComponent implements OnInit{
  getNewRequestsList(){
    
   this.isTableLoading = true;
-     this._userService.RequestsDataGetAll(90).subscribe(res => {
+     this._userService.RequestsDataGetAll([90]).subscribe(res => {
       
        if(res.result.items != null)
          {

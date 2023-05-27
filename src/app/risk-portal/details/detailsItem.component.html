@@ -95,7 +95,7 @@
                                       Release
                                   </button>
 
-                                  <button type="button" (click)="SubmitPending()"
+                                  <button type="button" (click)="Submit()"
                                              [disabled]="isEditRiskLimit" class="btn btnSubmit btn-label waves-light">
                                       Submit
                                   </button>
@@ -438,7 +438,7 @@
                                     <td>{{comment.creationTime | date}}</td>
                                    
                                     <td>
-                                      <button class="btn bgPink" (click)="editCommentDialog(121,comment.id,comment)">
+                                      <button class="btn bgPink" (click)="editCommentDialog(userItem.id,comment.id,comment)">
                                         <i class="fa-solid fa-pencil"></i>
                                       </button>
                                     </td>

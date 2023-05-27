@@ -140,7 +140,7 @@ export class ConfirmationComponent implements OnInit{
  
 
 viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/risk-portal/details-item/'+ phoneNum])
+this._Router.navigate(['/app/risk-portal/details-item-confirmation/'+ phoneNum])
 }
 
 

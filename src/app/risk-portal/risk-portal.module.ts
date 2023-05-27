@@ -35,6 +35,11 @@ import {TimeLineDialogComponent} from './details/timeLine/time-line-dialog.compo
 import{EditCommentDialogComponent} from './details/edit-comment/edit-comment-dialog.component';
 import{Program1Component} from './program1/program1.component';
 import { Program2Component } from './program2/program2.component';
+import{DetailsItemConfirmationComponent} from './details-confirmation/detailsItem.component';
+import{SubmitApprovalConfirmationDialogComponent} from './details-confirmation/submitApproval/submit-approval-dialog.component';
+import {EditCommentConfirmationDialogComponent} from './details-confirmation/edit-comment/edit-comment-dialog.component';
+import {TimeLineConfirmationDialogComponent} from './details-confirmation/timeLine/time-line-dialog.component';
+
 
 @NgModule({
     imports: [ 
@@ -79,7 +84,11 @@ AppModule,
         TimeLineDialogComponent,
         EditCommentDialogComponent,
         Program1Component,
-        Program2Component
+        Program2Component,
+        DetailsItemConfirmationComponent,
+        SubmitApprovalConfirmationDialogComponent,
+        EditCommentConfirmationDialogComponent,
+        TimeLineConfirmationDialogComponent
     ]
 })
 export class RiskPortalModule {

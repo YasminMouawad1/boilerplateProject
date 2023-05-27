@@ -11,11 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas'; 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; 
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'; 
-import { SubmitPendingDialogComponent } from './submitPending/submit-pending-dialog.component';
-import { SubmitApprovalDialogComponent } from './submitApproval/submit-approval-dialog.component';
-import { TimeLineDialogComponent } from './timeLine/time-line-dialog.component';
-import { EditCommentDialogComponent } from './edit-comment/edit-comment-dialog.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';  
+import { SubmitApprovalConfirmationDialogComponent } from './submitApproval/submit-approval-dialog.component';
+import { TimeLineConfirmationDialogComponent } from './timeLine/time-line-dialog.component';
+import { EditCommentConfirmationDialogComponent } from './edit-comment/edit-comment-dialog.component';
 import { NotifyService } from 'abp-ng2-module';
 import Swal from 'sweetalert2';
 
@@ -25,7 +24,7 @@ import Swal from 'sweetalert2';
   animations: [appModuleAnimation()], 
 })
 
-export class DetailsItemComponent implements OnInit {
+export class DetailsItemConfirmationComponent implements OnInit {
 
   userItem!: any;
   IscoreFileLink: string = '';
@@ -311,7 +310,7 @@ export class DetailsItemComponent implements OnInit {
         this._userService.ReleaseAssignment(this.userItem.id).subscribe(res => {
           if(res){ 
            // this._notify.success('Successfully Release ');
-            this.router.navigate(['/app/risk-portal/pending']);
+            this.router.navigate(['/app/risk-portal/confirmation']);
           }
       });
       
@@ -331,7 +330,7 @@ export class DetailsItemComponent implements OnInit {
         comment: comment
       };
   
-      editCommentDialog = this._modalService.show(EditCommentDialogComponent,{class: 'modal-lg', initialState });
+      editCommentDialog = this._modalService.show(EditCommentConfirmationDialogComponent,{class: 'modal-lg', initialState });
   
     }
 
@@ -396,22 +395,22 @@ export class DetailsItemComponent implements OnInit {
 
 
   Submit(): void {
+    this.showSubmitApprovalDialog(this.userItem);
     
-    this.showSubmitPendingDialog(this.userItem)
-  }
-
-  private showSubmitPendingDialog(userItem:any): void {
-    let acceptDialog: BsModalRef;
-
-    const initialState = {
-      userItem: userItem
-    };
-
-    acceptDialog = this._modalService.show(SubmitPendingDialogComponent,{class: 'modal-lg', initialState });
-
   }
 
   
+
+  private showSubmitApprovalDialog(userItem:any): void {
+    let acceptDialog: BsModalRef;
+
+    const initialState = {
+      userItem: userItem.name
+    };
+
+    acceptDialog = this._modalService.show(SubmitApprovalConfirmationDialogComponent,{class: 'modal-lg', initialState });
+
+  }
 
   TimeLineView(): void {
    
@@ -425,7 +424,7 @@ export class DetailsItemComponent implements OnInit {
        
     };
 
-    timeLineDialog = this._modalService.show(TimeLineDialogComponent,{class: 'modal-lg', initialState });
+    timeLineDialog = this._modalService.show(TimeLineConfirmationDialogComponent,{class: 'modal-lg', initialState });
 
   }
   

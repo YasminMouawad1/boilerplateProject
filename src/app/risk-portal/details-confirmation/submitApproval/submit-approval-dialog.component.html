@@ -1,0 +1,137 @@
+ 
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">[ Submit ]</h5>
+  
+      <button type="button" class="btn-close" aria-hidden="true" (click)="hide()"></button>
+    </div>
+    <div class="modal-body" [busy]="isTableLoading"> 
+      
+      
+      <div class="row">
+          <div class="col-md-12 text-center">
+             <label class="form-label"> Are You Sure to submit Risk Application for  {{ userItem.name }}?</label>
+          </div> 
+      </div>
+
+      <br>
+
+      <form (ngSubmit)="Submit()" [formGroup]="submitPendingForm">
+          <div class="mb-3">
+              <div class="row">
+                  <div class="col-md-3">
+                    <label class="form-label"> select Action </label>
+                  </div>
+                  <div class="col-md-9">
+                    <select class="form-control"
+                    placeholder="Select Action"
+                    formControlName="action" 
+                    (change)="saveAction(submitPendingForm.get('action').value)"
+                    [ngClass]="{
+                      'is-invalid':submitPendingForm.get('action')?.invalid && submitForm
+                    }">
+                      <option value="" selected></option>
+                      <option value="100">Request to be Approve</option>
+                      <option value="990">Request To be Reject</option> 
+                      <option vlaue="2003">Re-Examined</option>
+                  </select>
+                  <div>
+                    <span *ngIf="submitPendingForm.get('action')?.invalid && submitForm" class="text-danger">Required</span>
+                  </div>
+                  </div>
+              </div>
+              
+             
+            </div>
+
+         
+         
+           <div class="mb-3"  *ngIf="viewApproval">
+            <div class="row">
+                <div class="col-md-3">
+                  <label class="form-label"> select Approval Reason </label>
+                </div>
+                <div class="col-md-9">
+                  <select class="form-control"
+                  placeholder="Select Approval Response"
+                  formControlName="approvalReason" 
+                  [ngClass]="{
+                    'is-invalid':submitPendingForm.get('approvalReason')?.invalid && submitForm
+                  }">
+                  <option value="" selected></option>
+                  <option> Approval reason 1 </option>
+                  <option> Approval reason 2 </option>
+                  <option> Approval reason 3 </option>
+                  <option> Approval reason 4 </option>
+                </select>
+                <div>
+                  <span *ngIf="submitPendingForm.get('approvalReason')?.invalid && submitForm" class="text-danger">Required</span>
+                </div>
+                </div>
+            </div>
+            
+           
+            </div>
+    
+            <div class="mb-3" *ngIf="viewReject">
+              <div class="row">
+                  <div class="col-md-3">
+                    <label class="form-label"> select reject Reason </label>
+                  </div>
+                  <div class="col-md-9">
+                    <select class="form-control"
+                    placeholder="Select Reject Response"
+                    formControlName="rejectReason" 
+                    [ngClass]="{
+                      'is-invalid':submitPendingForm.get('rejectReason')?.invalid && submitForm
+                    }">
+                    <option value="" selected> </option>
+                    <option> Reject reason 1 </option>
+                    <option> Reject reason 2 </option>
+                    <option> Reject reason 3 </option>
+                    <option> Reject reason 4 </option>
+                  </select>
+                  <div>
+                    <span *ngIf="submitPendingForm.get('rejectReason')?.invalid && submitForm" class="text-danger">Required</span>
+                  </div>
+                  </div>
+              </div>
+              
+             
+            </div>
+
+            <div class="mb-3">
+              <div class="row">
+                 <div class="col-md-3">
+                  <label class="form-label">Comment </label>
+                 </div>
+                 <div class="col-md-9">
+                  <div>
+                    <textarea
+                              name="rejectRiskComment" class="form-control" rows="3" placeholder="write a comment..."
+                              formControlName="comment" 
+                              [ngClass]="{
+                            'is-invalid':submitPendingForm.get('comment')?.invalid && submitForm
+          
+                          }"></textarea>
+                    <div class="invalid-feedback">
+                      <span>is Required</span>
+                    </div>
+                  </div>
+                 </div>
+              </div>
+            </div>
+     
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="hide()"> close </button>
+            <button type="submit" class="btn btnSave" [disabled]="submitPendingForm.invalid">Submit</button>
+    
+          </div>
+        </form>
+
+      </div>
+
+      
+  
+     
+ 
+  

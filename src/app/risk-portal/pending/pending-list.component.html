@@ -50,7 +50,7 @@
                                  </thead>
                                  <tbody>
                                  <tr *ngFor="let user of ReExminedRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
-                                    (click)="viewDetails(user.mobileNumber)" class="btnView">
+                                    (click)="viewDetails(user.publicId)" class="btnView">
                                      <td>{{ user.nameEn }}</td>
                                      <td>{{user.nationalId}}</td> 
                                      <td>{{ user.mobileNumber }}</td>

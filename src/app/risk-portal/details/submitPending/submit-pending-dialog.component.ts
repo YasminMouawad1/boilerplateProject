@@ -20,6 +20,7 @@ import {
   import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { UsersService } from '@shared/services/endpoints/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
   @Component({
@@ -135,8 +136,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
      // console.log(data)  
 
       this._usersServices.CahngeRequestStatus(data).subscribe(res => {
-        if(res)
+        if(res){
+          Swal.fire({
+            icon: 'success', 
+            text: 'Change Request status Successfully !!', 
+          })
+            
           this.hide();
+          this.router.navigate(['/app/risk-portal/pending']);
+        }
            
       })
       

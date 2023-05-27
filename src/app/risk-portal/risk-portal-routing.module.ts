@@ -12,6 +12,7 @@ import { RestrictedIscoreComponent } from './scoring-parameters/restricted-iscor
 import { RestrictedProfissionComponent } from './scoring-parameters/restricted-profission/restricted-profission.component';
 import { Program1Component } from './program1/program1.component';
 import { Program2Component } from './program2/program2.component';
+import { DetailsItemConfirmationComponent } from './details-confirmation/detailsItem.component';
  
 
 @NgModule({
@@ -29,7 +30,9 @@ import { Program2Component } from './program2/program2.component';
                     {path: 'restricted-iscore', component: RestrictedIscoreComponent,canActivate: [AppRouteGuard] },
                     {path: 'restricted-profission', component: RestrictedProfissionComponent,canActivate: [AppRouteGuard] },
                     {path: 'program1', component: Program1Component,canActivate: [AppRouteGuard] },
-                    {path: 'program2', component: Program2Component,canActivate: [AppRouteGuard] }
+                    {path: 'program2', component: Program2Component,canActivate: [AppRouteGuard] },
+                    { path: 'details-item-confirmation/:publicId', component: DetailsItemConfirmationComponent, canActivate: [AppRouteGuard] },
+
 
                 ]
             }

@@ -1,0 +1,75 @@
+ 
+    <div class="modal-header">
+        <h5 class="modal-title mt-0">[ Edit Comment ]</h5>
+    
+        <button type="button" class="btn-close" aria-hidden="true" (click)="hide()"></button>
+      </div>
+      <div class="modal-body" [busy]="isTableLoading"> 
+        
+        
+        
+
+        <br>
+
+        <form (ngSubmit)="Edit()" [formGroup]="submitEditCommentForm">
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-3">
+                      <label class="form-label"> request ID</label>
+                    </div>
+                    <div class="col-md-9">
+                          <input readonly="readonly" name="requestID" class="form-control" placeholder="write a comment..." formControlName="requestID" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-md-3">
+                      <label class="form-label"> Comment ID</label>
+                    </div>
+                    <div class="col-md-9">
+                          <input readonly="readonly" name="commentID" class="form-control" placeholder="write a comment..." formControlName="commentID" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="row">
+                   <div class="col-md-3">
+                    <label class="form-label"> Comment </label>
+                   </div>
+                   <div class="col-md-9">
+                    <div>
+                      <textarea
+                                name="comment" class="form-control" rows="3" placeholder="write a comment..."
+                                formControlName="comment" 
+                                [ngClass]="{
+                              'is-invalid':submitEditCommentForm.get('comment')?.invalid && submitForm}"></textarea>
+                      <div class="invalid-feedback">
+                        <span *ngIf="submitEditCommentForm.get('comment')?.invalid && submitForm" class="text-danger">Required</span>
+                      </div>
+                    </div>
+                   </div>
+                </div>
+              </div>
+           
+            
+      
+            
+           
+       
+            <div class="modal-footer">
+              <button type="button" class="btn btn-light" (click)="hide()"> close </button>
+              <button type="submit" class="btn btnEdit">Edit</button>
+      
+            </div>
+          </form>
+
+        </div>
+  
+        
+    
+       
+   
+    

@@ -1,0 +1,531 @@
+<div [@routerTransition]>
+
+
+
+<div class="container-fluid" id="contentToConvert" [busy]="isTableLoading">
+
+  
+
+  <div class="row" >
+       <div class="col-md-12 leftContent">
+           
+        <div class="row">
+          <div class="col-md-6"></div>
+          <div class="col-md-3">
+            <select class="form-control" placeholder="Select Program">
+                <option value="" selected>Select Program</option>
+                <option>Program1</option>
+                <option>Program2</option> 
+                <option>Program3</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+              <button class="timeLine" (click)="TimeLineView()">View Request Time Line</button>
+          </div>
+      </div>
+    <br>
+    
+        <div class="row">
+            <div class="card cardHeader">
+                
+              <div id="contentToConvert">
+                <div class="row" *ngIf="userItem">
+                  <div class="col-lg-12">
+                  
+                      <div class="card-body">
+                        <div class="row  align-items-center">
+                          
+                          
+                          <div class="col-lg-4">
+                            <div class="media">
+                              
+                              <div *ngIf="PersonalIMG"  class="me-3 containImg" >
+                                <img [src]="pesonalImages" alt=""
+                                     class="avatar-md rounded-circle img-thumbnail">
+                              </div>
+
+                              <div class="media-body align-self-center">
+                                <div class="text-muted">
+                                  <p class="mb-2">Risk approval application  </p>
+                                  <h5 class="mb-1 headTitle">{{ userItem.name }}</h5>
+                                  <p class="mb-0 subTitle">{{ userItem.jobTitle }}</p>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                
+                          <div class="col-lg-6 align-self-center">
+                            <div class="text-lg-center mt-4 mt-lg-0">
+                              <div class="row subDetails">
+                                <div class="col-3">
+                                  <div>
+                                    <p class="text-muted text-truncate mb-2">National ID</p>
+                                    <h5 class="mb-0">{{ userItem.nationalId }}</h5>
+                                  </div>
+                                </div>
+                                <div class="col-3">
+                                  <div>
+                                    <p class="text-muted text-truncate mb-2">Phone Number</p>
+                                    <h5 class="mb-0">{{ userItem.mobileNumber }}</h5>
+                                  </div>
+                                </div>
+                                <div class="col-3">
+                                  <div>
+                                    <p class="text-muted text-truncate mb-2">Status</p>
+                                    <h5 class="mb-0">{{ userItem.status }}</h5>
+                                  </div>
+                                </div>
+                                <div class="col-3">
+                                  <div>
+                                    <p class="text-muted text-truncate mb-2"> Submit Date</p>
+                                    <h5 class="mb-0">{{ userItem.submitDate | date }}</h5>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                          <div  class="col-lg-2 align-self-center">
+                            <div class="text-lg-center mt-4 mt-lg-0">
+                              <div class="row">
+                                <div class="col-12">
+                                  <button type="button" (click)="ReleaseAssignment()" class="btn btnEdit btn-label waves-light mr-2">
+                                      Release
+                                  </button>
+
+                                  <button type="button" (click)="Submit()"
+                                             [disabled]="isEditRiskLimit" class="btn btnSubmit btn-label waves-light">
+                                      Submit
+                                  </button>
+                                    
+                                </div>
+                
+                                
+                              </div>
+                            </div>
+                          </div>
+
+                         
+                 
+                
+                        </div>
+                        <!-- end row -->
+                      </div>
+                    
+                  </div>
+                </div>
+            </div>
+        </div>
+ 
+     <br> 
+
+            <div class="detiles">
+               <div class="row">
+                   <div class="col-md-6">
+
+                    
+
+                      <div class="content">
+                         <div class="header">
+                             <h4>Financial Information</h4>
+
+                             <div class="icon">
+                                <i class="fa-solid fa-chart-simple"></i>
+                             </div>
+                         </div>
+                         <table class="table table-nowrap mb-0">
+                           <tr>
+                             <th> Income </th>
+                             <td>{{ userItem.income }}</td>
+                           </tr>
+                           <tr>
+                             <th> Active Credit Facility </th>
+                             <td>{{ userItem.activeCreditFacility }}</td>
+                           </tr>
+                           <tr> 
+                              <th> I-score</th>
+                              <td>  {{userItem.iscoreFile}} </td>
+                           </tr>
+                           <tr>
+                              <th> Other Documents</th>
+                              <td>{{ userItem.otherDocuments }}</td>
+                           </tr>
+                           <tr>
+                             <th>Credit Limit </th>
+                             <td>{{ userItem.creditLimit }}</td>
+                           </tr> 
+
+                           <tr>
+                            <th scope="row">
+                              Credit Limit 
+                            </th>
+                            <td>{{ userItem.creditLimit }}
+                              &nbsp;
+                              <button 
+                                   [disabled]="isClientActivation" (click)="clientActivation(userItem.mobileNumber)"
+                                   type="button"  class='btn btnSubmit' >
+                                   <i class="{{isClientActivation ? 'bx bx-loader bx-spin  font-size-16 align-middle me-2' : 'fas fa-calculator font-size-16 align-middle me-2'}} " ></i>  calculate Limit </button>
+                            </td>
+                          </tr>
+
+                           <tr>
+                            
+                            <th scope="row"> Risk Limit </th>
+
+                            <td> 
+                              <input  [readonly]="isEditRiskLimit?'':true" (keypress)="numberOnly($event)" maxlength="6"  [(ngModel)]="riskApprovedLimit" value="{{ riskApprovedLimit }}" type="text" class="mb-3 form-control" id="formrow-inputCity">   &nbsp;
+                              <button (click)="editRiskLimit()" 
+                                   [disabled]="isEditRiskLimit && (riskApprovedLimit<5000 || riskApprovedLimit > 100000) " 
+                                   type="button" [ngClass]="isEditRiskLimit ? 'btn btnSave' : 'btn btnEdit'">
+                                   <i [ngClass]="isEditRiskLimit ? 'bx bx-save font-size-16 align-middle me-2' : 'bx bx-edit font-size-16 align-middle me-2'">
+                                   </i>
+                                    {{isEditRiskLimit?'Save Risk Limt':'Edit Risk Limet'}} </button>
+                              &nbsp; 
+                              <button *ngIf="isEditRiskLimit" (click)="editRiskLimit(true)" type="button" class='btn btn-danger btnCancel'>
+                                <i class='bx bx-x font-size-16 align-middle me-2'></i>  Cancel </button>
+                            </td>
+                            
+                          </tr>
+                           <tr>
+                             <th> Assumed Income </th>
+                             <td>{{ userItem.assumedIncome }}</td>
+                           </tr>
+                           <tr>
+                            <th> System Limit 	</th>
+                            <td>{{ userItem.instantLimit }}</td>
+                          </tr>
+                       </table>
+                      </div>
+
+                      <br>
+
+                     <div class="content">
+                      <div *ngIf="!isShowAddressInfo" class="overlay">
+                        <i class="fa-solid fa-lock"></i>
+                      </div>
+
+                       <div class="header" [ngStyle]="{ 'visibility':isShowAddressInfo ? 'initial':'hidden'}">
+                         
+                         <h4>Location </h4>
+                         <div class="icon">
+                          <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                     </div>
+                     <table [ngStyle]="{ 'visibility':isShowAddressInfo ? 'initial':'hidden'}"
+                         class="table table-nowrap mb-0">
+                         <tr>
+                          <th> Governorate </th>
+                           <td>{{ userItem.governorate }}</td>
+                         </tr>
+                         <tr>
+                           <th> Area </th>
+                           <td>{{ userItem.area }}</td>
+                         </tr>
+                         <tr>
+                            <th> City </th>
+                            <td>{{ userItem.city }}</td>
+                         </tr>
+                         <tr>
+                           <th> Home Address </th>
+                           <td> {{ userItem.homeAddress }} </td>
+                         </tr>
+                         <tr>
+                            <th> Updated Address </th>
+                            <td> {{ userItem.niHomeAddress }} </td>
+                         </tr>
+                     </table>
+                     </div>
+
+                      <br>
+
+                      <div class="content">
+                        <div *ngIf="!isShowScoreCard" class="overlay">
+                          <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <div class="header" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
+                        
+                          <h4>Score Card </h4>
+                          <div class="icon"> 
+                            <i class="fa-regular fa-clipboard"></i>
+                          </div>
+
+                      </div>
+                      <div class="table-responsive" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
+                          <p class="rejectionList" *ngFor="let item of userItem.rejectionList">
+                            <span class="alert alert-danger">{{item.name}}</span>
+                          </p>
+                      </div>
+                      </div>
+
+                      <br>
+
+                      <div class="content">
+                        <div *ngIf="!isShowMainInfo" class="overlay">
+                          <i class="fa-solid fa-lock"></i>
+                        </div>
+  
+                        <div class="header" [ngStyle]="{ 'visibility':isShowMainInfo ? 'initial':'hidden'}">
+                          <h4> Personal Informations </h4>
+                          
+                          <div class="icon"> 
+                            <i class="fa-solid fa-user"></i>
+                          </div>
+                      </div>
+                      <table [ngStyle]="{ 'visibility':isShowMainInfo ? 'initial':'hidden'}"
+                        class="table table-nowrap mb-0">
+                        <tr>
+                          <th>Mobile </th>
+                          <td>{{ userItem.mobileNumber }}</td>
+                        </tr>
+                        <tr>
+                          <th>Full Name</th>
+                          <td>{{ userItem.name }}</td>
+                        </tr>
+                        <tr> 
+                          <th>National Id </th>
+                          <td>  {{ userItem.nationalId }} </td>
+                        </tr>
+                        <tr>
+                           <th> Expiry Date </th>
+                           <td>{{ userItem.expiryDate }}</td>
+                        </tr>
+                        <tr>
+                          <th> Gender </th>
+                           <td>{{ userItem.gender }}</td>
+                        </tr> 
+                        <tr>
+                          <th>  age </th>
+                          <td>{{ userItem.age }}</td>
+                        </tr>
+                        <tr>
+                          <th> Marital Status </th>
+                         <td>{{ userItem.maritalStatus }}</td>
+                       </tr>
+                       <tr>
+                         <th> Email	</th>
+                         <td>{{ userItem.email }}</td>
+                      </tr>
+                      <tr>
+                        <th>Company Name</th>
+                        <td>{{ userItem.companyName }}</td>
+                      </tr>
+                      <tr>
+                        <th>  Education </th>
+                        <td>{{ userItem.education }}</td>
+                      </tr>
+                      <tr>
+                        <th>occupation </th>
+                        <td>{{ userItem.occupation}}</td>
+                      </tr>
+                      <tr>
+                        <th>Job Title</th>
+                        <td>{{ userItem.jobTitle }}</td>
+                      </tr>
+                      <tr>
+                        <th> Emergency Contact Person </th>
+                        <td>{{ userItem.emergencyContactPerson }}</td>
+                      </tr>
+                      <tr>
+                        <th> Emergency Contact Number </th>
+                        <td>{{ userItem.emergencyContactPhoneNumber }}</td>
+                      </tr>
+                      <tr>
+                        <th>Car  </th>
+                        <td>{{ userItem.car }}</td>
+                      </tr>
+                      <tr>
+                        <th> Car Model Year  </th>
+                        <td>{{ userItem.carModelYear }}</td>
+                      </tr>
+                      <tr>
+                        <th>Club </th>
+                        <td>{{ userItem.clubId }}</td>
+                      </tr>
+                      <tr>
+                        <th>Club Category </th>
+                        <td>{{ userItem.clubCategory }}</td>
+                      </tr>
+                      <tr>
+                        <th>Status </th>
+                        <td>{{ userItem.status }}</td>
+                      </tr>
+                    </table>
+                      </div>
+                      
+                   </div>
+
+
+                   <div class="col-md-6">
+                     
+
+                    <div class="content">
+                      <div class="header border-0"> 
+                           <h4> SalesRepMessage </h4>
+                       </div>
+                       <div class="row d-flex input-group fiedInput">
+                        <form  class="d-flex align-items-end w-100" (ngSubmit)="saveMessage(SalMessage)">
+                          <div class="col-md-12">
+                            <textarea [(ngModel)]="salesRepMessage" class="form-control" placeholder="Enter message" name="SalesRepMessage" #SalMessage></textarea>
+                          </div> 
+              
+                          </form>
+                        </div>
+                     </div>
+
+                     <br>
+                      
+                  <!-- <div class="content">
+                      <div class="header">
+                        <h4>Documents Information</h4>
+
+                        <div>
+                           <button class="addBtn" (click)="openModal(UploadImg)">Add Document</button>
+                        </div>
+                    </div>
+                       <div class="row d-flex mt-3">
+                        <div class="popup-gallery d-flex flex-wrap">
+                          <div class="card1" *ngFor="let image of allContractImages; let i=index">
+                              <div class="img-fluid contain-images">
+                                      <img [src]="image.content" (click)="showImg(i)"/>
+                              </div>
+                          </div>
+                          </div>
+                        </div>
+                  </div> -->
+                  
+
+                  <!-- <br> -->
+                <!-- <div class="content"> 
+                  <div *ngIf="allContractImages.length > 0">
+                    <div class="imgBox">
+                        <img [src]="imgSrc" alt=""  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        
+                    </div>
+                  </div>
+                </div> -->
+
+                 <br> 
+
+                 <div class="content row">
+                  <div class="col-lg-12">
+                    <div class="row d-flex input-group fiedInput">
+                      <form  class="d-flex align-items-center" (ngSubmit)="addComment(newComment)">
+                       
+                        <div class="col-md-8">
+                          <textarea  class="form-control" placeholder="" name="newComment" [(ngModel)]= "newComment"></textarea>
+                        </div>
+                        <div class="col-md-4 text-end">
+                          <button [disabled]="!newComment" class="btn addBtn mx-1" for="inputGroupSelect01" type="submit">Add Comment</button>
+                        </div> 
+
+                        </form>
+
+                        <div class="mt-3">
+                            <table class="table table-striped table-bordered">
+                              
+                              <caption>Comment History</caption>
+                             <thead>
+                                <th>Comment</th>
+                                <th>Date Time</th> 
+                                <th>Edit</th>
+                             </thead>
+                              <tbody>
+                                 <tr *ngFor="let comment of comments">
+                                    <td>{{comment.comment}}</td>
+                                    <td>{{comment.creationTime | date}}</td>
+                                   
+                                    <td>
+                                      <button class="btn bgPink" (click)="editCommentDialog(userItem.id,comment.id,comment)">
+                                        <i class="fa-solid fa-pencil"></i>
+                                      </button>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                      </div>
+                  </div>
+                 </div>
+                    
+                  </div>
+               </div>
+            </div>
+
+       </div>
+     </div>
+    </div>
+
+
+     <!-- Modal for images -->
+     <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+             <img [src]="imgSrc" alt="" class="w-100" id="imageRot">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="rotateImg()">Rotate</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Modal -->
+<!-- <ng-template #UploadImg role="document" let-modal>
+  <div class="modal-header">
+    <h3 class="modal-title mt-0"> Add Client Document </h3>
+
+    <button type="button" class="btn-close" aria-hidden="true" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="uploadDocument" (ngSubmit)="uploadImage()">
+
+      <div class="mb-3">
+        <label class="form-label">Document</label>
+        <div>
+          <input class="form-control"
+              formControlName="doc" type="file" accept="image/*" 
+              (change)="selectFile($event)"
+              [ngClass]="{'is-invalid':uploadDocument.get('doc')?.invalid && uploadDocument.get('doc')?.touched}"
+            />
+          <div  class="invalid-feedback">
+            <span > Required </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"> document Type </label>
+
+        <select
+        class="form-select"
+        placeholder="Select Document Type"
+        formControlName="docType" 
+        [ngClass]="{
+          'is-invalid':uploadDocument.get('docType')?.invalid  && uploadDocument.get('docType')?.touched}"
+        >
+        <option value=""  selected>Choose Document type</option>
+        <option *ngFor="let type of keys();let i = index" 
+            [ngValue]="i+1">{{type}}
+        </option>
+      </select>
+      <div  class="invalid-feedback">
+        <span >Required</span>
+      </div>
+      </div>
+     
+    <div class="text-end">
+      <button type="button" class="btn btn-light mx-2" (click)="modal.close('Close click')">Close</button>
+      <button type="submit" [disabled]="uploadDocument.invalid"  class="btn btn-success mx-1">Add </button>
+    </div>
+  </form>
+  </div>
+
+</ng-template> -->
+ </div>
+ 

@@ -70,17 +70,15 @@ export class ConfirmationComponent implements OnInit{
     
  }
 
- SetBulkAssgnmentPending(PendingAssignment:any){
+ SetBulkAssgnmentPending(PendingAssignment:number){
 
   if(PendingAssignment <= 0)
          PendingAssignment = 5;
  
-  const data = {
-    requestStatus:2001,
-    AssignmentCount:PendingAssignment
-  };
+   
+  
 
-  this._userService.SetBulkAssgnment(data).subscribe(res => {
+  this._userService.setBulkAssignmentForChecker(PendingAssignment).subscribe(res => {
     if(res.success)
         this.getPendingList();
   })
@@ -88,17 +86,19 @@ export class ConfirmationComponent implements OnInit{
 
  getPendingList(){
   this.isTableLoading = true;
-  this._userService.RequestsDataGetAll([2001,2002]).subscribe(res => {
+  debugger
+  this._userService.GetAllChekerPending().subscribe(res => {
    
-    if(res.result.items != null)
-      this.requestReject = res.result.items ; 
+    console.log(res)
+    if(res.result)
+      this.pendingRequests = res.result ; 
   });
 
-  this._userService.RequestsDataGetAll(2002).subscribe(res => {
+  // this._userService.RequestsDataGetAll(2002).subscribe(res => {
    
-    if(res.result.items != null)
-      this.requestApproval = res.result.items ; 
-  });
+  //   if(res.result.items != null)
+  //     this.requestApproval = res.result.items ; 
+  // });
   this.isTableLoading = false;
  
  
@@ -124,11 +124,11 @@ export class ConfirmationComponent implements OnInit{
  getNewRequestsList(){
    
   this.isTableLoading = true;
-     this._userService.RequestsDataGetAll([90]).subscribe(res => {
+     this._userService.RequestsDataGetAll(90).subscribe(res => {
       
-       if(res.result.items != null)
+       if(res.result != null)
          {
-          this.newRequests = res.result.items ; 
+          this.newRequests = res.result ; 
           this.showTable = true;
         }else
            this.showTable = false;

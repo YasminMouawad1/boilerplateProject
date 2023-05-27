@@ -96,7 +96,7 @@ export class PendingListComponent implements OnInit{
  getReExaminedList(){
    
 this.isTableLoading = true;
-   this._userService.RequestsDataGetAll([2003]).subscribe(res => {
+   this._userService.RequestsDataGetAll(2003).subscribe(res => {
     
      if(res.result.items != null)
        {
@@ -132,7 +132,7 @@ this.isTableLoading = true;
  getNewRequestsList(){
    
   this.isTableLoading = true;
-     this._userService.RequestsDataGetAll([2000]).subscribe(res => {
+     this._userService.RequestsDataGetAll(2000).subscribe(res => {
       
       console.log(res)
        if(res.result.items != null)

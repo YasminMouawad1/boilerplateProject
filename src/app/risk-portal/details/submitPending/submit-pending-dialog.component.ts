@@ -126,7 +126,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
         systemRiskLimit: this.userItem.systemRiskLimit,
         riskApprovedLimit :this.userItem.riskApprovedLimit,
         programID: 0,
-        requestStatus: this.userItem.status,      
+        requestStatus: this.submitPendingForm.value.action,      
         comment:this.submitPendingForm.value.comment
   
       };

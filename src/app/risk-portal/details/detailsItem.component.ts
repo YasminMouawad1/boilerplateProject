@@ -396,10 +396,12 @@ export class DetailsItemComponent implements OnInit {
 
 
   Submit(): void {
-    if(this.userItem.status == 2000)
-        this.showSubmitPendingDialog(this.userItem);
-    else if(this.userItem.status == 90)
-        this.showSubmitApprovalDialog(this.userItem);
+    // if(this.userItem.status == 2000)
+    //     this.showSubmitPendingDialog(this.userItem);
+    // else if(this.userItem.status == 90)
+    //     this.showSubmitApprovalDialog(this.userItem);
+
+    this.showSubmitPendingDialog(this.userItem)
   }
 
   private showSubmitPendingDialog(userItem:any): void {

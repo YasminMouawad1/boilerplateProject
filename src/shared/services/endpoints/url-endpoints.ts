@@ -45,6 +45,8 @@ export abstract class UrlEndpoints {
   static readonly POST_EditRiskClientNote: string = 'api/services/app/Risk/EditRiskClientNote?userMobile=';
   static readonly POST_ChangeRequestStatus: string = 'api/services/app/Request/ChangeRequestStatus';
   static readonly POST_SetBulkAssignment: string ='api/services/app/Request/SetBulkAssignment';
+  static readonly Get_GetCheckerPendingRequest:string='api/services/app/RequestData/GetCheckerPendingRequest';
+  static readonly POST_BulkAssignmentForChecker:string='api/services/app/Request/SetBulkAssignmentForChecker?AssignmentCount=';
 
 static readonly post_UpdateNationalIdData: string = 'api/services/app/Risk/EditNationalIDData';
 static readonly GET_maritalStatus: string = 'api/services/app/LookUp/GetMaritalStatus';

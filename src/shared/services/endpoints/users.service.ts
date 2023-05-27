@@ -164,6 +164,13 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
     return this._API.doGet(UrlEndpoints.Get_RequestDataGetAll+'?RequestStatus='+requestStatus)
   }
 
+  GetAllChekerPending(){
+    return this._API.doGet(UrlEndpoints.Get_GetCheckerPendingRequest)
+  }
+
+  setBulkAssignmentForChecker(AssignmentCount:number){
+    return this._API.doPost(UrlEndpoints.POST_BulkAssignmentForChecker+AssignmentCount,AssignmentCount)
+  }
   AddComent(requestID:any,comment:any){
     return this._API.doPost(UrlEndpoints.POST_AddComment+'?requestId='+requestID+'&comment='+comment,comment)
   }

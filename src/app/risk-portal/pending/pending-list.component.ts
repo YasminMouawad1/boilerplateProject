@@ -44,6 +44,9 @@ export class PendingListComponent implements OnInit{
 
  notifications:number = 14;
  displayNotifications:string= '';
+
+ ReXminedAssignment:number = 5;
+ newRequestAssignment:number = 5;
  
   constructor( 
     private _Router:Router,
@@ -60,8 +63,7 @@ export class PendingListComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.getReExaminedList();
-    this.getNewRequestsList();
+    
 
 
     if(this.notifications > 9)
@@ -69,6 +71,23 @@ export class PendingListComponent implements OnInit{
  else
     this.displayNotifications = '' + this.notifications;
 
+ }
+
+ SetBulkAssgnmentReExamined(ReXminedAssignment:any){
+
+  if(ReXminedAssignment <= 0)
+       ReXminedAssignment = 5;
+
+  const data = {
+    requestStatus:2003,
+    AssignmentCount:ReXminedAssignment
+  };
+
+  this._userService.SetBulkAssgnment(data).subscribe(res => {
+    if(res.success)
+       this.getReExaminedList();
+    
+  })
  }
 
  getReExaminedList(){
@@ -88,11 +107,31 @@ this.isTableLoading = true;
    this.isTableLoading = false;
  }
 
+
+ SetBulkAssgnmentNewRequest(newRequestAssignment:any){
+
+  if(newRequestAssignment <= 0)
+       newRequestAssignment = 5;
+
+  const data = {
+    requestStatus:2000,
+    AssignmentCount:newRequestAssignment
+  };
+
+  this._userService.SetBulkAssgnment(data).subscribe(res => {
+    if(res.success)
+    this.getNewRequestsList();
+ 
+ 
+  })
+ }
+
  getNewRequestsList(){
    
   this.isTableLoading = true;
      this._userService.RequestsDataGetAll(2000).subscribe(res => {
       
+      console.log(res)
        if(res.result.items != null)
          {
           this.NewRequests = res.result.items ; 

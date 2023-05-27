@@ -23,7 +23,7 @@
                             </div>
 
                             <div style="width: 40%;">
-                                <input type="text" class="form-control w-75">
+                                <input type="number" class="form-control w-75" [(ngModel)]="PendingAssignment" (change)="SetBulkAssgnmentPending(PendingAssignment)">
                             </div>
                         </div>
 
@@ -81,7 +81,7 @@
                         </div>
 
                         <div style="width: 40%;">
-                            <input type="text" class="form-control w-75">
+                            <input type="number" class="form-control w-75" [(ngModel)]="newRequestAssignment" (change)="SetBulkAssgnmentNewRequest(newRequestAssignment)">
                         </div>
                     </div>
                     

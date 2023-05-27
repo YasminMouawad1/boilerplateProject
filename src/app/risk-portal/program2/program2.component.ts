@@ -24,109 +24,105 @@ class PagedApplicationsOnBoardingDto extends PagedRequestDto {
 }
 
 @Component({
-  templateUrl: './confirmation.component.html',
-  styleUrls:['./confirmation.component.css'],
+  templateUrl: './program2.component.html',
+  styleUrls:['./program2.component.css'],
   animations: [appModuleAnimation()],
 })
-export class ConfirmationComponent implements OnInit{
+export class Program2Component implements OnInit{
   protected delete(entity: ApplicationsOnBoardingDto): void {
 
   }
   applicationsOnBoardingDto: ApplicationsOnBoardingDto[] = [];
   keyword = '';
  
- pendingRequests:any;
- requestReject:any;
- requestApproval:any;
- newRequests:any;
+ ReExminedRequests:any;
+ NewRequests:any;
  numberRows:number = 10;
  currentPage: number = 1;
  isTableLoading:boolean = false;
  showTable:boolean = true;
- 
+
  notifications:number = 14;
  displayNotifications:string= '';
 
- PendingAssignment:number = 5;
- newRequestAssignment:number = 5;
-
+ ReXminedAssignment:any = 5;
+ newRequestAssignment:any = 5;
+ 
   constructor( 
     private _Router:Router,
     private _userService:UsersService,
     private _SpinnerService:SpinnerService,
     ) {
     
+    
+    //  super(injector);
+   
+ 
+    
+    
   }
 
   ngOnInit() {
     
 
+
     if(this.notifications > 9)
     this.displayNotifications = '9 +';
  else
     this.displayNotifications = '' + this.notifications;
-    
+
  }
 
- SetBulkAssgnmentPending(PendingAssignment:any){
+ SetBulkAssgnmentReExamined(){
 
-  if(PendingAssignment <= 0)
-         PendingAssignment = 5;
- 
   const data = {
-    requestStatus:2001,
-    AssignmentCount:PendingAssignment
+    requestStatus:2003,
+    AssignmentCount:this.ReXminedAssignment
   };
 
   this._userService.SetBulkAssgnment(data).subscribe(res => {
-    if(res.success)
-        this.getPendingList();
+    this.getReExaminedList();
   })
  }
 
- getPendingList(){
-  this.isTableLoading = true;
-  this._userService.RequestsDataGetAll(2001).subscribe(res => {
+ getReExaminedList(){
    
-    if(res.result.items != null)
-      this.requestReject = res.result.items ; 
-  });
-
-  this._userService.RequestsDataGetAll(2002).subscribe(res => {
-   
-    if(res.result.items != null)
-      this.requestApproval = res.result.items ; 
-  });
-  this.isTableLoading = false;
+this.isTableLoading = true;
+   this._userService.RequestsDataGetAll(2003).subscribe(res => {
+    
+     if(res.result.items != null)
+       {
+        this.ReExminedRequests = res.result.items ; 
+        this.showTable = true;
+      }else
+         this.showTable = false;
  
+   })
  
+   this.isTableLoading = false;
  }
 
- SetBulkAssgnmentNewRequest(newRequestAssignment:any){
 
-  if(newRequestAssignment <= 0)
-        newRequestAssignment = 5;
-
+ SetBulkAssgnmentNewRequest(){
 
   const data = {
-    requestStatus:90,
-    AssignmentCount:newRequestAssignment
+    requestStatus:2000,
+    AssignmentCount:this.newRequestAssignment
   };
 
   this._userService.SetBulkAssgnment(data).subscribe(res => {
-    if(res.success)
-        this.getNewRequestsList();
+    this.getNewRequestsList();
   })
  }
 
  getNewRequestsList(){
    
   this.isTableLoading = true;
-     this._userService.RequestsDataGetAll(90).subscribe(res => {
+     this._userService.RequestsDataGetAll(2000).subscribe(res => {
       
        if(res.result.items != null)
          {
-          this.newRequests = res.result.items ; 
+          this.NewRequests = res.result.items ; 
           this.showTable = true;
         }else
            this.showTable = false;
@@ -137,11 +133,11 @@ export class ConfirmationComponent implements OnInit{
    }
  
 
-viewDetails(phoneNum:string): void {
-this._Router.navigate(['/app/risk-portal/details-item/'+ phoneNum])
+viewDetails(publicId:string): void {
+this._Router.navigate(['/app/risk-portal/details-item/'+ publicId])
 }
 
-
+ 
  
 
 }

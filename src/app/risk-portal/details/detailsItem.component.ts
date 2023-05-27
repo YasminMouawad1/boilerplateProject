@@ -15,6 +15,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SubmitPendingDialogComponent } from './submitPending/submit-pending-dialog.component';
 import { SubmitApprovalDialogComponent } from './submitApproval/submit-approval-dialog.component';
 import { TimeLineDialogComponent } from './timeLine/time-line-dialog.component';
+import { EditCommentDialogComponent } from './edit-comment/edit-comment-dialog.component';
 
 @Component({
   templateUrl: './detailsItem.component.html',
@@ -86,6 +87,10 @@ export class DetailsItemComponent implements OnInit {
   PersonalIMG:boolean=true;
   degree:number = 0;
 
+  isClientActivation :boolean = false;
+  
+  isShowRiskLimit:boolean=false;
+  isEnableActions :boolean = false; 
 
   isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Accept");
   isShowRejectBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Reject");
@@ -163,6 +168,27 @@ export class DetailsItemComponent implements OnInit {
     
   }
 
+  clientActivation (mobileNumber : string){
+
+    this.isClientActivation =  true;
+
+    this._userService.getClientActivation(mobileNumber).subscribe((result) => {
+
+      if(result.messege.length >0)
+      {
+
+        //this.toastr.error("",  result.messege);
+
+        return;
+      } 
+    this.isShowRiskLimit = true;
+    this.userItem.creditLimit =  result.data
+    this.isClientActivation =  false;
+    this.isEnableActions = true;
+    })
+  }
+
+
   getRequestDetails(){
     this.isTableLoading = true;
 
@@ -216,31 +242,31 @@ export class DetailsItemComponent implements OnInit {
         this.oldRiskApprovedLimit = this.riskApprovedLimit;
       }
   
-      this.allContractImages = res.result.data.userDocuments;
+      // this.allContractImages = res.result.data.userDocuments;
   
   
-      this.allContractImages.forEach(element => {
+      // this.allContractImages.forEach(element => {
   
-        element.content = 'data:image/jpg;base64,'+ element.content
-        element.content =this._sanitizer.bypassSecurityTrustUrl(element.content)
-      });
+      //   element.content = 'data:image/jpg;base64,'+ element.content
+      //   element.content =this._sanitizer.bypassSecurityTrustUrl(element.content)
+      // });
   
-      if(res.result.data.userDocuments.length > 0){
-        this.imgSrc = res.result.data.userDocuments[0].content;
+      // if(res.result.data.userDocuments.length > 0){
+      //   this.imgSrc = res.result.data.userDocuments[0].content;
   
-        if(res.result.data.userDocuments[0].activatorDetails != null){
-          this.locationName = res.result.data.userDocuments[0].activatorDetails.activatorLocation.name;
-          this.mobileNum = res.result.data.userDocuments[0].activatorDetails.mobileNumber;
-          this.name = res.result.data.userDocuments[0].activatorDetails.nameEn;
-        }
-      }
+      //   if(res.result.data.userDocuments[0].activatorDetails != null){
+      //     this.locationName = res.result.data.userDocuments[0].activatorDetails.activatorLocation.name;
+      //     this.mobileNum = res.result.data.userDocuments[0].activatorDetails.mobileNumber;
+      //     this.name = res.result.data.userDocuments[0].activatorDetails.nameEn;
+      //   }
+      // }
   
-      debugger
+       
       this.pesonalImages = this._sanitizer.bypassSecurityTrustResourceUrl(
-        'data:image/jpg;base64,' + res.result.data.personalImage
+        'data:image/jpg;base64,' + res.result.personalImage
       ); 
   
-      if(res.result.data.personalImage == 'N/A')
+      if(res.result.personalImage == 'N/A')
           this.PersonalIMG = false;
   
   
@@ -255,8 +281,8 @@ export class DetailsItemComponent implements OnInit {
  
   }
 
-  addComment(requestID:any,comment:any){
-    this._userService.AddComent(requestID,comment).subscribe( res => {
+  addComment(comment:any){
+    this._userService.AddComent(121,comment).subscribe( res => {
      if(res){
       this.newComment = '';
        this.getRequestDetails();
@@ -264,6 +290,31 @@ export class DetailsItemComponent implements OnInit {
   });
 
   }
+
+
+  ReleaseAssignment(){
+    this._userService.ReleaseAssignment(121).subscribe(res => {
+      if(res){
+        console.log(res)
+      }
+  })
+
+}
+ 
+   editCommentDialog(requestID:any,commentID:any,comment:any): void {
+      let editCommentDialog: BsModalRef;
+  
+      const initialState = {
+        requestID: requestID,
+        commentID: commentID,
+        comment: comment
+      };
+  
+      editCommentDialog = this._modalService.show(EditCommentDialogComponent,{class: 'modal-lg', initialState });
+  
+    }
+
+ 
  
   selectFile(event:any){
     if(!event.target.files[0] || event.target.files[0].length == 0) {
@@ -332,7 +383,7 @@ export class DetailsItemComponent implements OnInit {
     let acceptDialog: BsModalRef;
 
     const initialState = {
-      userItem: userItem.name
+      userItem: userItem
     };
 
     acceptDialog = this._modalService.show(SubmitPendingDialogComponent,{class: 'modal-lg', initialState });
@@ -340,10 +391,10 @@ export class DetailsItemComponent implements OnInit {
   }
 
 
-  SubmitApproval(): void {
+  // SubmitApproval(): void {
    
-    this.showSubmitApprovalDialog(this.userItem);
-  }
+  //   this.showSubmitApprovalDialog(this.userItem);
+  // }
 
   private showSubmitApprovalDialog(userItem:any): void {
     let acceptDialog: BsModalRef;

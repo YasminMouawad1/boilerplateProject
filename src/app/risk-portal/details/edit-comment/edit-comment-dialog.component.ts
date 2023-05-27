@@ -8,7 +8,7 @@ import {
   } from '@angular/core';
   import { ActivatedRoute, Router } from '@angular/router';
   import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
-  import { forEach as _forEach, map as _map, flatMap } from 'lodash-es';
+  import { forEach as _forEach, map as _map } from 'lodash-es';
   import { AppComponentBase } from '@shared/app-component-base';
   import {
     UserServiceProxy,
@@ -23,30 +23,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
   @Component({
-    templateUrl: './submit-pending-dialog.component.html',
+    templateUrl: './edit-comment-dialog.component.html',
     styleUrls:['../detailsItem.component.css']
   })
-  export class SubmitPendingDialogComponent extends AppComponentBase
+  export class EditCommentDialogComponent extends AppComponentBase
     implements OnInit {
     saving = false;
     disableconfirmBtn:boolean = false;
 
     @Output() onSave = new EventEmitter<any>();
      
-    userItem:any;
-    riskApprovedLimit:any;
-    approveRiskComment:any;
-    salesRepMessage:any;
+    
     submitAcceptform:any;
 
     isTableLoading:boolean = false;
 
-    submitPendingForm!: FormGroup;
+    submitEditCommentForm!: FormGroup;
     submitForm = false;
 
-    viewApproval:boolean = false;
-    viewReject:boolean = false;
-    
+    requestID:any;
+    commentID:any;
+    comment:any;
 
     constructor(
       injector: Injector,
@@ -65,19 +62,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     ngOnInit(): void {
       this.isTableLoading = true;
 
-     this.userItem = this._modalOption.initialState.userItem; 
-
-     
-    
-     this.submitPendingForm = this.formBuilder.group({
-      action: ['', [Validators.required]],
-      comment: ['', [Validators.required]],
-      approvalReason: [''],
-      rejectReason: [''],
+     this.requestID = this._modalOption.initialState.requestID; 
+     this.commentID = this._modalOption.initialState.commentID; 
+     this.comment = this._modalOption.initialState.comment; 
+ 
+     console.log(this._modalOption.initialState);
+ 
+     this.submitEditCommentForm = this.formBuilder.group({
+      requestID: [this.requestID, [Validators.required]],
+      commentID: [this.commentID, [Validators.required]],
+      comment: [this.comment.comment, [Validators.required]], 
     });
     
      this.isTableLoading = false;
- 
+
      
     }
 
@@ -87,46 +85,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
       this.bsModalRef.hide()
     }
 
-    saveAction(action:any){
-      
-
-      if(action === 'approve'){
-        this.viewReject = false;
-        this.viewApproval = true;
-      }
-      else if(action === 'reject'){
-        this.viewReject = true;
-        this.viewApproval= false;
-      }
-      else{
-        this.viewApproval = false;
-        this.viewReject = false;
-      }
-         
-    }
-
  
-    Submit() {
+    Edit() {
       this.submitForm = true;
-      if (!this.submitPendingForm.valid)
+      if (!this.submitEditCommentForm.valid)
         return;
   
          
       const data = {
-        requestId :121,
-        systemRiskLimit: this.userItem.systemRiskLimit,
-        riskApprovedLimit :this.userItem.riskApprovedLimit,
-        programID: 0,
-        requestStatus: this.userItem.status,      
-        comment:this.submitPendingForm.value.comment
-  
+        requestId: this.submitEditCommentForm.value.requestID,
+        commentId:this.submitEditCommentForm.value.commentID,
+        comment:this.submitEditCommentForm.value.comment
       };
-       
-      this._usersServices.CahngeRequestStatus(data).subscribe(res => {
-        if(res)
-          this.hide();
-      })
       
+      this._usersServices.EditComent(data.requestId, data.commentId,data.comment).subscribe(res => {
+         if(res)
+           this.bsModalRef.hide();
+      })
 
       
     }

@@ -2406,8 +2406,8 @@ export class RequestServiceProxy {
      * @param publicId (optional) 
      * @return Success
      */
-    getRequestDeailas(publicId: string | undefined): Observable<UserInfoDto> {
-        let url_ = this.baseUrl + "/api/services/app/Request/GetRequestDeailas?";
+    getRequestDetails(publicId: string | undefined): Observable<RequestDetailsDto> {
+        let url_ = this.baseUrl + "/api/services/app/Request/GetRequestDetails?";
         if (publicId === null)
             throw new Error("The parameter 'publicId' cannot be null.");
         else if (publicId !== undefined)
@@ -2423,20 +2423,20 @@ export class RequestServiceProxy {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetRequestDeailas(response_);
+            return this.processGetRequestDetails(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetRequestDeailas(response_ as any);
+                    return this.processGetRequestDetails(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<UserInfoDto>;
+                    return _observableThrow(e) as any as Observable<RequestDetailsDto>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<UserInfoDto>;
+                return _observableThrow(response_) as any as Observable<RequestDetailsDto>;
         }));
     }
 
-    protected processGetRequestDeailas(response: HttpResponseBase): Observable<UserInfoDto> {
+    protected processGetRequestDetails(response: HttpResponseBase): Observable<RequestDetailsDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2447,7 +2447,7 @@ export class RequestServiceProxy {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = UserInfoDto.fromJS(resultData200);
+            result200 = RequestDetailsDto.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -2512,25 +2512,45 @@ export class RequestServiceProxy {
 
     /**
      * @param requestId (optional) 
-     * @param body (optional) 
+     * @param systemRiskLimit (optional) 
+     * @param riskApprovedLimit (optional) 
+     * @param programID (optional) 
+     * @param requestStatus (optional) 
+     * @param comment (optional) 
      * @return Success
      */
-    changeRequestStatus(requestId: number | undefined, body: RequestStatus | undefined): Observable<void> {
+    changeRequestStatus(requestId: number | undefined, systemRiskLimit: number | undefined, riskApprovedLimit: number | undefined, programID: number | undefined, requestStatus: number | undefined, comment: string | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Request/ChangeRequestStatus?";
         if (requestId === null)
             throw new Error("The parameter 'requestId' cannot be null.");
         else if (requestId !== undefined)
             url_ += "requestId=" + encodeURIComponent("" + requestId) + "&";
+        if (systemRiskLimit === null)
+            throw new Error("The parameter 'systemRiskLimit' cannot be null.");
+        else if (systemRiskLimit !== undefined)
+            url_ += "systemRiskLimit=" + encodeURIComponent("" + systemRiskLimit) + "&";
+        if (riskApprovedLimit === null)
+            throw new Error("The parameter 'riskApprovedLimit' cannot be null.");
+        else if (riskApprovedLimit !== undefined)
+            url_ += "riskApprovedLimit=" + encodeURIComponent("" + riskApprovedLimit) + "&";
+        if (programID === null)
+            throw new Error("The parameter 'programID' cannot be null.");
+        else if (programID !== undefined)
+            url_ += "programID=" + encodeURIComponent("" + programID) + "&";
+        if (requestStatus === null)
+            throw new Error("The parameter 'requestStatus' cannot be null.");
+        else if (requestStatus !== undefined)
+            url_ += "requestStatus=" + encodeURIComponent("" + requestStatus) + "&";
+        if (comment === null)
+            throw new Error("The parameter 'comment' cannot be null.");
+        else if (comment !== undefined)
+            url_ += "comment=" + encodeURIComponent("" + comment) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(body);
-
         let options_ : any = {
-            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Content-Type": "application/json-patch+json",
             })
         };
 
@@ -2848,21 +2868,26 @@ export class RequestServiceProxy {
     }
 
     /**
-     * @param body (optional) 
+     * @param requestStatus (optional) 
+     * @param assignmentCount (optional) 
      * @return Success
      */
-    setBulkAssignment(body: RequestStatus | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/Request/SetBulkAssignment";
+    setBulkAssignment(requestStatus: number | undefined, assignmentCount: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Request/SetBulkAssignment?";
+        if (requestStatus === null)
+            throw new Error("The parameter 'requestStatus' cannot be null.");
+        else if (requestStatus !== undefined)
+            url_ += "requestStatus=" + encodeURIComponent("" + requestStatus) + "&";
+        if (assignmentCount === null)
+            throw new Error("The parameter 'assignmentCount' cannot be null.");
+        else if (assignmentCount !== undefined)
+            url_ += "AssignmentCount=" + encodeURIComponent("" + assignmentCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(body);
-
         let options_ : any = {
-            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Content-Type": "application/json-patch+json",
             })
         };
 
@@ -8266,8 +8291,466 @@ export interface IRegisterOutput {
     canLogin: boolean;
 }
 
+export class RequestCommentsDto implements IRequestCommentsDto {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    comment: string | undefined;
+    creatorUser: UserDto;
+    requestId: number | undefined;
+
+    constructor(data?: IRequestCommentsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = _data["creatorUserId"];
+            this.lastModificationTime = _data["lastModificationTime"] ? moment(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = _data["lastModifierUserId"];
+            this.comment = _data["comment"];
+            this.creatorUser = _data["creatorUser"] ? UserDto.fromJS(_data["creatorUser"]) : <any>undefined;
+            this.requestId = _data["requestId"];
+        }
+    }
+
+    static fromJS(data: any): RequestCommentsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new RequestCommentsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
+        data["comment"] = this.comment;
+        data["creatorUser"] = this.creatorUser ? this.creatorUser.toJSON() : <any>undefined;
+        data["requestId"] = this.requestId;
+        return data;
+    }
+
+    clone(): RequestCommentsDto {
+        const json = this.toJSON();
+        let result = new RequestCommentsDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IRequestCommentsDto {
+    id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    comment: string | undefined;
+    creatorUser: UserDto;
+    requestId: number | undefined;
+}
+
+export class RequestDetailsDto implements IRequestDetailsDto {
+    mobileNumber: string | undefined;
+    nameAr: string | undefined;
+    nameEn: string | undefined;
+    nationalId: string | undefined;
+    valifayTransactionId: string | undefined;
+    nationalIdSerialNumber: string | undefined;
+    expiryDate: string | undefined;
+    homeAddress: string | undefined;
+    area: string | undefined;
+    governorate: string | undefined;
+    gender: string | undefined;
+    age: string | undefined;
+    maritalStatus: string | undefined;
+    email: string | undefined;
+    companyName: string | undefined;
+    jobTitle: string | undefined;
+    emergencyContactPerson: string | undefined;
+    emergencyContactPhoneNumber: string | undefined;
+    education: string | undefined;
+    occupation: string | undefined;
+    income: string | undefined;
+    activeCreditFacility: number | undefined;
+    carLicense: number | undefined;
+    universityId: number | undefined;
+    dateOfBirth: moment.Moment | undefined;
+    releaseDate: string | undefined;
+    religion: string | undefined;
+    husbandName: string | undefined;
+    isHuman: boolean | undefined;
+    samePerson: boolean | undefined;
+    samePersonconfidence: number | undefined;
+    carModelId: string | undefined;
+    clubId: number | undefined;
+    carModelYear: number | undefined;
+    instantLimit: number | undefined;
+    status: number;
+    personalImage: string | undefined;
+    userMessageStatus: string | undefined;
+    selfyTimeStamp: moment.Moment | undefined;
+    selfyRejectCount: number;
+    resetWorkFlowTimeStamp: moment.Moment | undefined;
+    cityId: string | undefined;
+    carBrandId: string | undefined;
+    clubCategory: string | undefined;
+    secondHomeAddress: string | undefined;
+    secondGovernorateId: string | undefined;
+    secondCityId: string | undefined;
+    secondAreaId: string | undefined;
+    valifay_Access_Token: string | undefined;
+    valifay_Access_Token_TimeStamp: moment.Moment | undefined;
+    creationDate: moment.Moment | undefined;
+    updateDate: moment.Moment | undefined;
+    isReviwed: boolean | undefined;
+    clubMembershipCategoryCode: string | undefined;
+    approvedRiskComment: string | undefined;
+    rejectionRiskComment: string | undefined;
+    rejectionReason: number | undefined;
+    riskApprovedLimit: number | undefined;
+    riskApprovalDate: moment.Moment | undefined;
+    riskRejectionDate: moment.Moment | undefined;
+    isRiskPermanentRejection: boolean | undefined;
+    riskPermanentRejectionDate: moment.Moment | undefined;
+    rejectionPermanentRiskComment: string | undefined;
+    stoperReject: number | undefined;
+    riskApproval: boolean | undefined;
+    activatorInquiry: boolean | undefined;
+    manualOnboard: boolean | undefined;
+    corpCode: number | undefined;
+    corpLimit: number | undefined;
+    registerDate: moment.Moment | undefined;
+    submitDate: moment.Moment | undefined;
+    note: string | undefined;
+    verify_Valifay: number | undefined;
+    verify_Valifay_TimeStamp: moment.Moment | undefined;
+    verify_BlockedClient: number | undefined;
+    verify_BlockedClient_TimeStamp: moment.Moment | undefined;
+    verify_I_ScoreNationalID: number | undefined;
+    verify_I_ScoreNationalID_TimeStamp: moment.Moment | undefined;
+    verify_CBE: number | undefined;
+    verify_CBE_TimeStamp: moment.Moment | undefined;
+    isCaseSent: number | undefined;
+    systemRiskLimit: number | undefined;
+    programID: number | undefined;
+    comments: RequestCommentsDto[] | undefined;
+
+    constructor(data?: IRequestDetailsDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.mobileNumber = _data["mobileNumber"];
+            this.nameAr = _data["nameAr"];
+            this.nameEn = _data["nameEn"];
+            this.nationalId = _data["nationalId"];
+            this.valifayTransactionId = _data["valifayTransactionId"];
+            this.nationalIdSerialNumber = _data["nationalIdSerialNumber"];
+            this.expiryDate = _data["expiryDate"];
+            this.homeAddress = _data["homeAddress"];
+            this.area = _data["area"];
+            this.governorate = _data["governorate"];
+            this.gender = _data["gender"];
+            this.age = _data["age"];
+            this.maritalStatus = _data["maritalStatus"];
+            this.email = _data["email"];
+            this.companyName = _data["companyName"];
+            this.jobTitle = _data["jobTitle"];
+            this.emergencyContactPerson = _data["emergencyContactPerson"];
+            this.emergencyContactPhoneNumber = _data["emergencyContactPhoneNumber"];
+            this.education = _data["education"];
+            this.occupation = _data["occupation"];
+            this.income = _data["income"];
+            this.activeCreditFacility = _data["activeCreditFacility"];
+            this.carLicense = _data["carLicense"];
+            this.universityId = _data["universityId"];
+            this.dateOfBirth = _data["dateOfBirth"] ? moment(_data["dateOfBirth"].toString()) : <any>undefined;
+            this.releaseDate = _data["releaseDate"];
+            this.religion = _data["religion"];
+            this.husbandName = _data["husbandName"];
+            this.isHuman = _data["isHuman"];
+            this.samePerson = _data["samePerson"];
+            this.samePersonconfidence = _data["samePersonconfidence"];
+            this.carModelId = _data["carModelId"];
+            this.clubId = _data["clubId"];
+            this.carModelYear = _data["carModelYear"];
+            this.instantLimit = _data["instantLimit"];
+            this.status = _data["status"];
+            this.personalImage = _data["personalImage"];
+            this.userMessageStatus = _data["userMessageStatus"];
+            this.selfyTimeStamp = _data["selfyTimeStamp"] ? moment(_data["selfyTimeStamp"].toString()) : <any>undefined;
+            this.selfyRejectCount = _data["selfyRejectCount"];
+            this.resetWorkFlowTimeStamp = _data["resetWorkFlowTimeStamp"] ? moment(_data["resetWorkFlowTimeStamp"].toString()) : <any>undefined;
+            this.cityId = _data["cityId"];
+            this.carBrandId = _data["carBrandId"];
+            this.clubCategory = _data["clubCategory"];
+            this.secondHomeAddress = _data["secondHomeAddress"];
+            this.secondGovernorateId = _data["secondGovernorateId"];
+            this.secondCityId = _data["secondCityId"];
+            this.secondAreaId = _data["secondAreaId"];
+            this.valifay_Access_Token = _data["valifay_Access_Token"];
+            this.valifay_Access_Token_TimeStamp = _data["valifay_Access_Token_TimeStamp"] ? moment(_data["valifay_Access_Token_TimeStamp"].toString()) : <any>undefined;
+            this.creationDate = _data["creationDate"] ? moment(_data["creationDate"].toString()) : <any>undefined;
+            this.updateDate = _data["updateDate"] ? moment(_data["updateDate"].toString()) : <any>undefined;
+            this.isReviwed = _data["isReviwed"];
+            this.clubMembershipCategoryCode = _data["clubMembershipCategoryCode"];
+            this.approvedRiskComment = _data["approvedRiskComment"];
+            this.rejectionRiskComment = _data["rejectionRiskComment"];
+            this.rejectionReason = _data["rejectionReason"];
+            this.riskApprovedLimit = _data["riskApprovedLimit"];
+            this.riskApprovalDate = _data["riskApprovalDate"] ? moment(_data["riskApprovalDate"].toString()) : <any>undefined;
+            this.riskRejectionDate = _data["riskRejectionDate"] ? moment(_data["riskRejectionDate"].toString()) : <any>undefined;
+            this.isRiskPermanentRejection = _data["isRiskPermanentRejection"];
+            this.riskPermanentRejectionDate = _data["riskPermanentRejectionDate"] ? moment(_data["riskPermanentRejectionDate"].toString()) : <any>undefined;
+            this.rejectionPermanentRiskComment = _data["rejectionPermanentRiskComment"];
+            this.stoperReject = _data["stoperReject"];
+            this.riskApproval = _data["riskApproval"];
+            this.activatorInquiry = _data["activatorInquiry"];
+            this.manualOnboard = _data["manualOnboard"];
+            this.corpCode = _data["corpCode"];
+            this.corpLimit = _data["corpLimit"];
+            this.registerDate = _data["registerDate"] ? moment(_data["registerDate"].toString()) : <any>undefined;
+            this.submitDate = _data["submitDate"] ? moment(_data["submitDate"].toString()) : <any>undefined;
+            this.note = _data["note"];
+            this.verify_Valifay = _data["verify_Valifay"];
+            this.verify_Valifay_TimeStamp = _data["verify_Valifay_TimeStamp"] ? moment(_data["verify_Valifay_TimeStamp"].toString()) : <any>undefined;
+            this.verify_BlockedClient = _data["verify_BlockedClient"];
+            this.verify_BlockedClient_TimeStamp = _data["verify_BlockedClient_TimeStamp"] ? moment(_data["verify_BlockedClient_TimeStamp"].toString()) : <any>undefined;
+            this.verify_I_ScoreNationalID = _data["verify_I_ScoreNationalID"];
+            this.verify_I_ScoreNationalID_TimeStamp = _data["verify_I_ScoreNationalID_TimeStamp"] ? moment(_data["verify_I_ScoreNationalID_TimeStamp"].toString()) : <any>undefined;
+            this.verify_CBE = _data["verify_CBE"];
+            this.verify_CBE_TimeStamp = _data["verify_CBE_TimeStamp"] ? moment(_data["verify_CBE_TimeStamp"].toString()) : <any>undefined;
+            this.isCaseSent = _data["isCaseSent"];
+            this.systemRiskLimit = _data["systemRiskLimit"];
+            this.programID = _data["programID"];
+            if (Array.isArray(_data["comments"])) {
+                this.comments = [] as any;
+                for (let item of _data["comments"])
+                    this.comments.push(RequestCommentsDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): RequestDetailsDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new RequestDetailsDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["mobileNumber"] = this.mobileNumber;
+        data["nameAr"] = this.nameAr;
+        data["nameEn"] = this.nameEn;
+        data["nationalId"] = this.nationalId;
+        data["valifayTransactionId"] = this.valifayTransactionId;
+        data["nationalIdSerialNumber"] = this.nationalIdSerialNumber;
+        data["expiryDate"] = this.expiryDate;
+        data["homeAddress"] = this.homeAddress;
+        data["area"] = this.area;
+        data["governorate"] = this.governorate;
+        data["gender"] = this.gender;
+        data["age"] = this.age;
+        data["maritalStatus"] = this.maritalStatus;
+        data["email"] = this.email;
+        data["companyName"] = this.companyName;
+        data["jobTitle"] = this.jobTitle;
+        data["emergencyContactPerson"] = this.emergencyContactPerson;
+        data["emergencyContactPhoneNumber"] = this.emergencyContactPhoneNumber;
+        data["education"] = this.education;
+        data["occupation"] = this.occupation;
+        data["income"] = this.income;
+        data["activeCreditFacility"] = this.activeCreditFacility;
+        data["carLicense"] = this.carLicense;
+        data["universityId"] = this.universityId;
+        data["dateOfBirth"] = this.dateOfBirth ? this.dateOfBirth.toISOString() : <any>undefined;
+        data["releaseDate"] = this.releaseDate;
+        data["religion"] = this.religion;
+        data["husbandName"] = this.husbandName;
+        data["isHuman"] = this.isHuman;
+        data["samePerson"] = this.samePerson;
+        data["samePersonconfidence"] = this.samePersonconfidence;
+        data["carModelId"] = this.carModelId;
+        data["clubId"] = this.clubId;
+        data["carModelYear"] = this.carModelYear;
+        data["instantLimit"] = this.instantLimit;
+        data["status"] = this.status;
+        data["personalImage"] = this.personalImage;
+        data["userMessageStatus"] = this.userMessageStatus;
+        data["selfyTimeStamp"] = this.selfyTimeStamp ? this.selfyTimeStamp.toISOString() : <any>undefined;
+        data["selfyRejectCount"] = this.selfyRejectCount;
+        data["resetWorkFlowTimeStamp"] = this.resetWorkFlowTimeStamp ? this.resetWorkFlowTimeStamp.toISOString() : <any>undefined;
+        data["cityId"] = this.cityId;
+        data["carBrandId"] = this.carBrandId;
+        data["clubCategory"] = this.clubCategory;
+        data["secondHomeAddress"] = this.secondHomeAddress;
+        data["secondGovernorateId"] = this.secondGovernorateId;
+        data["secondCityId"] = this.secondCityId;
+        data["secondAreaId"] = this.secondAreaId;
+        data["valifay_Access_Token"] = this.valifay_Access_Token;
+        data["valifay_Access_Token_TimeStamp"] = this.valifay_Access_Token_TimeStamp ? this.valifay_Access_Token_TimeStamp.toISOString() : <any>undefined;
+        data["creationDate"] = this.creationDate ? this.creationDate.toISOString() : <any>undefined;
+        data["updateDate"] = this.updateDate ? this.updateDate.toISOString() : <any>undefined;
+        data["isReviwed"] = this.isReviwed;
+        data["clubMembershipCategoryCode"] = this.clubMembershipCategoryCode;
+        data["approvedRiskComment"] = this.approvedRiskComment;
+        data["rejectionRiskComment"] = this.rejectionRiskComment;
+        data["rejectionReason"] = this.rejectionReason;
+        data["riskApprovedLimit"] = this.riskApprovedLimit;
+        data["riskApprovalDate"] = this.riskApprovalDate ? this.riskApprovalDate.toISOString() : <any>undefined;
+        data["riskRejectionDate"] = this.riskRejectionDate ? this.riskRejectionDate.toISOString() : <any>undefined;
+        data["isRiskPermanentRejection"] = this.isRiskPermanentRejection;
+        data["riskPermanentRejectionDate"] = this.riskPermanentRejectionDate ? this.riskPermanentRejectionDate.toISOString() : <any>undefined;
+        data["rejectionPermanentRiskComment"] = this.rejectionPermanentRiskComment;
+        data["stoperReject"] = this.stoperReject;
+        data["riskApproval"] = this.riskApproval;
+        data["activatorInquiry"] = this.activatorInquiry;
+        data["manualOnboard"] = this.manualOnboard;
+        data["corpCode"] = this.corpCode;
+        data["corpLimit"] = this.corpLimit;
+        data["registerDate"] = this.registerDate ? this.registerDate.toISOString() : <any>undefined;
+        data["submitDate"] = this.submitDate ? this.submitDate.toISOString() : <any>undefined;
+        data["note"] = this.note;
+        data["verify_Valifay"] = this.verify_Valifay;
+        data["verify_Valifay_TimeStamp"] = this.verify_Valifay_TimeStamp ? this.verify_Valifay_TimeStamp.toISOString() : <any>undefined;
+        data["verify_BlockedClient"] = this.verify_BlockedClient;
+        data["verify_BlockedClient_TimeStamp"] = this.verify_BlockedClient_TimeStamp ? this.verify_BlockedClient_TimeStamp.toISOString() : <any>undefined;
+        data["verify_I_ScoreNationalID"] = this.verify_I_ScoreNationalID;
+        data["verify_I_ScoreNationalID_TimeStamp"] = this.verify_I_ScoreNationalID_TimeStamp ? this.verify_I_ScoreNationalID_TimeStamp.toISOString() : <any>undefined;
+        data["verify_CBE"] = this.verify_CBE;
+        data["verify_CBE_TimeStamp"] = this.verify_CBE_TimeStamp ? this.verify_CBE_TimeStamp.toISOString() : <any>undefined;
+        data["isCaseSent"] = this.isCaseSent;
+        data["systemRiskLimit"] = this.systemRiskLimit;
+        data["programID"] = this.programID;
+        if (Array.isArray(this.comments)) {
+            data["comments"] = [];
+            for (let item of this.comments)
+                data["comments"].push(item.toJSON());
+        }
+        return data;
+    }
+
+    clone(): RequestDetailsDto {
+        const json = this.toJSON();
+        let result = new RequestDetailsDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IRequestDetailsDto {
+    mobileNumber: string | undefined;
+    nameAr: string | undefined;
+    nameEn: string | undefined;
+    nationalId: string | undefined;
+    valifayTransactionId: string | undefined;
+    nationalIdSerialNumber: string | undefined;
+    expiryDate: string | undefined;
+    homeAddress: string | undefined;
+    area: string | undefined;
+    governorate: string | undefined;
+    gender: string | undefined;
+    age: string | undefined;
+    maritalStatus: string | undefined;
+    email: string | undefined;
+    companyName: string | undefined;
+    jobTitle: string | undefined;
+    emergencyContactPerson: string | undefined;
+    emergencyContactPhoneNumber: string | undefined;
+    education: string | undefined;
+    occupation: string | undefined;
+    income: string | undefined;
+    activeCreditFacility: number | undefined;
+    carLicense: number | undefined;
+    universityId: number | undefined;
+    dateOfBirth: moment.Moment | undefined;
+    releaseDate: string | undefined;
+    religion: string | undefined;
+    husbandName: string | undefined;
+    isHuman: boolean | undefined;
+    samePerson: boolean | undefined;
+    samePersonconfidence: number | undefined;
+    carModelId: string | undefined;
+    clubId: number | undefined;
+    carModelYear: number | undefined;
+    instantLimit: number | undefined;
+    status: number;
+    personalImage: string | undefined;
+    userMessageStatus: string | undefined;
+    selfyTimeStamp: moment.Moment | undefined;
+    selfyRejectCount: number;
+    resetWorkFlowTimeStamp: moment.Moment | undefined;
+    cityId: string | undefined;
+    carBrandId: string | undefined;
+    clubCategory: string | undefined;
+    secondHomeAddress: string | undefined;
+    secondGovernorateId: string | undefined;
+    secondCityId: string | undefined;
+    secondAreaId: string | undefined;
+    valifay_Access_Token: string | undefined;
+    valifay_Access_Token_TimeStamp: moment.Moment | undefined;
+    creationDate: moment.Moment | undefined;
+    updateDate: moment.Moment | undefined;
+    isReviwed: boolean | undefined;
+    clubMembershipCategoryCode: string | undefined;
+    approvedRiskComment: string | undefined;
+    rejectionRiskComment: string | undefined;
+    rejectionReason: number | undefined;
+    riskApprovedLimit: number | undefined;
+    riskApprovalDate: moment.Moment | undefined;
+    riskRejectionDate: moment.Moment | undefined;
+    isRiskPermanentRejection: boolean | undefined;
+    riskPermanentRejectionDate: moment.Moment | undefined;
+    rejectionPermanentRiskComment: string | undefined;
+    stoperReject: number | undefined;
+    riskApproval: boolean | undefined;
+    activatorInquiry: boolean | undefined;
+    manualOnboard: boolean | undefined;
+    corpCode: number | undefined;
+    corpLimit: number | undefined;
+    registerDate: moment.Moment | undefined;
+    submitDate: moment.Moment | undefined;
+    note: string | undefined;
+    verify_Valifay: number | undefined;
+    verify_Valifay_TimeStamp: moment.Moment | undefined;
+    verify_BlockedClient: number | undefined;
+    verify_BlockedClient_TimeStamp: moment.Moment | undefined;
+    verify_I_ScoreNationalID: number | undefined;
+    verify_I_ScoreNationalID_TimeStamp: moment.Moment | undefined;
+    verify_CBE: number | undefined;
+    verify_CBE_TimeStamp: moment.Moment | undefined;
+    isCaseSent: number | undefined;
+    systemRiskLimit: number | undefined;
+    programID: number | undefined;
+    comments: RequestCommentsDto[] | undefined;
+}
+
 export class RequestDto implements IRequestDto {
     id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
     mobileNumber: string | undefined;
     nameAr: string | undefined;
     nameEn: string | undefined;
@@ -8292,6 +8775,10 @@ export class RequestDto implements IRequestDto {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
+            this.creationTime = _data["creationTime"] ? moment(_data["creationTime"].toString()) : <any>undefined;
+            this.creatorUserId = _data["creatorUserId"];
+            this.lastModificationTime = _data["lastModificationTime"] ? moment(_data["lastModificationTime"].toString()) : <any>undefined;
+            this.lastModifierUserId = _data["lastModifierUserId"];
             this.mobileNumber = _data["mobileNumber"];
             this.nameAr = _data["nameAr"];
             this.nameEn = _data["nameEn"];
@@ -8316,6 +8803,10 @@ export class RequestDto implements IRequestDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["creatorUserId"] = this.creatorUserId;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : <any>undefined;
+        data["lastModifierUserId"] = this.lastModifierUserId;
         data["mobileNumber"] = this.mobileNumber;
         data["nameAr"] = this.nameAr;
         data["nameEn"] = this.nameEn;
@@ -8340,6 +8831,10 @@ export class RequestDto implements IRequestDto {
 
 export interface IRequestDto {
     id: number;
+    creationTime: moment.Moment;
+    creatorUserId: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
     mobileNumber: string | undefined;
     nameAr: string | undefined;
     nameEn: string | undefined;

@@ -1,0 +1,79 @@
+<div [@routerTransition]>
+    <div class="bgGrey m-2">
+         <section class="content-header">
+             <div class="container-fluid">
+                 <div class="row">
+                     <div class="col-6">
+                         <h1>Pending</h1>
+                     </div> 
+                 </div>
+             </div>
+         </section>
+         <section class="content px-2">
+             <div class="container-fluid">
+         
+              <br>
+     
+                 <div class="card">
+                     <div class="card-body">
+
+                        <div class="d-flex containAlerts">
+                            <button class="btn btnCreate">Add</button>
+                        </div>
+
+                        <p *ngIf="!showTable" class="alert alert-warning text-center">Data is Empty</p>
+    
+                         <div *ngIf="showTable" class="table-responsive">
+                            
+
+                             <table class="table table-striped table-bordered" [busy]="isTableLoading">
+                                <caption>Re-Examined Requests</caption>
+
+                                 <thead class="bg-light">
+                                 <tr>
+                                     <th>Name</th>
+                                     <th>National ID</th> 
+                                     <th>Mobile Number</th>
+                                     <th>Pending Comment</th>
+                                     <th>Address</th>
+                                     <th>Submited Date</th> 
+                                     <th>Release</th>
+                                     <th>Action</th>
+                                 </tr>
+                                 </thead>
+                                 <tbody>
+                                 <tr *ngFor="let user of ReExminedRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
+                                    (click)="viewDetails(user.mobileNumber)" class="btnView">
+                                     <td>{{ user.nameEn }}</td>
+                                     <td>{{user.nationalId}}</td> 
+                                     <td>{{ user.mobileNumber }}</td>
+                                     <td></td>
+                                     <td>{{user.homeAddress}}</td>
+                                     <td>{{user.submitDate }}</td> 
+                                     <td></td>
+                                     <td><button class="btn bgPink"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                 </tr>
+                                 </tbody>
+                             </table>
+                         </div>
+    
+                         <div *ngIf="showTable" class="row justify-content-space-between align-items-center">
+                            <div class="col-md-1">
+                             
+                            </div>
+                              <div class="col-md-11 text-right">
+                                 <pagination-controls class="my-pagination text-end" (pageChange)="currentPage = $event" previousLabel="" nextLabel=""></pagination-controls>
+                              </div>
+                
+                         </div>
+                     </div>
+                     
+                 </div>
+
+                
+
+             </div> 
+         </section> 
+        </div> 
+     </div>
+     

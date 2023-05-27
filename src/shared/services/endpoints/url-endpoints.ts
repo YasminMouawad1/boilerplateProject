@@ -35,7 +35,7 @@ export abstract class UrlEndpoints {
   static readonly Post_PURCHASEUSER: string  = 'api/services/app/PortalRegistrationUsers/RegistrationPurchaseUser';
   static readonly Post_ACTIVATORUSER: string  = 'api/services/app/PortalRegistrationUsers/RegistrationActivatorUsers';
  
-  static readonly Get_ClientActivation: string = 'api/Risk/ClientActivation?mobileNumber=';
+  static readonly Get_ClientActivation: string = 'api/services/app/Risk/ClientActivation?mobileNumber=';
   static readonly GET_RiskRejectedOnlyList: string = 'api/Risk/ProfilePlus?isRejectedOnly='+true;
 
   //static readonly GET_UserById: string = 'api/Risk/GetUserDocumentsByClientId?MobileNumber=';
@@ -43,6 +43,8 @@ export abstract class UrlEndpoints {
   static readonly POST_SoftApproveUser: string = 'api/Risk/SoftApprove';
   static readonly Edit_RiskLimit: string = 'api/Risk/EditRiskLimt';
   static readonly POST_EditRiskClientNote: string = 'api/services/app/Risk/EditRiskClientNote?userMobile=';
+  static readonly POST_ChangeRequestStatus: string = 'api/services/app/Request/ChangeRequestStatus';
+  static readonly POST_SetBulkAssignment: string ='api/services/app/Request/SetBulkAssignment';
 
 static readonly post_UpdateNationalIdData: string = 'api/services/app/Risk/EditNationalIDData';
 static readonly GET_maritalStatus: string = 'api/services/app/LookUp/GetMaritalStatus';
@@ -70,6 +72,8 @@ static readonly GET_BulkonBoradingList: string = 'api/services/app/Risk/GetAllCo
 static readonly Get_RequestDataGetAll: string = 'api/services/app/RequestData/GetAll';
 static readonly GET_RequestsDetils: string = 'api/services/app/Request/GetRequestDetails?publicId=';
 static readonly POST_AddComment: string = 'api/services/app/Request/AddComment';
+static readonly PUT_UpdateComment: string = 'api/services/app/Request/UpdateComment';
+static readonly POST_ReleaseAssignment:string = 'api/services/app/Request/ReleaseAssignment?requestId=';
 
 //System Configuration
 

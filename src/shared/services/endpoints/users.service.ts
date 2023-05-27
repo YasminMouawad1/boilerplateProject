@@ -168,6 +168,26 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
     return this._API.doPost(UrlEndpoints.POST_AddComment+'?requestId='+requestID+'&comment='+comment,comment)
   }
 
+  EditComent(requestID:any,commentID:any,comment:any){
+    return this._API.doPost(UrlEndpoints.PUT_UpdateComment+'?requestId='+requestID+'&commentId='+commentID+'&comment='+comment,comment)
+  }
+
+  ReleaseAssignment(requestID:any){
+    return this._API.doPost(UrlEndpoints.POST_ReleaseAssignment+requestID,requestID);
+  }
+
+  CahngeRequestStatus(data:any){
+    return this._API.doPost(UrlEndpoints.POST_ChangeRequestStatus+'?requestId='+data.requestId+
+    '&systemRiskLimit='+data.systemRiskLimit+'&riskApprovedLimit='+data.riskApprovedLimit+'&programID='+data.programID+
+    '&requestStatus='+data.requestStatus+'&comment='+data.comment,data)
+  }
+
+  SetBulkAssgnment(data:any){
+    return this._API.doPost(UrlEndpoints.POST_SetBulkAssignment+'?requestStatus='+data.requestStatus+'&AssignmentCount='+data.AssignmentCount,data)
+  }
+
+
+
   GetSystemConfigurationProfessionsList(){
     return  this._API.doGet(UrlEndpoints.Get_SystemConfigurationProfessionsList)
   }

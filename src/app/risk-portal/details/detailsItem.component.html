@@ -55,7 +55,7 @@
                             </div>
                           </div>
                 
-                          <div class="col-lg-7 align-self-center">
+                          <div class="col-lg-6 align-self-center">
                             <div class="text-lg-center mt-4 mt-lg-0">
                               <div class="row subDetails">
                                 <div class="col-3">
@@ -87,15 +87,19 @@
                           </div>
 
 
-                          <div  class="col-lg-1 align-self-center">
+                          <div  class="col-lg-2 align-self-center">
                             <div class="text-lg-center mt-4 mt-lg-0">
                               <div class="row">
-                                <div class="col-4">
-                                  <button type="button" (click)="SubmitApproval()"
-                                             [disabled]="isEditRiskLimit" class="btn btnSubmit btn-label waves-light">
-                                    <i class="bx bx-check label-icon"></i> Submit
+                                <div class="col-12">
+                                  <button type="button" (click)="ReleaseAssignment()" class="btn btnEdit btn-label waves-light mr-2">
+                                      Release
                                   </button>
-                
+
+                                  <button type="button" (click)="SubmitPending()"
+                                             [disabled]="isEditRiskLimit" class="btn btnSubmit btn-label waves-light">
+                                      Submit
+                                  </button>
+                                    
                                 </div>
                 
                                 
@@ -152,6 +156,20 @@
                              <th>Credit Limit </th>
                              <td>{{ userItem.creditLimit }}</td>
                            </tr> 
+
+                           <tr>
+                            <th scope="row">
+                              Credit Limit 
+                            </th>
+                            <td>{{ userItem.creditLimit }}
+                              &nbsp;
+                              <button 
+                                   [disabled]="isClientActivation" (click)="clientActivation(userItem.mobileNumber)"
+                                   type="button"  class='btn btnSubmit' >
+                                   <i class="{{isClientActivation ? 'bx bx-loader bx-spin  font-size-16 align-middle me-2' : 'fas fa-calculator font-size-16 align-middle me-2'}} " ></i>  calculate Limit </button>
+                            </td>
+                          </tr>
+
                            <tr>
                             
                             <th scope="row"> Risk Limit </th>
@@ -359,7 +377,7 @@
 
                      <br>
                       
-                  <div class="content">
+                  <!-- <div class="content">
                       <div class="header">
                         <h4>Documents Information</h4>
 
@@ -376,31 +394,31 @@
                           </div>
                           </div>
                         </div>
-                  </div>
+                  </div> -->
                   
 
-                  <br>
-                <div class="content"> 
+                  <!-- <br> -->
+                <!-- <div class="content"> 
                   <div *ngIf="allContractImages.length > 0">
                     <div class="imgBox">
                         <img [src]="imgSrc" alt=""  data-bs-toggle="modal" data-bs-target="#exampleModal">
                         
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                  <br> 
 
                  <div class="content row">
                   <div class="col-lg-12">
                     <div class="row d-flex input-group fiedInput">
-                      <form  class="d-flex align-items-center" (ngSubmit)="addComment(121,newComment)">
+                      <form  class="d-flex align-items-center" (ngSubmit)="addComment(newComment)">
                        
                         <div class="col-md-8">
                           <textarea  class="form-control" placeholder="" name="newComment" [(ngModel)]= "newComment"></textarea>
                         </div>
                         <div class="col-md-4 text-end">
-                          <button class="btn addBtn mx-1" for="inputGroupSelect01" type="submit">Add Comment</button>
+                          <button [disabled]="!newComment" class="btn addBtn mx-1" for="inputGroupSelect01" type="submit">Add Comment</button>
                         </div> 
 
                         </form>
@@ -411,16 +429,19 @@
                               <caption>Comment History</caption>
                              <thead>
                                 <th>Comment</th>
-                                <th>Date Time</th>
-                                <th>Request Id</th>
+                                <th>Date Time</th> 
                                 <th>Edit</th>
                              </thead>
                               <tbody>
                                  <tr *ngFor="let comment of comments">
                                     <td>{{comment.comment}}</td>
                                     <td>{{comment.creationTime | date}}</td>
-                                    <td>{{comment.id}}</td>
-                                    <td><button class="btn bgPink"><i class="fa-solid fa-pencil"></i></button></td>
+                                   
+                                    <td>
+                                      <button class="btn bgPink" (click)="editCommentDialog(121,comment.id,comment)">
+                                        <i class="fa-solid fa-pencil"></i>
+                                      </button>
+                                    </td>
                                  </tr>
                               </tbody>
                             </table>
@@ -439,7 +460,7 @@
 
 
      <!-- Modal for images -->
-     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
@@ -452,10 +473,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Modal -->
-<ng-template #UploadImg role="document" let-modal>
+<!-- <ng-template #UploadImg role="document" let-modal>
   <div class="modal-header">
     <h3 class="modal-title mt-0"> Add Client Document </h3>
 
@@ -505,6 +526,6 @@
   </form>
   </div>
 
-</ng-template>
+</ng-template> -->
  </div>
  

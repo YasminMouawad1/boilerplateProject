@@ -68,8 +68,9 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
 
    this.userItem = this._modalOption.initialState.userItem; 
 
-   
-  
+   console.log(this._modalOption.initialState)
+    console.log(this._modalOption.initialState.userItem)
+
    this.submitPendingForm = this.formBuilder.group({
     action: ['', [Validators.required]],
     comment: ['', [Validators.required]],

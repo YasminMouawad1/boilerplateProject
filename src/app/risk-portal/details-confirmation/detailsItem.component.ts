@@ -160,11 +160,11 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
     this.getRequestDetails();
 
-    this._userService.getRejectResponse().subscribe(res => {
-      this.rejectResponse = res.result.data
+    // this._userService.getRejectResponse().subscribe(res => {
+    //   this.rejectResponse = res.result.data
        
 
-    })
+    // })
 
     this._spinnerService.requestEnded();
 
@@ -405,7 +405,7 @@ export class DetailsItemConfirmationComponent implements OnInit {
     let acceptDialog: BsModalRef;
 
     const initialState = {
-      userItem: userItem.name
+      userItem: userItem
     };
 
     acceptDialog = this._modalService.show(SubmitApprovalConfirmationDialogComponent,{class: 'modal-lg', initialState });

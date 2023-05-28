@@ -47,7 +47,7 @@
                                  <tbody>
                                  <tr *ngFor="let user of pendingRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                     (click)="viewDetails(user.publicId)" class="btnView">
-                                     <td>{{ user.nameEn }}</td>
+                                     <td>{{ user.nameAr }}</td>
                                      <td>{{ user.nationalId }}</td>
                                      <td>{{ user.mobileNumber }}</td>
                                      <td></td>
@@ -107,7 +107,7 @@
                             <tbody>
                             <tr *ngFor="let user of newRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                (click)="viewDetails(user.publicId)" class="btnView">
-                                <td>{{ user.nameEn }}</td>
+                                <td>{{ user.nameAr }}</td>
                                 <td>{{ user.nationalId }}</td>
                                 <td>{{ user.mobileNumber }}</td>
                                 <td></td> 

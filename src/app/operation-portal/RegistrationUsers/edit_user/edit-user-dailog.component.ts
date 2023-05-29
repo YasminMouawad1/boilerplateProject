@@ -237,8 +237,7 @@ smsMsg:boolean = false;
     reader.onload = (_event) => { 
       this.document = reader.result; 
     }
-
-    console.log(this.document)
+ 
  
   }
 

@@ -194,6 +194,25 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
   }
 
 
+  GetAllPrograms(){
+    return this._API.doGet(UrlEndpoints.Get_ProgamGetAll)
+  }
+
+  AddProgram(data:any){
+    return this._API.doPost(UrlEndpoints.POST_ProgramAdd,data)
+  }
+
+  getProgramByID(id:number){
+    return this._API.doGet(UrlEndpoints.GET_ProgramGetByID + id)
+  }
+
+  EditProgram(data:any){
+    return this._API.doPut(UrlEndpoints.PUT_UpdateProgrm,data)
+  }
+
+  DeleteProgram(id:number){
+    return this._API.doDelete(UrlEndpoints.Del_ProgramByID+id)
+  }
 
   GetSystemConfigurationProfessionsList(){
     return  this._API.doGet(UrlEndpoints.Get_SystemConfigurationProfessionsList)
@@ -210,6 +229,8 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
   createSystemCongifurationProfession(configuration:any){
     return   this._API.doPost(UrlEndpoints.post_CreateSystemConfiguration, configuration)
   }
+
+
 
 }
 

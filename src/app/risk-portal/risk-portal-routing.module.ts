@@ -10,7 +10,7 @@ import { SetonlineAgainstComponent } from './online-against/set-online-against.c
 import { IncomeComponent } from './scoring-parameters/income/income.component';
 import { RestrictedIscoreComponent } from './scoring-parameters/restricted-iscore/restricted-iscore.component';
 import { RestrictedProfissionComponent } from './scoring-parameters/restricted-profission/restricted-profission.component';
-import { Program1Component } from './program1/program1.component';
+import { ProgramComponent } from './program/program.component';
 import { Program2Component } from './program2/program2.component';
 import { DetailsItemConfirmationComponent } from './details-confirmation/detailsItem.component';
  
@@ -29,7 +29,7 @@ import { DetailsItemConfirmationComponent } from './details-confirmation/details
                     {path: 'income', component: IncomeComponent, canActivate: [AppRouteGuard]},
                     {path: 'restricted-iscore', component: RestrictedIscoreComponent,canActivate: [AppRouteGuard] },
                     {path: 'restricted-profission', component: RestrictedProfissionComponent,canActivate: [AppRouteGuard] },
-                    {path: 'program1', component: Program1Component,canActivate: [AppRouteGuard] },
+                    {path: 'program', component: ProgramComponent,canActivate: [AppRouteGuard] },
                     {path: 'program2', component: Program2Component,canActivate: [AppRouteGuard] },
                     { path: 'details-item-confirmation/:publicId', component: DetailsItemConfirmationComponent, canActivate: [AppRouteGuard] },
 

@@ -77,6 +77,16 @@ static readonly POST_AddComment: string = 'api/services/app/Request/AddComment';
 static readonly PUT_UpdateComment: string = 'api/services/app/Request/UpdateComment';
 static readonly POST_ReleaseAssignment:string = 'api/services/app/Request/ReleaseAssignment?requestId=';
 
+//program
+static readonly Get_ProgamGetAll: string = 'api/services/app/Program/GetAll';
+static readonly GET_ProgramGetByID: string = 'api/services/app/Program/Get?Id=';
+static readonly POST_ProgramAdd: string = 'api/services/app/Program/Create';
+static readonly PUT_UpdateProgrm: string = 'api/services/app/Program/Update';
+static readonly Del_ProgramByID: string = 'api/services/app/Program/Delete?Id=';
+
+
+
+
 //System Configuration
 
 static readonly GET_SystemConfiguration: string = 'api/SystemConfiguration/GetSystemConfiguration';

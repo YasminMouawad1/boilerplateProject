@@ -24,27 +24,23 @@ import Swal from 'sweetalert2';
 
 
   @Component({
-    templateUrl: './edit-comment-dialog.component.html',
-    styleUrls:['../detailsItem.component.css']
+    templateUrl: './add-program-dailog.component.html',
+    styleUrls:['../program.compoent.css']
   })
-  export class EditCommentConfirmationDialogComponent extends AppComponentBase
+  export class AddProgramDialogComponent extends AppComponentBase
     implements OnInit {
     saving = false;
     disableconfirmBtn:boolean = false;
 
     @Output() onSave = new EventEmitter<any>();
      
-    
-    submitAcceptform:any;
+     
 
     isTableLoading:boolean = false;
 
-    submitEditCommentForm!: FormGroup;
+    submitAddProgramForm!: FormGroup;
     submitForm = false;
-
-    requestID:any;
-    commentID:any;
-    comment:any;
+ 
 
     constructor(
       injector: Injector,
@@ -62,16 +58,11 @@ import Swal from 'sweetalert2';
 
     ngOnInit(): void {
       this.isTableLoading = true;
-
-     this.requestID = this._modalOption.initialState.requestID; 
-     this.commentID = this._modalOption.initialState.commentID; 
-     this.comment = this._modalOption.initialState.comment; 
   
  
-     this.submitEditCommentForm = this.formBuilder.group({
-      requestID: [this.requestID, [Validators.required]],
-      commentID: [this.commentID, [Validators.required]],
-      comment: [this.comment.comment, [Validators.required]], 
+     this.submitAddProgramForm = this.formBuilder.group({
+      nameAR: ['', [Validators.required]],
+      nameEn: ['', [Validators.required]], 
     });
     
      this.isTableLoading = false;
@@ -86,24 +77,23 @@ import Swal from 'sweetalert2';
     }
 
  
-    Edit() {
+    AddProgram() {
       this.submitForm = true;
-      if (!this.submitEditCommentForm.valid)
+      if (!this.submitAddProgramForm.valid)
         return;
   
          
       const data = {
-        requestId: this.submitEditCommentForm.value.requestID,
-        commentId:this.submitEditCommentForm.value.commentID,
-        comment:this.submitEditCommentForm.value.comment
+        nameAR: this.submitAddProgramForm.value.nameAR,
+        nameEn:this.submitAddProgramForm.value.nameEn
       };
       
-      this._usersServices.EditComent(data.requestId, data.commentId,data.comment).subscribe(res => {
+      this._usersServices.AddProgram(data).subscribe(res => {
          if(res){
           
          Swal.fire({
           icon: 'success', 
-          text: 'Edit Comment Successfully !!', 
+          text: 'Add Program Successfully !!', 
         })
            this.bsModalRef.hide();
          }

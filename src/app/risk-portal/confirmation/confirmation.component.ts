@@ -88,8 +88,7 @@ export class ConfirmationComponent implements OnInit{
   this.isTableLoading = true;
   debugger
   this._userService.GetAllChekerPending().subscribe(res => {
-   
-    console.log(res)
+    
     if(res.result)
       this.pendingRequests = res.result ; 
   });

@@ -1,0 +1,63 @@
+ 
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">[ Edit Program ]</h5>
+  
+      <button type="button" class="btn-close" aria-hidden="true" (click)="hide()"></button>
+    </div>
+    <div class="modal-body" [busy]="isTableLoading"> 
+      
+      
+      
+
+      <br>
+
+      <form (ngSubmit)="EditProgram()" [formGroup]="submitEditProgramForm">
+        <div class="mb-3">
+          <div class="row">
+              <div class="col-md-3">
+                <label class="form-label">ID</label>
+              </div>
+              <div class="col-md-9">
+                    <input name="id" readonly="readonly" class="form-control"  formControlName="id" />
+              </div>
+          </div>
+       </div>
+
+        <div class="mb-3">
+              <div class="row">
+                  <div class="col-md-3">
+                    <label class="form-label">Name Ar</label>
+                  </div>
+                  <div class="col-md-9">
+                        <input name="nameAR" class="form-control"  formControlName="nameAR" />
+                  </div>
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+                <div class="col-md-3">
+                  <label class="form-label">Name En</label>
+                </div>
+                <div class="col-md-9">
+                      <input name="nameEn" class="form-control"  formControlName="nameEn" />
+                </div>
+            </div>
+        </div>
+         
+
+     
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light" (click)="hide()"> close </button>
+            <button type="submit" [disabled]="submitEditProgramForm.invalid" class="btn bgPink">Edit</button>
+    
+          </div>
+        </form>
+
+      </div>
+
+      
+  
+     
+ 
+  

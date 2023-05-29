@@ -56,7 +56,7 @@ export class CreateUserDialogComponent extends AppComponentBase
     this.user.isActive = true;
     debugger
 this._lookupService.getAllCorporate().subscribe((result) => {
-   console.log(result)
+  //  console.log(result)
 });
 
     this._userService.getRoles().subscribe((result) => {

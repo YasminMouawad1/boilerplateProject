@@ -33,17 +33,19 @@ import {RestrictedProfissionComponent} from './scoring-parameters/restricted-pro
 import {addRestrictedIScoreDialogComponent} from './scoring-parameters/restricted-iscore/add-dailog/add-dailog.component';
 import {TimeLineDialogComponent} from './details/timeLine/time-line-dialog.component';
 import{EditCommentDialogComponent} from './details/edit-comment/edit-comment-dialog.component';
-import{Program1Component} from './program1/program1.component';
+import{ProgramComponent} from './program/program.component';
 import { Program2Component } from './program2/program2.component';
 import{DetailsItemConfirmationComponent} from './details-confirmation/detailsItem.component';
 import{SubmitApprovalConfirmationDialogComponent} from './details-confirmation/submitApproval/submit-approval-dialog.component';
 import {EditCommentConfirmationDialogComponent} from './details-confirmation/edit-comment/edit-comment-dialog.component';
 import {TimeLineConfirmationDialogComponent} from './details-confirmation/timeLine/time-line-dialog.component';
+import {AddProgramDialogComponent} from './program/add-program/add-program-dailog.component';  
+import {EditProgramDialogComponent} from './program/edit-program/edit-program-dailog.component';
 
 
 @NgModule({
     imports: [ 
-AppModule,
+        AppModule,
         CommonModule,
         FormsModule,
         HttpClientModule,
@@ -83,12 +85,14 @@ AppModule,
         addRestrictedIScoreDialogComponent,
         TimeLineDialogComponent,
         EditCommentDialogComponent,
-        Program1Component,
+        ProgramComponent,
         Program2Component,
         DetailsItemConfirmationComponent,
         SubmitApprovalConfirmationDialogComponent,
         EditCommentConfirmationDialogComponent,
-        TimeLineConfirmationDialogComponent
+        TimeLineConfirmationDialogComponent,
+        AddProgramDialogComponent,
+        EditProgramDialogComponent
     ]
 })
 export class RiskPortalModule {

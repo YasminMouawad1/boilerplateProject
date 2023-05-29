@@ -430,12 +430,14 @@
                              <thead>
                                 <th>Comment</th>
                                 <th>Date Time</th> 
+                                <th>User</th> 
                                 <th>Edit</th>
                              </thead>
                               <tbody>
                                  <tr *ngFor="let comment of comments">
                                     <td>{{comment.comment}}</td>
                                     <td>{{comment.creationTime | date}}</td>
+                                    <td></td>
                                    
                                     <td>
                                       <button class="btn bgPink" (click)="editCommentDialog(userItem.id,comment.id,comment)">

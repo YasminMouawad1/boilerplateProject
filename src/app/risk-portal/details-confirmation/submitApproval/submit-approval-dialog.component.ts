@@ -91,14 +91,11 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
   saveAction(action:any){
     
 
-    if(action === 'approve'){
+    if(action === '70'){
       this.viewReject = false;
       this.viewApproval = true;
     }
-    else if(action === 'reject'){
-      this.viewReject = true;
-      this.viewApproval= false;
-    }
+    
     else{
       this.viewApproval = false;
       this.viewReject = false;

@@ -92,11 +92,11 @@ import Swal from 'sweetalert2';
     saveAction(action:any){
       
 
-      if(action === 'approve'){
+      if(action === '2002'){
         this.viewReject = false;
         this.viewApproval = true;
       }
-      else if(action === 'reject'){
+      else if(action === '2001'){
         this.viewReject = true;
         this.viewApproval= false;
       }

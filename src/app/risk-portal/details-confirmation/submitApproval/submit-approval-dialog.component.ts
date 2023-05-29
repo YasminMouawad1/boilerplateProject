@@ -67,9 +67,7 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
     this.isTableLoading = true;
 
    this.userItem = this._modalOption.initialState.userItem; 
-
-   console.log(this._modalOption.initialState)
-    console.log(this._modalOption.initialState.userItem)
+ 
 
    this.submitPendingForm = this.formBuilder.group({
     action: ['', [Validators.required]],
@@ -134,9 +132,17 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
     };
 
 
-   // console.log(data)  
+    // console.log(data)  
+    
+    this._usersServices.AddComent(this.userItem.id,data.comment).subscribe( res => {
+      if(res){ 
+        this.notify.success(this.l('Successfully Add Comment'));
+      }
+   });
+
 
     this._usersServices.CahngeRequestStatus(data).subscribe(res => {
+      
       if(res){
         Swal.fire({
           icon: 'success', 

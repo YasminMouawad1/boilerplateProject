@@ -161,11 +161,11 @@ export class DetailsItemComponent implements OnInit {
 
     this.getRequestDetails();
 
-    this._userService.getRejectResponse().subscribe(res => {
-      this.rejectResponse = res.result.data
+    // this._userService.getRejectResponse().subscribe(res => {
+    //   this.rejectResponse = res.result.data
        
 
-    })
+    // })
 
     this._spinnerService.requestEnded();
 
@@ -275,10 +275,10 @@ export class DetailsItemComponent implements OnInit {
           this.PersonalIMG = false;
   
   
-      this._userService.getmaritalStatus().subscribe(res=>{
-        this.maritalStatuses = res.result;
+      // this._userService.getmaritalStatus().subscribe(res=>{
+      //   this.maritalStatuses = res.result;
  
-      })
+      // })
 
       this.isTableLoading = false;
   

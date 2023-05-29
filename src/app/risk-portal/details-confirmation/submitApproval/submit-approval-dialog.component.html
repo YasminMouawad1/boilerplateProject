@@ -30,9 +30,9 @@
                       'is-invalid':submitPendingForm.get('action')?.invalid && submitForm
                     }">
                       <option value="" selected></option>
-                      <option value="100">Request to be Approve</option>
-                      <option value="990">Request To be Reject</option> 
-                      <option vlaue="2003">Re-Examined</option>
+                      <option value="70">Approve</option>
+                      <!-- <option value="990">Request To be Reject</option>  -->
+                      <option value="2003">Re-Examined</option>
                   </select>
                   <div>
                     <span *ngIf="submitPendingForm.get('action')?.invalid && submitForm" class="text-danger">Required</span>

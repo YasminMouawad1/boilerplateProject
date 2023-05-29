@@ -134,6 +134,12 @@ import Swal from 'sweetalert2';
 
 
      // console.log(data)  
+     this._usersServices.AddComent(this.userItem.id,data.comment).subscribe( res => {
+      if(res){ 
+        this.notify.success(this.l('Successfully Add Comment'));
+      }
+   });
+
 
       this._usersServices.CahngeRequestStatus(data).subscribe(res => {
         if(res){

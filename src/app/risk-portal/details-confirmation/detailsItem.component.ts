@@ -274,10 +274,10 @@ export class DetailsItemConfirmationComponent implements OnInit {
           this.PersonalIMG = false;
   
   
-      this._userService.getmaritalStatus().subscribe(res=>{
-        this.maritalStatuses = res.result;
+      // this._userService.getmaritalStatus().subscribe(res=>{
+      //   this.maritalStatuses = res.result;
  
-      })
+      // })
 
       this.isTableLoading = false;
   

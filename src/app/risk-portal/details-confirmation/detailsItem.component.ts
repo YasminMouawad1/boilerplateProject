@@ -122,6 +122,7 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
   eDocType = DocumentType;
   notify: any;
+  type:any;
 
   keys() : Array<string> {
     var keys = Object.keys(this.eDocType);
@@ -157,6 +158,8 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
 
     this.route.params.subscribe((params) => (this.userId = params['publicId']));
+
+     
 
     this.getRequestDetails();
 

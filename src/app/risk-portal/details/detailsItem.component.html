@@ -12,12 +12,7 @@
         <div class="row">
           <div class="col-md-6"></div>
           <div class="col-md-3">
-            <select class="form-control" placeholder="Select Program">
-                <option value="" selected>Select Program</option>
-                <option>Program1</option>
-                <option>Program2</option> 
-                <option>Program3</option>
-            </select>
+            
           </div>
           <div class="col-md-3">
               <button class="timeLine" (click)="TimeLineView()">View Request Time Line</button>
@@ -362,17 +357,11 @@
                      
 
                     <div class="content">
-                      <div class="header border-0"> 
-                           <h4> SalesRepMessage </h4>
-                       </div>
-                       <div class="row d-flex input-group fiedInput">
-                        <form  class="d-flex align-items-end w-100" (ngSubmit)="saveMessage(SalMessage)">
-                          <div class="col-md-12">
-                            <textarea [(ngModel)]="salesRepMessage" class="form-control" placeholder="Enter message" name="SalesRepMessage" #SalMessage></textarea>
-                          </div> 
-              
-                          </form>
-                        </div>
+                        <select class="form-control" placeholder="Select Program">
+                          <option value="" selected>Select Program</option>
+                          <option *ngFor="let program of Programs">{{program.nameEn}}</option>
+                          
+                        </select>
                      </div>
 
                      <br>
@@ -407,7 +396,7 @@
                   </div>
                 </div> -->
 
-                 <br> 
+                
 
                  <div class="content row">
                   <div class="col-lg-12">

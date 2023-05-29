@@ -120,6 +120,7 @@ export class DetailsItemComponent implements OnInit {
   
  comments:any;
  newComment:any;
+ Programs:any;
 
   eDocType = DocumentType;
   notify: any;
@@ -143,7 +144,7 @@ export class DetailsItemComponent implements OnInit {
 
   ngOnInit() {
  
-  
+   this.getAllProgram();
 
     this.uploadDocument = this.formBuilder.group({
       doc: ['', [Validators.required]],
@@ -284,6 +285,12 @@ export class DetailsItemComponent implements OnInit {
   
     });
  
+  }
+
+  getAllProgram(){
+    this._userService.GetAllPrograms().subscribe(res => {
+      this.Programs = res.result.items;
+    })
   }
 
   addComment(comment:any){

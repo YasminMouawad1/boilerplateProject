@@ -115,6 +115,7 @@ export class ConfirmationComponent implements OnInit{
   };
 
   this._userService.SetBulkAssgnment(data).subscribe(res => {
+    debugger
     if(res.success)
         this.getNewRequestsList();
   })
@@ -124,10 +125,10 @@ export class ConfirmationComponent implements OnInit{
    
   this.isTableLoading = true;
      this._userService.RequestsDataGetAll(90).subscribe(res => {
-      
-       if(res.result != null)
+      debugger
+       if(res.result.items != null)
          {
-          this.newRequests = res.result ; 
+          this.newRequests = res.result.items ; 
           this.showTable = true;
         }else
            this.showTable = false;

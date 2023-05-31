@@ -79,6 +79,9 @@ static readonly POST_AddComment: string = 'api/services/app/Request/AddComment';
 static readonly PUT_UpdateComment: string = 'api/services/app/Request/UpdateComment';
 static readonly POST_ReleaseAssignment:string = 'api/services/app/Request/ReleaseAssignment?requestId=';
 static readonly Get_ClientDocuments:string = 'api/services/app/Request/ClientDocuments?publicId=';
+static readonly Get_ClientRejectionList:string = 'api/services/app/Request/ClientRejectionList?publicId=';
+static readonly Get_IScoreRejectionList:string = 'api/services/app/Request/ClientIScoreRejectionList?publicId=';
+
 
 //program
 static readonly Get_ProgamGetAll: string = 'api/services/app/Program/GetAll';

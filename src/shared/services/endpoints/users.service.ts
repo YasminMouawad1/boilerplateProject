@@ -172,6 +172,14 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
     return this._API.doPost(UrlEndpoints.POST_BulkAssignmentForChecker+AssignmentCount,AssignmentCount)
   }
 
+  GetMobileRejection(publicID:any){
+    return this._API.doPost(UrlEndpoints.Get_ClientRejectionList+publicID,publicID)
+  }
+
+  GetIScoreRejection(publicID:any){
+    return this._API.doPost(UrlEndpoints.Get_IScoreRejectionList+publicID,publicID)
+  }
+
   GetAllDocuments(publicID:any){
     return this._API.doPost(UrlEndpoints.Get_ClientDocuments+publicID,publicID)
   }

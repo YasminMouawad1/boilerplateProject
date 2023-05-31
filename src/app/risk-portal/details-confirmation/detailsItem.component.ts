@@ -120,6 +120,9 @@ export class DetailsItemConfirmationComponent implements OnInit {
  comments:any;
  newComment:any;
 
+ mobileRejection:any;
+ iscoreRejection:any;
+
   eDocType = DocumentType;
   notify: any;
   type:any;
@@ -256,6 +259,19 @@ export class DetailsItemConfirmationComponent implements OnInit {
           this.imgSrc = this.allContractImages[0].url; 
         }
      });
+
+     this._userService.GetMobileRejection(this.userId).subscribe(res => {
+      if(res){
+        this.mobileRejection = res.result;  
+      }
+    });
+
+    this._userService.GetIScoreRejection(this.userId).subscribe(res => {
+      if(res){
+        this.iscoreRejection = res.result;  
+      }
+    });
+
   
        
       this.pesonalImages = this._sanitizer.bypassSecurityTrustResourceUrl(

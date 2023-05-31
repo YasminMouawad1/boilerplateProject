@@ -242,17 +242,28 @@
 
                         <div class="header" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
                         
-                          <h4>Score Card </h4>
+                          <h4>Rejection List</h4>
                           <div class="icon"> 
                             <i class="fa-regular fa-clipboard"></i>
                           </div>
 
                       </div>
                       <div class="table-responsive" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
-                          <p class="rejectionList" *ngFor="let item of userItem.rejectionList">
-                            <span class="alert alert-danger">{{item.name}}</span>
+                        <h3 class="subTitleH3">Moilbe Rejection</h3>
+
+                         <p class="rejectionList" *ngFor="let item of mobileRejection">
+                            <span class="alert alert-danger">{{item.comment}}</span>
                           </p>
                       </div>
+                      <br>
+                      <div class="table-responsive" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
+                        <h3 class="subTitleH3">I-Score Rejection</h3>
+
+                         <p class="rejectionList" *ngFor="let item of iscoreRejection">
+                            <span class="alert alert-danger">{{item.comment}}</span>
+                          </p>
+                      </div>
+
                       </div>
 
                       <br>

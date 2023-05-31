@@ -122,6 +122,9 @@ export class DetailsItemComponent implements OnInit {
  newComment:any;
  Programs:any;
 
+ mobileRejection:any;
+ iscoreRejection:any;
+
   eDocType = DocumentType;
   notify: any;
 
@@ -256,6 +259,18 @@ export class DetailsItemComponent implements OnInit {
             }
       });
   
+      this._userService.GetMobileRejection(this.userId).subscribe(res => {
+        if(res){
+          this.mobileRejection = res.result;  
+        }
+      });
+
+      this._userService.GetIScoreRejection(this.userId).subscribe(res => {
+        if(res){
+          this.iscoreRejection = res.result;  
+        }
+      });
+
        
       this.pesonalImages = this._sanitizer.bypassSecurityTrustResourceUrl(
         'data:image/jpg;base64,' + res.result.personalImage

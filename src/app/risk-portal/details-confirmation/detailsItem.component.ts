@@ -293,6 +293,15 @@ export class DetailsItemConfirmationComponent implements OnInit {
  
   }
 
+  calculateLimit(){
+    this._userService.CalculateLimit(this.userId).subscribe(res => {
+     if(res){
+       console.log(res)
+    }
+   });
+
+ }
+
   addComment(comment:any){
     this._userService.AddComent(this.userItem.id,comment).subscribe( res => {
      if(res){

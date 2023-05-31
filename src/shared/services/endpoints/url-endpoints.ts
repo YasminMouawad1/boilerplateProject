@@ -81,6 +81,9 @@ static readonly POST_ReleaseAssignment:string = 'api/services/app/Request/Releas
 static readonly Get_ClientDocuments:string = 'api/services/app/Request/ClientDocuments?publicId=';
 static readonly Get_ClientRejectionList:string = 'api/services/app/Request/ClientRejectionList?publicId=';
 static readonly Get_IScoreRejectionList:string = 'api/services/app/Request/ClientIScoreRejectionList?publicId=';
+static readonly POST_CalculateLimit:string = 'api/services/app/Request/CalculateLimit?publicId=';
+
+
 
 
 //program

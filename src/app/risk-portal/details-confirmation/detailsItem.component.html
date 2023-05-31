@@ -159,7 +159,7 @@
                             <td>{{ userItem.creditLimit }}
                               &nbsp;
                               <button 
-                                   [disabled]="isClientActivation" (click)="clientActivation(userItem.mobileNumber)"
+                                   [disabled]="isClientActivation" (click)="calculateLimit()"
                                    type="button"  class='btn btnSubmit' >
                                    <i class="{{isClientActivation ? 'bx bx-loader bx-spin  font-size-16 align-middle me-2' : 'fas fa-calculator font-size-16 align-middle me-2'}} " ></i>  calculate Limit </button>
                             </td>

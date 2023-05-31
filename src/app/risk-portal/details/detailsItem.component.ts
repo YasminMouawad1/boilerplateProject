@@ -291,6 +291,16 @@ export class DetailsItemComponent implements OnInit {
  
   }
 
+  calculateLimit(){
+     this._userService.CalculateLimit(this.userId).subscribe(res => {
+      if(res){
+         
+     }
+    });
+
+  }
+
+
   getAllProgram(){
     this._userService.GetAllPrograms().subscribe(res => {
       this.Programs = res.result.items;

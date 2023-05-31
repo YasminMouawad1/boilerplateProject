@@ -172,6 +172,10 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
     return this._API.doPost(UrlEndpoints.POST_BulkAssignmentForChecker+AssignmentCount,AssignmentCount)
   }
 
+  CalculateLimit(publicID:any){
+    return this._API.doPost(UrlEndpoints.POST_CalculateLimit+publicID,publicID)
+  }
+
   GetMobileRejection(publicID:any){
     return this._API.doPost(UrlEndpoints.Get_ClientRejectionList+publicID,publicID)
   }

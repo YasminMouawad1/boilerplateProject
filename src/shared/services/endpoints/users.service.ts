@@ -171,6 +171,11 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
   setBulkAssignmentForChecker(AssignmentCount:number){
     return this._API.doPost(UrlEndpoints.POST_BulkAssignmentForChecker+AssignmentCount,AssignmentCount)
   }
+
+  GetAllDocuments(publicID:any){
+    return this._API.doPost(UrlEndpoints.Get_ClientDocuments+publicID,publicID)
+  }
+
   AddComent(requestID:any,comment:any){
     return this._API.doPost(UrlEndpoints.POST_AddComment+'?requestId='+requestID+'&comment='+comment,comment)
   }

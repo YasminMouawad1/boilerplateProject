@@ -389,35 +389,35 @@
 
                      <br>
                       
-                  <!-- <div class="content">
+                  <div class="content">
                       <div class="header">
                         <h4>Documents Information</h4>
 
                         <div>
-                           <button class="addBtn" (click)="openModal(UploadImg)">Add Document</button>
+                           <button class="addBtn">Add Document</button>
                         </div>
                     </div>
                        <div class="row d-flex mt-3">
                         <div class="popup-gallery d-flex flex-wrap">
                           <div class="card1" *ngFor="let image of allContractImages; let i=index">
                               <div class="img-fluid contain-images">
-                                      <img [src]="image.content" (click)="showImg(i)"/>
+                                      <img [src]="image.url" (click)="showImg(i)"/>
                               </div>
                           </div>
                           </div>
                         </div>
-                  </div> -->
+                  </div>
                   
 
-                  <!-- <br> -->
-                <!-- <div class="content"> 
+                  <br> 
+                <div class="content"> 
                   <div *ngIf="allContractImages.length > 0">
                     <div class="imgBox">
                         <img [src]="imgSrc" alt=""  data-bs-toggle="modal" data-bs-target="#exampleModal">
                         
                     </div>
                   </div>
-                </div> -->
+                </div>
 
                   
 
@@ -474,7 +474,7 @@
 
 
      <!-- Modal for images -->
-     <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
@@ -487,7 +487,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Modal -->
 <!-- <ng-template #UploadImg role="document" let-modal>

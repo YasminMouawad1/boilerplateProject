@@ -249,24 +249,13 @@ export class DetailsItemConfirmationComponent implements OnInit {
         this.oldRiskApprovedLimit = this.riskApprovedLimit;
       }
   
-      // this.allContractImages = res.result.data.userDocuments;
-  
-  
-      // this.allContractImages.forEach(element => {
-  
-      //   element.content = 'data:image/jpg;base64,'+ element.content
-      //   element.content =this._sanitizer.bypassSecurityTrustUrl(element.content)
-      // });
-  
-      // if(res.result.data.userDocuments.length > 0){
-      //   this.imgSrc = res.result.data.userDocuments[0].content;
-  
-      //   if(res.result.data.userDocuments[0].activatorDetails != null){
-      //     this.locationName = res.result.data.userDocuments[0].activatorDetails.activatorLocation.name;
-      //     this.mobileNum = res.result.data.userDocuments[0].activatorDetails.mobileNumber;
-      //     this.name = res.result.data.userDocuments[0].activatorDetails.nameEn;
-      //   }
-      // }
+     
+      this._userService.GetAllDocuments(this.userId).subscribe(res => {
+        if(res){
+          this.allContractImages = res.result; 
+          this.imgSrc = this.allContractImages[0].url; 
+        }
+     });
   
        
       this.pesonalImages = this._sanitizer.bypassSecurityTrustResourceUrl(
@@ -538,7 +527,7 @@ export class DetailsItemConfirmationComponent implements OnInit {
   
 
   showImg(index: number) {
-    this.imgSrc = this.allContractImages[index].content;
+    this.imgSrc = this.allContractImages[index].url;
 
     if(this.allContractImages[index].activatorDetails != null){
       this.locationName = this.allContractImages[index].activatorDetails.activatorLocation.name;

@@ -257,8 +257,11 @@ export class DetailsItemConfirmationComponent implements OnInit {
         if(res){
           this.allContractImages = res.result; 
           this.imgSrc = this.allContractImages[0].url; 
+          this.mobileNum = this.allContractImages[0].reviewerMobile; 
+          this.name = this.allContractImages[0].reviewerName; 
+          this.locationName = this.allContractImages[0].reviewerLocation; 
         }
-     });
+  });
 
      this._userService.GetMobileRejection(this.userId).subscribe(res => {
       if(res){
@@ -551,13 +554,15 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
   
 
-  showImg(index: number) {
-    this.imgSrc = this.allContractImages[index].url;
+  showImg(image:any) {
 
-    if(this.allContractImages[index].activatorDetails != null){
-      this.locationName = this.allContractImages[index].activatorDetails.activatorLocation.name;
-      this.mobileNum = this.allContractImages[index].activatorDetails.mobileNumber;
-      this.name = this.allContractImages[index].activatorDetails.nameEn;
+    console.log(image)
+    this.imgSrc = image.url;
+
+    if(image != null){
+      this.locationName = image.reviewerLocation;
+      this.mobileNum = image.reviewerMobile;
+      this.name = image.reviewerName;
     }else{
       this.locationName = 'N/A';
       this.mobileNum = 'N/A';

@@ -17,6 +17,7 @@ import { TimeLineConfirmationDialogComponent } from './timeLine/time-line-dialog
 import { EditCommentConfirmationDialogComponent } from './edit-comment/edit-comment-dialog.component';
 import { NotifyService } from 'abp-ng2-module';
 import Swal from 'sweetalert2';
+import { SubmitConfirmationDialogComponent } from './submit/submit-dailog.component';
 
 @Component({
   templateUrl: './detailsItem.component.html',
@@ -421,20 +422,25 @@ export class DetailsItemConfirmationComponent implements OnInit {
    
 
 
-  Submit(): void {
-    this.showSubmitApprovalDialog(this.userItem);
+  Submit(status :any): void {
+    this.showSubmitApprovalDialog(this.userItem,status );
     
   }
 
   
 
-  private showSubmitApprovalDialog(userItem:any): void {
+  private showSubmitApprovalDialog(userItem:any, status :any): void {
     let acceptDialog: BsModalRef;
+
+    console.log('status', status)
 
     const initialState = {
       userItem: userItem
     };
 
+  if(status == '90')
+    acceptDialog = this._modalService.show(SubmitConfirmationDialogComponent,{class: 'modal-lg', initialState });
+  else
     acceptDialog = this._modalService.show(SubmitApprovalConfirmationDialogComponent,{class: 'modal-lg', initialState });
 
   }

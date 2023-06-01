@@ -471,6 +471,18 @@ th,td{
     padding: 5px 13px;
   }
 
+  .tabInfo tr{
+    border-width: 1px;
+    border-color: #ccc;
+  }
+
+  .tabInfo th{
+    border-width: 1px;
+    border: 1px solid #ccc;
+    width: 40%;
+    background-color: #e6e6e6;
+    font-size: 12px !important;
+  }
 
   .subTitleH3{
     font-size: 13px;

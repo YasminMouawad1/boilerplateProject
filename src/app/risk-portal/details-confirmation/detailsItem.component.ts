@@ -119,6 +119,7 @@ export class DetailsItemConfirmationComponent implements OnInit {
   
  comments:any;
  newComment:any;
+ Programs:any;
 
  mobileRejection:any;
  iscoreRejection:any;
@@ -146,7 +147,7 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
   ngOnInit() {
  
-  
+  this.getAllProgram();
 
     this.uploadDocument = this.formBuilder.group({
       doc: ['', [Validators.required]],
@@ -304,6 +305,12 @@ export class DetailsItemConfirmationComponent implements OnInit {
    });
 
  }
+
+ getAllProgram(){
+  this._userService.GetAllPrograms().subscribe(res => {
+    this.Programs = res.result.items;
+  })
+}
 
   addComment(comment:any){
     this._userService.AddComent(this.userItem.id,comment).subscribe( res => {

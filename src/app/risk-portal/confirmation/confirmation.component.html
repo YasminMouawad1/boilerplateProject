@@ -38,9 +38,7 @@
                                  <tr>
                                      <th>Name</th>
                                      <th>National ID</th>
-                                     <th>Mobile Number</th>
-                                     <th>Pending Comment</th> 
-                                     <th>address</th>
+                                     <th>Mobile Number</th> 
                                      <th>Submited Date</th>  
                                  </tr>
                                  </thead>
@@ -49,10 +47,8 @@
                                     (click)="viewDetails(user.publicId)" class="btnView">
                                      <td>{{ user.nameAr }}</td>
                                      <td>{{ user.nationalId }}</td>
-                                     <td>{{ user.mobileNumber }}</td>
-                                     <td></td>
-                                     <td>{{user.homeAddress}}</td>
-                                     <td>{{user.submitDate }}</td>  
+                                     <td>{{ user.mobileNumber }}</td> 
+                                     <td>{{user.creationTime |date }}</td>  
                                  </tr>
                                  </tbody>
                              </table>
@@ -98,9 +94,7 @@
                             <tr>
                                 <th>Name</th> 
                                 <th>National ID</th> 
-                                <th>Mobile Number</th>
-                                <th>Pending Comment</th>
-                                <th>address</th>
+                                <th>Mobile Number</th> 
                                 <th>Submited Date</th>  
                             </tr>
                             </thead>
@@ -109,10 +103,8 @@
                                (click)="viewDetails(user.publicId)" class="btnView">
                                 <td>{{ user.nameAr }}</td>
                                 <td>{{ user.nationalId }}</td>
-                                <td>{{ user.mobileNumber }}</td>
-                                <td></td> 
-                                <td>{{user.homeAddress}}</td>
-                                <td>{{user.submitDate }}</td>  
+                                <td>{{ user.mobileNumber }}</td> 
+                                <td>{{user.creationTime |date }}</td>  
                             </tr>
                             </tbody>
                         </table>

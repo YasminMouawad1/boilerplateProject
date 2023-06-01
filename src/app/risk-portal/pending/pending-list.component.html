@@ -42,8 +42,6 @@
                                      <th>Name</th>
                                      <th>National ID</th> 
                                      <th>Mobile Number</th>
-                                     <th>Pending Comment</th>
-                                     <th>Address</th>
                                      <th>Submited Date</th> 
                                      <th>Release</th>
                                  </tr>
@@ -53,10 +51,8 @@
                                     (click)="viewDetails(user.publicId)" class="btnView">
                                      <td>{{ user.nameAr }}</td>
                                      <td>{{user.nationalId}}</td> 
-                                     <td>{{ user.mobileNumber }}</td>
-                                     <td></td>
-                                     <td>{{user.homeAddress}}</td>
-                                     <td>{{user.submitDate }}</td> 
+                                     <td>{{ user.mobileNumber }}</td> 
+                                     <td>{{user.creationTime | date }}</td> 
                                      <td></td>
                                  </tr>
                                  </tbody>
@@ -104,9 +100,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>National ID</th>  
-                                <th>Mobile Number</th>
-                                <th>Pending Comment</th>
-                                <th>Address</th>
+                                <th>Mobile Number</th> 
                                 <th>Submited Date</th> 
                                 <th>Release</th>
                             </tr>
@@ -116,10 +110,8 @@
                                (click)="viewDetails(user.publicId)" class="btnView">
                                 <td>{{ user.nameAr }}</td>
                                 <td>{{user.nationalId}}</td> 
-                                <td>{{ user.mobileNumber }}</td>
-                                <td></td>
-                                <td>{{user.homeAddress}}</td>
-                                <td>{{user.submitDate }}</td> 
+                                <td>{{ user.mobileNumber }}</td> 
+                                <td>{{user.creationTime | date }}</td> 
                                 <td></td>
                             </tr>
                             </tbody>

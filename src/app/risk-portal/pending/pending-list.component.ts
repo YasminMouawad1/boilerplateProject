@@ -133,7 +133,7 @@ this.isTableLoading = true;
    
   this.isTableLoading = true;
      this._userService.RequestsDataGetAll(2000).subscribe(res => {
-      
+      console.log(res)
      
        if(res.result.items != null)
          {

@@ -98,7 +98,28 @@
             </div>
 
           
-
+            <div class="mb-3">
+              <div class="row">
+                  <div class="col-md-3">
+                    <label class="form-label"> Select Program </label>
+                  </div>
+                  <div class="col-md-9">
+                    
+                    <select class="form-control" 
+                     placeholder="Select Program" formControlName="programId" 
+                     [ngClass]="{
+                      'is-invalid':submitPendingForm.get('programId')?.invalid && submitForm
+                    }">
+                      <option value="" selected>Select Program</option>
+                      <option *ngFor="let program of Programs" value="{{program.id}}">{{program.nameEn}}</option>
+                      
+                    </select> 
+                  <div>
+                    <span *ngIf="submitPendingForm.get('programId')?.invalid && submitForm" class="text-danger">Required</span>
+                  </div>
+                  </div>
+              </div>
+            </div>
             
             <div class="mb-3">
               <div class="row">

@@ -121,6 +121,7 @@ export class DetailsItemComponent implements OnInit {
  comments:any;
  newComment:any;
  Programs:any;
+ prgoramName:any;
 
  mobileRejection:any;
  iscoreRejection:any;
@@ -288,6 +289,8 @@ export class DetailsItemComponent implements OnInit {
  
       // })
 
+      //this.getProgramByID();
+
       this.isTableLoading = false;
   
     });
@@ -302,6 +305,14 @@ export class DetailsItemComponent implements OnInit {
     });
 
   }
+
+getProgramByID(){
+
+ 
+    this._userService.getProgramByID(this.userItem.programID).subscribe(res => {
+       
+    })
+}
 
 
   getAllProgram(){

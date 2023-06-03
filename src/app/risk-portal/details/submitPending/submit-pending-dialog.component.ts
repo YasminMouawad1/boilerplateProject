@@ -48,6 +48,9 @@ import Swal from 'sweetalert2';
     viewApproval:boolean = false;
     viewReject:boolean = false;
     
+    errorMSG:string='';
+
+    Programs:any;
 
     constructor(
       injector: Injector,
@@ -75,14 +78,22 @@ import Swal from 'sweetalert2';
       comment: ['', [Validators.required]],
       approvalReason: [''],
       rejectReason: [''],
+      programId:['',[Validators.required]],
     });
     
      this.isTableLoading = false;
  
-     
+     this.getAllProgram();
      
     }
 
+    getAllProgram(){
+      this._usersServices.GetAllPrograms().subscribe(res => {
+
+        this.Programs = res.result.items;
+      })
+    }
+  
  
 
     hide(){
@@ -122,11 +133,15 @@ import Swal from 'sweetalert2';
        }
 
 
+       if(this.userItem.programID == 'N/A'){
+        this.userItem.programID = 0;
+       }
+
       const data = {
         requestId :this.userItem.id,
         systemRiskLimit: this.userItem.systemRiskLimit,
         riskApprovedLimit :this.userItem.riskApprovedLimit,
-        programID: 0,
+        programID: this.submitPendingForm.value.programId,
         requestStatus: this.submitPendingForm.value.action,      
         comment:this.submitPendingForm.value.comment
   
@@ -142,10 +157,19 @@ import Swal from 'sweetalert2';
 
 
       this._usersServices.CahngeRequestStatus(data).subscribe(res => {
-        if(res){
+       
+        if(res.success){
           Swal.fire({
             icon: 'success', 
             text: 'Change Request status Successfully !!', 
+          })
+            
+          this.hide();
+          this.router.navigate(['/app/risk-portal/pending']);
+        }else{
+          Swal.fire({
+            icon: 'error', 
+            text: 'something error in data!!', 
           })
             
           this.hide();

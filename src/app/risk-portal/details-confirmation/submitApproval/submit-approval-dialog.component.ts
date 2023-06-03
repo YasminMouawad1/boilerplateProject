@@ -75,9 +75,9 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
    this.submitPendingForm = this.formBuilder.group({
     action: ['', [Validators.required]],
     comment: ['', [Validators.required]],
-    programId:['',[Validators.required]],
     approvalReason: [''],
     rejectReason: [''],
+    programId:['',[Validators.required]]
   });
   
    this.isTableLoading = false;
@@ -126,7 +126,7 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
       requestId :this.userItem.id,
       systemRiskLimit: this.userItem.systemRiskLimit,
       riskApprovedLimit :this.userItem.riskApprovedLimit,
-      programID: 0,
+      programID: this.submitPendingForm.value.programId,
       requestStatus: this.submitPendingForm.value.action,      
       comment:this.submitPendingForm.value.comment
 

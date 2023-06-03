@@ -125,7 +125,7 @@ export class SubmitApprovalDialogComponent extends AppComponentBase
       requestId :this.userItem.id,
       systemRiskLimit: this.userItem.systemRiskLimit,
       riskApprovedLimit :this.userItem.riskApprovedLimit,
-      programID: 0,
+      programID: this.userItem.programID,
       requestStatus: this.userItem.status,      
       comment:this.submitPendingForm.value.comment
 

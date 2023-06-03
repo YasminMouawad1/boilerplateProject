@@ -94,6 +94,8 @@ export class DetailsItemConfirmationComponent implements OnInit {
   isShowRiskLimit:boolean=false;
   isEnableActions :boolean = false; 
 
+  programID:any;
+
   isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Accept");
   isShowRejectBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Reject");
   isShowEditBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Edit");
@@ -424,6 +426,8 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
   Submit(status :any): void {
     this.showSubmitApprovalDialog(this.userItem,status );
+
+     
     
   }
 
@@ -431,8 +435,9 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
   private showSubmitApprovalDialog(userItem:any, status :any): void {
     let acceptDialog: BsModalRef;
+ 
 
-    console.log('status', status)
+    
 
     const initialState = {
       userItem: userItem

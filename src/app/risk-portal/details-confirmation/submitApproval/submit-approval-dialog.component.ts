@@ -34,7 +34,8 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
 
   @Output() onSave = new EventEmitter<any>();
    
-  userItem:any;
+  userItem:any; 
+  Programs:any;
   riskApprovedLimit:any;
   approveRiskComment:any;
   salesRepMessage:any;
@@ -58,6 +59,7 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
     private _DueTransactionsServiceProxy :DueTransactionsServiceProxy,
     private _usersServices:UsersService, 
     private router: Router, 
+    private _usersService:UsersService,
     public formBuilder: FormBuilder
   ) {
     super(injector);
@@ -67,21 +69,23 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
     this.isTableLoading = true;
 
    this.userItem = this._modalOption.initialState.userItem; 
+   
  
 
    this.submitPendingForm = this.formBuilder.group({
     action: ['', [Validators.required]],
     comment: ['', [Validators.required]],
+    programId:['',[Validators.required]],
     approvalReason: [''],
     rejectReason: [''],
   });
   
    this.isTableLoading = false;
 
-   
-   
+    
   }
 
+ 
 
 
   hide(){
@@ -129,7 +133,7 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
     };
 
 
-    // console.log(data)  
+    
     
     this._usersServices.AddComent(this.userItem.id,data.comment).subscribe( res => {
       if(res){ 

@@ -36,18 +36,22 @@
                                 <caption>Pending Requests</caption> 
                                 <thead class="bg-light">
                                  <tr>
+                                    <th>Request ID</th>
                                      <th>Name</th>
                                      <th>National ID</th>
                                      <th>Mobile Number</th> 
+                                    
                                      <th>Submited Date</th>  
                                  </tr>
                                  </thead>
                                  <tbody>
                                  <tr *ngFor="let user of pendingRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                     (click)="viewDetails(user.publicId)" class="btnView">
-                                     <td>{{ user.nameAr }}</td>
+                                    <td>{{user.publicId}}</td> 
+                                    <td>{{ user.nameAr }}</td>
                                      <td>{{ user.nationalId }}</td>
                                      <td>{{ user.mobileNumber }}</td> 
+                                    
                                      <td>{{user.creationTime |date }}</td>  
                                  </tr>
                                  </tbody>
@@ -92,18 +96,22 @@
                             <caption>New Requests</caption>
                             <thead class="bg-light">
                             <tr>
+                                <th>Request ID</th>
                                 <th>Name</th> 
                                 <th>National ID</th> 
                                 <th>Mobile Number</th> 
+                                
                                 <th>Submited Date</th>  
                             </tr>
                             </thead>
                             <tbody>
                             <tr *ngFor="let user of newRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                (click)="viewDetails(user.publicId)" class="btnView">
-                                <td>{{ user.nameAr }}</td>
+                               <td>{{user.publicId}}</td> 
+                               <td>{{ user.nameAr }}</td>
                                 <td>{{ user.nationalId }}</td>
                                 <td>{{ user.mobileNumber }}</td> 
+                                
                                 <td>{{user.creationTime |date }}</td>  
                             </tr>
                             </tbody>

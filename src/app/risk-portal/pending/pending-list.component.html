@@ -39,9 +39,11 @@
 
                                  <thead class="bg-light">
                                  <tr>
+                                    <th>Request ID</th>
                                      <th>Name</th>
                                      <th>National ID</th> 
                                      <th>Mobile Number</th>
+                                     
                                      <th>Submited Date</th> 
                                      <th>Release</th>
                                  </tr>
@@ -49,9 +51,11 @@
                                  <tbody>
                                  <tr *ngFor="let user of ReExminedRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                     (click)="viewDetails(user.publicId)" class="btnView">
-                                     <td>{{ user.nameAr }}</td>
+                                    <td>{{user.publicId}}</td> 
+                                    <td>{{ user.nameAr }}</td>
                                      <td>{{user.nationalId}}</td> 
                                      <td>{{ user.mobileNumber }}</td> 
+                                     
                                      <td>{{user.creationTime | date }}</td> 
                                      <td></td>
                                  </tr>
@@ -98,6 +102,8 @@
                             <caption>New Requests</caption>
                             <thead class="bg-light">
                             <tr>
+                                <th>Request ID</th> 
+
                                 <th>Name</th>
                                 <th>National ID</th>  
                                 <th>Mobile Number</th> 
@@ -108,9 +114,11 @@
                             <tbody>
                             <tr *ngFor="let user of NewRequests | paginate: { itemsPerPage: numberRows, currentPage: currentPage }"
                                (click)="viewDetails(user.publicId)" class="btnView">
-                                <td>{{ user.nameAr }}</td>
+                               <td>{{user.publicId}}</td> 
+                               <td>{{ user.nameAr }}</td>
                                 <td>{{user.nationalId}}</td> 
                                 <td>{{ user.mobileNumber }}</td> 
+                                
                                 <td>{{user.creationTime | date }}</td> 
                                 <td></td>
                             </tr>

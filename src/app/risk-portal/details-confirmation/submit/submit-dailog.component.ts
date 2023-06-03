@@ -34,7 +34,8 @@ import {
   
     @Output() onSave = new EventEmitter<any>();
      
-    userItem:any;
+    userItem:any; 
+    Programs:any;
     riskApprovedLimit:any;
     approveRiskComment:any;
     salesRepMessage:any;
@@ -47,6 +48,7 @@ import {
   
     viewApproval:boolean = false;
     viewReject:boolean = false;
+    viewSalesMSG:boolean = false;
     
   
     constructor(
@@ -66,20 +68,28 @@ import {
     ngOnInit(): void {
       this.isTableLoading = true;
   
-     this.userItem = this._modalOption.initialState.userItem; 
-   
+     this.userItem = this._modalOption.initialState.userItem;  
   
      this.submitPendingForm = this.formBuilder.group({
       action: ['', [Validators.required]],
       comment: ['', [Validators.required]],
       approvalReason: [''],
       rejectReason: [''],
+      salesMsg:[''],
+      programId:['',[Validators.required]],
     });
     
      this.isTableLoading = false;
   
      
-     
+     this.getAllProgram();
+    }
+  
+    getAllProgram(){
+      this._usersServices.GetAllPrograms().subscribe(res => {
+
+        this.Programs = res.result.items;
+      })
     }
   
   
@@ -94,16 +104,24 @@ import {
       if(action === '100'){
         this.viewReject = false;
         this.viewApproval = true;
+        this.viewSalesMSG = false;
       }
       
       else if(action == '990'){
         this.viewApproval = false;
         this.viewReject = true;
+        this.viewSalesMSG = false;
+      }
+      else if(action == '80'){
+        this.viewApproval = false;
+        this.viewReject = false;
+        this.viewSalesMSG = true;
       }
       
       else{
         this.viewApproval = false;
         this.viewReject = false;
+        this.viewSalesMSG = false;
       }
          
     }
@@ -127,14 +145,13 @@ import {
         requestId :this.userItem.id,
         systemRiskLimit: this.userItem.systemRiskLimit,
         riskApprovedLimit :this.userItem.riskApprovedLimit,
-        programID: 0,
+        programID: this.submitPendingForm.value.programId,
         requestStatus: this.submitPendingForm.value.action,      
         comment:this.submitPendingForm.value.comment
   
       };
   
   
-      // console.log(data)  
       
       this._usersServices.AddComent(this.userItem.id,data.comment).subscribe( res => {
         if(res){ 

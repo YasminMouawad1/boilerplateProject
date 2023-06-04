@@ -475,7 +475,7 @@ export class DetailsItemConfirmationComponent implements OnInit {
     let acceptDialog: BsModalRef;
  
 
-    
+     
 
     const initialState = {
       userItem: userItem

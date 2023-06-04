@@ -36,6 +36,7 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
    
   userItem:any; 
   Programs:any;
+  
   riskApprovedLimit:any;
   approveRiskComment:any;
   salesRepMessage:any;
@@ -76,13 +77,21 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
     action: ['', [Validators.required]],
     comment: ['', [Validators.required]],
     approvalReason: [''],
-    rejectReason: [''],
-    programId:['',[Validators.required]]
+    rejectReason: [''], 
   });
   
    this.isTableLoading = false;
 
+
+   this.getAllProgram();
     
+  }
+
+  getAllProgram(){
+    this._usersServices.GetAllPrograms().subscribe(res => {
+
+      this.Programs = res.result.items;
+    })
   }
 
  
@@ -126,7 +135,7 @@ export class SubmitApprovalConfirmationDialogComponent extends AppComponentBase
       requestId :this.userItem.id,
       systemRiskLimit: this.userItem.systemRiskLimit,
       riskApprovedLimit :this.userItem.riskApprovedLimit,
-      programID: this.submitPendingForm.value.programId,
+      programID: this.userItem.programID,
       requestStatus: this.submitPendingForm.value.action,      
       comment:this.submitPendingForm.value.comment
 

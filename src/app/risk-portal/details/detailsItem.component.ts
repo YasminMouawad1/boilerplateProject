@@ -346,8 +346,10 @@ export class DetailsItemComponent implements OnInit {
 
   calculateLimit(){
      this._userService.CalculateLimit(this.userId).subscribe(res => {
+      debugger
       if(res){
-         
+           console.log(res)
+
      }
     });
 

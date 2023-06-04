@@ -30,8 +30,8 @@
                       'is-invalid':submitPendingForm.get('action')?.invalid && submitForm
                     }">
                       <option value="" selected></option>
-                      <option value="70">Approve</option>
-                      <!-- <option value="990">Request To be Reject</option>  -->
+                      <option value="70" *ngIf="userItem.status == '2002'">Confirm Approve</option>
+                      <option value="990" *ngIf="userItem.status == '2001'">Request To be Reject</option> 
                       <option value="2003">Re-Examined</option>
                   </select>
                   <div>
@@ -98,7 +98,7 @@
             </div>
 
           
-            <div class="mb-3">
+            <div class="mb-3" *ngIf="userItem.status == '90' || userItem.status == '2000'">
               <div class="row">
                   <div class="col-md-3">
                     <label class="form-label"> Select Program </label>

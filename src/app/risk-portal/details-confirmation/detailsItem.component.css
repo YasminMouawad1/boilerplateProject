@@ -490,3 +490,9 @@ th,td{
     font-weight: bold;
     color: #212529;
   }
+
+  .h5Status{
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px;
+  }

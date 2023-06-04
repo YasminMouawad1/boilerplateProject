@@ -118,7 +118,8 @@ export class DetailsItemConfirmationComponent implements OnInit {
   uploadDocument! :FormGroup; 
   document:any = '';
 
-
+  statusName:string = '';
+  backgroundColor: string = '#47A992';
   
  comments:any;
  newComment:any;
@@ -218,6 +219,7 @@ export class DetailsItemConfirmationComponent implements OnInit {
   
       // this.currentStatus = ( res.data.verify_BlockedClient== 1 &&  res.data.verify_CBE==1  &&  res.data.verify_I_ScoreNationalID==1  &&  res.data.verify_Valifay ==1)
       
+      this.getUserStatus();
       
   
       for (let i in this.userItem) {
@@ -298,6 +300,42 @@ export class DetailsItemConfirmationComponent implements OnInit {
   
     });
  
+  }
+
+  getUserStatus(){
+    if(this.userItem.status == 2003){
+         this.backgroundColor = '#f5a15b';
+         this.statusName = 'Re-Examined'
+     }
+     else if(this.userItem.status == 2000){
+      this.backgroundColor = '#00AF91';
+      this.statusName = 'New Request'
+      }
+      if(this.userItem.status == 2001){
+        this.backgroundColor = '#F45050';
+        this.statusName = 'Reject by Maker'
+      }
+      if(this.userItem.status == 2002){
+        this.backgroundColor = '#5fbc7a';
+        this.statusName = 'Approve by Maker'
+      }
+      if(this.userItem.status == 990){
+        this.backgroundColor = '#F45050';
+        this.statusName = 'Reject by checker'
+      }
+      if(this.userItem.status == 70){
+        this.backgroundColor = '#3E6D9C';
+        this.statusName = 'Upload Contract'
+      }
+      if(this.userItem.status == 100){
+        this.backgroundColor = '#53BF9D';
+        this.statusName = 'Approve active'
+      }
+      if(this.userItem.status == 80){
+        this.backgroundColor = '#3E6D9C';
+        this.statusName = 'Re-Upload Contract'
+      }
+     
   }
 
   calculateLimit(){

@@ -419,13 +419,68 @@
                     </div>
                        <div class="row d-flex mt-3">
                         <div class="popup-gallery d-flex flex-wrap">
-                          <div class="card1" *ngFor="let image of allContractImages; let i=index">
-                              <div class="img-fluid contain-images">
+                          <label class="w-100">National ID: </label>
+                          <div class="lightLine"></div> 
+
+                          <div class="card1" *ngFor="let image of NationalIdDoc; let i=index">
+                            <div class="img-fluid contain-images">
                                       <img [src]="image.url" (click)="showImg(image)"/>
                               </div>
                           </div>
                           </div>
                         </div>
+
+                        <div class="row d-flex mt-3">
+                          <div class="popup-gallery d-flex flex-wrap">
+                            <label class="w-100">Car License: </label>
+                            <div class="lightLine"></div> 
+  
+                            <div class="card1" *ngFor="let image of CarLicenseDoc; let i=index">
+                              <div class="img-fluid contain-images">
+                                        <img [src]="image.url" (click)="showImg(image)"/>
+                                </div>
+                            </div>
+                            </div>
+                          </div>
+
+                          <div class="row d-flex mt-3">
+                            <div class="popup-gallery d-flex flex-wrap">
+                              <label class="w-100">club Member ship: </label>
+                              <div class="lightLine"></div> 
+    
+                              <div class="card1" *ngFor="let image of clubMembership; let i=index">
+                                <div class="img-fluid contain-images">
+                                          <img [src]="image.url" (click)="showImg(image)"/>
+                                  </div>
+                              </div>
+                              </div>
+                            </div>
+
+                            <div class="row d-flex mt-3">
+                              <div class="popup-gallery d-flex flex-wrap">
+                                <label class="w-100">Client Contract: </label>
+                                <div class="lightLine"></div> 
+      
+                                <div class="card1" *ngFor="let image of ClientContract; let i=index">
+                                  <div class="img-fluid contain-images">
+                                            <img [src]="image.url" (click)="showImg(image)"/>
+                                    </div>
+                                </div>
+                                </div>
+                              </div>
+
+                              <div class="row d-flex mt-3">
+                                <div class="popup-gallery d-flex flex-wrap">
+                                  <label class="w-100">Personal Photo: </label>
+                                  <div class="lightLine"></div> 
+        
+                                  <div class="card1" *ngFor="let image of PersonalPhoto; let i=index">
+                                    <div class="img-fluid contain-images">
+                                              <img [src]="image.url" (click)="showImg(image)"/>
+                                      </div>
+                                  </div>
+                                  </div>
+                              </div>
                   </div>
                   
 

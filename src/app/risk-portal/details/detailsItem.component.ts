@@ -123,6 +123,11 @@ export class DetailsItemComponent implements OnInit {
  Programs:any;
  prgoramName:any;
 
+ NationalIdDoc:any[] = [];
+  CarLicenseDoc:any[] = [];
+  clubMembership:any[] = [];
+  ClientContract:any[] = [];
+  PersonalPhoto:any[] = [];
 
  Selectedprogram:any;
   SelectedProgramName:any;
@@ -287,7 +292,22 @@ export class DetailsItemComponent implements OnInit {
               for(let i = 0 ; i < this.allContractImages.length ; i++){
                 if(this.allContractImages[i].documentType == 0)
                    this.profileImg = this.allContractImages[i].url
-         }
+             }
+
+
+             for(let i = 0 ; i< this.allContractImages.length ; i++){
+              if(this.allContractImages[i].documentType == 1 || this.allContractImages[i].documentType == 2)
+                  this.NationalIdDoc.push(this.allContractImages[i]);
+              else if(this.allContractImages[i].documentType == 3 || this.allContractImages[i].documentType == 4)
+                  this.CarLicenseDoc.push(this.allContractImages[i]);
+              else if(this.allContractImages[i].documentType == 5 || this.allContractImages[i].documentType == 6)
+                  this.clubMembership.push(this.allContractImages[i]);
+              else if(this.allContractImages[i].documentType == 7)
+                  this.ClientContract.push(this.allContractImages[i]);
+              else if(this.allContractImages[i].documentType == 0 )
+              this.PersonalPhoto.push(this.allContractImages[i]);
+                  
+          }
             }
       });
   

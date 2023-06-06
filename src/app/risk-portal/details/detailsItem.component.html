@@ -152,18 +152,7 @@
                              <td>{{ userItem.creditLimit }}</td>
                            </tr>  -->
 
-                           <tr>
-                            <th scope="row">
-                              Credit Limit 
-                            </th>
-                            <td>{{ userItem.creditLimit }}
-                              &nbsp;
-                              <button 
-                                   [disabled]="isClientActivation" (click)="calculateLimit()"
-                                   type="button"  class='btn btnSubmit' >
-                                   <i class="{{isClientActivation ? 'bx bx-loader bx-spin  font-size-16 align-middle me-2' : 'fas fa-calculator font-size-16 align-middle me-2'}} " ></i>  calculate Limit </button>
-                            </td>
-                          </tr>
+                           
 
                            <tr>
                             
@@ -180,6 +169,12 @@
                               &nbsp; 
                               <button *ngIf="isEditRiskLimit" (click)="editRiskLimit(true)" type="button" class='btn btn-danger btnCancel'>
                                 <i class='bx bx-x font-size-16 align-middle me-2'></i>  Cancel </button>
+
+                                <button 
+                                [disabled]="isClientActivation" (click)="calculateLimit()"
+                                type="button"  class='btn btnSubmit ml-2' >
+                                <i class="{{isClientActivation ? 'bx bx-loader bx-spin  font-size-16 align-middle me-2' : 'fas fa-calculator font-size-16 align-middle me-2'}} " ></i>
+                                  calculate Limit </button>
                             </td>
                             
                           </tr>
@@ -189,7 +184,7 @@
                            </tr> -->
                            <tr>
                             <th> System Limit 	</th>
-                            <td>{{ userItem.instantLimit }}</td>
+                            <td>{{ scoreCardLimit }}</td>
                           </tr>
                        </table>
                       </div>

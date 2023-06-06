@@ -129,6 +129,9 @@ export class DetailsItemComponent implements OnInit {
  statusName:string = '';
  backgroundColor: string = '#47A992';
 
+
+ scoreCardLimit:any;
+
   eDocType = DocumentType;
   notify: any;
 
@@ -181,25 +184,25 @@ export class DetailsItemComponent implements OnInit {
     
   }
 
-  clientActivation (mobileNumber : string){
+  // clientActivation (mobileNumber : string){
 
-    this.isClientActivation =  true;
+  //   this.isClientActivation =  true;
 
-    this._userService.getClientActivation(mobileNumber).subscribe((result) => {
+  //   this._userService.getClientActivation(mobileNumber).subscribe((result) => {
 
-      if(result.messege.length >0)
-      {
+  //     if(result.messege.length >0)
+  //     {
 
-        //this.toastr.error("",  result.messege);
+  //       //this.toastr.error("",  result.messege);
 
-        return;
-      } 
-    this.isShowRiskLimit = true;
-    this.userItem.creditLimit =  result.data
-    this.isClientActivation =  false;
-    this.isEnableActions = true;
-    })
-  }
+  //       return;
+  //     } 
+  //   this.isShowRiskLimit = true;
+  //   this.userItem.creditLimit =  result.data
+  //   this.isClientActivation =  false;
+  //   this.isEnableActions = true;
+  //   })
+  // }
 
 
   getRequestDetails(){
@@ -345,13 +348,19 @@ export class DetailsItemComponent implements OnInit {
   }
 
   calculateLimit(){
+    
+    this.isClientActivation = true;
+    
      this._userService.CalculateLimit(this.userId).subscribe(res => {
-      debugger
-      if(res){
-           console.log(res)
 
+      if(res){
+            this.scoreCardLimit = res.result.scoreCardLimit;
      }
+
+     this.isClientActivation = false;
     });
+
+    
 
   }
 

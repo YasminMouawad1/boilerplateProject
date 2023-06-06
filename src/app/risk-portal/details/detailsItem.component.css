@@ -496,3 +496,9 @@ th,td{
     border-radius: 5px;
     padding: 2px;
   }
+
+  .tdStyle{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }

@@ -89,12 +89,17 @@ export class DetailsItemConfirmationComponent implements OnInit {
   PersonalIMG:boolean=true;
   degree:number = 0;
 
+  scoreCardLimit:any;
+
   isClientActivation :boolean = false;
   
   isShowRiskLimit:boolean=false;
   isEnableActions :boolean = false; 
 
   programID:any;
+
+  Selectedprogram:any;
+  SelectedProgramName:any;
 
   isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Accept");
   isShowRejectBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Reject");
@@ -110,6 +115,7 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
   verifyChecked: boolean = false;
  
+  isShowEditRiskLimit:boolean = false;
   verify_list :any[] = [];
   reject_list :any[] = [];
   bending_list :any[] = [];
@@ -121,6 +127,8 @@ export class DetailsItemConfirmationComponent implements OnInit {
   statusName:string = '';
   backgroundColor: string = '#47A992';
   
+  profileImg:any;
+
  comments:any;
  newComment:any;
  Programs:any;
@@ -183,25 +191,25 @@ export class DetailsItemConfirmationComponent implements OnInit {
     
   }
 
-  clientActivation (mobileNumber : string){
+  // clientActivation (mobileNumber : string){
 
-    this.isClientActivation =  true;
+  //  // this.isClientActivation =  true;
 
-    this._userService.getClientActivation(mobileNumber).subscribe((result) => {
+  //   this._userService.getClientActivation(mobileNumber).subscribe((result) => {
 
-      if(result.messege.length >0)
-      {
+  //     if(result.messege.length >0)
+  //     {
 
-        //this.toastr.error("",  result.messege);
+  //       //this.toastr.error("",  result.messege);
 
-        return;
-      } 
-    this.isShowRiskLimit = true;
-    this.userItem.creditLimit =  result.data
-    this.isClientActivation =  false;
-    this.isEnableActions = true;
-    })
-  }
+  //       return;
+  //     } 
+  //   this.isShowRiskLimit = true;
+  //   this.userItem.creditLimit =  result.data
+  //   //this.isClientActivation =  false;
+  //   this.isEnableActions = true;
+  //   })
+  // }
 
 
   getRequestDetails(){
@@ -216,6 +224,13 @@ export class DetailsItemConfirmationComponent implements OnInit {
       this.userItem = res.result;
 
       this.comments = this.userItem.comments;
+
+      if(this.userItem.instantLimit != null && this.userItem.instantLimit != 0)
+      this.isShowEditRiskLimit = true;
+      else
+       this.isShowEditRiskLimit = false;
+
+       this.scoreCardLimit = this.userItem.instantLimit;
   
       // this.currentStatus = ( res.data.verify_BlockedClient== 1 &&  res.data.verify_CBE==1  &&  res.data.verify_I_ScoreNationalID==1  &&  res.data.verify_Valifay ==1)
       
@@ -261,11 +276,17 @@ export class DetailsItemConfirmationComponent implements OnInit {
      
       this._userService.GetAllDocuments(this.userId).subscribe(res => {
         if(res){
-          this.allContractImages = res.result; 
+ 
+   this.allContractImages = res.result; 
           this.imgSrc = this.allContractImages[0].url; 
           this.mobileNum = this.allContractImages[0].reviewerMobile; 
           this.name = this.allContractImages[0].reviewerName; 
           this.locationName = this.allContractImages[0].reviewerLocation; 
+
+          for(let i = 0 ; i < this.allContractImages.length ; i++){
+                 if(this.allContractImages[i].documentType == 0)
+                    this.profileImg = this.allContractImages[i].url
+          }
         }
   });
 
@@ -302,6 +323,17 @@ export class DetailsItemConfirmationComponent implements OnInit {
  
   }
 
+
+  selectProgram(program:any){
+         this.Selectedprogram = program;
+         this.getProgramByID();
+  }
+
+  getProgramByID(){
+    this._userService.getProgramByID(this.Selectedprogram).subscribe(res => {
+        this.SelectedProgramName = res.result;
+    })
+  }
   getUserStatus(){
     if(this.userItem.status == 2003){
          this.backgroundColor = '#f5a15b';
@@ -311,38 +343,48 @@ export class DetailsItemConfirmationComponent implements OnInit {
       this.backgroundColor = '#00AF91';
       this.statusName = 'New Request'
       }
-      if(this.userItem.status == 2001){
+     else if(this.userItem.status == 2001){
         this.backgroundColor = '#F45050';
         this.statusName = 'Reject by Maker'
       }
-      if(this.userItem.status == 2002){
+      else if(this.userItem.status == 2002){
         this.backgroundColor = '#5fbc7a';
         this.statusName = 'Approve by Maker'
       }
-      if(this.userItem.status == 990){
+      else if(this.userItem.status == 990){
         this.backgroundColor = '#F45050';
         this.statusName = 'Reject by checker'
       }
-      if(this.userItem.status == 70){
+     else if(this.userItem.status == 70){
         this.backgroundColor = '#3E6D9C';
         this.statusName = 'Upload Contract'
       }
-      if(this.userItem.status == 100){
+      else if(this.userItem.status == 100){
         this.backgroundColor = '#53BF9D';
         this.statusName = 'Approve active'
       }
-      if(this.userItem.status == 80){
+     else if(this.userItem.status == 80){
         this.backgroundColor = '#3E6D9C';
         this.statusName = 'Re-Upload Contract'
+      }
+      else if(this.userItem.status == 90){
+        this.backgroundColor = '#5fbc7a';
+        this.statusName = 'System Approve Request'
       }
      
   }
 
   calculateLimit(){
+
+    this.isClientActivation = true;
+
     this._userService.CalculateLimit(this.userId).subscribe(res => {
      if(res){
-       console.log(res)
+      this.scoreCardLimit = res.result.scoreCardLimit;
+       this.isShowEditRiskLimit = true;
+     
     }
+    this.isClientActivation = false;
    });
 
  }
@@ -478,7 +520,8 @@ export class DetailsItemConfirmationComponent implements OnInit {
      
 
     const initialState = {
-      userItem: userItem
+      userItem: userItem,
+      SelectedProgramName:this.SelectedProgramName
     };
 
   if(status == '90')

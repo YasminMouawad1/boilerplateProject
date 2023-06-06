@@ -109,8 +109,8 @@
                      placeholder="Select Program" formControlName="programId" 
                      [ngClass]="{
                       'is-invalid':submitPendingForm.get('programId')?.invalid && submitForm
-                    }">
-                      <option value="" selected>Select Program</option>
+                    }"> 
+                      <option selected>{{SelectedProgramName.nameEn}}</option>
                       <option *ngFor="let program of Programs" value="{{program.id}}">{{program.nameEn}}</option>
                       
                     </select> 

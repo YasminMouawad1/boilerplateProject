@@ -36,6 +36,7 @@ import {
      
     userItem:any; 
     Programs:any;
+    SelectedProgramName:any;
     riskApprovedLimit:any;
     approveRiskComment:any;
     salesRepMessage:any;
@@ -69,6 +70,7 @@ import {
       this.isTableLoading = true;
   
      this.userItem = this._modalOption.initialState.userItem;  
+     this.SelectedProgramName = this._modalOption.initialState.SelectedProgramName;
   
      this.submitPendingForm = this.formBuilder.group({
       action: ['', [Validators.required]],
@@ -76,7 +78,7 @@ import {
       approvalReason: [''],
       rejectReason: [''],
       salesMsg:[''],
-      programId:['',[Validators.required]],
+      programId:[this.SelectedProgramName.id,[Validators.required]],
     });
     
      this.isTableLoading = false;

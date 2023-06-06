@@ -35,6 +35,7 @@ import Swal from 'sweetalert2';
     @Output() onSave = new EventEmitter<any>();
      
     userItem:any;
+    SelectedProgramName:any;
     riskApprovedLimit:any;
     approveRiskComment:any;
     salesRepMessage:any;
@@ -70,6 +71,7 @@ import Swal from 'sweetalert2';
       this.isTableLoading = true;
 
      this.userItem = this._modalOption.initialState.userItem; 
+     this.SelectedProgramName = this._modalOption.initialState.SelectedProgramName;
 
      
     
@@ -78,7 +80,7 @@ import Swal from 'sweetalert2';
       comment: ['', [Validators.required]],
       approvalReason: [''],
       rejectReason: [''],
-      programId:['',[Validators.required]],
+      programId:[this.SelectedProgramName.id,[Validators.required]],
     });
     
      this.isTableLoading = false;

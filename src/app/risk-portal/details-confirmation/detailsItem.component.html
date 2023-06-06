@@ -35,13 +35,12 @@
                             <div class="media">
                               
                               <div *ngIf="PersonalIMG"  class="me-3 containImg" >
-                                <img [src]="pesonalImages" alt=""
+                                <img [src]="profileImg" alt=""
                                      class="avatar-md rounded-circle img-thumbnail">
                               </div>
 
                               <div class="media-body align-self-center">
-                                <div class="text-muted">
-                                  <p class="mb-2">Risk approval application  </p>
+                                <div class="text-muted"> 
                                   <h5 class="mb-1 headTitle">{{ userItem.nameAr }}</h5>
                                   <p class="mb-0 subTitle">{{ userItem.jobTitle }}</p>
                                 </div>
@@ -152,34 +151,32 @@
                              <td>{{ userItem.creditLimit }}</td>
                            </tr>  -->
 
-                           <tr>
-                            <th scope="row">
-                              Credit Limit 
-                            </th>
-                            <td>{{ userItem.creditLimit }}
-                              &nbsp;
-                              <button 
-                                   [disabled]="isClientActivation" (click)="calculateLimit()"
-                                   type="button"  class='btn btnSubmit' >
-                                   <i class="{{isClientActivation ? 'bx bx-loader bx-spin  font-size-16 align-middle me-2' : 'fas fa-calculator font-size-16 align-middle me-2'}} " ></i>  calculate Limit </button>
-                            </td>
-                          </tr>
+                            
 
                            <tr>
                             
                             <th scope="row"> Risk Limit </th>
 
-                            <td> 
-                              <input  [readonly]="isEditRiskLimit?'':true" (keypress)="numberOnly($event)" maxlength="6"  [(ngModel)]="riskApprovedLimit" value="{{ riskApprovedLimit }}" type="text" class="mb-3 form-control" id="formrow-inputCity">   &nbsp;
-                              <button (click)="editRiskLimit()" 
+                            <td class="tdStyle"> 
+                              <input  [readonly]="isEditRiskLimit?'':true" (keypress)="numberOnly($event)" maxlength="6"  
+                              [(ngModel)]="riskApprovedLimit" value="{{ riskApprovedLimit }}" type="text"
+                               class="mb-3 form-control w-50" id="formrow-inputCity">   &nbsp;
+                              <button  *ngIf="isShowEditRiskLimit" (click)="editRiskLimit()" 
                                    [disabled]="isEditRiskLimit && (riskApprovedLimit<5000 || riskApprovedLimit > 100000) " 
                                    type="button" [ngClass]="isEditRiskLimit ? 'btn btnSave' : 'btn btnEdit'">
                                    <i [ngClass]="isEditRiskLimit ? 'bx bx-save font-size-16 align-middle me-2' : 'bx bx-edit font-size-16 align-middle me-2'">
                                    </i>
-                                    {{isEditRiskLimit?'Save Risk Limt':'Edit Risk Limet'}} </button>
+                                   <i *ngIf="!isEditRiskLimit" class="fa-solid fa-pen-to-square"></i>
+                                    {{isEditRiskLimit?'Save':'Edit'}} </button>
                               &nbsp; 
                               <button *ngIf="isEditRiskLimit" (click)="editRiskLimit(true)" type="button" class='btn btn-danger btnCancel'>
                                 <i class='bx bx-x font-size-16 align-middle me-2'></i>  Cancel </button>
+
+                                <button 
+                                [disabled]="isClientActivation" (click)="calculateLimit()"
+                                type="button"  class='btn btnSubmit' >
+                                <i class="{{isClientActivation ? 'bx bx-loader bx-spin  font-size-16 align-middle me-2' : 'fas fa-calculator font-size-16 align-middle me-2'}} " ></i>  Calculate </button>
+                         
                             </td>
                             
                           </tr>
@@ -189,7 +186,7 @@
                            </tr> -->
                            <tr>
                             <th> System Limit 	</th>
-                            <td>{{ userItem.instantLimit }}</td>
+                            <td>{{ scoreCardLimit}}</td>
                           </tr>
                        </table>
                       </div>
@@ -365,18 +362,20 @@
 
 
                    <div class="col-md-6">
-
+                    
                     <div class="content" *ngIf="userItem.status == '90'">
-                      <select class="form-control" placeholder="Select Program" [(ngModel)]="programID">
-                        <option value="" selected>Select Program</option>
-                        <option *ngFor="let program of Programs" value="program.id">{{program.nameEn}}</option>
+                      <label class="form-label"> Select Program </label>
+                      <select class="form-control" placeholder="Select Program" [(ngModel)]="Selectedprogram"
+                      (change)="selectProgram(Selectedprogram)">
+                        
+                        <option *ngFor="let program of Programs" value="{{program.id}}">{{program.nameEn}}</option>
                         
                       </select>
                    </div>
 
                    <br>
                      
-                    <div class="content" *ngIf="userItem.status == '90'">
+                    <!-- <div class="content" *ngIf="userItem.status == '90'">
                       <div class="header border-0"> 
                            <h4> SalesRepMessage </h4>
                        </div>
@@ -388,13 +387,13 @@
               
                           </form>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="content" *ngIf="userItem.status != '90'">
                       <table class="table table-striped table-bordered tabInfo">
                         <tr>
-                          <th>Approve Request</th>
-                          <td>Mohamed</td>
+                          <th>Approve Request / Reject</th>
+                          <td>{{userItem.lastAssignmentName}}</td>
                         </tr>
                         <tr>
                           <th>Approval Reason / Reject Reason</th>
@@ -488,7 +487,7 @@
                                  <tr *ngFor="let comment of comments">
                                     <td>{{comment.comment}}</td>
                                     <td>{{comment.creationTime | date}}</td>
-                                    <td></td>
+                                    <td>{{comment.creatorName}}</td>
                                    
                                     <td>
                                       <button class="btn bgPink" (click)="editCommentDialog(userItem.id,comment.id,comment)">

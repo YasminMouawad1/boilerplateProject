@@ -123,6 +123,10 @@ export class DetailsItemComponent implements OnInit {
  Programs:any;
  prgoramName:any;
 
+
+ Selectedprogram:any;
+  SelectedProgramName:any;
+
  mobileRejection:any;
  iscoreRejection:any;
 
@@ -131,6 +135,8 @@ export class DetailsItemComponent implements OnInit {
 
 
  scoreCardLimit:any;
+ profileImg:any;
+ isShowEditRiskLimit:boolean = false;
 
   eDocType = DocumentType;
   notify: any;
@@ -166,6 +172,7 @@ export class DetailsItemComponent implements OnInit {
       rejectionReason: ['', [Validators.required]],
       rejectRiskComment: ['', [Validators.required]],
     });
+
 
 
     this.route.params.subscribe((params) => (this.userId = params['publicId']));
@@ -218,6 +225,13 @@ export class DetailsItemComponent implements OnInit {
 
       this.comments = this.userItem.comments;
 
+      if(this.userItem.instantLimit != null && this.userItem.instantLimit != 0)
+      this.isShowEditRiskLimit = true;
+      else
+       this.isShowEditRiskLimit = false;
+
+       this.scoreCardLimit = this.userItem.instantLimit;
+       
       this.getUserStatus();
         
   
@@ -269,6 +283,11 @@ export class DetailsItemComponent implements OnInit {
               this.mobileNum = this.allContractImages[0].reviewerMobile; 
               this.name = this.allContractImages[0].reviewerName; 
               this.locationName = this.allContractImages[0].reviewerLocation; 
+
+              for(let i = 0 ; i < this.allContractImages.length ; i++){
+                if(this.allContractImages[i].documentType == 0)
+                   this.profileImg = this.allContractImages[i].url
+         }
             }
       });
   
@@ -311,6 +330,7 @@ export class DetailsItemComponent implements OnInit {
   }
 
 
+  
   getUserStatus(){
     if(this.userItem.status == 2003){
          this.backgroundColor = '#f5a15b';
@@ -320,32 +340,47 @@ export class DetailsItemComponent implements OnInit {
       this.backgroundColor = '#00AF91';
       this.statusName = 'New Request'
       }
-      if(this.userItem.status == 2001){
+     else if(this.userItem.status == 2001){
         this.backgroundColor = '#F45050';
         this.statusName = 'Reject by Maker'
       }
-      if(this.userItem.status == 2002){
+     else if(this.userItem.status == 2002){
         this.backgroundColor = '#5fbc7a';
         this.statusName = 'Approve by Maker'
       }
-      if(this.userItem.status == 990){
+     else if(this.userItem.status == 990){
         this.backgroundColor = '#F45050';
         this.statusName = 'Reject by checker'
       }
-      if(this.userItem.status == 70){
+      else if(this.userItem.status == 70){
         this.backgroundColor = '#3E6D9C';
         this.statusName = 'Upload Contract'
       }
-      if(this.userItem.status == 100){
+      else if(this.userItem.status == 100){
         this.backgroundColor = '#53BF9D';
         this.statusName = 'Approve active'
       }
-      if(this.userItem.status == 80){
+      else if(this.userItem.status == 80){
         this.backgroundColor = '#3E6D9C';
         this.statusName = 'Re-Upload Contract'
       }
+      else if(this.userItem.status == 90){
+        this.backgroundColor = '#5fbc7a';
+        this.statusName = 'System Approve Request'
+      }
      
   }
+
+  selectProgram(program:any){
+    this.Selectedprogram = program;
+    this.getProgramByID();
+}
+
+getProgramByID(){
+this._userService.getProgramByID(this.Selectedprogram).subscribe(res => {
+   this.SelectedProgramName = res.result;
+})
+}
 
   calculateLimit(){
     
@@ -355,6 +390,7 @@ export class DetailsItemComponent implements OnInit {
 
       if(res){
             this.scoreCardLimit = res.result.scoreCardLimit;
+            this.isShowEditRiskLimit = true;
      }
 
      this.isClientActivation = false;
@@ -364,13 +400,13 @@ export class DetailsItemComponent implements OnInit {
 
   }
 
-getProgramByID(){
+// getProgramByID(){
 
  
-    this._userService.getProgramByID(this.userItem.programID).subscribe(res => {
+//     this._userService.getProgramByID(this.userItem.programID).subscribe(res => {
        
-    })
-}
+//     })
+// }
 
 
   getAllProgram(){
@@ -497,7 +533,8 @@ getProgramByID(){
     let acceptDialog: BsModalRef;
 
     const initialState = {
-      userItem: userItem
+      userItem: userItem,
+      SelectedProgramName:this.SelectedProgramName
     };
 
     acceptDialog = this._modalService.show(SubmitPendingDialogComponent,{class: 'modal-lg', initialState });

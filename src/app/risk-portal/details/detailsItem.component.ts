@@ -123,6 +123,9 @@ export class DetailsItemComponent implements OnInit {
  Programs:any;
  prgoramName:any;
 
+ iscoreFile:any;
+ showIscoeFile:boolean = true;
+
  NationalIdDoc:any[] = [];
   CarLicenseDoc:any[] = [];
   clubMembership:any[] = [];
@@ -230,6 +233,12 @@ export class DetailsItemComponent implements OnInit {
 
       this.comments = this.userItem.comments;
 
+      this.getIscoreFile();
+
+      if(this.userItem.status == 2000)
+         this.showIscoeFile = false;
+
+
       if(this.userItem.instantLimit != null && this.userItem.instantLimit != 0)
       this.isShowEditRiskLimit = true;
       else
@@ -237,8 +246,7 @@ export class DetailsItemComponent implements OnInit {
 
        this.scoreCardLimit = this.userItem.instantLimit;
        
-      this.getUserStatus();
-        
+      this.getUserStatus(); 
   
       // this.currentStatus = ( res.data.verify_BlockedClient== 1 &&  res.data.verify_CBE==1  &&  res.data.verify_I_ScoreNationalID==1  &&  res.data.verify_Valifay ==1)
       
@@ -402,6 +410,13 @@ this._userService.getProgramByID(this.Selectedprogram).subscribe(res => {
 })
 }
 
+
+getIscoreFile(){
+  this._userService.getIscoreFile(this.userItem.nationalId).subscribe(res => {
+       this.iscoreFile = res.result;
+  });
+}
+
   calculateLimit(){
     
     this.isClientActivation = true;
@@ -411,6 +426,7 @@ this._userService.getProgramByID(this.Selectedprogram).subscribe(res => {
       if(res){
             this.scoreCardLimit = res.result.scoreCardLimit;
             this.isShowEditRiskLimit = true;
+            this.showIscoeFile = true;
      }
 
      this.isClientActivation = false;

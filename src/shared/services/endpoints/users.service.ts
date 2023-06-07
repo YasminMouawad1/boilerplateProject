@@ -196,6 +196,10 @@ return this._API.doGet(UrlEndpoints.GET_UserById + id)
     return this._API.doPost(UrlEndpoints.PUT_UpdateComment+'?requestId='+requestID+'&commentId='+commentID+'&comment='+comment,comment)
   }
 
+getIscoreFile(nationalID:any){
+  return this._API.doGet(UrlEndpoints.Get_IscoreFile+nationalID);
+}
+
   ReleaseAssignment(requestID:any){
     return this._API.doPost(UrlEndpoints.POST_ReleaseAssignment+requestID,requestID);
   }

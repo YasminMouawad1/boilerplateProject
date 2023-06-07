@@ -83,7 +83,7 @@ static readonly Get_ClientRejectionList:string = 'api/services/app/Request/Clien
 static readonly Get_IScoreRejectionList:string = 'api/services/app/Request/ClientIScoreRejectionList?publicId=';
 static readonly POST_CalculateLimit:string = 'api/services/app/Request/CalculateLimit?publicId=';
 
-
+static readonly Get_IscoreFile:string = 'api/services/app/Request/ClientIScoreFile?nationalId=';
 
 
 //program

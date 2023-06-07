@@ -546,7 +546,22 @@ this._userService.getProgramByID(this.Selectedprogram).subscribe(res => {
 
   Submit(): void {
     
-    this.showSubmitPendingDialog(this.userItem)
+    if(this.Selectedprogram == null && this.userItem.status != 2000){
+      this.Selectedprogram = this.userItem.programID;
+      this.getProgramByID()
+    }
+
+    else if (this.Selectedprogram == null && this.userItem.status == 2000){
+      Swal.fire({
+        icon: 'error', 
+        text: 'Please Select program first and try again!!', 
+      })
+    }
+   
+    else{
+      this.showSubmitPendingDialog(this.userItem);
+    }
+    
   }
 
   private showSubmitPendingDialog(userItem:any): void {

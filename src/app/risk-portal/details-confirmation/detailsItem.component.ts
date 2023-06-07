@@ -139,6 +139,9 @@ export class DetailsItemConfirmationComponent implements OnInit {
  newComment:any;
  Programs:any;
 
+ iscoreFile:any;
+ showIscoeFile:boolean = true;
+
  mobileRejection:any;
  iscoreRejection:any;
 
@@ -230,6 +233,11 @@ export class DetailsItemConfirmationComponent implements OnInit {
       this.userItem = res.result;
 
       this.comments = this.userItem.comments;
+
+      this.getIscoreFile();
+
+      // if(this.userItem.status == 2000)
+      //    this.showIscoeFile = false;
 
       if(this.userItem.instantLimit != null && this.userItem.instantLimit != 0)
       this.isShowEditRiskLimit = true;
@@ -427,6 +435,11 @@ export class DetailsItemConfirmationComponent implements OnInit {
 
   }
 
+  getIscoreFile(){
+    this._userService.getIscoreFile(this.userItem.nationalId).subscribe(res => {
+         this.iscoreFile = res.result;
+    });
+  }
 
   ReleaseAssignment(){
 

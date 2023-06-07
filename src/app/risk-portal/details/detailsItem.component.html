@@ -195,18 +195,16 @@
                       <br>
 
                      <div class="content">
-                      <div *ngIf="!isShowAddressInfo" class="overlay">
-                        <i class="fa-solid fa-lock"></i>
-                      </div>
+                       
 
-                       <div class="header" [ngStyle]="{ 'visibility':isShowAddressInfo ? 'initial':'hidden'}">
+                       <div class="header">
                          
                          <h4>Location </h4>
                          <div class="icon">
                           <i class="fa-solid fa-location-dot"></i>
                         </div>
                      </div>
-                     <table [ngStyle]="{ 'visibility':isShowAddressInfo ? 'initial':'hidden'}"
+                     <table 
                          class="table table-nowrap mb-0">
                          <tr>
                           <th> Governorate </th>
@@ -234,11 +232,7 @@
                       <br>
 
                       <div class="content">
-                        <div *ngIf="!isShowScoreCard" class="overlay">
-                          <i class="fa-solid fa-lock"></i>
-                        </div>
-
-                        <div class="header" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
+                        <div class="header">
                         
                           <h4>Rejection List</h4>
                           <div class="icon"> 
@@ -246,7 +240,7 @@
                           </div>
 
                       </div>
-                      <div class="table-responsive" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
+                      <div class="table-responsive">
                         <h3 class="subTitleH3">Moilbe Rejection</h3>
 
                          <p class="rejectionList" *ngFor="let item of mobileRejection">
@@ -254,7 +248,7 @@
                           </p>
                       </div>
                       <br>
-                      <div class="table-responsive" [ngStyle]="{ 'visibility':isShowScoreCard ? 'initial':'hidden'}">
+                      <div class="table-responsive">
                         <h3 class="subTitleH3">I-Score Rejection</h3>
 
                          <p class="rejectionList" *ngFor="let item of iscoreRejection">
@@ -267,18 +261,15 @@
                       <br>
 
                       <div class="content">
-                        <div *ngIf="!isShowMainInfo" class="overlay">
-                          <i class="fa-solid fa-lock"></i>
-                        </div>
-  
-                        <div class="header" [ngStyle]="{ 'visibility':isShowMainInfo ? 'initial':'hidden'}">
+                        
+                        <div class="header">
                           <h4> Personal Informations </h4>
                           
                           <div class="icon"> 
                             <i class="fa-solid fa-user"></i>
                           </div>
                       </div>
-                      <table [ngStyle]="{ 'visibility':isShowMainInfo ? 'initial':'hidden'}"
+                      <table 
                         class="table table-nowrap mb-0">
                         <tr>
                           <th>Mobile </th>

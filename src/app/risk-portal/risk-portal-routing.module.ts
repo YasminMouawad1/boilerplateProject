@@ -13,7 +13,7 @@ import { RestrictedProfissionComponent } from './scoring-parameters/restricted-p
 import { ProgramComponent } from './program/program.component';
 import { Program2Component } from './program2/program2.component';
 import { DetailsItemConfirmationComponent } from './details-confirmation/detailsItem.component';
- 
+ import {ClientInquiryComponent} from './client-inquiry/client-inquiry.component';
 
 @NgModule({
     imports: [
@@ -32,7 +32,8 @@ import { DetailsItemConfirmationComponent } from './details-confirmation/details
                     {path: 'program', component: ProgramComponent,canActivate: [AppRouteGuard] },
                     {path: 'program2', component: Program2Component,canActivate: [AppRouteGuard] },
                     { path: 'details-item-confirmation/:publicId', component: DetailsItemConfirmationComponent, canActivate: [AppRouteGuard] },
-
+                    {path: 'client-inquiry', component: ClientInquiryComponent,canActivate: [AppRouteGuard] },
+                     
 
                 ]
             }

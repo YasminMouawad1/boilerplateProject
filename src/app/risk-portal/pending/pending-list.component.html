@@ -14,18 +14,18 @@
          
               <br>
      
-                 <div class="card">
+                 <div class="card" *ngIf="IsShowReExaminedRequestsQueue">
                      <div class="card-body">
 
                         <div class="d-flex containAlerts">
-                            <div class="notifications">
+                            <div class="notifications" *ngIf="IsShowReExaminedRequestsBackLogCounter">
                                 <i class="fa-regular fa-bell" [ngClass]=" notifications > 0 ? 'bx-tada' :'' "></i>
                                 <span class="badge bg-danger rounded-pill">{{displayNotifications}}</span> 
                             </div>
 
-                            <div style="width: 65%;display: flex; ">
-                                <input type="number" class="form-control w-75" [(ngModel)]="ReXminedAssignment">
-                                <button class="btn bgPink" (click)="SetBulkAssgnmentReExamined(ReXminedAssignment)">Add</button>
+                            <div style="width: 65%;display: flex; " *ngIf="IsShowReExaminedRequestsAssignFromBackLog">
+                                <input type="number" class="form-control w-75" [(ngModel)]="ReXminedAssignment" >
+                                <button class="btn bgPink" (click)="SetBulkAssgnmentReExamined(ReXminedAssignment)" >Add</button>
                             </div>
                         </div>
 
@@ -78,17 +78,17 @@
 
                <br>
                
-               <div class="card">
+               <div class="card" *ngIf="IsShowNewRequestsQueue">
                 <div class="card-body">
 
                     <div class="d-flex containAlerts">
-                        <div class="notifications">
+                        <div class="notifications" *ngIf="IsShowNewRequestsBackLogCounter">
                             <i class="fa-regular fa-bell" [ngClass]=" notifications > 0 ? 'bx-tada' :'' "></i>
                             <span class="badge bg-danger rounded-pill">{{displayNotifications}}</span> 
                         </div>
 
-                        <div style="width: 65%;display: flex;">
-                            <input type="number" class="form-control w-75" [(ngModel)]="newRequestAssignment">
+                        <div style="width: 65%;display: flex;"  *ngIf="IsShowNewRequestsAssignFromBackLog">
+                            <input type="number" class="form-control w-75" [(ngModel)]="newRequestAssignment" >
                             <button class="btn bgPink" (click)="SetBulkAssgnmentNewRequest(newRequestAssignment)">Add</button>
                         </div>
                     </div>

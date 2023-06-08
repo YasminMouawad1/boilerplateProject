@@ -204,17 +204,17 @@
               <span> Confirmation </span>
             </a>
           </li> 
-          <li>
+          <li *ngIf="isShowSetOnlineAgent">
             <a
               routerLinkActive="sub-active"
               class="side-nav-link-ref"
               routerLink="/app/risk-portal/set-online-against"
             > 
             <i class="fas fa-solid fa-list-check"></i>
-              <span> Set Online Against </span>
+              <span> Set Online Agent </span>
             </a>
           </li> 
-          <li>
+          <li *ngIf="isShowScoringParameters">
             <a
                 routerLinkActive="sub-active"
                 class="side-nav-link-ref" 
@@ -321,7 +321,16 @@
             
           </ul>
 
-
+          <li *ngIf="isShowClientInquiry">
+            <a
+              routerLinkActive="sub-active"
+              class="side-nav-link-ref"
+              routerLink="/app/general-portal/client-inquiry"
+            >
+            <i class="fas fa-user"></i>
+              <span> Client Inquiry </span>
+            </a>
+          </li>   
         </ul>
 
         <li>
@@ -334,7 +343,7 @@
             <span> [General Module]</span>
           </a>
        </li>
-      <ul class="collapse sub-menu-list" id="general">
+      <!-- <ul class="collapse sub-menu-list" id="general">
             <li>
               <a
                 routerLinkActive="sub-active"
@@ -345,7 +354,7 @@
                 <span> Client Inquiry </span>
               </a>
             </li>     
-      </ul>
+      </ul> -->
 
         <li *ngIf="isShowSystemConfig">
           <a

@@ -47,6 +47,15 @@ export class PendingListComponent implements OnInit{
 
  ReXminedAssignment:number = 5;
  newRequestAssignment:number = 5;
+
+ IsShowReExaminedRequestsQueue = abp.auth.isGranted("Pages.RiskModel.Pending.ReExaminedRequestsQueue");
+ IsShowReExaminedRequestsBackLogCounter = abp.auth.isGranted("Pages.RiskModel.Pending.ReExaminedRequestsBackLogCounter");
+ IsShowReExaminedRequestsAssignFromBackLog = abp.auth.isGranted("Pages.RiskModel.Pending.ReExaminedRequestsAssignFromBackLog");
+ IsShowNewRequestsQueue = abp.auth.isGranted("Pages.RiskModel.Pending.NewRequestsQueue");
+ IsShowNewRequestsBackLogCounter = abp.auth.isGranted("Pages.RiskModel.Pending.NewRequestsBackLogCounter");
+ IsShowNewRequestsAssignFromBackLog = abp.auth.isGranted("Pages.RiskModel.Pending.NewRequestsAssignFromBackLog");
+
+
  
   constructor( 
     private _Router:Router,
@@ -57,7 +66,7 @@ export class PendingListComponent implements OnInit{
     
     //  super(injector);
    
- 
+  
     
     
   }

@@ -1,0 +1,95 @@
+.bgGrey{
+    background-color: #f8f8f8;
+    padding: 1rem;
+}
+
+.bgGreen{
+    background-color: #5eb2a8; 
+    color: #fff;
+}
+
+.bgYellow{
+    background-color: #f8b25a; 
+    color: #fff;
+}
+
+.btnCreate{
+    background-color: #f28d8a;
+    padding: 5px 21px;
+    border-radius: 7px;
+    color: #fff;
+    float: right;
+}
+
+.bgPink{
+    background-color: #f28d8a;
+    color: #f28d8a;
+}
+
+.colorPink{
+    color: #f28d8a;
+}
+
+.card{
+    box-shadow: none;
+}
+
+.card-footer{
+    background-color: #ebebeb;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border: none;
+    background-color: #f28d8a;
+  }
+
+  .title{
+    margin-top: 2rem;
+    font-weight: bold;
+    font-size: 36px;
+  }
+
+ 
+  .my-pagination ::ng-deep .ngx-pagination{
+    margin-top: 1.5rem;
+} 
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: #556ee6;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.btnView{
+    cursor: pointer;
+}
+
+.btnView:hover{
+    background-color: #e0b7b6; 
+}
+
+
+.input-group{
+   width: 90%;
+}
+
+.input-group span{
+    font-size: 13px;
+}
+
+.inputDate{
+    font-size: 12px;
+    padding: 4px;
+    height: 35px;
+    line-height: 1;
+    margin-left: 4px !important;
+    margin-right: 4px !important;
+    border-radius: 7px !important;
+}
+
+.btnDrop{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+    text-align: left;
+}

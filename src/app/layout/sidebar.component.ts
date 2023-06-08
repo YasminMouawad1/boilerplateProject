@@ -39,18 +39,11 @@ export class SidebarComponent implements OnInit {
   isShowSystemConfigEmailType = abp.auth.isGranted("Pages.SystemConfiguration.EmailType ");
   isShowSystemConfigEmailContent = abp.auth.isGranted("Pages.SystemConfiguration.CreateEmail "); 
 
-  isShowRisk = abp.auth.isAnyGranted("Pages.Risk.UsersApproval","Pages.Risk.SoftRejected","Pages.Risk.HardRejected","Pages.Risk.SystemRejected","Pages.Risk.BulkOnBorading","Pages.Risk.Customers","Pages.Risk.LimitReview");
-  isShowRiskApproval = abp.auth.isGranted("Pages.Risk.UsersApproval");
-  isShowRiskRejectUsers = abp.auth.isAnyGranted("Pages.Risk.SoftRejected","Pages.Risk.HardRejected","Pages.Risk.SystemRejected");
-  isShowRiskSpftReject = abp.auth.isGranted("Pages.Risk.SoftRejected");
-  isShowRiskHardReject = abp.auth.isGranted("Pages.Risk.HardRejected");
-  isShowRiskSysReject = abp.auth.isGranted("Pages.Risk.SystemRejected"); 
-  isShowriskLimitReview = abp.auth.isGranted("Pages.Risk.LimitReview");
-  isShowRiskBulk = abp.auth.isGranted("Pages.Risk.BulkOnBorading");
-  isShowRiskCustomers = abp.auth.isGranted("Pages.Risk.Customers"); 
-
-
- 
+ isShowSetOnlineAgent = abp.auth.isGranted("Pages.RiskModel.SetOnlineAgent");
+ isShowScoringParameters = abp.auth.isGranted("Pages.RiskModel.ScoringParameters");
+ isShowClientInquiry = abp.auth.isGranted("Pages.RiskModel.ClientInquiry");
+  
+  
  
 
   constructor(

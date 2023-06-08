@@ -101,14 +101,25 @@ export class DetailsItemConfirmationComponent implements OnInit {
   Selectedprogram:any;
   SelectedProgramName:any;
 
-  isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Accept");
-  isShowRejectBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Reject");
-  isShowEditBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Edit");
-  isSaveEditNoteBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.SaveEditNote");
-  isShowEditNoteBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowEditNote");
-  isShowScoreCard = abp.auth.isGranted("Pages.Risk.UsersApproval.ScoreCard"); 
-  isShowAddressInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowAddressInfo");
-  isShowMainInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowMainInfo ");
+  isShowViewRequestTimeLine = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.ViewRequestTimeLine");
+  isShowSubmit = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.Submit");
+  isShowRelease = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.Release");
+  isShowFinancialInformation= abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.FinancialInformation");
+  isShowEditLimit = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.FinancialInformation.EditLimit");
+  isShowCalculateLimit = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.FinancialInformation.CalculateLimit");
+  isShowLocation = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.Location");
+  isShowDocNationalId = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.DocumentsInformation.NationalId");
+  isShowDocCarLicense = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.DocumentsInformation.CarLicense");
+  isShowDocClubMembership = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.DocumentsInformation.ClubMembership");
+  isShowDocPersonalPhoto = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.DocumentsInformation.PersonalPhoto");
+  isShowDocClientContract = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.DocumentsInformation.ClientContract");
+  isShowDocAddDocument = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.DocumentsInformation.AddDocument");
+  isShowMobileRejection = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.RejectionList.MobileRejection");
+  isShowIScoreRejection = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.RejectionList.IScoreRejection");
+  isShowAddComment = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.Comments.AddComment");
+  isShowCommentHistory = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.Comments.CommentHistory");
+  isShowEditComment = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.Comments.EditComment");
+  isShowPersonalInformation = abp.auth.isGranted("Pages.RiskModel.Cofirmation.Details.PersonalInformation");
 
   
   salesRepMessage :string = '';
@@ -164,6 +175,8 @@ export class DetailsItemConfirmationComponent implements OnInit {
               private _modalService: BsModalService
               ) {
     //super(injector);
+
+    this.isShowPersonalInformation = false
   }
 
   ngOnInit() {

@@ -42,6 +42,8 @@ import {TimeLineConfirmationDialogComponent} from './details-confirmation/timeLi
 import {AddProgramDialogComponent} from './program/add-program/add-program-dailog.component';  
 import {EditProgramDialogComponent} from './program/edit-program/edit-program-dailog.component';
 import {SubmitConfirmationDialogComponent} from './details-confirmation/submit/submit-dailog.component';
+import {ClientInquiryComponent} from './client-inquiry/client-inquiry.component';
+
 
 @NgModule({
     imports: [ 
@@ -93,7 +95,8 @@ import {SubmitConfirmationDialogComponent} from './details-confirmation/submit/s
         TimeLineConfirmationDialogComponent,
         AddProgramDialogComponent,
         EditProgramDialogComponent,
-        SubmitConfirmationDialogComponent
+        SubmitConfirmationDialogComponent,
+        ClientInquiryComponent
     ]
 })
 export class RiskPortalModule {

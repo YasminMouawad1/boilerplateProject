@@ -50,12 +50,21 @@ export class ConfirmationComponent implements OnInit{
  PendingAssignment:number = 5;
  newRequestAssignment:number = 5;
 
+ IsShowPendingRequestsQueue = abp.auth.isGranted("Pages.RiskModel.Cofirmation.PendingRequestsQueue");
+ IsShowPendingRequestsBackLogCounter = abp.auth.isGranted("Pages.RiskModel.Cofirmation.PendingRequestsBackLogCounter");
+ IsShowPendingRequestsAssignFromBackLog = abp.auth.isGranted("Pages.RiskModel.Cofirmation.PendingRequestsAssignFromBackLog");
+ IsShowNewRequestsQueue = abp.auth.isGranted("Pages.RiskModel.Cofirmation.NewRequestsQueue");
+ IsShowNewRequestsBackLogCounter = abp.auth.isGranted("Pages.RiskModel.Cofirmation.NewRequestsBackLogCounter");
+ IsShowNewRequestsAssignFromBackLog = abp.auth.isGranted("Pages.RiskModel.Cofirmation.NewRequestsAssignFromBackLog");
+
+
+
   constructor( 
     private _Router:Router,
     private _userService:UsersService,
     private _SpinnerService:SpinnerService,
     ) {
-    
+     
   }
 
   ngOnInit() {

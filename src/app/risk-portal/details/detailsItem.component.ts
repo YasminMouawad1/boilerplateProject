@@ -94,14 +94,28 @@ export class DetailsItemComponent implements OnInit {
   isShowRiskLimit:boolean=false;
   isEnableActions :boolean = false; 
 
-  isShowAcceptBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Accept");
-  isShowRejectBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Reject");
-  isShowEditBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.Edit");
-  isSaveEditNoteBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.SaveEditNote");
-  isShowEditNoteBtn = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowEditNote");
-  isShowScoreCard = abp.auth.isGranted("Pages.Risk.UsersApproval.ScoreCard"); 
-  isShowAddressInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowAddressInfo");
-  isShowMainInfo = abp.auth.isGranted("Pages.Risk.UsersApproval.ShowMainInfo ");
+  isShowViewRequestTimeLine = abp.auth.isGranted("Pages.RiskModel.Pending.Details.ViewRequestTimeLine");
+  isShowSubmit = abp.auth.isGranted("Pages.RiskModel.Pending.Details.Submit");
+  isShowRelease = abp.auth.isGranted("Pages.RiskModel.Pending.Details.Release");
+  isShowFinancialInformation= abp.auth.isGranted("Pages.RiskModel.Pending.Details.FinancialInformation");
+  isShowEditLimit = abp.auth.isGranted("Pages.RiskModel.Pending.Details.FinancialInformation.EditLimit");
+  isShowCalculateLimit = abp.auth.isGranted("Pages.RiskModel.Pending.Details.FinancialInformation.CalculateLimit");
+  isShowLocation = abp.auth.isGranted("Pages.RiskModel.Pending.Details.Location");
+  isShowDocNationalId = abp.auth.isGranted("Pages.RiskModel.Pending.Details.DocumentsInformation.NationalId");
+  isShowDocCarLicense = abp.auth.isGranted("Pages.RiskModel.Pending.Details.DocumentsInformation.CarLicense");
+  isShowDocClubMembership = abp.auth.isGranted("Pages.RiskModel.Pending.Details.DocumentsInformation.ClubMembership");
+  isShowDocPersonalPhoto = abp.auth.isGranted("Pages.RiskModel.Pending.Details.DocumentsInformation.PersonalPhoto");
+  isShowDocClientContract = abp.auth.isGranted("Pages.RiskModel.Pending.Details.DocumentsInformation.ClientContract");
+  isShowDocAddDocument = abp.auth.isGranted("Pages.RiskModel.Pending.Details.DocumentsInformation.AddDocument");
+  isShowMobileRejection = abp.auth.isGranted("Pages.RiskModel.Pending.Details.RejectionList.MobileRejection");
+  isShowIScoreRejection = abp.auth.isGranted("Pages.RiskModel.Pending.Details.RejectionList.IScoreRejection");
+  isShowAddComment = abp.auth.isGranted("Pages.RiskModel.Pending.Details.Comments.AddComment");
+  isShowCommentHistory = abp.auth.isGranted("Pages.RiskModel.Pending.Details.Comments.CommentHistory");
+  isShowEditComment = abp.auth.isGranted("Pages.RiskModel.Pending.Details.Comments.EditComment");
+  isShowPersonalInformation = abp.auth.isGranted("Pages.RiskModel.Pending.Details.PersonalInformation");
+ 
+ 
+ 
 
   
   salesRepMessage :string = '';
@@ -163,7 +177,8 @@ export class DetailsItemComponent implements OnInit {
               private modalService: NgbModal,
               private _modalService: BsModalService
               ) {
-    //super(injector);
+    //super(injector); 
+    
   }
 
   ngOnInit() {

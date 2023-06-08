@@ -439,10 +439,21 @@ getIscoreFile(){
      this._userService.CalculateLimit(this.userId).subscribe(res => {
 
       if(res){
+        if(this.userItem.status == 2000){
+         this._userService.CalculateLimit(this.userId).subscribe(res => {
+           if (res){
             this.scoreCardLimit = res.result.scoreCardLimit;
             this.isShowEditRiskLimit = true;
-            this.showIscoeFile = true;
-     }
+            this.showIscoeFile = true; 
+           }
+         });
+        }
+        else{
+          this.scoreCardLimit = res.result.scoreCardLimit;
+          this.isShowEditRiskLimit = true;
+          this.showIscoeFile = true; 
+        }
+      }
 
      this.isClientActivation = false;
     });
